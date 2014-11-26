@@ -15,19 +15,22 @@ public class DbInsert {
 		this.c = c;
 	}
 
-	public void insert() {
+	public boolean insert(String sqlCommand) {
+		boolean result = false;
 		try {
 			c.setAutoCommit(false);
 			ins = c.createStatement();
-			String sql = "INSERT INTO exam_occasion (exam_date, exam_time, exam_location, booking_id) " + "VALUES ('20140613', '0900', 96243, 'b14');";
-			ins.executeUpdate(sql);
+			//String sqlCommand = "INSERT INTO exam_occasion (exam_date, exam_time, exam_location, booking_id) " + "VALUES ('20140613', '0900', 96243, 'b14');";
+			ins.executeUpdate(sqlCommand);
 			ins.close();
 			c.commit();
+			result = true;
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
+			//System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			//System.exit(0);
 		}
-		System.out.println("Records created successfully");
+		//System.out.println("Records created successfully");
+		return result;
 	}
 
 }

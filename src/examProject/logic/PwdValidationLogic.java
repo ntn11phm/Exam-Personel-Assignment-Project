@@ -2,7 +2,6 @@ package examProject.logic;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import examProject.ActiveUser;
 import examProject.dao.DbSelect;
 import examProject.dao.ValidatePwdCommand;
