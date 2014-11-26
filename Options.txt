@@ -1,4 +1,8 @@
 username=
+databaseDriver=
 databasePath=
 databasePort=
+databaseName=
+databaseUser=
+databaseUserPW=
 mailServerPath=
