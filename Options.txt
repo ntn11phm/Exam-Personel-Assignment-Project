@@ -1,0 +1,4 @@
+username=
+databasePath=
+databasePort=
+mailServerPath=
