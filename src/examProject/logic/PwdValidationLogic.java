@@ -8,10 +8,11 @@ import examProject.dao.DbSelect;
 import examProject.dao.ValidatePwdCommand;
 
 public class PwdValidationLogic implements LogicStrategy{
+	private CharToStringConverter ctsc = new CharToStringConverter();
 	private ActiveUser au;
-	private DbSelect dbSelectExecutor; 
+	private DbSelect dbSelectExecutor;
 	private char [] pwd;
-	
+
 	public PwdValidationLogic(ActiveUser au, DbSelect dbSelectExecutor, char [] pwd) {
 		this.au = au;
 		this.dbSelectExecutor = dbSelectExecutor;
@@ -22,13 +23,6 @@ public class PwdValidationLogic implements LogicStrategy{
 		ValidatePwdCommand vpc = new ValidatePwdCommand();
 		return vpc.validatePwd(au.getUserName());
 	}
-	
-	private String charToString() {
-		String currentPwd = "";
-		for (int i = 0; i < pwd.length; i++)
-			currentPwd += pwd[i];
-		return currentPwd;
-	}
 
 	@Override
 	public boolean execute() {
@@ -36,7 +30,7 @@ public class PwdValidationLogic implements LogicStrategy{
 		ResultSet rs = dbSelectExecutor.select(getCurrentUserPwd());
 		try {
 			while (rs.next()) {
-				if (rs.getString(0).equals(charToString()))
+				if (rs.getString(0).equals(ctsc.charToString(pwd)))
 					result = true;
 			}
 			rs.close();
