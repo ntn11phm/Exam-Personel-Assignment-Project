@@ -17,14 +17,30 @@ public class AddUserLogic {
 	}
 	public boolean addUser(){
 		boolean result = false;
+		int userId = 0;
 		String sqlCommand = "SELECT username FROM users WHERE username = '" + au.getUserName() + "';";
 		ResultSet rs = dBs.select(sqlCommand);
 		try{
-			
+			if(!rs.next()){
+				sqlCommand = "INSERT INTO users (username, pwd, is_admin,) VALUES ('";
+				sqlCommand += au.userName + "', '";
+				sqlCommand += au.pwd + "', '";
+				sqlCommand += au.isAdmin + "');";
+				dBi.insert(sqlCommand);
+				sqlCommand =  "SELECT user_id FROM users WHERE username = '" + au.getUserName() + "';";
+				ResultSet rss = dBs.select(sqlCommand);
+				while(rss.next()){
+					userId = rss.getInt(0);
+				}
+				rss.close();
+				
+				sqlCommand = "INSERT INTO hosts (user_id, firstname, lastname) VALUES('";
+			}
 			
 		}catch(Exception e){
 			
 		}
+		
 		return result;
 	}
 	
