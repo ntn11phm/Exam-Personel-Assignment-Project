@@ -397,7 +397,6 @@ public class UI_LoadUserInformation extends JFrame {
 			}
 		}		
 
-	// ستراتيجي باتيرن
 	//metod som kollar om retypeEmail stämmer med mailet
 	public static void compareMail(JTextField retypeEmail, JTextField email) {
 			if (email.getText().equals(retypeEmail.getText()) == false)
@@ -421,8 +420,19 @@ public class UI_LoadUserInformation extends JFrame {
 			// använd null för att dialogrutan ska visas i mitte på skärmen
 		}
 	}
+	public boolean checkIfSQLKomman(JTextField text){
+		boolean result = false;
+		String sqlKommando[] = {"SELECT", "DELETE", "UPDATE", "'"};
+		for (int i = 0; i< sqlKommando.length; i++ )
+		if (text.getText() == sqlKommando[i] )
+			System.out.println("Du f�r inte skriva s� " + result);
+			result = false;
+		return result;
+	}
+	
 	// Metod som kollar om den inmatade efternamn är rätt
 		public void checkIfLastNameISCorrect() {
+			if (checkIfSQLKomman(lastNameTextField) == true){
 			int counter = 0;
 			for (int i = 0; i < lastNameTextField.getText().length(); i++) {
 				if ((int) lastNameTextField.getText().charAt(i) > 64
@@ -434,7 +444,7 @@ public class UI_LoadUserInformation extends JFrame {
 			if (counter != lastNameTextField.getText().length())
 				JOptionPane.showMessageDialog(null,	"Den inmatade efternamn är inte rätt");
 				// använd null för att dialogrutan ska visas i mitte på skärmen
-			
+			}
 		}
 	
 		// Metod kollar om den inmatade ort namn är rätt dvs att den tar bara bokstäver
