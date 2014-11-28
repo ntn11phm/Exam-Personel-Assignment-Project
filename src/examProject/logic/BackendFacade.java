@@ -23,8 +23,11 @@ public class BackendFacade {
 	}
 
 	public boolean addUser(AddUser addUser) {
-
 		return false;
+	}
+	
+	public boolean addUser(String userName, String firstName, String lastName, char[] pwd, boolean isAdmin) {
+		return addUser(new AddUser(userName, firstName, lastName, pwd, isAdmin));
 	}
 	
 	public boolean validateUserNameAvailibility(AddUser addUser) {
