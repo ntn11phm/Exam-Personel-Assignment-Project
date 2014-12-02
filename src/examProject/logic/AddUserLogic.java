@@ -6,7 +6,7 @@ import examProject.dao.DbInsert;
 import examProject.dao.DbSelect;
 
 public class AddUserLogic {
-	private CharToStringConverter conv = new CharToStringConverter();
+	private PasswordHashing hash = new PasswordHashing();
 	private AddUser au;
 	private DbSelect dBs;
 	private DbInsert dBi;
@@ -27,7 +27,7 @@ public class AddUserLogic {
 			if (!rs.next()) {
 				sqlCommand = "INSERT INTO users (username, pwd, is_admin,) VALUES ('";
 				sqlCommand += au.userName + "', '";
-				sqlCommand += conv.charToString(au.pwd) + "', '";
+				sqlCommand += hash.createHashedPwd(au.pwd) + "', '";
 				sqlCommand += au.isAdmin + "');";
 				dBi.insert(sqlCommand);
 				sqlCommand = "SELECT user_id FROM users WHERE username = '" + au.getUserName() + "';";
