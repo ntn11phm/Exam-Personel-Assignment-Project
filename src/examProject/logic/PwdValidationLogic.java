@@ -7,7 +7,7 @@ import examProject.dao.DbSelect;
 import examProject.dao.ValidatePwdCommand;
 
 public class PwdValidationLogic implements LogicStrategy{
-	private CharToStringConverter ctsc = new CharToStringConverter();
+	private PasswordHashing passwordHashing = new PasswordHashing();
 	private ActiveUser au;
 	private DbSelect dbSelectExecutor;
 	private char [] pwd;
@@ -29,7 +29,7 @@ public class PwdValidationLogic implements LogicStrategy{
 		ResultSet rs = dbSelectExecutor.select(getCurrentUserPwd());
 		try {
 			while (rs.next()) {
-				if (rs.getString(0).equals(ctsc.charToString(pwd)))
+				if (rs.getString(0).equals(passwordHashing.createHashedPwd(pwd)))
 					result = true;
 			}
 			rs.close();
