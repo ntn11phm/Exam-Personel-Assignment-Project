@@ -1,6 +1,6 @@
 username=
-databaseDriver=
-databasePath=
-databasePort=
-databaseName=
+databaseDriver=postgresql
+databasePath=localhost
+databasePort=5432
+databaseName=Tentamensprojekt
 mailServerPath=
