@@ -20,9 +20,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-//Ã¤ndra till extends jpanel
+//ändra till extends jpanel
 
 public class UI_LoadUserInformation extends JFrame {
+	
+	CheckIfTheInputIsCorrect checkStatement = new CheckIfTheInputIsCorrect();
 	private JButton update = new JButton("Update");
 
 	private JCheckBox isActive = new JCheckBox("Is active");
@@ -345,194 +347,60 @@ public class UI_LoadUserInformation extends JFrame {
 				& emailTextField.getText().length() > 0
 				& retypeEmailTextField.getText().length() > 0) {
 			// new UI_LoadUserInformation();
-			System.out.println("Right and updated");
-			isMailCorrect();
-			compareMail(retypeEmailTextField, emailTextField);
 			checkIfFirstNameISCorrect();
 			checkIfLastNameISCorrect();
+			checkIfMailCorrect();
+			checkStatement.compareMail(retypeEmailTextField, emailTextField);
 			checkIfCivicNrISCorrect();
-			test(mobileNrTextField.getText().length(), mobileNrTextField);
+			checkIfCityNameIsCorrect();
+			checkIfMobilNrIsCorrect();
+			checkIfPoneNrIsCorrect();
+			checkIfAddressIsCorrest();
+			checkIfZipCodeIsCorrect();
 		} else
 			JOptionPane.showMessageDialog(null,
 					"Du måste fylla in de fält med *");
 	}
-
-	public void labelListeners() {
-
-	}
-
-	// metod som kollar om mailet innehåller @
-	public static void isMailCorrect() {
-		boolean b = false;
-		int counter = 0;
-
-		if (emailTextField.getText().length() > 1) {
-			if (emailTextField.getText().contains("@")) {
-				b = true;
-				System.out.println("det finns @ " + b);
-
-			} else
-				System.out.println("det finns inte @ " + b);
-		} else
-			JOptionPane.showMessageDialog(null, "Mata in rätt e-mail");
-		for (int i = 0; i < emailTextField.getText().length(); i++) {
-
-			if ((int) emailTextField.getText().charAt(i) == 45 // - tecken
-					|| (int) emailTextField.getText().charAt(i) == 46 // .tecken
-					|| (int) emailTextField.getText().charAt(i) == 95 // _ tecken
-					|| (int) emailTextField.getText().charAt(i) > 47 // nummer
-					& (int) emailTextField.getText().charAt(i) < 58
-					|| (int) emailTextField.getText().charAt(i) > 63 // @ och Storabokstäver
-					& (int) emailTextField.getText().charAt(i) < 91
-					|| (int) emailTextField.getText().charAt(i) > 96 // småbokstäver
-					& (int) emailTextField.getText().charAt(i) < 123)
-				counter++;
-		}
-		if (counter == emailTextField.getText().length())
-			System.out.println(" done " + emailTextField.getText());
-		else {
-			System.out.println(" nej " + emailTextField.getText());
-			JOptionPane.showMessageDialog(null, "Du får använda bara följande tecken (- , _ , . , nummer, små och stora bokstäver )");
-		}
-	}
-
-	// ستراتيجي باتيرن
-	// metod som kollar om retypeEmail stämmer med mailet
-	public static void compareMail(JTextField retypeEmail, JTextField email) {
-		if (email.getText().equals(retypeEmail.getText()) == false)
-			JOptionPane.showMessageDialog(null, "Mailet stämmer inte");
-	}
-
-	public boolean checkIfSQLKomman(String text) {
-		boolean result = false;
-		String sqlKommando[] = { "SELECT", "DELETE", "UPDATE", "\"", "'" };
-		for (int i = 0; i < sqlKommando.length; i++)
-			if (text.equalsIgnoreCase(sqlKommando[i]))
-				JOptionPane.showMessageDialog(null, "Du får inte skriva SELECT, DELETE, UPDATE,', \"");
-		result = false;
-		return result;
-	}
+	
 	// MEtod kollar om den inmatade förnamn är rätt
 	public void checkIfFirstNameISCorrect() {
-		if (checkIfSQLKomman(firstNameTextField.getText())) {
-			int counter = 0;
-			for (int i = 0; i < firstNameTextField.getText().length(); i++) {
-				if ((int) firstNameTextField.getText().charAt(i) > 64
-						& (int) firstNameTextField.getText().charAt(i) < 91
-						|| (int) firstNameTextField.getText().charAt(i) > 96
-						& (int) firstNameTextField.getText().charAt(i) < 123)
-					counter++;
-			}
-			if (counter == firstNameTextField.getText().length())
-				System.out.println(" done " + firstNameTextField.getText());
-			else {
-				System.out.println(" nej " + firstNameTextField.getText());
-				JOptionPane.showMessageDialog(null,
-						"Den inmatade förnamn är inte rätt");
-				// använd null för att dialogrutan ska visas i mitte på skärmen
-			}
-		}
+		checkStatement.checkFirstName(firstNameTextField.getText(), firstNameTextField.getText().length());
 	}
 	// Metod som kollar om den inmatade efternamn är rätt
 	public void checkIfLastNameISCorrect() {
-		if (checkIfSQLKomman(firstNameTextField.getText())) {
-			int counter = 0;
-			for (int i = 0; i < lastNameTextField.getText().length(); i++) {
-				if ((int) lastNameTextField.getText().charAt(i) > 64
-						& (int) lastNameTextField.getText().charAt(i) < 91
-						|| (int) lastNameTextField.getText().charAt(i) > 96
-						& (int) lastNameTextField.getText().charAt(i) < 123)
-					counter++;
-			}
-			if (counter != lastNameTextField.getText().length())
-				JOptionPane.showMessageDialog(null,
-						"Den inmatade efternamn är inte rätt");
-			// använd null för att dialogrutan ska visas i mitte på skärmen
-		}
+		checkStatement.checkFirstName(lastNameTextField.getText(), lastNameTextField.getText().length());
 	}
+	// metod som kollar om mailet innehåller @
+	public void checkIfMailCorrect() {
+		checkStatement.checkMail(emailTextField.getText(), emailTextField.getText().length());
+		}
+	// ستراتيجي باتيرن
+
 	// Metod kollar om den inmatade ort namn är rätt dvs att den tar bara
 	// bokstäver
 	public void checkIfCityNameIsCorrect() {
-		if (checkIfSQLKomman(firstNameTextField.getText())) {
-			int counter = 0;
-			for (int i = 0; i < cityTextField.getText().length(); i++) {
-				if ((int) cityTextField.getText().charAt(i) > 64
-						& (int) cityTextField.getText().charAt(i) < 91
-						|| (int) cityTextField.getText().charAt(i) > 96
-						& (int) cityTextField.getText().charAt(i) < 123)
-					counter++;
-			}
-			if (counter != cityTextField.getText().length())
-				JOptionPane.showMessageDialog(null, "Ort namn är inte rätt");
-			// använd null för att dialogrutan ska visas i mitte på skärmen
-		}
+		checkStatement.checkCityName(cityTextField.getText(), civicNRTextField.getText().length());
 	}
-	// Metod kollar om den inmatade personnummer är rätt
 	public void checkIfCivicNrISCorrect() {
-		int counter = 0;
-		for (int i = 0; i < civicNRTextField.getText().length(); i++) {
-			if ((int) civicNRTextField.getText().charAt(i) > 47
-					& (int) civicNRTextField.getText().charAt(i) < 58) {
-				counter++;
-			}
+		checkStatement.checkCivicNr(civicNRTextField.getText(), civicNRTextField.getText().length());
 		}
-		if (counter == civicNRTextField.getText().length())
-			if (counter != 10)
-				JOptionPane.showMessageDialog(null, "Personnummer är incorrect");
-			else {
-				JOptionPane.showMessageDialog(null, "Personnummer är incorrect");
-			}
-	}
+	
 	// Metod kollar om den inmatade nummer är rätt
 	public void checkIfPoneNrIsCorrect() {
-		int counter = 0;
-		for (int i = 0; i < phoneNrTextField.getText().length(); i++) {
-			if ((int) phoneNrTextField.getText().charAt(i) > 47
-					& (int) phoneNrTextField.getText().charAt(i) < 58) {
-				counter++;
-			}
-		}
-		if (counter == phoneNrTextField.getText().length())
-			if (counter != 10)
-				JOptionPane.showMessageDialog(null, "fonenummer är incorrect");
-			else {
-				JOptionPane.showMessageDialog(null, "fonnummer är incorrect");
-			}
+		checkStatement.checkPhoneNr(phoneNrTextField.getText(), phoneNrTextField.getText().length());
 	}
 	// Metod kollar om den inmatade personnummer är rätt
 	public void checkIfMobilNrIsCorrect() {
-		int counter = 0;
-		for (int i = 0; i < mobileNrTextField.getText().length(); i++) {
-			if ((int) mobileNrTextField.getText().charAt(i) > 47
-					& (int) mobileNrTextField.getText().charAt(i) < 58) {
-				counter++;
-			}
-		}
-		if (counter == mobileNrTextField.getText().length())
-			if (counter != 10)
-				JOptionPane.showMessageDialog(null, "Mobilnummer är incorrect");
-			else {
-				JOptionPane.showMessageDialog(null, "Mobilnummer är incorrect");
-			}
+		checkStatement.checkMobilNr(mobileNrTextField.getText(), mobileNrTextField.getText().length());
 	}
 
-	public void test(int r, JTextField t) {
-		int counter = 0;
-		for (int i = 0; i < r; i++) {
-			if ((int) t.getText().charAt(i) > 47
-					& (int) t.getText().charAt(i) < 58) {
-				counter++;
-			}
-		}
-		if (counter == r)
-			System.out.println("mob längd " + r);
-		if (counter != 10)
-			JOptionPane.showMessageDialog(null, "Mobilet är incorrect");
-		else {
-			JOptionPane.showMessageDialog(null, "mobilet är incorrect");
-		}
+	public void checkIfZipCodeIsCorrect(){
+		checkStatement.checkZipCode(zipCodeTextField.getText(), zipCodeTextField.getText().length());
 	}
-
+	
+	public void checkIfAddressIsCorrest(){
+		checkStatement.checkIfAddressIsCorrest(addressTextField.getText());		
+	}
 	public JTextField getFirstNameTextField() {
 		return firstNameTextField;
 	}
