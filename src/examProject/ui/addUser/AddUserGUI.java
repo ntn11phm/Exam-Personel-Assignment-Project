@@ -1,6 +1,5 @@
 package examProject.ui.addUser;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -16,17 +15,16 @@ import examProject.logic.*;
 @SuppressWarnings("serial")
 public class AddUserGUI extends JPanel {
 	BackendFacade facade = new BackendFacade();
-	private JPanel panel = new JPanel();
-	private JLabel userNameLabel = new JLabel("Avändarnamn");
-	private JLabel firstNameLabel = new JLabel("Förnamn");
+	private JLabel userNameLabel = new JLabel("AvÃ¤ndarnamn");
+	private JLabel firstNameLabel = new JLabel("FÃ¶rnamn");
 	private JLabel lastNameLabel = new JLabel("Efternamn");
-	private JLabel pwdLabel = new JLabel("Lösenord");
+	private JLabel pwdLabel = new JLabel("LÃ¶senord");
 	private JTextField userNameText = new JTextField(30);
 	private JTextField firstNameText = new JTextField(30);
 	private JTextField lastNameText = new JTextField(30);
 	private JPasswordField pwd = new JPasswordField();
-	private JButton addUserButton = new JButton("Lägg till användare");
-	private JCheckBox isAdminCheckBox = new JCheckBox("Administratör");
+	private JButton addUserButton = new JButton("LÃ¤gg till anvÃ¤ndare");
+	private JCheckBox isAdminCheckBox = new JCheckBox("AdministratÃ¶r");
 
 	public AddUserGUI() {
 		setLayout(null);
@@ -37,16 +35,16 @@ public class AddUserGUI extends JPanel {
 	}
 
 	private void setBounds() {
-		userNameLabel.setBounds(29, 208, 72, 28);
-		firstNameLabel.setBounds(29, 126, 72, 23);
-		lastNameLabel.setBounds(167, 125, 50, 25);
-		pwdLabel.setBounds(29, 295, 50, 25);
-		addUserButton.setBounds(29, 514, 130, 23);
-		userNameText.setBounds(28, 231, 130, 25);
-		firstNameText.setBounds(29, 147, 130, 25);
-		lastNameText.setBounds(167, 146, 130, 25);
-		pwd.setBounds(29, 317, 130, 25);
-		isAdminCheckBox.setBounds(29, 387, 100, 13);
+		userNameLabel.setBounds(29, 85, 130, 28);
+		firstNameLabel.setBounds(29, 27, 130, 23);
+		lastNameLabel.setBounds(169, 26, 130, 25);
+		pwdLabel.setBounds(29, 145, 130, 25);
+		addUserButton.setBounds(29, 246, 170, 23);
+		userNameText.setBounds(29, 109, 130, 25);
+		firstNameText.setBounds(29, 49, 130, 25);
+		lastNameText.setBounds(169, 49, 130, 25);
+		pwd.setBounds(29, 166, 130, 25);
+		isAdminCheckBox.setBounds(199, 115, 130, 13);
 	}
 
 	private void addCtrls() {
@@ -76,10 +74,10 @@ public class AddUserGUI extends JPanel {
 				|| firstNameText.getText().equals("")
 				|| lastNameText.getText().equals("")
 				|| pwd.getPassword().equals("")) {
-			JOptionPane.showMessageDialog(null, "Fyll i alla fält");
+			JOptionPane.showMessageDialog(null, "Fyll i alla fÃ¤lt");
 		}
-		if (userNameText.getText().equals("Kolla användarnamn från Db")) {
-			JOptionPane.showMessageDialog(null, "Användarnamnet är upptaget");
+		if (userNameText.getText().equals("Kolla anvÃ¤ndarnamn frÃ¥n Db")) {
+			JOptionPane.showMessageDialog(null, "AnvÃ¤ndarnamnet Ã¤r upptaget");
 		} else {
 			AddUser au = new AddUser(userNameText.getText(),
 					firstNameText.getText(), lastNameText.getText(),

@@ -22,11 +22,11 @@ public class TabbedPane extends JFrame {
 
 	private void makeTabs(JTabbedPane jtp) {
 		getContentPane().add(jtp);
-		jtp.addTab("Lägg till användare", new AddUserGUI());
+		jtp.addTab("LÃ¤gg till anvÃ¤ndare", new AddUserGUI());
 		jtp.setMnemonicAt(0, KeyEvent.VK_1);
-		jtp.addTab("Begär nytt Lösenord", new ChangePwdPanel());
+		jtp.addTab("BegÃ¤r nytt LÃ¶senord", new ChangePwdPanel());
 		jtp.setMnemonicAt(0, KeyEvent.VK_2);
-		jtp.addTab("Glömt Lösenord", new ForgotPwdPanel());
+		jtp.addTab("GlÃ¶mt LÃ¶senord", new ForgotPwdPanel());
 		jtp.setMnemonicAt(0, KeyEvent.VK_3);
 
 	}
