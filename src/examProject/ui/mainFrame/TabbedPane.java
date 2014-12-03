@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 
 import examProject.ui.addUser.AddUserGUI;
 import examProject.ui.changePwd.ChangePwdPanel;
+import examProject.ui.forgotPwd.ForgotPwdPanel;
 
 public class TabbedPane extends JFrame {
 
@@ -21,10 +22,12 @@ public class TabbedPane extends JFrame {
 
 	private void makeTabs(JTabbedPane jtp) {
 		getContentPane().add(jtp);
-		jtp.addTab("Add User", new AddUserGUI());
+		jtp.addTab("Lägg till användare", new AddUserGUI());
 		jtp.setMnemonicAt(0, KeyEvent.VK_1);
-		jtp.addTab("Lösenord", new ChangePwdPanel());
+		jtp.addTab("Begär nytt Lösenord", new ChangePwdPanel());
 		jtp.setMnemonicAt(0, KeyEvent.VK_2);
+		jtp.addTab("Glömt Lösenord", new ForgotPwdPanel());
+		jtp.setMnemonicAt(0, KeyEvent.VK_3);
 
 	}
 
