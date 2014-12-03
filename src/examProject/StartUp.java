@@ -1,10 +1,6 @@
 package examProject;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
-import javax.swing.JTabbedPane;
-
 import examProject.ui.mainFrame.TabbedPane;
 
 public class StartUp {

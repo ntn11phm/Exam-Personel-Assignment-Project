@@ -29,21 +29,38 @@ public class AddUserGUI extends JPanel {
 	private JCheckBox isAdminCheckBox = new JCheckBox("Administratör");
 
 	public AddUserGUI() {
-		panel();
-		button();
-		labels();
-		textFields();
-		pwdField();
-		checkBox();
+		setLayout(null);
+		setBounds();
+		addCtrls();
 		guiButtonListener();
 
 	}
 
-	private void panel() {
-		panel.setVisible(true);
-		panel.setBackground(Color.LIGHT_GRAY);
-		panel.setBounds(100, 100, 800, 600);
-		panel.setLayout(null);
+	private void setBounds() {
+		userNameLabel.setBounds(29, 208, 72, 28);
+		firstNameLabel.setBounds(29, 126, 72, 23);
+		lastNameLabel.setBounds(167, 125, 50, 25);
+		pwdLabel.setBounds(29, 295, 50, 25);
+		addUserButton.setBounds(29, 514, 130, 23);
+		userNameText.setBounds(28, 231, 130, 25);
+		firstNameText.setBounds(29, 147, 130, 25);
+		lastNameText.setBounds(167, 146, 130, 25);
+		pwd.setBounds(29, 317, 130, 25);
+		isAdminCheckBox.setBounds(29, 387, 100, 13);
+	}
+
+	private void addCtrls() {
+		add(addUserButton);
+		add(userNameLabel);
+		add(firstNameLabel);
+		add(lastNameLabel);
+		add(pwdLabel);
+		add(userNameText);
+		add(firstNameText);
+		add(lastNameText);
+		add(pwd);
+		add(isAdminCheckBox);
+		isAdminCheckBox.setSelected(false);
 	}
 
 	private void guiButtonListener() {
@@ -68,42 +85,6 @@ public class AddUserGUI extends JPanel {
 					firstNameText.getText(), lastNameText.getText(),
 					pwd.getPassword(), isAdminCheckBox.isSelected());
 		}
-	}
-
-	private void button() {
-		addUserButton.setBounds(29, 514, 130, 23);
-		panel.add(addUserButton);
-	}
-
-	private void labels() {
-		userNameLabel.setBounds(29, 208, 72, 28);
-		panel.add(userNameLabel);
-		firstNameLabel.setBounds(29, 126, 72, 23);
-		panel.add(firstNameLabel);
-		lastNameLabel.setBounds(167, 125, 50, 25);
-		panel.add(lastNameLabel);
-		pwdLabel.setBounds(29, 295, 50, 25);
-		panel.add(pwdLabel);
-	}
-
-	private void textFields() {
-		userNameText.setBounds(28, 231, 130, 25);
-		panel.add(userNameText);
-		firstNameText.setBounds(29, 147, 130, 25);
-		panel.add(firstNameText);
-		lastNameText.setBounds(167, 146, 130, 25);
-		panel.add(lastNameText);
-	}
-
-	private void pwdField() {
-		pwd.setBounds(29, 317, 130, 25);
-		panel.add(pwd);
-	}
-
-	private void checkBox() {
-		isAdminCheckBox.setBounds(29, 387, 100, 13);
-		panel.add(isAdminCheckBox);
-		isAdminCheckBox.setSelected(false);
 	}
 
 }
