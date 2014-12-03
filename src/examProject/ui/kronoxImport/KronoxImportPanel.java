@@ -38,6 +38,52 @@ public class KronoxImportPanel extends JPanel {
 		this(new BackendFacade());
 	}
 	
+	public String getPeriodType() {
+		int selectedItem = cbPeriod.getSelectedIndex();
+		return cbPeriod.getItemAt(selectedItem);
+	}
+	
+	public String getPeriodLenght() {
+		int selectedItem = cbLenght.getSelectedIndex();
+		return cbLenght.getItemAt(selectedItem);
+	}
+	
+	public JButton getDataBtn() {
+		return btnGetData;
+	}
+	
+	public JButton getRemoveBtn() {
+		return btnRemove;
+	}
+	
+	public JButton getImportBtn() {
+		return btnImport;
+	}
+	
+	public JList<String> getExamList() {
+		return listExams;
+	}
+	
+	public JTextField getDateField() {
+		return tbDate;
+	}
+	
+	public JTextField getTmeField() {
+		return tbTime;
+	}
+	
+	public JTextField getLocationField() {
+		return tbLocation;
+	}
+	
+	public JTextField getBookingIdField() {
+		return tbBookingId;
+	}
+	
+	public JTextField getSummaryField() {
+		return tbSummary;
+	}
+	
 	private void setBounds() {
 		cbPeriod.setBounds(10, 36, 150, 20);
 		cbLenght.setBounds(170, 36, 150, 20);
