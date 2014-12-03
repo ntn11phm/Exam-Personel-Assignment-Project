@@ -2,7 +2,6 @@ package examProject.logic.requestNewPassword;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import examProject.dao.DbSelect;
 import examProject.dao.GetEmailAddress;
 import examProject.dao.SelectUsernameWithEmail;
@@ -52,6 +51,7 @@ public class RequestNewPwd implements LogicStrategy {
 			String tempPwd = tempPassword.getTmpPwd();
 			String username = getUsernameFromEmail(emailAdress);
 			RequestNewPwdHolder newPwdHolder = new RequestNewPwdHolder(username, tempPwd, "");
+			//Email API goes here...
 		}
 		
 		return result;
