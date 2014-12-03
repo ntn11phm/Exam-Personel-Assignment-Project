@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import examProject.transferObjects.ExamOccationStorer;
+
 public class SchemaReader {
 	private String dataFile = "";
 	private ExamOccationStorer currentOccation = new ExamOccationStorer();

@@ -1,4 +1,4 @@
-package examProject.logic.schemaReader;
+package examProject.transferObjects;
 
 public class ExamOccationStorer {
 	private String examRoom = "";

@@ -3,6 +3,8 @@ package examProject.logic.schemaReader;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import examProject.transferObjects.ExamOccationStorer;
+
 public class KronoxImporter {
 	private String strUrl = "http://schema.hig.se/setup/jsp/SchemaICAL.ics?startDatum=idag&intervallTyp=v&intervallAntal=6&aktivitetstyp=Tentamen&sokMedAND=true&sprak=SV&resurser=";
 	private URLConnectionReader ucr;
