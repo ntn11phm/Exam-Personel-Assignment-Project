@@ -1,4 +1,4 @@
-package examProject;
+package examProject.transferObjects;
 
 public class OptionsHolder {
 	private String username;
