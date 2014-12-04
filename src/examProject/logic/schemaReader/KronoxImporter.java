@@ -2,6 +2,7 @@ package examProject.logic.schemaReader;
 
 import java.util.List;
 
+import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationStorer;
 
 public class KronoxImporter {
@@ -14,8 +15,9 @@ public class KronoxImporter {
 		this.ucr = new URLConnectionReader();
 	}
 	
-	public KronoxImporter(String strUrl) {
-		this.strUrl = strUrl;
+	public KronoxImporter(ExamImportSelectionTO selectionParameters) {
+		KronoxStringBuilder strBuilder = new KronoxStringBuilder(selectionParameters.getPeriod_type(), selectionParameters.getPeriod_lenght());
+		this.strUrl = strBuilder.getKronoxURL();
 		this.ucr = new URLConnectionReader();
 	}
 	
@@ -27,4 +29,7 @@ public class KronoxImporter {
 		}catch (Exception e) {} 
 	}
 	
+	public List<ExamOccationStorer> getImportedData() {
+		return currentList;
+	}
 }
