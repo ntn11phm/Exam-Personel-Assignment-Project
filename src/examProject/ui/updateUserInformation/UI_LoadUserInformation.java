@@ -20,9 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-//ändra till extends jpanel
 
-public class UI_LoadUserInformation extends JFrame {
+public class UI_LoadUserInformation extends JPanel {
 	
 	CheckIfTheInputIsCorrect checkStatement = new CheckIfTheInputIsCorrect();
 	private JButton update = new JButton("Update");
@@ -41,14 +40,14 @@ public class UI_LoadUserInformation extends JFrame {
 	private JLabel phoneNrLabel = new JLabel("Telefonnummer");
 	private JLabel mobilNrLabel = new JLabel("Mobilnummer");
 
-	private JTextField firstNameTextField = new JTextField();
-	private JTextField lastNameTextField = new JTextField();
-	private JTextField addressTextField = new JTextField();
+	private JTextField firstNameTextField = new JTextField(30);
+	private JTextField lastNameTextField = new JTextField(30);
+	private JTextField addressTextField = new JTextField(50);
 	private JTextField zipCodeTextField = new JTextField();
-	private JTextField cityTextField = new JTextField();
+	private JTextField cityTextField = new JTextField(50);
 	private JTextField civicNRTextField = new JTextField();
-	private static JTextField emailTextField = new JTextField();
-	private JTextField retypeEmailTextField = new JTextField();
+	private static JTextField emailTextField = new JTextField(75);
+	private JTextField retypeEmailTextField = new JTextField(75);
 	private JTextField phoneNrTextField = new JTextField();
 	private JTextField mobileNrTextField = new JTextField();
 
@@ -59,25 +58,11 @@ public class UI_LoadUserInformation extends JFrame {
 		this.emailTextField = email;
 		this.retypeEmailTextField = retypeEmail;
 	}
-
 	public UI_LoadUserInformation() {
-
-		super("Uppdatera användarens information");
-		showTheMainWindow();
 		makePanelsAndLayoutComponents();
 		makeAndInstallTheListeners();
 		setMinimumSize(getMinimumSize());
-		// setLayout(new GridBagLayout());
-
 	}
-
-	private void showTheMainWindow() {
-		this.setVisible(true);
-		this.setSize(1200, 700);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-	}
-
 	private void makePanelsAndLayoutComponents() {
 		firstNameLabel.setPreferredSize(new Dimension(130, 40));
 		firstNameLabel.setFont(new Font("ITALIC", Font.BOLD, 10));
@@ -374,8 +359,6 @@ public class UI_LoadUserInformation extends JFrame {
 	public void checkIfMailCorrect() {
 		checkStatement.checkMail(emailTextField.getText(), emailTextField.getText().length());
 		}
-	// ستراتيجي باتيرن
-
 	// Metod kollar om den inmatade ort namn är rätt dvs att den tar bara
 	// bokstäver
 	public void checkIfCityNameIsCorrect() {
