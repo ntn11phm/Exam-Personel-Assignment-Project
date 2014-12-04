@@ -75,7 +75,10 @@ public class KronoxImportListener {
 	}
 	
 	private void removePostFromList() {
-		
+		int currentIndex = kronoxImportPanel.getExamList().getSelectedIndex();
+		if (currentIndex > -1)
+			arrExamOccations.remove(currentIndex);
+		loadList();
 	}
 	
 	private void importPostsFromList() {

@@ -2,12 +2,12 @@ package examProject.ui.kronoxImport;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-
 import examProject.logic.BackendFacade;
-
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class KronoxImportPanel extends JPanel {
@@ -18,10 +18,11 @@ public class KronoxImportPanel extends JPanel {
 	private JTextField tbTime = new JTextField();
 	private JTextField tbLocation = new JTextField();
 	private JTextField tbBookingId = new JTextField();
-	private JTextField tbSummary = new JTextField();
+	private JTextArea tbSummary = new JTextArea();
 	private JLabel lblLenght = new JLabel("Period längd");
 	private JLabel lblPeriod = new JLabel("Period typ");
 	private JButton btnGetData = new JButton("Hämta Data");
+	private JScrollPane scrollBar = new JScrollPane();
 	private JList<String> listExams = new JList<String>();
 	private JButton btnRemove = new JButton("Ta bort vald");
 	private JButton btnImport = new JButton("Importera");
@@ -32,6 +33,8 @@ public class KronoxImportPanel extends JPanel {
 		setStates();
 		addCtrls();
 		fillComboboxes();
+		KronoxImportListener kronoxImportListener = new KronoxImportListener(this, backendFacade);
+		kronoxImportListener.createListeners();
 	}
 	
 	public KronoxImportPanel() {
@@ -80,7 +83,7 @@ public class KronoxImportPanel extends JPanel {
 		return tbBookingId;
 	}
 	
-	public JTextField getSummaryField() {
+	public JTextArea getSummaryField() {
 		return tbSummary;
 	}
 	
@@ -90,6 +93,7 @@ public class KronoxImportPanel extends JPanel {
 		lblPeriod.setBounds(10, 11, 150, 14);
 		lblLenght.setBounds(170, 11, 150, 14);
 		btnGetData.setBounds(330, 35, 100, 23);
+		scrollBar.setBounds(10, 89, 310, 400);
 		listExams.setBounds(10, 89, 310, 400);
 		tbDate.setBounds(330, 87, 260, 20);
 		tbTime.setBounds(330, 118, 260, 20);
@@ -109,6 +113,7 @@ public class KronoxImportPanel extends JPanel {
 		tbLocation.setColumns(10);
 		tbBookingId.setEditable(false);
 		tbBookingId.setColumns(10);
+		tbSummary.setLineWrap(true);
 		tbSummary.setEditable(false);
 		tbSummary.setColumns(10);
 	}
@@ -119,7 +124,8 @@ public class KronoxImportPanel extends JPanel {
 		add(lblPeriod);
 		add(lblLenght);
 		add(btnGetData);
-		add(listExams);
+		scrollBar.setViewportView(listExams);
+		add(scrollBar);
 		add(tbDate);
 		add(tbTime);
 		add(tbLocation);
