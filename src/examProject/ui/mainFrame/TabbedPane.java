@@ -8,6 +8,7 @@ import javax.swing.JTabbedPane;
 import examProject.ui.addUser.AddUserGUI;
 import examProject.ui.changePwd.ChangePwdPanel;
 import examProject.ui.forgotPwd.ForgotPwdPanel;
+import examProject.ui.kronoxImport.KronoxImportPanel;
 import examProject.ui.updateUserInformation.UI_LoadUserInformation;
 
 public class TabbedPane extends JFrame {
@@ -28,6 +29,8 @@ public class TabbedPane extends JFrame {
 		jtp.setMnemonicAt(0, KeyEvent.VK_3);
 		jtp.addTab("Uppdatera användare", new UI_LoadUserInformation());
 		jtp.setMnemonicAt(0, KeyEvent.VK_4);
+		jtp.addTab("Importera", new KronoxImportPanel());
+		jtp.setMnemonicAt(0, KeyEvent.VK_5);
 
 	}
 
