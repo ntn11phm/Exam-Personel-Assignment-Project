@@ -51,13 +51,13 @@ public class UI_LoadUserInformation extends JPanel {
 	private JTextField phoneNrTextField = new JTextField();
 	private JTextField mobileNrTextField = new JTextField();
 
-	private UI_LoadUserInformation(JTextField firstName, JTextField lastName,
-			JTextField email, JTextField retypeEmail) {
-		this.firstNameTextField = firstName;
-		this.lastNameTextField = lastName;
-		this.emailTextField = email;
-		this.retypeEmailTextField = retypeEmail;
-	}
+//	private UI_LoadUserInformation(JTextField firstName, JTextField lastName,
+//			JTextField email, JTextField retypeEmail) {
+//		this.firstNameTextField = firstName;
+//		this.lastNameTextField = lastName;
+//		this.emailTextField = email;
+//		this.retypeEmailTextField = retypeEmail;
+//	}
 	public UI_LoadUserInformation() {
 		makePanelsAndLayoutComponents();
 		makeAndInstallTheListeners();

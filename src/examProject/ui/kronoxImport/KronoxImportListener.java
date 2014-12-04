@@ -7,18 +7,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationStorer;
-
-import javax.swing.JButton;
 import javax.swing.JList;
-
 import examProject.logic.BackendFacade;
-import examProject.logic.schemaReader.KronoxImporter;
-import examProject.logic.schemaReader.KronoxStringBuilder;
-import examProject.logic.schemaReader.SchemaReader;
-import examProject.logic.schemaReader.URLConnectionReader;
 
 public class KronoxImportListener {
 	private KronoxImportPanel kronoxImportPanel;
@@ -63,7 +55,11 @@ public class KronoxImportListener {
 	}
 	
 	private void loadList() {
-		
+		String [] arrString = new String[arrExamOccations.size()];
+		for (int i = 0; i < arrExamOccations.size(); i++) {
+			arrString[i] = arrExamOccations.get(i).toString();
+		}
+		kronoxImportPanel.getExamList().setListData(arrString);
 	}
 	
 	private void readDataFromKronox() {

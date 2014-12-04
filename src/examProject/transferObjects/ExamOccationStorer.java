@@ -61,8 +61,6 @@ public class ExamOccationStorer {
 
 	@Override
 	public String toString() {
-		return "ExamOccationStorer [examRoom=" + examRoom + ", examDate="
-				+ examDate + ", examStartTime=" + examStartTime
-				+ ", bookingId=" + bookingId + ", summary=" + summary + "]";
+		return examDate + ", " + examStartTime + ", " + examRoom;
 	}
 }

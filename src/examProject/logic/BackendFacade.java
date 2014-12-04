@@ -1,6 +1,7 @@
 package examProject.logic;
 
 import java.util.List;
+import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationStorer;
 
@@ -40,7 +41,8 @@ public class BackendFacade {
 	}
 	
 	public List<ExamOccationStorer> readSchemaFromKronox(ExamImportSelectionTO examImportSelection) {
-		
-		return null;
+		KronoxImporter kronoxImporter = new KronoxImporter(examImportSelection);
+		kronoxImporter.executeImport();
+		return kronoxImporter.getImportedData();
 	}
 }
