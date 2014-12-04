@@ -2,6 +2,7 @@ package examProject.ui.addUser;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -14,7 +15,7 @@ import examProject.logic.*;
 
 @SuppressWarnings("serial")
 public class AddUserGUI extends JPanel {
-	BackendFacade facade = new BackendFacade();
+	private BackendFacade facade;
 	private JLabel userNameLabel = new JLabel("Avändarnamn");
 	private JLabel firstNameLabel = new JLabel("Förnamn");
 	private JLabel lastNameLabel = new JLabel("Efternamn");
@@ -25,8 +26,12 @@ public class AddUserGUI extends JPanel {
 	private JPasswordField pwd = new JPasswordField();
 	private JButton addUserButton = new JButton("Lägg till användare");
 	private JCheckBox isAdminCheckBox = new JCheckBox("Administratör");
+	
+	public AddUserGUI(){
+		this(new BackendFacade());
+	}
 
-	public AddUserGUI() {
+	public AddUserGUI(BackendFacade facade) {
 		setLayout(null);
 		setBounds();
 		addCtrls();
@@ -70,18 +75,22 @@ public class AddUserGUI extends JPanel {
 	}
 
 	private void buttonClickedMethod() {
-		if (userNameText.getText().equals("")
-				|| firstNameText.getText().equals("")
-				|| lastNameText.getText().equals("")
-				|| pwd.getPassword().equals("")) {
-			JOptionPane.showMessageDialog(null, "Fyll i alla fält");
-		}
-		if (userNameText.getText().equals("Kolla användarnamn från Db")) {
-			JOptionPane.showMessageDialog(null, "Användarnamnet är upptaget");
-		} else {
+		if (!userNameText.getText().equals("")
+				&& !firstNameText.getText().equals("")
+				&& !lastNameText.getText().equals("")
+				&& !pwd.getPassword().equals("")) {
+
 			AddUser au = new AddUser(userNameText.getText(),
 					firstNameText.getText(), lastNameText.getText(),
 					pwd.getPassword(), isAdminCheckBox.isSelected());
+			if(facade.validateUserNameAvailibility(au)){
+				JOptionPane.showMessageDialog(null, "Användarnamnet är upptaget!");
+			}else{
+				facade.addUser(au);
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Fyll i alla fält!");
+
 		}
 	}
 
