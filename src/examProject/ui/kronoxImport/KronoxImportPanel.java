@@ -26,6 +26,7 @@ public class KronoxImportPanel extends JPanel {
 	private JList<String> listExams = new JList<String>();
 	private JButton btnRemove = new JButton("Ta bort vald");
 	private JButton btnImport = new JButton("Importera");
+	private JLabel lblStatus = new JLabel("");
 	
 	public KronoxImportPanel(BackendFacade backendFacade) {
 		setLayout(null);
@@ -39,6 +40,10 @@ public class KronoxImportPanel extends JPanel {
 	
 	public KronoxImportPanel() {
 		this(new BackendFacade());
+	}
+	
+	public void updateStatusText(String text) {
+		lblStatus.setText(text);
 	}
 	
 	public String getPeriodType() {
@@ -102,6 +107,7 @@ public class KronoxImportPanel extends JPanel {
 		tbSummary.setBounds(330, 211, 260, 210);
 		btnRemove.setBounds(330, 432, 260, 23);
 		btnImport.setBounds(330, 466, 260, 23);
+		lblStatus.setBounds(330, 500, 260, 14);
 	}
 	
 	private void setStates() {
@@ -133,6 +139,7 @@ public class KronoxImportPanel extends JPanel {
 		add(tbSummary);
 		add(btnRemove);
 		add(btnImport);
+		add(lblStatus);
 	}
 	
 	private void fillComboboxes() {

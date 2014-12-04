@@ -63,6 +63,7 @@ public class KronoxImportListener {
 	}
 	
 	private void readDataFromKronox() {
+		kronoxImportPanel.updateStatusText("");
 		String type = "";
 		if (kronoxImportPanel.getPeriodType().toLowerCase().equals("veckor"))
 			type = "v";
@@ -82,6 +83,11 @@ public class KronoxImportListener {
 	}
 	
 	private void importPostsFromList() {
-		
+		String text = "";
+		if (backendFacade.importSchemaData(arrExamOccations))
+			text = "Data har importerats!";
+		else
+			text = "Fel vid importeringen!";
+		kronoxImportPanel.updateStatusText(text);
 	}
 }
