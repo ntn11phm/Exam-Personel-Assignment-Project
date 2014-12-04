@@ -3,13 +3,13 @@ package examProject.logic.schemaReader;
 import java.util.List;
 
 import examProject.transferObjects.ExamImportSelectionTO;
-import examProject.transferObjects.ExamOccationStorer;
+import examProject.transferObjects.ExamOccationTO;
 
 public class KronoxImporter {
 	private String strUrl = "http://schema.hig.se/setup/jsp/SchemaICAL.ics?startDatum=idag&intervallTyp=v&intervallAntal=6&aktivitetstyp=Tentamen&sokMedAND=true&sprak=SV&resurser=";
 	private URLConnectionReader ucr;
 	private SchemaReader sr;
-	private List<ExamOccationStorer> currentList;
+	private List<ExamOccationTO> currentList;
 	
 	public KronoxImporter() {
 		this.ucr = new URLConnectionReader();
@@ -29,7 +29,7 @@ public class KronoxImporter {
 		}catch (Exception e) {} 
 	}
 	
-	public List<ExamOccationStorer> getImportedData() {
+	public List<ExamOccationTO> getImportedData() {
 		return currentList;
 	}
 }

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import examProject.transferObjects.ExamOccationStorer;
+import examProject.transferObjects.ExamOccationTO;
 
 public class SchemaReader {
 	private String dataFile = "";
-	private ExamOccationStorer currentOccation = new ExamOccationStorer();
-	private List<ExamOccationStorer> occationList = new ArrayList<ExamOccationStorer>();
-	private List<ExamOccationStorer> multiLocaionList;
+	private ExamOccationTO currentOccation = new ExamOccationTO();
+	private List<ExamOccationTO> occationList = new ArrayList<ExamOccationTO>();
+	private List<ExamOccationTO> multiLocaionList;
 	
 	public SchemaReader(String dataUrl) {
 		dataFile = dataUrl;
@@ -64,9 +64,9 @@ public class SchemaReader {
 		else {
 			String[] subParts = parts[1].split(" ");
 			if (subParts.length > 1) {
-				multiLocaionList = new ArrayList<ExamOccationStorer>();
+				multiLocaionList = new ArrayList<ExamOccationTO>();
 				for (int i = 0; i < subParts.length; i++)
-					multiLocaionList.add(new ExamOccationStorer(currentOccation.getExamDate(), currentOccation.getExamStartTime(), currentOccation.getBookingId(), subParts[i], currentOccation.getSummary()));
+					multiLocaionList.add(new ExamOccationTO(currentOccation.getExamDate(), currentOccation.getExamStartTime(), currentOccation.getBookingId(), subParts[i], currentOccation.getSummary()));
 			} else
 				currentOccation.setExamRoom(parts[1]);
 		}
@@ -91,18 +91,18 @@ public class SchemaReader {
 
 	private void endStatement() {
 		if (multiLocaionList != null){
-			for (ExamOccationStorer eos : multiLocaionList)
+			for (ExamOccationTO eos : multiLocaionList)
 				occationList.add(eos);
 			multiLocaionList = null;
-			currentOccation = new ExamOccationStorer();
+			currentOccation = new ExamOccationTO();
 		} else {
 			if (currentOccation.getBookingId() != null)
 				occationList.add(currentOccation);
-			currentOccation = new ExamOccationStorer();
+			currentOccation = new ExamOccationTO();
 		}
 	}
 	
-	public List<ExamOccationStorer> getOccationList() {
+	public List<ExamOccationTO> getOccationList() {
 		return this.occationList;
 	}
 }

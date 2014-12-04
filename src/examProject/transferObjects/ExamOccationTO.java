@@ -1,17 +1,17 @@
 package examProject.transferObjects;
 
-public class ExamOccationStorer {
+public class ExamOccationTO {
 	private String examRoom = "";
 	private String examDate = "";
 	private String examStartTime = "";
 	private String bookingId = "";
 	private String summary = "";
 	
-	public ExamOccationStorer() {
+	public ExamOccationTO() {
 		
 	}
 	
-	public ExamOccationStorer(String examDate, String examStartTime, String bookingId, String examRoom, String summary) {
+	public ExamOccationTO(String examDate, String examStartTime, String bookingId, String examRoom, String summary) {
 		this.examDate = examDate;
 		this.examStartTime = examStartTime;
 		this.bookingId = bookingId;

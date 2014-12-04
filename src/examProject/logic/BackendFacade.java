@@ -3,7 +3,7 @@ package examProject.logic;
 import java.util.List;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.ExamImportSelectionTO;
-import examProject.transferObjects.ExamOccationStorer;
+import examProject.transferObjects.ExamOccationTO;
 
 public class BackendFacade {
 
@@ -40,13 +40,13 @@ public class BackendFacade {
 		return false;
 	}
 	
-	public List<ExamOccationStorer> readSchemaFromKronox(ExamImportSelectionTO examImportSelection) {
+	public List<ExamOccationTO> readSchemaFromKronox(ExamImportSelectionTO examImportSelection) {
 		KronoxImporter kronoxImporter = new KronoxImporter(examImportSelection);
 		kronoxImporter.executeImport();
 		return kronoxImporter.getImportedData();
 	}
 	
-	public boolean importSchemaData(List<ExamOccationStorer> arrList) {
+	public boolean importSchemaData(List<ExamOccationTO> arrList) {
 		
 		return false;
 	}

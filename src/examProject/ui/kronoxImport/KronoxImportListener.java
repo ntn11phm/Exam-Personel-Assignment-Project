@@ -8,14 +8,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import examProject.transferObjects.ExamImportSelectionTO;
-import examProject.transferObjects.ExamOccationStorer;
+import examProject.transferObjects.ExamOccationTO;
 import javax.swing.JList;
 import examProject.logic.BackendFacade;
 
 public class KronoxImportListener {
 	private KronoxImportPanel kronoxImportPanel;
 	private BackendFacade backendFacade;
-	private List<ExamOccationStorer> arrExamOccations;
+	private List<ExamOccationTO> arrExamOccations;
 	
 	public KronoxImportListener(KronoxImportPanel kronoxImportPanel, BackendFacade backendFacade) {
 		this.kronoxImportPanel = kronoxImportPanel;
@@ -45,7 +45,7 @@ public class KronoxImportListener {
 	
 	private void loadSelectedPostRow(int index) {
 		try {
-			ExamOccationStorer eo = arrExamOccations.get(index);
+			ExamOccationTO eo = arrExamOccations.get(index);
 			kronoxImportPanel.getDateField().setText(eo.getExamDate());
 			kronoxImportPanel.getTmeField().setText(eo.getExamStartTime());
 			kronoxImportPanel.getLocationField().setText(eo.getExamRoom());
