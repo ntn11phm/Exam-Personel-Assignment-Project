@@ -45,4 +45,9 @@ public class BackendFacade {
 		kronoxImporter.executeImport();
 		return kronoxImporter.getImportedData();
 	}
+	
+	public boolean importSchemaData(List<ExamOccationStorer> arrList) {
+		
+		return false;
+	}
 }

@@ -55,10 +55,10 @@ public class KronoxImportListener {
 	}
 	
 	private void loadList() {
-		String [] arrString = new String[arrExamOccations.size()];
-		for (int i = 0; i < arrExamOccations.size(); i++) {
+		int lenght = arrExamOccations.size()-1;
+		String [] arrString = new String[lenght];
+		for (int i = 0; i < lenght; i++)
 			arrString[i] = arrExamOccations.get(i).toString();
-		}
 		kronoxImportPanel.getExamList().setListData(arrString);
 	}
 	
