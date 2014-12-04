@@ -133,8 +133,10 @@ public class KronoxImportPanel extends JPanel {
 		int max_days = 30;
 		for (int i = 0; i < max_days; i++)
 			cbLenght.addItem(""+(i+1));
+		cbLenght.setSelectedIndex(5);
 		cbPeriod.addItem("Dagar");
 		cbPeriod.addItem("Veckor");
 		cbPeriod.addItem("Månader");
+		cbPeriod.setSelectedIndex(1);
 	}
 }

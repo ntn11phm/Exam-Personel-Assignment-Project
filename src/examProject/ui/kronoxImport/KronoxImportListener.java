@@ -7,10 +7,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+
 import examProject.transferObjects.ExamOccationStorer;
+
 import javax.swing.JButton;
 import javax.swing.JList;
+
 import examProject.logic.BackendFacade;
+import examProject.logic.schemaReader.KronoxImporter;
+import examProject.logic.schemaReader.KronoxStringBuilder;
+import examProject.logic.schemaReader.SchemaReader;
+import examProject.logic.schemaReader.URLConnectionReader;
 
 public class KronoxImportListener {
 	private KronoxImportPanel kronoxImportPanel;
@@ -36,7 +43,7 @@ public class KronoxImportListener {
 	
 	private void listClick(MouseEvent mouseEvent) {
 		JList<String> tmpList = kronoxImportPanel.getExamList();
-		tmpList = (JList) mouseEvent.getSource();
+		tmpList = (JList<String>) mouseEvent.getSource();
 		if (mouseEvent.getClickCount() > 0) {
 			int index = kronoxImportPanel.getExamList().locationToIndex(mouseEvent.getPoint());
 			loadSelectedPostRow(index);
@@ -54,8 +61,28 @@ public class KronoxImportListener {
 		} catch (Exception e){}
 	}
 	
-	private void readDataFromKronox() {
+	private void loadList() {
 		
+	}
+	
+	private void readDataFromKronox() {
+		String type = "";
+		if (kronoxImportPanel.getPeriodType().toLowerCase().equals("veckor"))
+			type = "v";
+		else if (kronoxImportPanel.getPeriodType().toLowerCase().equals("månader"))
+			type = "m";
+		else
+			type = "d";
+		KronoxStringBuilder urlBuilder = new KronoxStringBuilder(type, kronoxImportPanel.getPeriodLenght());
+		URLConnectionReader ucr = new URLConnectionReader();
+		SchemaReader sr;
+		try {
+			sr = new SchemaReader(ucr.getText(urlBuilder.getKronoxURL()));
+			sr.readURL();
+			arrExamOccations = sr.getOccationList();
+		}catch (Exception e) {
+		} 
+		loadList();
 	}
 	
 	private void removePostFromList() {

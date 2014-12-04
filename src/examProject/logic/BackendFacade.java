@@ -1,5 +1,9 @@
 package examProject.logic;
 
+import java.util.List;
+import examProject.transferObjects.ExamImportSelectionTO;
+import examProject.transferObjects.ExamOccationStorer;
+
 public class BackendFacade {
 
 	public boolean validateCurrentPwd(char[] pwd) {
@@ -33,5 +37,10 @@ public class BackendFacade {
 	public boolean validateUserNameAvailibility(AddUser addUser) {
 
 		return false;
+	}
+	
+	public List<ExamOccationStorer> readSchemaFromKronox(ExamImportSelectionTO examImportSelection) {
+		
+		return null;
 	}
 }
