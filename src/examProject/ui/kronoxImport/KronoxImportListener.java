@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationStorer;
 
 import javax.swing.JButton;
@@ -73,15 +74,7 @@ public class KronoxImportListener {
 			type = "m";
 		else
 			type = "d";
-		KronoxStringBuilder urlBuilder = new KronoxStringBuilder(type, kronoxImportPanel.getPeriodLenght());
-		URLConnectionReader ucr = new URLConnectionReader();
-		SchemaReader sr;
-		try {
-			sr = new SchemaReader(ucr.getText(urlBuilder.getKronoxURL()));
-			sr.readURL();
-			arrExamOccations = sr.getOccationList();
-		}catch (Exception e) {
-		} 
+		arrExamOccations = backendFacade.readSchemaFromKronox(new ExamImportSelectionTO(type, kronoxImportPanel.getPeriodLenght()));
 		loadList();
 	}
 	
