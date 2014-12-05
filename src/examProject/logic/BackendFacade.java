@@ -1,12 +1,38 @@
 package examProject.logic;
 
+import java.sql.Connection;
 import java.util.List;
+
+import examProject.dao.DbDelete;
+import examProject.dao.DbInsert;
+import examProject.dao.DbSelect;
+import examProject.dao.DbUpdate;
+import examProject.dao.JdbcConnect;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
 
 public class BackendFacade {
-
+	private JdbcConnect con = new JdbcConnect();
+	private Connection c = null;
+	private DbSelect dbSelect;
+	private DbUpdate dbUpdate;
+	private DbInsert dbInsert;
+	private DbDelete dbDelete;
+	
+	public BackendFacade() {
+		c = con.openDbConnection(c);
+		con.closeDbConnection(c);
+		createDbObjects();
+	}
+	
+	private void createDbObjects() {
+		this.dbDelete = new DbDelete(c);
+		this.dbInsert = new DbInsert(c);
+		this.dbSelect = new DbSelect(c);
+		this.dbUpdate = new DbUpdate(c);
+	}
+	
 	public boolean validateCurrentPwd(char[] pwd) {
 
 		return false;

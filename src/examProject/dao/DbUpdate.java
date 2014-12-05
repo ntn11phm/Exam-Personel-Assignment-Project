@@ -8,10 +8,7 @@ public class DbUpdate {
 	Statement upd = null;
 	Connection c = null;
 
-	public DbUpdate() {
-	}
-
-	public void setC(Connection c) {
+	public DbUpdate(Connection c) {
 		this.c = c;
 	}
 

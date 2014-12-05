@@ -9,10 +9,7 @@ public class DbDelete {
 	Statement del = null;
 	Connection c = null;
 
-	public DbDelete() {
-	}
-
-	public void setC(Connection c) {
+	public DbDelete(Connection c) {
 		this.c = c;
 	}
 

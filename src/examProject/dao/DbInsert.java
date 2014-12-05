@@ -8,10 +8,7 @@ public class DbInsert {
 	Statement ins = null;
 	Connection c = null;
 
-	public DbInsert() {
-	}
-
-	public void setC(Connection c) {
+	public DbInsert(Connection c) {
 		this.c = c;
 	}
 

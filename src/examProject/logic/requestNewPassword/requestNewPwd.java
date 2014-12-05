@@ -13,7 +13,6 @@ public class RequestNewPwd implements LogicStrategy {
 	private DbSelect dbSelectExecutor;
 	private String input;
 	private GetEmailAddress getEmailAdress = new GetEmailAddress();
-	
 	public RequestNewPwd(DbSelect dbSelectExecutor, String input) {
 		this.dbSelectExecutor = dbSelectExecutor;
 		this.input = input;
