@@ -25,7 +25,7 @@ public class AddUserLogic {
 				+ au.getUserName() + "';";
 		ResultSet rs = dBs.select(sqlCommand);
 		try {
-			if (!rs.isBeforeFirst()) {
+			if (!rs.next()) {
 				InsertUser iu = new InsertUser(au);
 				
 				dBi.insert(iu.insertUserStrCommand());

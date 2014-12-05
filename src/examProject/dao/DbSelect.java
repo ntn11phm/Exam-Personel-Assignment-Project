@@ -37,7 +37,7 @@ public class DbSelect {
 		}finally {
 			jdbc.closeDbConnection(c);
 		}
-		//System.out.println("Operation done successfully");
+		System.out.println("Operation done successfully");
 		return result;
 	}
 
