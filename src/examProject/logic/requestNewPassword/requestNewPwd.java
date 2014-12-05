@@ -1,4 +1,4 @@
-package examProject.logic.requestNewPassword;
+package examProject.logic.RequestNewPassword;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
