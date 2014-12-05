@@ -9,12 +9,12 @@ import examProject.dao.SelectUsernameWithEmail;
 import examProject.logic.LogicStrategy;
 import examProject.transferObjects.RequestNewPwdTO;
 
-public class RequestNewPwd implements LogicStrategy {
+public class requestNewPwd implements LogicStrategy {
 	private DbSelect dbSelectExecutor;
 	private String input;
 	private GetEmailAddress getEmailAdress = new GetEmailAddress();
 	
-	public RequestNewPwd(DbSelect dbSelectExecutor, String input) {
+	public requestNewPwd(DbSelect dbSelectExecutor, String input) {
 		this.dbSelectExecutor = dbSelectExecutor;
 		this.input = input;
 	}//
