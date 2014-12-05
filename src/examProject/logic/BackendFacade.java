@@ -22,8 +22,9 @@ public class BackendFacade {
 	
 	public BackendFacade() {
 		c = con.openDbConnection(c);
-		con.closeDbConnection(c);
 		createDbObjects();
+		con.closeDbConnection(c);
+		
 	}
 	
 	private void createDbObjects() {
