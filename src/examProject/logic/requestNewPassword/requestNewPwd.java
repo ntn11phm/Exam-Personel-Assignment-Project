@@ -2,10 +2,12 @@ package examProject.logic.requestNewPassword;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import examProject.dao.DbSelect;
 import examProject.dao.GetEmailAddress;
 import examProject.dao.SelectUsernameWithEmail;
 import examProject.logic.LogicStrategy;
+import examProject.transferObjects.RequestNewPwdTO;
 
 public class RequestNewPwd implements LogicStrategy {
 	private DbSelect dbSelectExecutor;
@@ -50,7 +52,7 @@ public class RequestNewPwd implements LogicStrategy {
 			GetTmpPwd tempPassword = new GetTmpPwd(dbSelectExecutor);
 			String tempPwd = tempPassword.getTmpPwd();
 			String username = getUsernameFromEmail(emailAdress);
-			RequestNewPwdHolder newPwdHolder = new RequestNewPwdHolder(username, tempPwd, "");
+			RequestNewPwdTO newPwdHolder = new RequestNewPwdTO(username, tempPwd, "");
 			//Email API goes here...
 		}
 		

@@ -1,11 +1,11 @@
-package examProject.logic.requestNewPassword;
+package examProject.transferObjects;
 
-public class RequestNewPwdHolder {
+public class RequestNewPwdTO {
 	private String username;
 	private String password;
 	private String message;
 	
-	public RequestNewPwdHolder(String username, String password, String message) {
+	public RequestNewPwdTO(String username, String password, String message) {
 		this.username = username;
 		this.password = password;
 		this.message = message;
