@@ -17,7 +17,7 @@ public class RequestNewPwd implements LogicStrategy {
 	public RequestNewPwd(DbSelect dbSelectExecutor, String input) {
 		this.dbSelectExecutor = dbSelectExecutor;
 		this.input = input;
-	}
+	}//
 	
 	private String getEmailAdress() {
 		String emailAdress = "";
