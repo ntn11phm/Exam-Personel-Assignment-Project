@@ -54,7 +54,9 @@ public class BackendFacade {
 	}
 
 	public boolean addUser(AddUser addUser) {
-		return false;
+		AddUserLogic aul = new AddUserLogic(addUser, dbSelect, dbInsert);
+		
+		return aul.addUser();
 	}
 	
 	public boolean addUser(String userName, String firstName, String lastName, char[] pwd, boolean isAdmin) {

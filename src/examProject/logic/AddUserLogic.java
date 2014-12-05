@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 
 import examProject.dao.DbInsert;
 import examProject.dao.DbSelect;
+import examProject.dao.InsertUser;
 
 public class AddUserLogic {
 	private PasswordHashing hash = new PasswordHashing();
@@ -24,20 +25,20 @@ public class AddUserLogic {
 				+ au.getUserName() + "';";
 		ResultSet rs = dBs.select(sqlCommand);
 		try {
-			if (!rs.next()) {
-				sqlCommand = "INSERT INTO users (username, pwd, is_admin,) VALUES ('";
-				sqlCommand += au.userName + "', '";
-				sqlCommand += hash.createHashedPwd(au.pwd) + "', '";
-				sqlCommand += au.isAdmin + "');";
-				dBi.insert(sqlCommand);
+			if (!rs.isBeforeFirst()) {
+				InsertUser iu = new InsertUser(au);
+				
+				dBi.insert(iu.insertUserStrCommand());
 				sqlCommand = "SELECT user_id FROM users WHERE username = '" + au.getUserName() + "';";
 				ResultSet rss = dBs.select(sqlCommand);
 				while (rss.next()) {
 					userId = rss.getInt(0);
 				}
 				rss.close();
+				
 
-				sqlCommand = "INSERT INTO hosts (user_id, firstname, lastname) VALUES (user_id,'" + au.firstName + "', '" + au.lastName +"')";
+				sqlCommand = "INSERT INTO hosts (user_id, firstname, lastname) VALUES ("+userId + ",'" + au.firstName + "', '" + au.lastName +"')";
+				dBi.insert(sqlCommand);
 			}
 
 		} catch (Exception e) {

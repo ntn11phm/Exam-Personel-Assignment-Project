@@ -46,7 +46,7 @@ public class JdbcConnect {
 //				se.printStackTrace();
 			}
 		}
-//		System.out.println("Closed database successfully");
+		System.out.println("Closed database successfully");
 		return true;
 	}
 }

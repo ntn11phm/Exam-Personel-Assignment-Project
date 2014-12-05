@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class DbSelect {
+	JdbcConnect jdbc = new JdbcConnect();
 	Connection c = null;
     Statement sel = null;
 	
@@ -22,6 +23,7 @@ public class DbSelect {
 	public ResultSet select(String selectCommand){
 		ResultSet result = null;
 		try{
+			jdbc.openDbConnection(c);
 			sel = c.createStatement();
 		    ResultSet rs = sel.executeQuery(selectCommand);
 		    result = rs;
@@ -29,8 +31,10 @@ public class DbSelect {
 		    sel.close();
 		    c.close();
 		} catch ( Exception e ) {
-			//System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
 			//System.exit(0);
+		}finally {
+			//jdbc.closeDbConnection(c);
 		}
 		//System.out.println("Operation done successfully");
 		return result;

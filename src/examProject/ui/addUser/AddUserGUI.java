@@ -26,12 +26,13 @@ public class AddUserGUI extends JPanel {
 	private JPasswordField pwd = new JPasswordField();
 	private JButton addUserButton = new JButton("Lägg till användare");
 	private JCheckBox isAdminCheckBox = new JCheckBox("Administratör");
-	
-	public AddUserGUI(){
+
+	public AddUserGUI() {
 		this(new BackendFacade());
 	}
 
 	public AddUserGUI(BackendFacade facade) {
+		this.facade = facade;
 		setLayout(null);
 		setBounds();
 		addCtrls();
@@ -83,11 +84,8 @@ public class AddUserGUI extends JPanel {
 			AddUser au = new AddUser(userNameText.getText(),
 					firstNameText.getText(), lastNameText.getText(),
 					pwd.getPassword(), isAdminCheckBox.isSelected());
-			if(facade.validateUserNameAvailibility(au)){
-				JOptionPane.showMessageDialog(null, "Användarnamnet är upptaget!");
-			}else{
-				facade.addUser(au);
-			}
+			facade.addUser(au);
+
 		} else {
 			JOptionPane.showMessageDialog(null, "Fyll i alla fält!");
 
