@@ -1,7 +1,9 @@
 package examProject.logic.importSchemaData;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+
 import examProject.dao.DbSelect;
 import examProject.dao.SelectSessionIds;
 import examProject.logic.LogicStrategy;
@@ -16,10 +18,16 @@ public class ImportSchemaData implements LogicStrategy {
 		this.dbSelect = dbSelect;
 	}
 	
-	private void insertOrUpdateOccations() {
-		ExamOccationTO currentExamOccasion;
-		String selectCommand = "SELECT exam_date, exam_time, exam_location, booking_id, summary FROM examoccasions WHERE booking_id='" + arrExams.get(0).getBookingId() + "';";
+	private void insertOrUpdateOccations(ExamOccationTO currentExamOccasion) {
+		ExamOccationTO tmpExamOccasion;
+		String selectCommand = "SELECT exam_date, exam_time, exam_location, booking_id, summary FROM examoccasions WHERE booking_id='" + currentExamOccasion.getBookingId() + "';";
 		ResultSet rs = dbSelect.select(selectCommand);
+		try {
+			while (rs.next()) {
+				
+			}
+		} catch (SQLException e) {}
+			
 	}
 	
 	private void createSessions() {
@@ -34,7 +42,7 @@ public class ImportSchemaData implements LogicStrategy {
 	public boolean execute() {
 		boolean result = false;
 		if (arrExams!=null) {
-			insertOrUpdateOccations();
+			//insertOrUpdateOccations();
 			createSessions();
 			
 		}
