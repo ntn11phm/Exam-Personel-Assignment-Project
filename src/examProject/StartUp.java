@@ -1,6 +1,10 @@
 package examProject;
 
+import java.sql.Connection;
+
 import javax.swing.JFrame;
+
+import examProject.dao.JdbcConnect;
 import examProject.ui.mainFrame.TabbedPane;
 
 public class StartUp {
@@ -10,6 +14,10 @@ public class StartUp {
 		tp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tp.setSize(1000, 1000);
 		tp.setVisible(true);
+		JdbcConnect con = new JdbcConnect();
+		Connection c = null;
+		c = con.openDbConnection(c);
+		con.closeDbConnection(c);
 
 	}
 }
