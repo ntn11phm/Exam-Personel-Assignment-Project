@@ -4,3 +4,4 @@ databasePath=localhost
 databasePort=5432
 databaseName=Tentamensprojekt
 mailServerPath=
+firstTimeLaunch=true
