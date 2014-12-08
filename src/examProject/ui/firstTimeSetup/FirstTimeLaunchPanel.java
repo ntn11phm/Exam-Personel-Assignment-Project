@@ -23,12 +23,12 @@ public class FirstTimeLaunchPanel extends JPanel {
 	}
 	
 	private void setBounds() {
-		lblText.setBounds(10, 10, 300, 50);
-		lblUsername.setBounds(10, 70, 150, 10);
-		tbUsername.setBounds(10, 90, 150, 10);
-		lblPwd.setBounds(10, 110, 150, 10);
-		tbPwd.setBounds(10, 130, 150, 10);
-		btnStore.setBounds(10, 150, 80, 15);
+		lblText.setBounds(10, 10, 430, 15);
+		lblUsername.setBounds(10, 36, 150, 15);
+		tbUsername.setBounds(10, 62, 150, 15);
+		lblPwd.setBounds(10, 88, 150, 15);
+		tbPwd.setBounds(10, 114, 150, 15);
+		btnStore.setBounds(10, 140, 80, 24);
 	}
 	
 	private void addCtrls() {
