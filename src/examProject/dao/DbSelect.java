@@ -1,36 +1,31 @@
 package examProject.dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DbSelect {
 	private JdbcConnect jdbc = new JdbcConnect();
-	private Connection c = null;
-    private PreparedStatement sel = null;
+	private Connection c;
+	private Statement s;
+	private ResultSet rs;
 	
 	public DbSelect(){
+		this.c = jdbc.getC();
+		this.s = jdbc.getS();
+		this.rs = jdbc.getRs();
 	}
 	
-	public DbSelect(Connection c){
-		this.c = c;
-	}
-	
-	public void setC(Connection c) {
-		this.c = c;
-	}
 	
 	public ResultSet select(String selectCommand){
 		ResultSet result = null;
 		try{
 			c = jdbc.openDbConnection(c);
-			sel = c.prepareStatement(selectCommand);
-		    ResultSet rs = sel.executeQuery();
+			s = c.createStatement();
+		    rs = s.executeQuery(selectCommand);
 		    result = rs;
-		    rs.close();
-		    sel.close();
-		    c.close();
+
 		} catch ( Exception e ) {
 			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
 			//System.exit(0);
@@ -39,6 +34,17 @@ public class DbSelect {
 		}
 		System.out.println("Operation done successfully");
 		return result;
+	}
+	public void close(){
+	    try {
+			rs.close();
+			s.close();
+		    c.close();
+		} catch (SQLException e) {
+	
+			e.printStackTrace();
+		}
+	    
 	}
 
 }

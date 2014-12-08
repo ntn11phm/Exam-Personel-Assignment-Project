@@ -26,8 +26,8 @@ public class AddUserLogic {
 		ResultSet rs = dBs.select(sqlCommand);
 		
 		try {
-			int rows = rs.getRow();
-			if (rows ==0) {
+			
+			if (!rs.next()) {
 				InsertUser iu = new InsertUser(au);				
 				dBi.insert(iu.insertUserStrCommand());
 				sqlCommand = "SELECT user_id FROM users WHERE username = '" + au.getUserName() + "';";
@@ -39,6 +39,8 @@ public class AddUserLogic {
 
 				sqlCommand = "INSERT INTO hosts (user_id, firstname, lastname) VALUES ("+userId + ",'" + au.firstName + "', '" + au.lastName +"')";
 				dBi.insert(sqlCommand);
+				dBs.close();
+				dBi.close();
 				result = true;
 			}
 
