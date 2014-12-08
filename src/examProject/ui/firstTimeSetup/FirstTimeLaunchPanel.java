@@ -5,7 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class FirstTimeLaunch extends JPanel {
+public class FirstTimeLaunchPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel lblText = new JLabel("Var god och fyll i dessa fält med informationen du har fått av administratören!");
 	private JLabel lblUsername = new JLabel("Databasen användarnamn");
@@ -14,7 +14,7 @@ public class FirstTimeLaunch extends JPanel {
 	private JTextField tbPwd = new JTextField();
 	private JButton btnStore = new JButton("Spara");
 	
-	public FirstTimeLaunch() {
+	public FirstTimeLaunchPanel() {
 		setLayout(null);
 		setBounds();
 		addCtrls();
