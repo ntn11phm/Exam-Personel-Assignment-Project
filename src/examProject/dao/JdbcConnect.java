@@ -10,7 +10,7 @@ import java.sql.*;
  */
 public class JdbcConnect {
 	private Connection c = null;
-	
+
 	public Connection getC() {
 		return c;
 	}
@@ -33,9 +33,10 @@ public class JdbcConnect {
 					"jdbc:postgresql://localhost:5432/Tentamensprojekt",
 					"postgres", "Destroyer");
 		} catch (Exception e) {
-//			e.printStackTrace();
-//			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-//			System.exit(0);
+			// e.printStackTrace();
+			// System.err.println(e.getClass().getName() + ": " +
+			// e.getMessage());
+			// System.exit(0);
 		}
 		System.out.println("Opened database successfully");
 		return c;
@@ -46,28 +47,20 @@ public class JdbcConnect {
 			con.close();
 			con = null;
 		} catch (Exception e) {
-//			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-//			System.exit(0);
+			// System.err.println(e.getClass().getName() + ": " +
+			// e.getMessage());
+			// System.exit(0);
 		} finally {
 			try {
-				if(rs != null)
+				if (rs != null)
 					rs.close();
-				if(s != null)
-					s.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException se2) {
-			}
-			try {
-				if(rs != null)
-					rs.close();
-				if(s != null)
+				if (s != null)
 					s.close();
 				if (con != null)
 					con.close();
 			} catch (SQLException se) {
-//				se.printStackTrace();
 			}
+
 		}
 		System.out.println("Closed database successfully");
 		return true;
