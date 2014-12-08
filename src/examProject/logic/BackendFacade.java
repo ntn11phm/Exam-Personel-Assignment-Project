@@ -30,7 +30,7 @@ public class BackendFacade {
 	private void createDbObjects() {
 		this.dbDelete = new DbDelete(c);
 		this.dbInsert = new DbInsert(c);
-		this.dbSelect = new DbSelect(c);
+		this.dbSelect = new DbSelect();
 		this.dbUpdate = new DbUpdate(c);
 	}
 	

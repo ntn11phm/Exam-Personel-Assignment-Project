@@ -9,7 +9,22 @@ import java.sql.*;
  *
  */
 public class JdbcConnect {
-	Connection c = null;
+	private Connection c = null;
+	
+	public Connection getC() {
+		return c;
+	}
+
+	public Statement getS() {
+		return s;
+	}
+
+	public ResultSet getRs() {
+		return rs;
+	}
+
+	private Statement s = null;
+	private ResultSet rs = null;
 
 	public Connection openDbConnection(Connection c) {
 		try {
@@ -35,11 +50,19 @@ public class JdbcConnect {
 //			System.exit(0);
 		} finally {
 			try {
+				if(rs != null)
+					rs.close();
+				if(s != null)
+					s.close();
 				if (con != null)
 					con.close();
 			} catch (SQLException se2) {
 			}
 			try {
+				if(rs != null)
+					rs.close();
+				if(s != null)
+					s.close();
 				if (con != null)
 					con.close();
 			} catch (SQLException se) {
