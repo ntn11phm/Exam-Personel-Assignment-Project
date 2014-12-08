@@ -5,7 +5,7 @@
 *.jar
 # Except library files
 !mockito-all-1.9.5.jar
-!postgresql-9.3-1102.jdbc41.jar
+postgresql-9.3-1102.jdbc41.jar
 *.war
 *.ear
 
