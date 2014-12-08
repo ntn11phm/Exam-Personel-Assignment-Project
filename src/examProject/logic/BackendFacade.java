@@ -21,9 +21,9 @@ public class BackendFacade {
 	private DbDelete dbDelete;
 	
 	public BackendFacade() {
-		c = con.openDbConnection(c);
+		//c = con.openDbConnection(c);
 		createDbObjects();
-		con.closeDbConnection(c);
+		//con.closeDbConnection(c);
 		
 	}
 	
