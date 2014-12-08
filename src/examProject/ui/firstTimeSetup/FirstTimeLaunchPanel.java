@@ -19,7 +19,7 @@ public class FirstTimeLaunchPanel extends JPanel {
 		setLayout(null);
 		setBounds();
 		addCtrls();
-		
+		loadFromFile();
 	}
 	
 	private void setBounds() {
@@ -38,6 +38,18 @@ public class FirstTimeLaunchPanel extends JPanel {
 		add(lblPwd);
 		add(tbPwd);
 		add(btnStore);
+	}
+	
+	private void loadFromFile() {
+		FirstTimeLaunchLogic logic = new FirstTimeLaunchLogic();
+		boolean result = logic.openFile();
+		if (result)
+			lblStatus.setText("Laddat från fil!");
+		else {
+			lblStatus.setText("Kunde inte ladda från fil!");
+			// create file here?
+		}
+		
 	}
 	
 	public JButton getStoreButton() {

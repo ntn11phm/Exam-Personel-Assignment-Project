@@ -22,6 +22,11 @@ public class FirstTimeLaunchListener {
 			panel.setStatusText("Fyll i lösenordet!");
 		else {
 			FirstTimeLaunchLogic logic = new FirstTimeLaunchLogic();
+			result = logic.save(panel.getUsername(), panel.getPwd());
+			if (result)
+				panel.setStatusText("Data sparat till fil!");
+			else
+				panel.setStatusText("Något gick fel vid sparningnen!");
 		}
 	}
 }
