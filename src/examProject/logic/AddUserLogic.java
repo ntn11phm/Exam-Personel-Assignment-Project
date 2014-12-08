@@ -24,21 +24,22 @@ public class AddUserLogic {
 		String sqlCommand = "SELECT username FROM users WHERE username = '"
 				+ au.getUserName() + "';";
 		ResultSet rs = dBs.select(sqlCommand);
+		
 		try {
-			if (!rs.next()) {
-				InsertUser iu = new InsertUser(au);
-				
+			int rows = rs.getRow();
+			if (rows ==0) {
+				InsertUser iu = new InsertUser(au);				
 				dBi.insert(iu.insertUserStrCommand());
 				sqlCommand = "SELECT user_id FROM users WHERE username = '" + au.getUserName() + "';";
 				ResultSet rss = dBs.select(sqlCommand);
 				while (rss.next()) {
 					userId = rss.getInt(0);
 				}
-				rss.close();
-				
+				rss.close();				
 
 				sqlCommand = "INSERT INTO hosts (user_id, firstname, lastname) VALUES ("+userId + ",'" + au.firstName + "', '" + au.lastName +"')";
 				dBi.insert(sqlCommand);
+				result = true;
 			}
 
 		} catch (Exception e) {
