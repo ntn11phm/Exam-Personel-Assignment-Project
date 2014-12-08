@@ -13,11 +13,13 @@ public class FirstTimeLaunchPanel extends JPanel {
 	private JTextField tbUsername = new JTextField();
 	private JTextField tbPwd = new JTextField();
 	private JButton btnStore = new JButton("Spara");
+	private JLabel lblStatus = new JLabel();
 	
 	public FirstTimeLaunchPanel() {
 		setLayout(null);
 		setBounds();
 		addCtrls();
+		
 	}
 	
 	private void setBounds() {
@@ -36,5 +38,21 @@ public class FirstTimeLaunchPanel extends JPanel {
 		add(lblPwd);
 		add(tbPwd);
 		add(btnStore);
+	}
+	
+	public JButton getStoreButton() {
+		return btnStore;
+	}
+	
+	public String getUsername() {
+		return tbUsername.getText();
+	}
+	
+	public String getPwd() {
+		return tbPwd.getText();
+	}
+	
+	public void setStatusText(String text) {
+		lblStatus.setText(text);
 	}
 }
