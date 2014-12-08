@@ -23,7 +23,6 @@ public class DbInsert {
 			ins.close();
 			c.commit();
 			result = true;
-			System.out.println("Records created successfully");
 		} catch (Exception e) {
 			//System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			//System.exit(0);
