@@ -23,12 +23,9 @@ public class DbManipulator {
 			state = con.createStatement();
 			rs = state.executeQuery(selectCommand);
 			result = rs;
-		} catch (Exception e) {
-
-		}
-		System.out.println("Operation done successfully");
+			System.out.println("Operation done successfully");
+		} catch (Exception e) {}
 		return result;
-
 	}
 
 	public boolean insert(String sqlCommand) {
@@ -39,10 +36,8 @@ public class DbManipulator {
 			state.executeUpdate(sqlCommand);
 			con.commit();
 			result = true;
-		} catch (Exception e) {
-
-		}
-		System.out.println("Records created successfully");
+			System.out.println("Records created successfully");
+		} catch (Exception e) {}
 		return result;
 	}
 

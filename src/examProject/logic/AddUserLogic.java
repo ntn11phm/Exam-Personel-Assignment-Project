@@ -34,24 +34,20 @@ public class AddUserLogic {
 			if (!rs.next()) {
 				InsertUser iu = new InsertUser(au);				
 				dBm.insert(iu.insertUserStrCommand());
-				sqlCommand = "SELECT user_id FROM users WHERE username = '" + au.getUserName() + "';";
-				ResultSet rss = dBm.select(sqlCommand);
-				while (rss.next()) {
-					userId = rss.getInt(0);
-				}
-				rss.close();				
-
-				sqlCommand = "INSERT INTO hosts (user_id, firstname, lastname) VALUES ("+userId + ",'" + au.firstName + "', '" + au.lastName +"')";
+//				sqlCommand = "SELECT user_id FROM users WHERE username = '" + au.getUserName() + "';";
+//				ResultSet rss = dBm.select(sqlCommand);
+//				while (rss.next()) {
+//					userId = rss.getInt(0);
+//				}
+//				rss.close();				
+				sqlCommand = "INSERT INTO hosts (user_id, firstname, lastname) VALUES ((SELECT user_id FROM users WHERE username = '" + au.getUserName() + "),'" + au.firstName + "', '" + au.lastName +"')";
 				dBm.insert(sqlCommand);
 				//dBs.close();
-				dBm.closeDb();
 				result = true;
 			}
-
-		} catch (Exception e) {
-
+		} catch (Exception e) {} finally {
+			dBm.closeDb();
 		}
-
 		return result;
 	}
 
