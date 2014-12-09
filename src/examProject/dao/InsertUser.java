@@ -16,17 +16,21 @@ public class InsertUser {
 	private DbManipulator dBm;
 
 	public String insertUserStrCommand(String username, char[] pwd, boolean is_admin) {
-		sqlCommand += username + "', '";
-		sqlCommand += hash.createHashedPwd(pwd) + "', '";
-		sqlCommand += is_admin + "');";
+		String sqlCommand = "INSERT INTO users (username, pwd, is_admin,) VALUES ('";
+		sqlCommand += username + "', '" + hash.createHashedPwd(pwd) + "', '" + is_admin + "');";
 
 		return sqlCommand;
 
 	}
 	public String insertUserStrCommand() {
+		String sqlCommand = "INSERT INTO users (username, pwd, is_admin,) VALUES ('";
 		sqlCommand += au.userName + "', '"+ hash.createHashedPwd(au.getPwd()) + "', "+ au.isAdmin + ");";
 
 		return sqlCommand;
 
+	}
+	
+	public String getSqlCommand(){
+		return sqlCommand;
 	}
 }
