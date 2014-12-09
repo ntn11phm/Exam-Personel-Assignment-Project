@@ -5,6 +5,7 @@ import java.util.List;
 
 import examProject.dao.DbDelete;
 import examProject.dao.DbInsert;
+import examProject.dao.DbManipulator;
 import examProject.dao.DbSelect;
 import examProject.dao.DbUpdate;
 import examProject.dao.JdbcConnect;
@@ -15,10 +16,10 @@ import examProject.transferObjects.ExamOccationTO;
 public class BackendFacade {
 	private JdbcConnect con = new JdbcConnect();
 	private Connection c = null;
-	private DbSelect dbSelect;
-	private DbUpdate dbUpdate;
-	private DbInsert dbInsert;
-	private DbDelete dbDelete;
+	//private DbSelect dbSelect;
+	//private DbUpdate dbUpdate;
+	private DbManipulator dbManipulator;
+	//private DbDelete dbDelete;
 	
 	public BackendFacade() {
 		//c = con.openDbConnection(c);
@@ -28,10 +29,11 @@ public class BackendFacade {
 	}
 	
 	private void createDbObjects() {
-		this.dbDelete = new DbDelete(c);
-		this.dbInsert = new DbInsert(c);
-		this.dbSelect = new DbSelect();
-		this.dbUpdate = new DbUpdate(c);
+//		this.dbDelete = new DbDelete(c);
+//		this.dbInsert = new DbInsert(c);
+//		this.dbSelect = new DbSelect();
+//		this.dbUpdate = new DbUpdate(c);
+		this.dbManipulator = new DbManipulator();
 	}
 	
 	public boolean validateCurrentPwd(char[] pwd) {
@@ -55,7 +57,7 @@ public class BackendFacade {
 	}
 
 	public boolean addUser(AddUser addUser) {
-		AddUserLogic aul = new AddUserLogic(addUser, dbSelect, dbInsert);
+		AddUserLogic aul = new AddUserLogic(addUser, dbManipulator);
 		
 		return aul.addUser();
 	}

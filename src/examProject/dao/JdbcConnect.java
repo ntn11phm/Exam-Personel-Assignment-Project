@@ -26,7 +26,7 @@ public class JdbcConnect {
 	private Statement s = null;
 	private ResultSet rs = null;
 
-	public Connection openDbConnection(Connection c) {
+	public Connection openDbConnection() {
 		try {
 			Class.forName("org.postgresql.Driver");
 			c = DriverManager.getConnection(

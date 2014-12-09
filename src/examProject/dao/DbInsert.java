@@ -17,7 +17,7 @@ public class DbInsert {
 	public boolean insert(String sqlCommand) {
 		boolean result = false;
 		try {
-			c = jdbc.openDbConnection(c);
+			c = jdbc.openDbConnection();
 			c.setAutoCommit(false);
 			s = c.createStatement();
 			// String sqlCommand =

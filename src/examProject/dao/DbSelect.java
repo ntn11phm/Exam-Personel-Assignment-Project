@@ -21,7 +21,7 @@ public class DbSelect {
 	public ResultSet select(String selectCommand){
 		ResultSet result = null;
 		try{
-			c = jdbc.openDbConnection(c);
+			c = jdbc.openDbConnection();
 			s = c.createStatement();
 		    rs = s.executeQuery(selectCommand);
 		    result = rs;
