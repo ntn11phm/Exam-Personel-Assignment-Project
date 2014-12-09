@@ -6,17 +6,13 @@ import examProject.dao.DbManipulator;
 import examProject.dao.InsertUser;
 
 public class AddUserLogic {
-	//private PasswordHashing hash = new PasswordHashing();
 	private AddUser au;
-//	private DbSelect dBs;
-//	private DbInsert dBi;
 	private DbManipulator dBm;
 
 	public AddUserLogic(AddUser au, DbManipulator dBm) {
 		this.au = au;
 		this.dBm = dBm;
-//		this.dBs = dBs;
-//		this.dBi = dBi;
+
 	}
 
 	public boolean addUser() {
@@ -41,7 +37,6 @@ public class AddUserLogic {
 //				rss.close();				
 				sqlCommand = "INSERT INTO hosts (user_id, firstname, lastname) VALUES ((SELECT user_id FROM users WHERE username = '" + au.getUserName() + "'),'" + au.firstName + "', '" + au.lastName +"')";
 				dBm.insert(sqlCommand);
-				//dBs.close();
 				result = true;
 			}
 		} catch (Exception e) {} finally {
