@@ -28,12 +28,12 @@ public class DbManipulator {
 		return result;
 	}
 
-	public boolean insert(String sqlCommand) {
+	public boolean insert(String insertCommand) {
 		boolean result = false;
 		try {
 			con.setAutoCommit(false);
 			state = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			state.executeUpdate(sqlCommand);
+			state.executeUpdate(insertCommand);
 			con.commit();
 			result = true;
 			System.out.println("Records created successfully");
