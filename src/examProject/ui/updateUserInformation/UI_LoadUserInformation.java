@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -20,12 +21,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import examProject.logic.BackendFacade;
+
 
 public class UI_LoadUserInformation extends JPanel {
-	
 	CheckIfTheInputIsCorrect checkStatement = new CheckIfTheInputIsCorrect();
+	private BackendFacade facade;
 	private JButton update = new JButton("Update");
-
 	private JCheckBox isActive = new JCheckBox("Is active");
 	private JCheckBox isAdmin = new JCheckBox("Is admin");
 
@@ -50,21 +52,28 @@ public class UI_LoadUserInformation extends JPanel {
 	private JTextField retypeEmailTextField = new JTextField(75);
 	private JTextField phoneNrTextField = new JTextField();
 	private JTextField mobileNrTextField = new JTextField();
-
-//	private UI_LoadUserInformation(JTextField firstName, JTextField lastName,
-//			JTextField email, JTextField retypeEmail) {
-//		this.firstNameTextField = firstName;
-//		this.lastNameTextField = lastName;
-//		this.emailTextField = email;
-//		this.retypeEmailTextField = retypeEmail;
-//	}
+	
 	public UI_LoadUserInformation() {
+		this(new BackendFacade());
+	}
+
+	public UI_LoadUserInformation(BackendFacade facade) {
+		this.facade = facade;
+		setLayout(null);
+		/*setBounds();
+		addCtrls();
+		guiButtonListener();*/
+		makePanelsAndLayoutComponents();
+		makeAndInstallTheListeners();
+	}
+	
+	/*public UI_LoadUserInformation() {
 		makePanelsAndLayoutComponents();
 		makeAndInstallTheListeners();
 		setMinimumSize(getMinimumSize());
-	}
+	}*/
 	private void makePanelsAndLayoutComponents() {
-		firstNameLabel.setPreferredSize(new Dimension(130, 40));
+	/*	firstNameLabel.setPreferredSize(new Dimension(130, 40));
 		firstNameLabel.setFont(new Font("ITALIC", Font.BOLD, 10));
 
 		lastNameLabel.setPreferredSize(new Dimension(130, 40));
@@ -129,15 +138,48 @@ public class UI_LoadUserInformation extends JPanel {
 
 		update.setPreferredSize(new Dimension(130, 40));
 		update.setFont(new Font("ITALIC", Font.CENTER_BASELINE, 16));
+*/
+				
+		//firstNameLabel.setBounds(29, 85, 130, 28);
+		firstNameLabel.setBounds(29, 27, 130, 23);
+		lastNameLabel.setBounds(169, 26, 130, 25);
+		emailLabel.setBounds(29, 27, 130, 23);
+		retypeEmailLabel.setBounds(29, 27, 130, 23);
+		phoneNrLabel.setBounds(29, 27, 130, 23);
+		mobilNrLabel.setBounds(29, 27, 130, 23);
+		addressLabel.setBounds(29, 27, 130, 23);
+		cityLabel.setBounds(29, 27, 130, 23);
+		zipCodeLabel.setBounds(29, 27, 130, 23);
+		civicNrLabel.setBounds(29, 27, 130, 23);
+		
+		
+		update.setBounds(29, 246, 170, 23);
+		//userNameText.setBounds(29, 109, 130, 25);
+		firstNameTextField.setBounds(29, 49, 130, 25);
+		lastNameTextField.setBounds(169, 49, 130, 25);
+		//firstNameLabel.setBounds(29, 85, 130, 28);
+		emailTextField.setBounds(29, 27, 130, 23);
+		retypeEmailTextField.setBounds(29, 27, 130, 23);
+		phoneNrTextField.setBounds(29, 27, 130, 23);
+		mobileNrTextField.setBounds(29, 27, 130, 23);
+		addressTextField.setBounds(29, 27, 130, 23);
+		cityTextField.setBounds(29, 27, 130, 23);
+		zipCodeTextField.setBounds(29, 27, 130, 23);
+		civicNRTextField.setBounds(29, 27, 130, 23);
+			
+		isActive.setBounds(199, 115, 130, 13);
+		isAdmin.setBounds(199, 115, 130, 13);
 
+		
 		JPanel checkBoxPanel = new JPanel(new FlowLayout());
 		checkBoxPanel.add(isActive);
 		checkBoxPanel.add(isAdmin);
 
-		JPanel mainPanel = new JPanel(new GridBagLayout());
+	/*	JPanel mainPanel = new JPanel(new GridBagLayout());
 
 		GridBagConstraints c = new GridBagConstraints();
-		c.insets = new Insets(10, 40, 0, 0);
+	//c.insets = new Insets(10, 40, 0, 0);
+		c.insets = new Insets(0, 0, 0, 0);
 
 		c.gridx = 0;
 		c.gridy = 0;
@@ -268,10 +310,10 @@ public class UI_LoadUserInformation extends JPanel {
 		c.gridx = 0;
 		c.gridy = 15;
 		mainPanel.add(update, c);
-
-		this.add(mainPanel, BorderLayout.CENTER);
+*/
+	//	this.add(mainPanel, BorderLayout.CENTER);
 	}
-
+  
 	private class ButtonListener implements ActionListener {
 
 		@Override

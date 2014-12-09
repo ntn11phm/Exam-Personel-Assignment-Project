@@ -12,6 +12,7 @@ import examProject.dao.JdbcConnect;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
+import examProject.ui.updateUserInformation.UI_LoadUserInformation;
 
 public class BackendFacade {
 	private JdbcConnect con = new JdbcConnect();
@@ -80,5 +81,14 @@ public class BackendFacade {
 	public boolean importSchemaData(List<ExamOccationTO> arrList) {
 		
 		return false;
+	}
+	public boolean uppdateUser(UI_LoadUserInformation addUser) {
+		AddUserLogic aul = new AddUserLogic(addUser, dbSelect, dbInsert);
+		
+		return aul.addUser();
+	}
+	
+	public boolean uppdateUser(String userName, String firstName, String lastName, String email, String retypeEmail, int civicNR, int mobileNr, int phoneNr, String City, String address, String zipCode,boolean isActive, boolean isAdmin) {
+		return addUser(new UI_LoadUserInformation(userName, firstName, lastName, isAdmin));
 	}
 }
