@@ -32,7 +32,7 @@ public class DbManipulator {
 		boolean result = false;
 		try {
 			con.setAutoCommit(false);
-			state = con.createStatement();
+			state = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			state.executeUpdate(sqlCommand);
 			con.commit();
 			result = true;
