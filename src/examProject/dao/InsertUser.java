@@ -5,12 +5,15 @@ import examProject.logic.PasswordHashing;
 
 public class InsertUser {
 	
-	public InsertUser(AddUser au){
+	public InsertUser(AddUser au, DbManipulator dBm){
 		this.au = au;
+		this.dBm = dBm;
+		hash = new PasswordHashing(dBm);
 	}
-	private PasswordHashing hash = new PasswordHashing();
+	private PasswordHashing hash;
 	private String sqlCommand = "INSERT INTO users (username, pwd, is_admin,) VALUES ('";
 	private AddUser au;
+	private DbManipulator dBm;
 
 	public String insertUserStrCommand(String username, char[] pwd, boolean is_admin) {
 		sqlCommand += username + "', '";
@@ -21,9 +24,7 @@ public class InsertUser {
 
 	}
 	public String insertUserStrCommand() {
-		sqlCommand += au.userName + "', '";
-		sqlCommand += hash.createHashedPwd(au.getPwd()) + "', ";
-		sqlCommand += au.isAdmin + ");";
+		sqlCommand += au.userName + "', '"+ hash.createHashedPwd(au.getPwd()) + "', "+ au.isAdmin + ");";
 
 		return sqlCommand;
 

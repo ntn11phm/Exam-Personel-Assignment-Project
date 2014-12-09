@@ -2,13 +2,11 @@ package examProject.logic;
 
 import java.sql.ResultSet;
 
-import examProject.dao.DbInsert;
 import examProject.dao.DbManipulator;
-import examProject.dao.DbSelect;
 import examProject.dao.InsertUser;
 
 public class AddUserLogic {
-	private PasswordHashing hash = new PasswordHashing();
+	//private PasswordHashing hash = new PasswordHashing();
 	private AddUser au;
 //	private DbSelect dBs;
 //	private DbInsert dBi;
@@ -32,7 +30,7 @@ public class AddUserLogic {
 		try {
 			
 			if (!rs.next()) {
-				InsertUser iu = new InsertUser(au);				
+				InsertUser iu = new InsertUser(au, dBm);				
 				dBm.insert(iu.insertUserStrCommand());
 //				sqlCommand = "SELECT user_id FROM users WHERE username = '" + au.getUserName() + "';";
 //				ResultSet rss = dBm.select(sqlCommand);

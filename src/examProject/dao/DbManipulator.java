@@ -20,7 +20,7 @@ public class DbManipulator {
 	public ResultSet select(String selectCommand) {
 		ResultSet result = null;
 		try {
-			state = con.createStatement();
+			state = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			rs = state.executeQuery(selectCommand);
 			result = rs;
 			System.out.println("Operation done successfully");

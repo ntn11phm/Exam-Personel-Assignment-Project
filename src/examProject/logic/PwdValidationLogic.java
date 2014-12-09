@@ -7,7 +7,7 @@ import examProject.dao.DbSelect;
 import examProject.dao.ValidatePwdCommand;
 
 public class PwdValidationLogic implements LogicStrategy{
-	private PasswordHashing passwordHashing = new PasswordHashing();
+	private PasswordHashing passwordHashing = new PasswordHashing(null);
 	private ActiveUser au;
 	private DbSelect dbSelectExecutor;
 	private char [] pwd;
