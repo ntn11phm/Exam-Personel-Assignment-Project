@@ -83,12 +83,13 @@ public class BackendFacade {
 		return false;
 	}
 	public boolean uppdateUser(UI_LoadUserInformation addUser) {
-		AddUserLogic aul = new AddUserLogic(addUser, dbSelect, dbInsert);
+		//UpdateUserLogic uul = new AddUserLogic(addUser, dbManipulator);
 		
-		return aul.addUser();
+		return false;
 	}
 	
 	public boolean uppdateUser(String userName, String firstName, String lastName, String email, String retypeEmail, int civicNR, int mobileNr, int phoneNr, String City, String address, String zipCode,boolean isActive, boolean isAdmin) {
-		return addUser(new UI_LoadUserInformation(userName, firstName, lastName, isAdmin));
+		//return addUser(new UI_LoadUserInformation(userName, firstName, lastName, isAdmin));
+		return false;
 	}
 }
