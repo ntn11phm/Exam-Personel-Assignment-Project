@@ -35,7 +35,7 @@ public class AddUserLogic {
 //					userId = rss.getInt(0);
 //				}
 //				rss.close();				
-				sqlCommand = "INSERT INTO hosts (user_id, firstname, lastname) VALUES ((SELECT user_id FROM users WHERE username = '" + au.getUserName() + "'),'" + au.firstName + "', '" + au.lastName +"')";
+				sqlCommand = "INSERT INTO hosts (user_id, firstname, lastname) VALUES ((SELECT user_id FROM users WHERE username = '" + au.getUserName() + "'),'" + au.firstName + "', '" + au.lastName +"');";
 				dBm.insert(sqlCommand);
 				result = true;
 			}

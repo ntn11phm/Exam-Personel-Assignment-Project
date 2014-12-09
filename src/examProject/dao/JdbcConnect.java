@@ -59,11 +59,12 @@ public class JdbcConnect {
 					s.close();
 				if (con != null)
 					con.close();
+				System.out.println("Closed database successfully");
 			} catch (SQLException se) {
 			}
 
 		}
-		System.out.println("Closed database successfully");
+		
 		return true;
 	}
 }
