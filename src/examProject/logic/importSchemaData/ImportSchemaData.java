@@ -7,6 +7,7 @@ import java.util.List;
 import examProject.dao.DbInsert;
 import examProject.dao.DbSelect;
 import examProject.dao.DbUpdate;
+import examProject.dao.InsertExamOccation;
 import examProject.dao.SelectSessionIds;
 import examProject.logic.LogicStrategy;
 import examProject.transferObjects.ExamOccationTO;
@@ -44,13 +45,8 @@ public class ImportSchemaData implements LogicStrategy {
 			}
 			rs.close();
 			if (!foundMatch) {
-				String insertCommand = "INSERT INTO examoccasions (exam_date, exam_time, booking_id, exam_location, summary) VALUES ('"
-						+ currentExamOccasion.getExamDate() 		+ "', '"
-						+ currentExamOccasion.getExamStartTime() 	+ "', '"
-						+ currentExamOccasion.getBookingId() 		+ "', '"
-						+ currentExamOccasion.getExamRoom() 		+ "', '"
-						+ currentExamOccasion.getSummary() 			+ "');";
-				result = dbInsert.insert(insertCommand);
+				InsertExamOccation insertCommand = new InsertExamOccation();
+				result = dbInsert.insert(insertCommand.insertExamOccationCommand(currentExamOccasion));
 			}
 		} catch (SQLException e) {
 		}

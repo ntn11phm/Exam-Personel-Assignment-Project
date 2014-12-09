@@ -17,13 +17,13 @@ public class InsertExamOccationTest {
 
 	@Test
 	public void blankInsertTest() {
-		insertCommand = insertEO.insertExamOccationCommand("", "", "", "");
+		insertCommand = insertEO.insertExamOccationCommand("", "", "", "", "");
 		assertEquals("INSERT INTO examoccations (exam_date, exam_time, exam_location, booking_id) VALUES ('', '', '', '');", insertCommand);
 	}
 	
 	@Test
 	public void insertTest() {
-		insertCommand = insertEO.insertExamOccationCommand("20150112", "08:00", "99613", "BokningsId_20140616_000000139");
-		assertEquals("INSERT INTO examoccations (exam_date, exam_time, exam_location, booking_id) VALUES ('20150112', '08:00', '99613', 'BokningsId_20140616_000000139');", insertCommand);
+		insertCommand = insertEO.insertExamOccationCommand("20150112", "08:00", "99613", "BokningsId_20140616_000000139", "abc");
+		assertEquals("INSERT INTO examoccations (exam_date, exam_time, exam_location, booking_id) VALUES ('20150112', '08:00', '99613', 'BokningsId_20140616_000000139', 'abc');", insertCommand);
 	}
 }
