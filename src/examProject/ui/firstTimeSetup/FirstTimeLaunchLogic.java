@@ -8,17 +8,25 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class FirstTimeLaunchLogic {
-	private String defaultFileName = "remoteSetting.txt";
+	private String defaultFileName;
 	private String usernameTag = "";
 	private String pwdTag = "";
 	private String username = "";
 	private String pwd = "";
+	
+	public FirstTimeLaunchLogic() {
+		this("remoteSetting.txt");
+	}
+	
+	public FirstTimeLaunchLogic(String fileName) {
+		this.defaultFileName = fileName;
+	}
 
 	public boolean save(String username, String pwd) {
 		boolean result = false;
           try {
-              FileWriter fout = new FileWriter(defaultFileName, false);
-              PrintWriter fWriter = new PrintWriter(fout, true);
+              FileWriter fOut = new FileWriter(defaultFileName, false);
+              PrintWriter fWriter = new PrintWriter(fOut, true);
               fWriter.println(usernameTag+ "=" + username);
               fWriter.println(pwdTag + "=" + pwd);
               fWriter.close();
