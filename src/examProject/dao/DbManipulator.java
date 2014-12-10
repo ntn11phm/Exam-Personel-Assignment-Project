@@ -31,13 +31,13 @@ public class DbManipulator {
 	public boolean insert(String insertCommand) {
 		boolean result = false;
 		try {
-			con.setAutoCommit(false);
+			con.setAutoCommit(true);
 			state = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			state.executeUpdate(insertCommand);
-			con.commit();
+			//con.commit();
 			result = true;
 			System.out.println("Records created successfully");
-		} catch (Exception e) {}
+		} catch (Exception e) {System.out.println(e);}
 		return result;
 	}
 
