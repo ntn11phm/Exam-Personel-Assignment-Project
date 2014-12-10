@@ -2,26 +2,25 @@ package examProject.logic.requestNewPassword;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import examProject.dao.DbSelect;
+import examProject.dao.DbManipulator;
 import examProject.dao.GetEmailAddress;
 import examProject.dao.SelectUsernameWithEmail;
 import examProject.logic.LogicStrategy;
 import examProject.transferObjects.RequestNewPwdTO;
 
 public class requestNewPwd implements LogicStrategy {
-	private DbSelect dbSelectExecutor;
+	private DbManipulator dbm;
 	private String input;
 	private GetEmailAddress getEmailAdress = new GetEmailAddress();
 	
-	public requestNewPwd(DbSelect dbSelectExecutor, String input) {
-		this.dbSelectExecutor = dbSelectExecutor;
+	public requestNewPwd(DbManipulator dbSelectExecutor, String input) {
+		this.dbm = dbSelectExecutor;
 		this.input = input;
 	}//
 	
 	private String getEmailAdress() {
 		String emailAdress = "";
-		ResultSet rs = dbSelectExecutor.select(getEmailAdress.getUserEmailAddress(input));
+		ResultSet rs = dbm.select(getEmailAdress.getUserEmailAddress(input));
 		try {
 			while (rs.next()) {
 				emailAdress = rs.getString(0);
@@ -34,7 +33,7 @@ public class requestNewPwd implements LogicStrategy {
 	private String getUsernameFromEmail(String email) {
 		String result = "";
 		SelectUsernameWithEmail getUsername = new SelectUsernameWithEmail();
-		ResultSet rs = dbSelectExecutor.select(getUsername.getUsername(email));
+		ResultSet rs = dbm.select(getUsername.getUsername(email));
 		try {
 			while (rs.next()) {
 				result = rs.getString(0);
@@ -49,7 +48,7 @@ public class requestNewPwd implements LogicStrategy {
 		boolean result = false;
 		String emailAdress = getEmailAdress();
 		if (!emailAdress.equals("")) {
-			GetTmpPwd tempPassword = new GetTmpPwd(dbSelectExecutor);
+			GetTmpPwd tempPassword = new GetTmpPwd(dbm);
 			String tempPwd = tempPassword.getTmpPwd();
 			String username = getUsernameFromEmail(emailAdress);
 			RequestNewPwdTO newPwdHolder = new RequestNewPwdTO(username, tempPwd, "");

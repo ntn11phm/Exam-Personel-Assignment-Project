@@ -4,9 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import examProject.dao.DbInsert;
-import examProject.dao.DbSelect;
-import examProject.dao.DbUpdate;
+import examProject.dao.DbManipulator;
 import examProject.dao.InsertExamOccation;
 import examProject.dao.SelectSessionIds;
 import examProject.logic.LogicStrategy;
@@ -14,16 +12,12 @@ import examProject.transferObjects.ExamOccationTO;
 
 public class ImportSchemaData implements LogicStrategy {
 	private List<ExamOccationTO> arrExams;
-	private DbSelect dbSelect;
-	private DbInsert dbInsert;
-	private DbUpdate dbUpdate;
+	private DbManipulator dbm;
 	private int rowsFound = 0;
 
-	public ImportSchemaData(DbSelect dbSelect, DbInsert dbInsert, DbUpdate dbUpdate,  List<ExamOccationTO> arrExams) {
+	public ImportSchemaData(DbManipulator dbm,  List<ExamOccationTO> arrExams) {
 		this.arrExams = arrExams;
-		this.dbSelect = dbSelect;
-		this.dbInsert = dbInsert;
-		this.dbUpdate = dbUpdate;
+		this.dbm = dbm;
 	}
 
 	private void insertOrUpdateOccations(ExamOccationTO currentExamOccasion) {
@@ -33,7 +27,7 @@ public class ImportSchemaData implements LogicStrategy {
 		rowsFound = 0;
 		String selectCommand = "SELECT exam_date, exam_time, booking_id, exam_location, summary FROM examoccasions WHERE booking_id='"
 				+ currentExamOccasion.getBookingId() + "';";
-		ResultSet rs = dbSelect.select(selectCommand);
+		ResultSet rs = dbm.select(selectCommand);
 		try {
 			while (rs.next()) {
 				tmpExamOccasion = new ExamOccationTO(rs.getString(0),
@@ -46,7 +40,7 @@ public class ImportSchemaData implements LogicStrategy {
 			rs.close();
 			if (!foundMatch) {
 				InsertExamOccation insertCommand = new InsertExamOccation();
-				result = dbInsert.insert(insertCommand.insertExamOccationCommand(currentExamOccasion));
+				result = dbm.insert(insertCommand.insertExamOccationCommand(currentExamOccasion));
 			}
 		} catch (SQLException e) {
 		}

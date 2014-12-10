@@ -3,21 +3,20 @@ package examProject.logic.requestNewPassword;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
-
-import examProject.dao.DbSelect;
+import examProject.dao.DbManipulator;
 import examProject.dao.GetTmpPwdCommand;
 
 public class GetTmpPwd {
-	private DbSelect dbSelectExecutor;
+	private DbManipulator dbm;
 	
-	public GetTmpPwd(DbSelect dbSelectExecutor) {
-		this.dbSelectExecutor = dbSelectExecutor;
+	public GetTmpPwd(DbManipulator dbm) {
+		this.dbm = dbm;
 	}
 	
 	private int getNoOfTmpPasswords() {
 		int result = 0;
 		String selectCommand = "SELECT MAX(tp_id) FROM temporary_password";
-		ResultSet rs = dbSelectExecutor.select(selectCommand);
+		ResultSet rs = dbm.select(selectCommand);
 		try {
 			while (rs.next())
 				result = rs.getInt(0);
@@ -34,7 +33,7 @@ public class GetTmpPwd {
 			int randomNumber = rand.nextInt(seeder + 1);
 			GetTmpPwdCommand getTmpPwdCommand = new GetTmpPwdCommand();
 			String sqlCommand = getTmpPwdCommand.getTmpPwdSqlCommand(randomNumber);
-			ResultSet rs = dbSelectExecutor.select(sqlCommand);
+			ResultSet rs = dbm.select(sqlCommand);
 			try {
 				while (rs.next()) {
 					result = rs.getString(0);

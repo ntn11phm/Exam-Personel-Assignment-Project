@@ -3,18 +3,18 @@ package examProject.logic;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import examProject.ActiveUser;
-import examProject.dao.DbSelect;
+import examProject.dao.DbManipulator;
 import examProject.dao.ValidatePwdCommand;
 
 public class PwdValidationLogic implements LogicStrategy{
 	private PasswordHashing passwordHashing = new PasswordHashing(null);
 	private ActiveUser au;
-	private DbSelect dbSelectExecutor;
+	private DbManipulator dbm;
 	private char [] pwd;
 
-	public PwdValidationLogic(ActiveUser au, DbSelect dbSelectExecutor, char [] pwd) {
+	public PwdValidationLogic(ActiveUser au, DbManipulator dbSelectExecutor, char [] pwd) {
 		this.au = au;
-		this.dbSelectExecutor = dbSelectExecutor;
+		this.dbm = dbSelectExecutor;
 		this.pwd = pwd;
 	}
 	
@@ -26,7 +26,7 @@ public class PwdValidationLogic implements LogicStrategy{
 	@Override
 	public boolean execute() {
 		boolean result = false;
-		ResultSet rs = dbSelectExecutor.select(getCurrentUserPwd());
+		ResultSet rs = dbm.select(getCurrentUserPwd());
 		try {
 			while (rs.next()) {
 				if (rs.getString(0).equals(passwordHashing.createHashedPwd(pwd)))

@@ -2,12 +2,7 @@ package examProject.logic;
 
 import java.sql.Connection;
 import java.util.List;
-
-import examProject.dao.DbDelete;
-import examProject.dao.DbInsert;
 import examProject.dao.DbManipulator;
-import examProject.dao.DbSelect;
-import examProject.dao.DbUpdate;
 import examProject.dao.JdbcConnect;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.ExamImportSelectionTO;
@@ -17,16 +12,10 @@ import examProject.ui.updateUserInformation.UI_LoadUserInformation;
 public class BackendFacade {
 	private JdbcConnect con = new JdbcConnect();
 	private Connection c = null;
-	//private DbSelect dbSelect;
-	//private DbUpdate dbUpdate;
 	private DbManipulator dbManipulator;
-	//private DbDelete dbDelete;
 	
 	public BackendFacade() {
-		//c = con.openDbConnection(c);
 		createDbObjects();
-		//con.closeDbConnection(c);
-		
 	}
 	
 	private void createDbObjects() {
