@@ -19,7 +19,6 @@ public class AddUserLogic {
 	public boolean addUser() {
 		dBm.openDb();
 		boolean result = false;
-		int userId = 0;
 		String sqlCommand = "SELECT username FROM users WHERE username = '"
 				+ au.getUserName() + "';";
 		ResultSet rs = dBm.select(sqlCommand);
