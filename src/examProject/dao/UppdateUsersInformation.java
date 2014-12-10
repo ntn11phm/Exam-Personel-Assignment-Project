@@ -1,5 +1,5 @@
 package examProject.dao;
-import examProject.logic.UppdateUser;
+import examProject.transferObjects.UppdateUser;
 
 
 public class UppdateUsersInformation {

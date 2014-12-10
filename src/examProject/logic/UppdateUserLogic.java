@@ -1,5 +1,6 @@
 package examProject.logic;
 import examProject.dao.DbManipulator;
+import examProject.transferObjects.UppdateUser;
 
 public class UppdateUserLogic {
 

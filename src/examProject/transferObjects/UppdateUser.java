@@ -1,4 +1,4 @@
-package examProject.logic;
+package examProject.transferObjects;
 
 public class UppdateUser {
 
