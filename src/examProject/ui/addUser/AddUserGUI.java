@@ -12,6 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import examProject.logic.*;
+import examProject.transferObjects.AddUser;
 
 @SuppressWarnings("serial")
 public class AddUserGUI extends JPanel {

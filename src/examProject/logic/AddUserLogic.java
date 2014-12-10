@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 
 import examProject.dao.DbManipulator;
 import examProject.dao.InsertUser;
+import examProject.transferObjects.AddUser;
 
 public class AddUserLogic {
 	private AddUser au;

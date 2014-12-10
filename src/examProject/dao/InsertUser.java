@@ -1,7 +1,7 @@
 package examProject.dao;
 
-import examProject.logic.AddUser;
 import examProject.logic.PasswordHashing;
+import examProject.transferObjects.AddUser;
 
 public class InsertUser {
 	
