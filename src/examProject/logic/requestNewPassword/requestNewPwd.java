@@ -6,15 +6,17 @@ import examProject.dao.DbManipulator;
 import examProject.dao.GetEmailAddress;
 import examProject.dao.SelectUsernameWithEmail;
 import examProject.logic.LogicStrategy;
+import examProject.logic.PasswordHashingLocal;
 import examProject.transferObjects.RequestNewPwdTO;
 
 public class requestNewPwd implements LogicStrategy {
 	private DbManipulator dbm;
 	private String input;
 	private GetEmailAddress getEmailAdress = new GetEmailAddress();
+	private PasswordHashingLocal hash = new PasswordHashingLocal();
 	
-	public requestNewPwd(DbManipulator dbSelectExecutor, String input) {
-		this.dbm = dbSelectExecutor;
+	public requestNewPwd(DbManipulator dbm, String input) {
+		this.dbm = dbm;
 		this.input = input;
 	}//
 	
@@ -43,18 +45,30 @@ public class requestNewPwd implements LogicStrategy {
 		return result;
 	}
 	
+	private boolean storeTmpPwd(String tmpPwd) {
+		boolean result = false;
+		String sqlCommand = "";
+		try {
+			sqlCommand = "UPDATE users SET pwd = '" + hash.getSaltedHash(tmpPwd) + "' WHERE username = '" + tmpPwd + "';";
+		} catch (Exception e) {}
+		result = dbm.update(sqlCommand);
+		return result;
+	}
+	
 	@Override
 	public boolean execute() {
 		boolean result = false;
 		String emailAdress = getEmailAdress();
+		dbm.openDb();
 		if (!emailAdress.equals("")) {
 			GetTmpPwd tempPassword = new GetTmpPwd(dbm);
 			String tempPwd = tempPassword.getTmpPwd();
 			String username = getUsernameFromEmail(emailAdress);
 			RequestNewPwdTO newPwdHolder = new RequestNewPwdTO(username, tempPwd, "");
+			storeTmpPwd(tempPwd);	
 			//Email API goes here...
 		}
-		
+		dbm.closeDb();
 		return result;
 	}
 
