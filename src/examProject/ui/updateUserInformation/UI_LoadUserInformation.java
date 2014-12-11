@@ -24,7 +24,7 @@ import javax.swing.SwingUtilities;
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.UpdateUser;
 
-
+@SuppressWarnings("serial")
 public class UI_LoadUserInformation extends JPanel {
 	CheckIfTheInputIsCorrect checkStatement = new CheckIfTheInputIsCorrect();
 	private BackendFacade facade;
@@ -61,11 +61,11 @@ public class UI_LoadUserInformation extends JPanel {
 	public UI_LoadUserInformation(BackendFacade facade) {
 		this.facade = facade;
 		setLayout(null);
-		/*setBounds();
+		setBounds();
 		addCtrls();
-		guiButtonListener();*/
-		makePanelsAndLayoutComponents();
-		makeAndInstallTheListeners();
+		guiButtonListener();
+	//	makePanelsAndLayoutComponents();
+	//	makeAndInstallTheListeners();
 	}
 	
 	/*public UI_LoadUserInformation() {
@@ -73,94 +73,27 @@ public class UI_LoadUserInformation extends JPanel {
 		makeAndInstallTheListeners();
 		setMinimumSize(getMinimumSize());
 	}*/
-	private void makePanelsAndLayoutComponents() {
-	/*	firstNameLabel.setPreferredSize(new Dimension(130, 40));
-		firstNameLabel.setFont(new Font("ITALIC", Font.BOLD, 10));
-
-		lastNameLabel.setPreferredSize(new Dimension(130, 40));
-		lastNameLabel.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		addressLabel.setPreferredSize(new Dimension(130, 40));
-		addressLabel.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		emailLabel.setPreferredSize(new Dimension(130, 40));
-		emailLabel.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		zipCodeLabel.setPreferredSize(new Dimension(130, 40));
-		zipCodeLabel.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		cityLabel.setPreferredSize(new Dimension(130, 40));
-		cityLabel.setFont(new Font("ITALIC", Font.CENTER_BASELINE, 16));
-
-		civicNrLabel.setPreferredSize(new Dimension(130, 40));
-		civicNrLabel.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		emailLabel.setPreferredSize(new Dimension(130, 40));
-		emailLabel.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		retypeEmailLabel.setPreferredSize(new Dimension(130, 40));
-		retypeEmailLabel.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		phoneNrLabel.setPreferredSize(new Dimension(130, 40));
-		phoneNrLabel.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		mobilNrLabel.setPreferredSize(new Dimension(130, 40));
-		mobilNrLabel.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		firstNameLabel.setPreferredSize(new Dimension(130, 40));
-		firstNameLabel.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		lastNameTextField.setPreferredSize(new Dimension(130, 40));
-		lastNameTextField.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		addressTextField.setPreferredSize(new Dimension(130, 40));
-		addressTextField.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		zipCodeTextField.setPreferredSize(new Dimension(130, 40));
-		zipCodeTextField.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		cityTextField.setPreferredSize(new Dimension(130, 20));
-		cityTextField.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		civicNRTextField.setPreferredSize(new Dimension(130, 40));
-		civicNRTextField.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		emailTextField.setPreferredSize(new Dimension(130, 40));
-		emailTextField.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		retypeEmailTextField.setPreferredSize(new Dimension(130, 40));
-		retypeEmailTextField.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		phoneNrTextField.setPreferredSize(new Dimension(130, 40));
-		phoneNrTextField.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		mobileNrTextField.setPreferredSize(new Dimension(130, 40));
-		mobileNrTextField.setFont(new Font("ITALIC", Font.BOLD, 20));
-
-		update.setPreferredSize(new Dimension(130, 40));
-		update.setFont(new Font("ITALIC", Font.CENTER_BASELINE, 16));
-*/
-				
-		//firstNameLabel.setBounds(29, 85, 130, 28);
-		firstNameLabel.setBounds(29, 27, 130, 23);
-		lastNameLabel.setBounds(169, 26, 130, 25);
-		emailLabel.setBounds(29, 27, 130, 23);
-		retypeEmailLabel.setBounds(29, 27, 130, 23);
-		phoneNrLabel.setBounds(29, 27, 130, 23);
-		mobilNrLabel.setBounds(29, 27, 130, 23);
-		addressLabel.setBounds(29, 27, 130, 23);
+	private void setBounds() {
+		
+	/*	firstNameLabel.setBounds(29, 85, 130, 28);
+		lastNameLabel.setBounds(29, 27, 130, 23);
+		emailLabel.setBounds(169, 26, 130, 25);
+		retypeEmailLabel.setBounds(29, 145, 130, 25);
+		phoneNrLabel.setBounds(29, 246, 170, 23);
+		mobilNrLabel.setBounds(29, 109, 130, 25);
+		/*addressLabel.setBounds(29, 27, 130, 23);
 		cityLabel.setBounds(29, 27, 130, 23);
 		zipCodeLabel.setBounds(29, 27, 130, 23);
-		civicNrLabel.setBounds(29, 27, 130, 23);
+		civicNrLabel.setBounds(29, 27, 130, 23);*/
 		
 		
-		update.setBounds(29, 246, 170, 23);
+		update.setBounds(29, 49, 130, 25);
 		//userNameText.setBounds(29, 109, 130, 25);
-		firstNameTextField.setBounds(29, 49, 130, 25);
-		lastNameTextField.setBounds(169, 49, 130, 25);
+		firstNameTextField.setBounds(169, 49, 130, 25);
+		lastNameTextField.setBounds(29, 166, 130, 25);
 		//firstNameLabel.setBounds(29, 85, 130, 28);
-		emailTextField.setBounds(29, 27, 130, 23);
-		retypeEmailTextField.setBounds(29, 27, 130, 23);
+		emailTextField.setBounds(199, 115, 130, 13);
+	/*	retypeEmailTextField.setBounds(29, 27, 130, 23);
 		phoneNrTextField.setBounds(29, 27, 130, 23);
 		mobileNrTextField.setBounds(29, 27, 130, 23);
 		addressTextField.setBounds(29, 27, 130, 23);
@@ -175,144 +108,26 @@ public class UI_LoadUserInformation extends JPanel {
 		JPanel checkBoxPanel = new JPanel(new FlowLayout());
 		checkBoxPanel.add(isActive);
 		checkBoxPanel.add(isAdmin);
+*/		
+	
+	}
+		private void addCtrls() {
 
-	/*	JPanel mainPanel = new JPanel(new GridBagLayout());
-
-		GridBagConstraints c = new GridBagConstraints();
-	//c.insets = new Insets(10, 40, 0, 0);
-		c.insets = new Insets(0, 0, 0, 0);
-
-		c.gridx = 0;
-		c.gridy = 0;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(firstNameLabel, c);
-
-		c.gridx = 400;
-		c.gridy = 0;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(lastNameLabel, c);
-
-		c.gridx = 0;
-		c.gridy = 2;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(firstNameTextField, c);
-
-		c.gridx = 400;
-		c.gridy = 2;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(lastNameTextField, c);
-
-		c.gridx = 0;
-		c.gridy = 3;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(addressLabel, c);
-
-		c.gridx = 0;
-		c.gridy = 4;
-		c.ipadx = 200;
-		c.ipady = 10;
-		mainPanel.add(addressTextField, c);
-
-		c.gridx = 0;
-		c.gridy = 5;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(zipCodeLabel, c);
-
-		c.gridx = 400;
-		c.gridy = 5;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(cityLabel, c);
-
-		c.gridx = 0;
-		c.gridy = 6;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(zipCodeTextField, c);
-
-		c.gridx = 400;
-		c.gridy = 6;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(cityTextField, c);
-
-		c.gridx = 0;
-		c.gridy = 7;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(civicNrLabel, c);
-
-		c.gridx = 400;
-		c.gridy = 7;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(emailLabel, c);
-
-		c.gridx = 0;
-		c.gridy = 8;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(civicNRTextField, c);
-
-		c.gridx = 400;
-		c.gridy = 8;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(emailTextField, c);
-
-		c.gridx = 0;
-		c.gridy = 9;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(phoneNrLabel, c);
-
-		c.gridx = 400;
-		c.gridy = 9;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(retypeEmailLabel, c);
-
-		c.gridx = 0;
-		c.gridy = 10;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(phoneNrTextField, c);
-
-		c.gridx = 400;
-		c.gridy = 10;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(retypeEmailTextField, c);
-
-		c.gridx = 0;
-		c.gridy = 11;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(mobilNrLabel, c);
-
-		c.gridx = 0;
-		c.gridy = 12;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(mobileNrTextField, c);
-
-		c.gridx = 400;
-		c.gridy = 12;
-		c.ipadx = 30;
-		c.ipady = 10;
-		mainPanel.add(checkBoxPanel, c);
-
-		c.gridx = 0;
-		c.gridy = 15;
-		mainPanel.add(update, c);
-*/
-	//	this.add(mainPanel, BorderLayout.CENTER);
+		add(firstNameLabel);
+		add(lastNameLabel);
+		add(emailLabel);
+		add(retypeEmailLabel);
+		add(phoneNrLabel);
+		add(mobilNrLabel);
+		add(update);
+		add(firstNameTextField);
+		add(lastNameTextField);
+		add(emailTextField);
+		
+		
+		
+		
+		
 	}
   
 	private class ButtonListener implements ActionListener {
@@ -330,7 +145,7 @@ public class UI_LoadUserInformation extends JPanel {
 	}
 
 	@SuppressWarnings("unused")
-	private void makeAndInstallTheListeners() {
+	private void guiButtonListener() {
 
 		ButtonListener buttonListener = new ButtonListener();
 		update.addActionListener(buttonListener);
