@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import examProject.logic.BackendFacade;
+import examProject.transferObjects.UpdateUser;
 
 
 public class UI_LoadUserInformation extends JPanel {
@@ -384,7 +385,9 @@ public class UI_LoadUserInformation extends JPanel {
 			checkIfPoneNrIsCorrect();
 			checkIfAddressIsCorrest();
 			checkIfZipCodeIsCorrect();
-		} else
+			UpdateUser updateUser = new UpdateUser(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());		
+		} else                                      		
+
 			JOptionPane.showMessageDialog(null,
 					"Du måste fylla in de fält med *");
 	}
@@ -505,5 +508,10 @@ public class UI_LoadUserInformation extends JPanel {
 	public void setMobileNrTextField(JTextField mobileNrTextField) {
 		this.mobileNrTextField = mobileNrTextField;
 	}
-
+	public boolean isAdmin(){
+		return isAdmin.isSelected();
+	}
+	public boolean isActive(){
+		return isActive.isSelected();
+	}
 }

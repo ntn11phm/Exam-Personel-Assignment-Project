@@ -4,18 +4,18 @@ public class UpdateUser {
 
 		public String firstName;
 		public String lastName;
-		public int civic;
+		public String civic;
 		public String email;
 		public String retypeEmail;
 		public String city;
 		public String Address;
 		public String zipCode;
-		public int mobileNr;
-		public int phoneNr;
+		public String mobileNr;
+		public String phoneNr;
 		public boolean isAdmin;
 		public boolean isActive;
 
-		public UpdateUser(String firstName, String lastName, String email, String retypeEmail, String city, String address, int mobileNr, int phoneNr, String zipCode, int civic, boolean isActive, boolean isAdmin) {
+		public UpdateUser(String firstName, String lastName, String email, String retypeEmail, String city, String address, String mobileNr, String phoneNr, String zipCode, String civic, boolean isActive, boolean isAdmin) {
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.civic = civic;
@@ -36,7 +36,7 @@ public class UpdateUser {
 			return lastName;
 		}
 
-		public int getCivic() {
+		public String getCivic() {
 			return civic;
 		}
 
@@ -60,11 +60,11 @@ public class UpdateUser {
 			return zipCode;
 		}
 
-		public int getMobileNr() {
+		public String getMobileNr() {
 			return mobileNr;
 		}
 
-		public int getPhoneNr() {
+		public String getPhoneNr() {
 			return phoneNr;
 		}
 
