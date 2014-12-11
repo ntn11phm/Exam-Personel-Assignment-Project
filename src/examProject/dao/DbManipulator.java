@@ -52,6 +52,18 @@ public class DbManipulator {
 
 		return result;
 	}
+	
+	public boolean delete(String deleteCommand) {
+		boolean result = false;
+		try {
+			con.setAutoCommit(true);
+			state = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			state.executeUpdate(deleteCommand);
+			result = true;
+			System.out.println("Delete successfully done!");
+		} catch (Exception e) {System.out.println(e);}
+		return result;
+	}
 
 	public boolean openDb() {
 		boolean open = false;
