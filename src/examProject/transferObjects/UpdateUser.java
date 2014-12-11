@@ -1,6 +1,6 @@
 package examProject.transferObjects;
 
-public class UppdateUser {
+public class UpdateUser {
 
 		public String firstName;
 		public String lastName;
@@ -15,7 +15,7 @@ public class UppdateUser {
 		public boolean isAdmin;
 		public boolean isActive;
 
-		public UppdateUser(String firstName, String lastName, String email, String retypeEmail, String city, String address, int mobileNr, int phoneNr, String zipCode, int civic, boolean isActive, boolean isAdmin) {
+		public UpdateUser(String firstName, String lastName, String email, String retypeEmail, String city, String address, int mobileNr, int phoneNr, String zipCode, int civic, boolean isActive, boolean isAdmin) {
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.civic = civic;

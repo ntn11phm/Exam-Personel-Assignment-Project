@@ -9,6 +9,7 @@ import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.AddUser;
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
+import examProject.transferObjects.UpdateUser;
 import examProject.ui.updateUserInformation.UI_LoadUserInformation;
 
 public class BackendFacade {
@@ -73,14 +74,13 @@ public class BackendFacade {
 		
 		return false;
 	}
-	public boolean uppdateUser(UI_LoadUserInformation addUser) {
-		//UpdateUserLogic uul = new AddUserLogic(addUser, dbManipulator);
+	public boolean uppdateUser(UpdateUser updateUser) {
+		UpdateUserLogic updateUserLogic= new UpdateUserLogic(updateUser, dbManipulator);
 		
-		return false;
+		return updateUserLogic.uppdateUser();
 	}
-	
-	public boolean uppdateUser(String userName, String firstName, String lastName, String email, String retypeEmail, int civicNR, int mobileNr, int phoneNr, String City, String address, String zipCode,boolean isActive, boolean isAdmin) {
-		//return addUser(new UI_LoadUserInformation(userName, firstName, lastName, isAdmin));
-		return false;
+		
+	public boolean uppdateUser(String firstName, String lastName, String email, String retypeEmail, int civicNr, int mobileNr, int phoneNr, String city, String address, String zipCode,boolean isActive, boolean isAdmin) {
+		return uppdateUser(new UpdateUser(firstName, lastName, email, retypeEmail, city, address, mobileNr, phoneNr, zipCode, civicNr, isActive, isAdmin));
 	}
 }

@@ -1,13 +1,13 @@
 package examProject.logic;
 import examProject.dao.DbManipulator;
-import examProject.transferObjects.UppdateUser;
+import examProject.transferObjects.UpdateUser;
 
-public class UppdateUserLogic {
+public class UpdateUserLogic {
 
-	private UppdateUser uppdateUser;
+	private UpdateUser uppdateUser;
 	private DbManipulator dBm;
 	
-	public UppdateUserLogic(UppdateUser uppdateUser, DbManipulator dBm) {
+	public UpdateUserLogic(UpdateUser uppdateUser, DbManipulator dBm) {
 		this.uppdateUser = uppdateUser;
 		this.dBm = dBm;
 
@@ -16,9 +16,4 @@ public class UppdateUserLogic {
 	public boolean uppdateUser() {
 		return false;
 	}
-
 }
-
-
-
-
