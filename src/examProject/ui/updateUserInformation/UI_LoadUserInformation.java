@@ -100,7 +100,7 @@ public class UI_LoadUserInformation extends JPanel {
 		cityTextField.setBounds(29, 27, 130, 23);
 		zipCodeTextField.setBounds(29, 27, 130, 23);
 		civicNRTextField.setBounds(29, 27, 130, 23);
-			
+			 
 		isActive.setBounds(199, 115, 130, 13);
 		isAdmin.setBounds(199, 115, 130, 13);
 
