@@ -58,20 +58,56 @@ public class ImportSchemaData implements LogicStrategy {
 				currentList.remove(removeFromCurrentList.get(y));
 				dbList.remove(removeFromDbList.get(y));
 			}
-			if (currentList.size() > 0) {
-				//insert into examoccasions
-				// if (check if same date and location in sessions != true)
-				// insert into sessions
-			}
 			if (dbList.size() > 0) {
 				// if (check if more with same date and location in examoccasions = true) 
 				// remove from examoccasions
 				// else
 				// remove from sessions and examoccasions
 			}
+			if (currentList.size() > 0) {
+				//insert into examoccasions
+				// if (check if same date and location in sessions != true)
+				// insert into sessions
+			}
 		} else {
 			
 		}
+	}
+	
+	private void removeOccasionFromDb(ExamOccationTO currentTO) {
+		String sqlCommand = "DELETE * FROM examoccasions WHERE booking_id ='" + currentTO.getBookingId() + "' AND exam_time = '" + currentTO.getExamStartTime() + "' AND exam_location = '" + currentTO.getExamRoom() +"';";
+		//dbm.delete(sqlCommand);
+	}
+	
+	private boolean checkMoreWithSameDateAndLocation(ExamOccationTO currentTO) {
+		boolean result = false;
+		boolean matchesFound = false;
+		String sqlCommand = "SELECT occasion_id FROM examoccasions WHERE exam_date ='" + currentTO.getExamDate() + "' AND exam_time = '" + currentTO.getExamStartTime() + "' AND exam_location = '" + currentTO.getExamRoom() +"';";
+		ResultSet rs = dbm.select(sqlCommand);
+		try {
+			while (rs.next()) {
+				matchesFound = true;
+			}
+			rs.close();
+		} catch (SQLException e) {}
+		if (!matchesFound)
+			deleteFromSessions(currentTO);
+		return result;
+	}
+	
+	private void deleteFromSessions(ExamOccationTO currentTO) {
+		String sqlCommand = "DELETE * FROM sessions WHERE room = '" + currentTO.getExamRoom() + "' AND date = '" + currentTO.getExamDate() + "';";
+		//dbm.delete(sqlCommand);
+	}
+	
+	private void createExamOccations(ExamOccationTO currentTO) {
+		String sqlCommand = "INSERT INTO examoccasions (exam_date, exam_time, exam_location, booking_id, summary) VALUES ('" +
+			currentTO.getExamDate() + "', '" + currentTO.getExamStartTime()+ "', '"+ currentTO.getExamRoom() + "', '" +
+				currentTO.getBookingId() + "', '" + currentTO.getSummary() + ");";
+		dbm.insert(sqlCommand);
+	}
+	private void checkIfSessionExists(ExamOccationTO currentTO) {
+		
 	}
 
 	private void createSessions() {
