@@ -1,5 +1,8 @@
 package examProject.ui.setUpDb;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -7,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class SetUpDbGui extends JPanel {
+
+	private static final long serialVersionUID = -1574987717437001835L;
 	private JLabel userNameLabel = new JLabel("Username:");
 	private JLabel dBDriverLabel = new JLabel("Databasedriver:");
 	private JLabel dBPathLabel = new JLabel("Databasepath:");
@@ -27,6 +32,7 @@ public class SetUpDbGui extends JPanel {
 		setLayout(null);
 		setBounds();
 		addCtrls();
+		guiButtonListener();
 
 	}
 
@@ -45,7 +51,7 @@ public class SetUpDbGui extends JPanel {
 		mailServPathText.setBounds(131, 231, 130, 20);
 		firstTimeLaunchCb.setBounds(29, 271, 130, 20);
 		saveButton.setBounds(29, 322, 90, 30);
-		clearFieldsButton.setBounds(170, 323, 90, 29);
+		clearFieldsButton.setBounds(131, 323, 129, 29);
 	}
 
 	private void addCtrls() {
@@ -64,6 +70,30 @@ public class SetUpDbGui extends JPanel {
 		add(firstTimeLaunchCb);
 		add(saveButton);
 		add(clearFieldsButton);
+
+	}
+
+	private void guiButtonListener() {
+		saveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				buttonClickedMethod();
+
+			}
+		});
+		clearFieldsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				userNameText.setText("");
+				dBDriverText.setText("");
+				dBPathText.setText("");
+				dBPortText.setText("");
+				dBNameText.setText("");
+				mailServPathText.setText("");
+			}
+		});
+
+	}
+
+	private void buttonClickedMethod() {
 
 	}
 

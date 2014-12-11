@@ -14,8 +14,10 @@ import javax.swing.JTextField;
 import examProject.logic.*;
 import examProject.transferObjects.AddUser;
 
-@SuppressWarnings("serial")
+
 public class AddUserGUI extends JPanel {
+
+	private static final long serialVersionUID = 2893288573784306256L;
 	private BackendFacade facade;
 	private JLabel userNameLabel = new JLabel("Avändarnamn");
 	private JLabel firstNameLabel = new JLabel("Förnamn");
