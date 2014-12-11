@@ -20,7 +20,7 @@ public class DbManipulator {
 	public ResultSet select(String selectCommand) {
 		ResultSet result = null;
 		try {
-			state = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			state = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			rs = state.executeQuery(selectCommand);
 			result = rs;
 			System.out.println("Operation done successfully");
@@ -32,7 +32,7 @@ public class DbManipulator {
 		boolean result = false;
 		try {
 			con.setAutoCommit(true);
-			state = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			state = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			state.executeUpdate(insertCommand);
 			result = true;
 			System.out.println("Records created successfully");

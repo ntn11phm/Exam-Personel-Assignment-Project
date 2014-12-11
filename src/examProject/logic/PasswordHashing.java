@@ -18,7 +18,7 @@ public class PasswordHashing {
 		
 		
 		try {
-			rs.first();
+			rs.beforeFirst();
 			while (rs.next()) {
 				result = rs.getString("crypt");
 			}
