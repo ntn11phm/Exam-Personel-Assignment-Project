@@ -94,6 +94,7 @@ public class SetUpDbGui extends JPanel {
 	}
 
 	private void buttonClickedMethod() {
+		//gör nåt..
 
 	}
 
