@@ -113,12 +113,12 @@ public class UI_LoadUserInformation extends JPanel {
 	}
 		private void addCtrls() {
 
-		add(firstNameLabel);
-		add(lastNameLabel);
-		add(emailLabel);
-		add(retypeEmailLabel);
-		add(phoneNrLabel);
-		add(mobilNrLabel);
+		//add(firstNameLabel);
+		//add(lastNameLabel);
+		//add(emailLabel);
+		//add(retypeEmailLabel);
+		//add(phoneNrLabel);
+		//add(mobilNrLabel);
 		add(update);
 		add(firstNameTextField);
 		add(lastNameTextField);
