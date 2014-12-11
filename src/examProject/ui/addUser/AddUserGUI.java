@@ -26,6 +26,7 @@ public class AddUserGUI extends JPanel {
 	private JTextField lastNameText = new JTextField(30);
 	private JPasswordField pwd = new JPasswordField();
 	private JButton addUserButton = new JButton("Lägg till användare");
+	private JButton clearTextFields = new JButton("Rensa fält");
 	private JCheckBox isAdminCheckBox = new JCheckBox("Administratör");
 
 	public AddUserGUI() {
@@ -46,7 +47,8 @@ public class AddUserGUI extends JPanel {
 		firstNameLabel.setBounds(29, 27, 130, 23);
 		lastNameLabel.setBounds(169, 26, 130, 25);
 		pwdLabel.setBounds(29, 145, 130, 25);
-		addUserButton.setBounds(29, 246, 170, 23);
+		addUserButton.setBounds(29, 246, 170, 34);
+		clearTextFields.setBounds(248, 246, 170, 34);
 		userNameText.setBounds(29, 109, 130, 25);
 		firstNameText.setBounds(29, 49, 130, 25);
 		lastNameText.setBounds(169, 49, 130, 25);
@@ -56,6 +58,7 @@ public class AddUserGUI extends JPanel {
 
 	private void addCtrls() {
 		add(addUserButton);
+		add(clearTextFields);
 		add(userNameLabel);
 		add(firstNameLabel);
 		add(lastNameLabel);
@@ -72,6 +75,15 @@ public class AddUserGUI extends JPanel {
 		addUserButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buttonClickedMethod();
+			}
+		});
+		clearTextFields.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				userNameText.setText("");	
+				firstNameText.setText("");
+				lastNameText.setText("");
+				pwd.setText("");
+				
 			}
 		});
 	}
