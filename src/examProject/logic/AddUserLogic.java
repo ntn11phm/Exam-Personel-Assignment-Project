@@ -2,6 +2,8 @@ package examProject.logic;
 
 import java.sql.ResultSet;
 
+import javax.swing.JOptionPane;
+
 import examProject.dao.DbManipulator;
 import examProject.dao.InsertUser;
 import examProject.transferObjects.AddUser;
@@ -31,6 +33,8 @@ public class AddUserLogic {
 				sqlCommand = "INSERT INTO hosts (user_id, first_name, last_name) VALUES ((SELECT user_id FROM users WHERE username = '" + au.getUserName() + "'),'" + au.firstName + "', '" + au.lastName +"');";
 				dBm.insert(sqlCommand);
 				result = true;
+			}else {
+				JOptionPane.showMessageDialog(null, "Användarnamnet är upptaget!");
 			}
 		} catch (Exception e) {} finally {
 			dBm.closeDb();
