@@ -18,7 +18,7 @@ public class TabbedPane extends JFrame {
 	private LoggedInUserTO currentUser;
 	private BackendFacade backendFacade;
 
-	public TabbedPane() {
+	public TabbedPane() { 
 		JTabbedPane jtp = new JTabbedPane();
 		backendFacade = new BackendFacade();
 		makeTabs(jtp);

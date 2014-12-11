@@ -43,7 +43,7 @@ public class UI_LoadUserInformation extends JPanel {
 	private JLabel phoneNrLabel = new JLabel("Telefonnummer");
 	private JLabel mobilNrLabel = new JLabel("Mobilnummer");
 
-	private JTextField firstNameTextField = new JTextField(30);
+	private JTextField firstNameTextField = new JTextField(100);
 	private JTextField lastNameTextField = new JTextField(30);
 	private JTextField addressTextField = new JTextField(50);
 	private JTextField zipCodeTextField = new JTextField();
@@ -87,12 +87,11 @@ public class UI_LoadUserInformation extends JPanel {
 		civicNrLabel.setBounds(29, 27, 130, 23);*/
 		
 		
-		update.setBounds(29, 49, 130, 25);
-		//userNameText.setBounds(29, 109, 130, 25);
-		firstNameTextField.setBounds(169, 49, 130, 25);
-		lastNameTextField.setBounds(29, 166, 130, 25);
+		//update.setBounds(29, 85, 130, 28);
+		firstNameTextField.setBounds(29, 49, 130, 25);
+	//	lastNameTextField.setBounds(29, 166, 130, 25);
 		//firstNameLabel.setBounds(29, 85, 130, 28);
-		emailTextField.setBounds(199, 115, 130, 13);
+	//	emailTextField.setBounds(199, 115, 130, 13);
 	/*	retypeEmailTextField.setBounds(29, 27, 130, 23);
 		phoneNrTextField.setBounds(29, 27, 130, 23);
 		mobileNrTextField.setBounds(29, 27, 130, 23);
@@ -119,10 +118,10 @@ public class UI_LoadUserInformation extends JPanel {
 		//add(retypeEmailLabel);
 		//add(phoneNrLabel);
 		//add(mobilNrLabel);
-		add(update);
+		//add(update);
 		add(firstNameTextField);
-		add(lastNameTextField);
-		add(emailTextField);
+		//add(lastNameTextField);
+		//add(emailTextField);
 		
 		
 		
