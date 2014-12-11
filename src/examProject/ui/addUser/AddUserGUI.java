@@ -21,7 +21,7 @@ public class AddUserGUI extends JPanel {
 	private JLabel firstNameLabel = new JLabel("Förnamn");
 	private JLabel lastNameLabel = new JLabel("Efternamn");
 	private JLabel pwdLabel = new JLabel("Lösenord");
-	private JTextField userNameText = new JTextField(30);
+	private static JTextField userNameText = new JTextField(30);
 	private JTextField firstNameText = new JTextField(30);
 	private JTextField lastNameText = new JTextField(30);
 	private JPasswordField pwd = new JPasswordField();
@@ -49,7 +49,7 @@ public class AddUserGUI extends JPanel {
 		pwdLabel.setBounds(29, 145, 130, 25);
 		addUserButton.setBounds(29, 246, 170, 34);
 		clearTextFields.setBounds(248, 246, 170, 34);
-		userNameText.setBounds(29, 109, 130, 25);
+		getUserNameText().setBounds(29, 109, 130, 25);
 		firstNameText.setBounds(29, 49, 130, 25);
 		lastNameText.setBounds(169, 49, 130, 25);
 		pwd.setBounds(29, 166, 130, 25);
@@ -63,7 +63,7 @@ public class AddUserGUI extends JPanel {
 		add(firstNameLabel);
 		add(lastNameLabel);
 		add(pwdLabel);
-		add(userNameText);
+		add(getUserNameText());
 		add(firstNameText);
 		add(lastNameText);
 		add(pwd);
@@ -79,7 +79,7 @@ public class AddUserGUI extends JPanel {
 		});
 		clearTextFields.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				userNameText.setText("");	
+				getUserNameText().setText("");	
 				firstNameText.setText("");
 				lastNameText.setText("");
 				pwd.setText("");
@@ -89,12 +89,12 @@ public class AddUserGUI extends JPanel {
 	}
 
 	private void buttonClickedMethod() {
-		if (!userNameText.getText().equals("")
+		if (!getUserNameText().getText().equals("")
 				&& !firstNameText.getText().equals("")
 				&& !lastNameText.getText().equals("")
 				&& !pwd.getPassword().equals("")) {
 
-			AddUser au = new AddUser(userNameText.getText(),
+			AddUser au = new AddUser(getUserNameText().getText(),
 					firstNameText.getText(), lastNameText.getText(),
 					pwd.getPassword(), isAdminCheckBox.isSelected());
 			facade.addUser(au);
@@ -104,5 +104,10 @@ public class AddUserGUI extends JPanel {
 
 		}
 	}
+
+	public static JTextField getUserNameText() {
+		return userNameText;
+	}
+
 
 }

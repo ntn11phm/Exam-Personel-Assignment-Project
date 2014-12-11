@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import examProject.dao.DbManipulator;
 import examProject.dao.InsertUser;
 import examProject.transferObjects.AddUser;
+import examProject.ui.addUser.AddUserGUI;
 
 public class AddUserLogic {
 	private AddUser au;
@@ -35,6 +36,7 @@ public class AddUserLogic {
 				result = true;
 			}else {
 				JOptionPane.showMessageDialog(null, "Användarnamnet är upptaget!");
+				AddUserGUI.getUserNameText().setText("");
 			}
 		} catch (Exception e) {} finally {
 			dBm.closeDb();
