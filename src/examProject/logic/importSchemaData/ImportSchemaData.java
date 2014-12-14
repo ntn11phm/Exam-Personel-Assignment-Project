@@ -70,7 +70,11 @@ public class ImportSchemaData implements LogicStrategy {
 				}
 			}
 		} else {
-			
+			if (currentList.size() > 0)
+				for (int n = 0; n < currentList.size(); n++) {
+					createExamOccations(currentList.get(n));
+					checkIfSessionExists(currentList.get(n));
+				}
 		}
 	}
 	
