@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import examProject.dao.DbManipulator;
-import examProject.dao.SelectSessionIds;
 import examProject.logic.LogicStrategy;
 import examProject.transferObjects.ExamOccationTO;
 
@@ -43,7 +42,7 @@ public class ImportSchemaData implements LogicStrategy {
 						rs.getString("exam_location"), rs.getString("summary")));
 			}
 		} catch (SQLException e) {}
-		if (dbList.size()>0) {
+		if (dbList.size() > 0) {
 			List<Integer> removeFromDbList = new ArrayList<Integer>();
 			List<Integer> removeFromCurrentList = new ArrayList<Integer>();
 			for (int i = 0; i < dbList.size(); i++) 
@@ -59,19 +58,12 @@ public class ImportSchemaData implements LogicStrategy {
 				dbList.remove(removeFromDbList.get(y));
 			}
 			if (dbList.size() > 0) {
-				// if (check if more with same date and location in examoccasions = true) 
-				// remove from examoccasions
-				// else
-				// remove from sessions and examoccasions
 				for (int z = 0; z < dbList.size(); z++) {
 					removeOccasionFromDb(dbList.get(z));
 					checkMoreWithSameDateAndLocation(dbList.get(z));
 				}
 			}
 			if (currentList.size() > 0) {
-				//insert into examoccasions
-				// if (check if same date and location in sessions != true)
-				// insert into sessions
 				for (int n = 0; n < currentList.size(); n++) {
 					createExamOccations(currentList.get(n));
 					checkIfSessionExists(currentList.get(n));
@@ -104,7 +96,7 @@ public class ImportSchemaData implements LogicStrategy {
 	}
 	
 	private void deleteFromSessions(ExamOccationTO currentTO) {
-		String sqlCommand = "DELETE * FROM sessions WHERE room = '" + currentTO.getExamRoom() + "' AND date = '" + currentTO.getExamDate() + "';";
+		String sqlCommand = "DELETE * FROM sessions WHERE room = '" + currentTO.getExamRoom() + "' AND date = '" + currentTO.getExamDate() + "' AND time ='" + currentTO.getExamStartTime() + "';";
 		dbm.delete(sqlCommand);
 	}
 	
@@ -130,9 +122,8 @@ public class ImportSchemaData implements LogicStrategy {
 	}
 
 	private void createNewSessions(ExamOccationTO currentTO) {
-		String sqlCommand = "INSERT INTO sessions () VALUES ();";
-		boolean result = dbm.insert(sqlCommand);
-		
+		String sqlCommand = "INSERT INTO sessions (session_date, session_time, session_location) VALUES ('" + currentTO.getExamDate() + "', '" + currentTO.getExamStartTime() + "', '" + currentTO.getExamRoom() + "');";
+		dbm.insert(sqlCommand);
 	}
 
 	@Override
