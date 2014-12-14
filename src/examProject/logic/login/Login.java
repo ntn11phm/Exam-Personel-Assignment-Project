@@ -2,7 +2,6 @@ package examProject.logic.login;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import examProject.logic.PasswordHashingLocal;
 import examProject.logic.CharToStringConverter;
 import examProject.dao.DbManipulator;
@@ -28,7 +27,6 @@ public class Login {
 				storedPwd = pwdRs.getString("pwd");
 			}
 		} catch (SQLException e1) {}
-		
 		try {
 			if (hashingUnit.check(conv.charToString(pwd), storedPwd)) {
 				String sqlCommand = "SELECT username, user_id, is_admin, has_tmp_pwd WHERE username = '" + username + "';";
@@ -40,9 +38,6 @@ public class Login {
 				} catch (SQLException e) {}
 			}
 		} catch (Exception e) {}
-		
-		
-		
 		return currentUser;
 	}
 }
