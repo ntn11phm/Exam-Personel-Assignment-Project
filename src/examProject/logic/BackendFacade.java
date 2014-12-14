@@ -1,12 +1,15 @@
 package examProject.logic;
 
 import java.util.List;
+
 import examProject.dao.DbManipulator;
+import examProject.logic.login.Login;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.AddUser;
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
 import examProject.transferObjects.UpdateUser;
+import examProject.transferObjects.LoggedInUserTO;
 
 public class BackendFacade {
 	private DbManipulator dbManipulator;
@@ -72,5 +75,10 @@ public class BackendFacade {
 		
 	public boolean uppdateUser(String firstName, String lastName, String email, String retypeEmail, String civicNr, String mobileNr, String phoneNr, String city, String address, String zipCode,boolean isActive, boolean isAdmin) {
 		return uppdateUser(new UpdateUser(firstName, lastName, email, retypeEmail, city, address, mobileNr, phoneNr, zipCode, civicNr, isActive, isAdmin));
+	}
+	
+	public LoggedInUserTO login(String username, char[] pwd) {
+		Login login = new Login(dbManipulator);
+		return login.login(username, pwd);
 	}
 }
