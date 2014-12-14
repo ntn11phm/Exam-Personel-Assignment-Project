@@ -38,8 +38,8 @@ public class ImportSchemaData implements LogicStrategy {
 		List<ExamOccationTO> dbList = new ArrayList<ExamOccationTO>();
 		try {
 			while (rs.next()) {
-				dbList.add(new ExamOccationTO(rs.getString("exam_date"), rs.getString("exam_time"), rs.getString("booking_id"),
-						rs.getString("exam_location"), rs.getString("summary")));
+				dbList.add(new ExamOccationTO(rs.getString("exam_date"), rs.getString("exam_time"),
+						rs.getString("booking_id"),	rs.getString("exam_location"), rs.getString("summary")));
 			}
 		} catch (SQLException e) {}
 		if (dbList.size() > 0) {
@@ -57,18 +57,16 @@ public class ImportSchemaData implements LogicStrategy {
 				currentList.remove(removeFromCurrentList.get(y));
 				dbList.remove(removeFromDbList.get(y));
 			}
-			if (dbList.size() > 0) {
+			if (dbList.size() > 0)
 				for (int z = 0; z < dbList.size(); z++) {
 					removeOccasionFromDb(dbList.get(z));
 					checkMoreWithSameDateAndLocation(dbList.get(z));
 				}
-			}
-			if (currentList.size() > 0) {
+			if (currentList.size() > 0)
 				for (int n = 0; n < currentList.size(); n++) {
 					createExamOccations(currentList.get(n));
 					checkIfSessionExists(currentList.get(n));
 				}
-			}
 		} else {
 			if (currentList.size() > 0)
 				for (int n = 0; n < currentList.size(); n++) {
@@ -79,14 +77,18 @@ public class ImportSchemaData implements LogicStrategy {
 	}
 	
 	private void removeOccasionFromDb(ExamOccationTO currentTO) {
-		String sqlCommand = "DELETE * FROM examoccasions WHERE booking_id ='" + currentTO.getBookingId() + "' AND exam_time = '" + currentTO.getExamStartTime() + "' AND exam_location = '" + currentTO.getExamRoom() +"';";
+		String sqlCommand = "DELETE * FROM examoccasions WHERE booking_id ='" + currentTO.getBookingId() 
+				+ "' AND exam_time = '" + currentTO.getExamStartTime() + "' AND exam_location = '" 
+				+ currentTO.getExamRoom() +"';";
 		dbm.delete(sqlCommand);
 	}
 	
 	private boolean checkMoreWithSameDateAndLocation(ExamOccationTO currentTO) {
 		boolean result = false;
 		boolean matchesFound = false;
-		String sqlCommand = "SELECT occasion_id FROM examoccasions WHERE exam_date ='" + currentTO.getExamDate() + "' AND exam_time = '" + currentTO.getExamStartTime() + "' AND exam_location = '" + currentTO.getExamRoom() +"';";
+		String sqlCommand = "SELECT occasion_id FROM examoccasions WHERE exam_date ='" + currentTO.getExamDate() 
+				+ "' AND exam_time = '" + currentTO.getExamStartTime() + "' AND exam_location = '" 
+				+ currentTO.getExamRoom() +"';";
 		ResultSet rs = dbm.select(sqlCommand);
 		try {
 			while (rs.next()) {
@@ -100,20 +102,21 @@ public class ImportSchemaData implements LogicStrategy {
 	}
 	
 	private void deleteFromSessions(ExamOccationTO currentTO) {
-		String sqlCommand = "DELETE * FROM sessions WHERE room = '" + currentTO.getExamRoom() + "' AND date = '" + currentTO.getExamDate() + "' AND time ='" + currentTO.getExamStartTime() + "';";
+		String sqlCommand = "DELETE * FROM sessions WHERE room = '" + currentTO.getExamRoom() 
+				+ "' AND date = '" + currentTO.getExamDate() + "' AND time ='" + currentTO.getExamStartTime() + "';";
 		dbm.delete(sqlCommand);
 	}
 	
 	private void createExamOccations(ExamOccationTO currentTO) {
 		String sqlCommand = "INSERT INTO examoccasions (exam_date, exam_time, exam_location, booking_id, summary) VALUES ('" +
-			currentTO.getExamDate() + "', '" + currentTO.getExamStartTime()+ "', '"+ currentTO.getExamRoom() + "', '" +
-				currentTO.getBookingId() + "', '" + currentTO.getSummary() + ");";
+			currentTO.getExamDate() + "', '" + currentTO.getExamStartTime()+ "', '"+ currentTO.getExamRoom() + "', '" 
+				+ currentTO.getBookingId() + "', '" + currentTO.getSummary() + ");";
 		dbm.insert(sqlCommand);
 	}
 	private void checkIfSessionExists(ExamOccationTO currentTO) {
 		boolean matchesFound = false;
-		String sqlCommand = "SELECT session_id FROM sessions WHERE room = '" + currentTO.getExamRoom() + "' AND date = '" +
-			currentTO.getExamDate() + "' AND time = '" + currentTO.getExamStartTime() + "';";
+		String sqlCommand = "SELECT session_id FROM sessions WHERE room = '" + currentTO.getExamRoom() + "' AND date = '" 
+				+ currentTO.getExamDate() + "' AND time = '" + currentTO.getExamStartTime() + "';";
 		ResultSet rs = dbm.select(sqlCommand);
 		try {
 			while (rs.next()) {
@@ -126,7 +129,9 @@ public class ImportSchemaData implements LogicStrategy {
 	}
 
 	private void createNewSessions(ExamOccationTO currentTO) {
-		String sqlCommand = "INSERT INTO sessions (session_date, session_time, session_location) VALUES ('" + currentTO.getExamDate() + "', '" + currentTO.getExamStartTime() + "', '" + currentTO.getExamRoom() + "');";
+		String sqlCommand = "INSERT INTO sessions (session_date, session_time, session_location) VALUES ('" 
+				+ currentTO.getExamDate() + "', '" + currentTO.getExamStartTime() 
+				+ "', '" + currentTO.getExamRoom() + "');";
 		dbm.insert(sqlCommand);
 	}
 
@@ -139,5 +144,4 @@ public class ImportSchemaData implements LogicStrategy {
 		}
 		return result;
 	}
-
 }
