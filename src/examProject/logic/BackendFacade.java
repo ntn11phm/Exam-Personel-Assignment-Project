@@ -3,6 +3,7 @@ package examProject.logic;
 import java.util.List;
 
 import examProject.dao.DbManipulator;
+import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.AddUser;
@@ -64,8 +65,8 @@ public class BackendFacade {
 	}
 	
 	public boolean importSchemaData(List<ExamOccationTO> arrList) {
-		
-		return false;
+		ImportSchemaData isd = new ImportSchemaData(dbManipulator, arrList);
+		return isd.execute();
 	}
 	public boolean uppdateUser(UpdateUser updateUser) {
 		UpdateUserLogic updateUserLogic= new UpdateUserLogic(updateUser, dbManipulator);
