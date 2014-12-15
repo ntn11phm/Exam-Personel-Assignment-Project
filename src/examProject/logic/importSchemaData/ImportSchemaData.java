@@ -139,8 +139,10 @@ public class ImportSchemaData implements LogicStrategy {
 	public boolean execute() {
 		boolean result = false;
 		if (arrExams != null) {
+			dbm.openDb();
 			validateExamOccasions();
 			result = true;
+			dbm.closeDb();
 		}
 		return result;
 	}
