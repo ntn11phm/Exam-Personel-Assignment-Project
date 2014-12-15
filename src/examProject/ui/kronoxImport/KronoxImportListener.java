@@ -84,6 +84,7 @@ public class KronoxImportListener {
 	
 	private void importPostsFromList() {
 		String text = "";
+		arrExamOccations.remove(arrExamOccations.size()-1);
 		if (backendFacade.importSchemaData(arrExamOccations))
 			text = "Data har importerats!";
 		else
