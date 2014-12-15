@@ -10,7 +10,7 @@ import examProject.logic.BackendFacade;
 
 public class LoginUI extends JPanel {
 	private BackendFacade backendFacade;
-	private JLabel lblText = new JLabel("Anändarnamn");
+	private JLabel lblUsername = new JLabel("Anändarnamn");
 	private JLabel lblPwd = new JLabel("Lösenord");
 	private JLabel lblStatus = new JLabel();
 	private JTextField tbUsername = new JTextField();
@@ -20,6 +20,7 @@ public class LoginUI extends JPanel {
 	
 	public LoginUI(BackendFacade backendFacade) {
 		this.backendFacade = backendFacade;
+		setLayout(null);
 		setBounds();
 		addCtrls();
 		LoginListener loginListener = new LoginListener(this, backendFacade);
@@ -47,10 +48,22 @@ public class LoginUI extends JPanel {
 	}
 	
 	private void setBounds() {
-		
+		lblUsername.setBounds(10, 10, 210, 15);
+		tbUsername.setBounds(10, 30, 210, 25);
+		lblPwd.setBounds(10, 66, 210, 15);
+		tbPwd.setBounds(10, 92, 210, 25);
+		btnLogin.setBounds(10, 128, 100, 30);
+		btnCancel.setBounds(120, 128, 100, 31);
+		lblStatus.setBounds(10, 170, 210, 25);
 	}
 	
 	private void addCtrls() {
-		
+		add(lblUsername);
+		add(lblPwd);
+		add(lblStatus);
+		add(tbUsername);
+		add(tbPwd);
+		add(btnLogin);
+		add(btnCancel);
 	}
 }
