@@ -103,7 +103,7 @@ public class ImportSchemaData implements LogicStrategy {
 	
 	private void deleteFromSessions(ExamOccationTO currentTO) {
 		String sqlCommand = "DELETE FROM sessions WHERE session_location = '" + currentTO.getExamRoom() 
-				+ "' AND session_date = '" + currentTO.getExamDate() + "' AND time ='" + currentTO.getExamStartTime() + "';";
+				+ "' AND session_date = '" + currentTO.getExamDate() + "' AND session_time ='" + currentTO.getExamStartTime() + "';";
 		dbm.delete(sqlCommand);
 	}
 	
@@ -116,7 +116,7 @@ public class ImportSchemaData implements LogicStrategy {
 	private void checkIfSessionExists(ExamOccationTO currentTO) {
 		boolean matchesFound = false;
 		String sqlCommand = "SELECT session_id FROM sessions WHERE session_location = '" + currentTO.getExamRoom() + "' AND session_date = '" 
-				+ currentTO.getExamDate() + "' AND time = '" + currentTO.getExamStartTime() + "';";
+				+ currentTO.getExamDate() + "' AND session_time = '" + currentTO.getExamStartTime() + "';";
 		ResultSet rs = dbm.select(sqlCommand);
 		try {
 			while (rs.next()) {
@@ -129,7 +129,7 @@ public class ImportSchemaData implements LogicStrategy {
 	}
 
 	private void createNewSessions(ExamOccationTO currentTO) {
-		String sqlCommand = "INSERT INTO sessions (session_date, time, session_location) VALUES ('" 
+		String sqlCommand = "INSERT INTO sessions (session_date, session_time, session_location) VALUES ('" 
 				+ currentTO.getExamDate() + "', '" + currentTO.getExamStartTime() 
 				+ "', '" + currentTO.getExamRoom() + "');";
 		dbm.insert(sqlCommand);
