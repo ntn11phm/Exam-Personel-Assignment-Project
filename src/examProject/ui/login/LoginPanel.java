@@ -5,12 +5,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import examProject.logic.BackendFacade;
 import java.awt.Color;
 
 public class LoginPanel extends JPanel {
-	private BackendFacade backendFacade;
+	private static final long serialVersionUID = 1L;
 	private JLabel lblUsername = new JLabel("Anändarnamn");
 	private JLabel lblPwd = new JLabel("Lösenord");
 	private JLabel lblStatus = new JLabel();
@@ -21,7 +20,6 @@ public class LoginPanel extends JPanel {
 	private JButton btnForgotPwd = new JButton("Gl\u00F6mt l\u00F6senordet");
 	
 	public LoginPanel(BackendFacade backendFacade) {
-		this.backendFacade = backendFacade;
 		setLayout(null);
 		setBounds();
 		addCtrls();
