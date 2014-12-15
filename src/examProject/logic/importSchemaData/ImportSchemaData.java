@@ -32,7 +32,7 @@ public class ImportSchemaData implements LogicStrategy {
 	
 	private void getStoredOccasions(String bookingId, List<ExamOccationTO> subList) {
 		List<ExamOccationTO> currentList = subList;
-		String selectCommand = "SELECT exam_date, exam_time, booking_id, exam_location, summary FROM examoccasions WHERE booking_id='"
+		String selectCommand = "SELECT exam_date, exam_time, booking_id, exam_location, summary FROM exam_occasion WHERE booking_id='"
 				+ bookingId + "';";
 		ResultSet rs = dbm.select(selectCommand);
 		List<ExamOccationTO> dbList = new ArrayList<ExamOccationTO>();
@@ -77,7 +77,7 @@ public class ImportSchemaData implements LogicStrategy {
 	}
 	
 	private void removeOccasionFromDb(ExamOccationTO currentTO) {
-		String sqlCommand = "DELETE * FROM examoccasions WHERE booking_id ='" + currentTO.getBookingId() 
+		String sqlCommand = "DELETE * FROM exam_occasion WHERE booking_id ='" + currentTO.getBookingId() 
 				+ "' AND exam_time = '" + currentTO.getExamStartTime() + "' AND exam_location = '" 
 				+ currentTO.getExamRoom() +"';";
 		dbm.delete(sqlCommand);
@@ -86,7 +86,7 @@ public class ImportSchemaData implements LogicStrategy {
 	private boolean checkMoreWithSameDateAndLocation(ExamOccationTO currentTO) {
 		boolean result = false;
 		boolean matchesFound = false;
-		String sqlCommand = "SELECT occasion_id FROM examoccasions WHERE exam_date ='" + currentTO.getExamDate() 
+		String sqlCommand = "SELECT occasion_id FROM exam_occasion WHERE exam_date ='" + currentTO.getExamDate() 
 				+ "' AND exam_time = '" + currentTO.getExamStartTime() + "' AND exam_location = '" 
 				+ currentTO.getExamRoom() +"';";
 		ResultSet rs = dbm.select(sqlCommand);
@@ -108,7 +108,7 @@ public class ImportSchemaData implements LogicStrategy {
 	}
 	
 	private void createExamOccations(ExamOccationTO currentTO) {
-		String sqlCommand = "INSERT INTO examoccasions (exam_date, exam_time, exam_location, booking_id, summary) VALUES ('" +
+		String sqlCommand = "INSERT INTO exam_occasion (exam_date, exam_time, exam_location, booking_id, summary) VALUES ('" +
 			currentTO.getExamDate() + "', '" + currentTO.getExamStartTime()+ "', '"+ currentTO.getExamRoom() + "', '" 
 				+ currentTO.getBookingId() + "', '" + currentTO.getSummary() + ");";
 		dbm.insert(sqlCommand);
