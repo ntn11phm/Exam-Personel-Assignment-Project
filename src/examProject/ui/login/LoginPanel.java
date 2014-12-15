@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 
 import examProject.logic.BackendFacade;
 
-public class LoginUI extends JPanel {
+public class LoginPanel extends JPanel {
 	private BackendFacade backendFacade;
 	private JLabel lblUsername = new JLabel("Anändarnamn");
 	private JLabel lblPwd = new JLabel("Lösenord");
@@ -18,7 +18,7 @@ public class LoginUI extends JPanel {
 	private JButton btnLogin = new JButton("Logga in");
 	private JButton btnCancel = new JButton("Avbryt");
 	
-	public LoginUI(BackendFacade backendFacade) {
+	public LoginPanel(BackendFacade backendFacade) {
 		this.backendFacade = backendFacade;
 		setLayout(null);
 		setBounds();

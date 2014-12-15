@@ -7,21 +7,21 @@ import examProject.logic.BackendFacade;
 import examProject.transferObjects.LoggedInUserTO;
 
 public class LoginListener {
-	private LoginUI loginUI;
+	private LoginPanel loginPanel;
 	private BackendFacade backendFacade;
 	
-	public LoginListener(LoginUI loginUI, BackendFacade backendFacade) {
-		this.loginUI = loginUI;
+	public LoginListener(LoginPanel loginPanel, BackendFacade backendFacade) {
+		this.loginPanel = loginPanel;
 		this.backendFacade = backendFacade;
 	}
 	
 	public void createListeners() {
-		loginUI.getLoginBtn().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {login();}});
-		loginUI.getCancelBtn().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {close();}});
+		loginPanel.getLoginBtn().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {login();}});
+		loginPanel.getCancelBtn().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {close();}});
 	}
 	
 	private void login() {
-		LoggedInUserTO user = backendFacade.login(loginUI.getUsername(), loginUI.getPwd());
+		LoggedInUserTO user = backendFacade.login(loginPanel.getUsername(), loginPanel.getPwd());
 		if (user == null) {
 			
 		}
