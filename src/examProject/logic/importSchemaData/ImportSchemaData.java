@@ -77,7 +77,7 @@ public class ImportSchemaData implements LogicStrategy {
 	}
 	
 	private void removeOccasionFromDb(ExamOccationTO currentTO) {
-		String sqlCommand = "DELETE * FROM exam_occasion WHERE booking_id ='" + currentTO.getBookingId() 
+		String sqlCommand = "DELETE FROM exam_occasion WHERE booking_id ='" + currentTO.getBookingId() 
 				+ "' AND exam_time = '" + currentTO.getExamStartTime() + "' AND exam_location = '" 
 				+ currentTO.getExamRoom() +"';";
 		dbm.delete(sqlCommand);
@@ -102,7 +102,7 @@ public class ImportSchemaData implements LogicStrategy {
 	}
 	
 	private void deleteFromSessions(ExamOccationTO currentTO) {
-		String sqlCommand = "DELETE * FROM sessions WHERE room = '" + currentTO.getExamRoom() 
+		String sqlCommand = "DELETE FROM sessions WHERE room = '" + currentTO.getExamRoom() 
 				+ "' AND date = '" + currentTO.getExamDate() + "' AND time ='" + currentTO.getExamStartTime() + "';";
 		dbm.delete(sqlCommand);
 	}
