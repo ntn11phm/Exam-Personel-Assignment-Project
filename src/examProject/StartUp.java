@@ -3,7 +3,6 @@ package examProject;
 import javax.swing.JFrame;
 
 import examProject.ui.mainFrame.TabbedPane;
-import examProject.ui.setUpDb.SetUpDbGui;
 
 public class StartUp {
 
