@@ -117,6 +117,7 @@ public class ImportSchemaData implements LogicStrategy {
 		boolean matchesFound = false;
 		String sqlCommand = "SELECT session_id FROM sessions WHERE room = '" + currentTO.getExamRoom() + "' AND date = '" 
 				+ currentTO.getExamDate() + "' AND time = '" + currentTO.getExamStartTime() + "';";
+		dbm.openDb();
 		ResultSet rs = dbm.select(sqlCommand);
 		try {
 			while (rs.next()) {
