@@ -44,6 +44,8 @@ public class TabbedPane extends JFrame {
 		jtp.setMnemonicAt(0, KeyEvent.VK_4);
 		jtp.addTab("Importera", new KronoxImportPanel());
 		jtp.setMnemonicAt(0, KeyEvent.VK_5);
+		jtp.addTab("DB Setup", new SetUpDbGui());
+		jtp.setMnemonicAt(0, KeyEvent.VK_6);
 
 	}
 
