@@ -47,6 +47,10 @@ public class LoginPanel extends JPanel {
 		return btnCancel;
 	}
 	
+	public JButton getForgotPwdBtn() {
+		return btnForgotPwd;
+	}
+	
 	private void setBounds() {
 		lblUsername.setBounds(10, 10, 210, 15);
 		tbUsername.setBounds(10, 30, 210, 25);
