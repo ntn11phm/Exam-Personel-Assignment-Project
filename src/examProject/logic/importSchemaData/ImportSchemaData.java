@@ -54,7 +54,8 @@ public class ImportSchemaData implements LogicStrategy {
 			Collections.sort(removeFromCurrentList, Collections.reverseOrder());
 			Collections.sort(removeFromDbList, Collections.reverseOrder());
 			for (int y = 0; y < removeFromCurrentList.size(); y++) {
-				currentList.remove(removeFromCurrentList.get(y));
+				currentList.remove(Integer.parseInt(removeFromCurrentList.get(y).toString()));
+				currentList.remove(Integer.parseInt(removeFromCurrentList.get(y).toString()));
 				dbList.remove(removeFromDbList.get(y));
 			}
 			if (dbList.size() > 0)
