@@ -17,6 +17,7 @@ public class AnswerInvitationsPanel extends JPanel {
 	
 	public AnswerInvitationsPanel(BackendFacade backendFacade) {
 		this.backendFacade = backendFacade;
+		hsiList = backendFacade.getHsiList();
 		setLayout(null);
 		setBounds();
 		addCtrls();
