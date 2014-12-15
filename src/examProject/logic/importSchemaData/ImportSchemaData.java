@@ -55,8 +55,7 @@ public class ImportSchemaData implements LogicStrategy {
 			Collections.sort(removeFromDbList, Collections.reverseOrder());
 			for (int y = 0; y < removeFromCurrentList.size(); y++) {
 				currentList.remove(Integer.parseInt(removeFromCurrentList.get(y).toString()));
-				currentList.remove(Integer.parseInt(removeFromCurrentList.get(y).toString()));
-				dbList.remove(removeFromDbList.get(y));
+				dbList.remove(Integer.parseInt(removeFromDbList.get(y).toString()));
 			}
 			if (dbList.size() > 0)
 				for (int z = 0; z < dbList.size(); z++) {
@@ -103,8 +102,8 @@ public class ImportSchemaData implements LogicStrategy {
 	}
 	
 	private void deleteFromSessions(ExamOccationTO currentTO) {
-		String sqlCommand = "DELETE FROM sessions WHERE room = '" + currentTO.getExamRoom() 
-				+ "' AND date = '" + currentTO.getExamDate() + "' AND time ='" + currentTO.getExamStartTime() + "';";
+		String sqlCommand = "DELETE FROM sessions WHERE session_location = '" + currentTO.getExamRoom() 
+				+ "' AND session_date = '" + currentTO.getExamDate() + "' AND time ='" + currentTO.getExamStartTime() + "';";
 		dbm.delete(sqlCommand);
 	}
 	
@@ -116,7 +115,7 @@ public class ImportSchemaData implements LogicStrategy {
 	}
 	private void checkIfSessionExists(ExamOccationTO currentTO) {
 		boolean matchesFound = false;
-		String sqlCommand = "SELECT session_id FROM sessions WHERE room = '" + currentTO.getExamRoom() + "' AND date = '" 
+		String sqlCommand = "SELECT session_id FROM sessions WHERE session_location = '" + currentTO.getExamRoom() + "' AND session_date = '" 
 				+ currentTO.getExamDate() + "' AND time = '" + currentTO.getExamStartTime() + "';";
 		dbm.openDb();
 		ResultSet rs = dbm.select(sqlCommand);
@@ -131,7 +130,7 @@ public class ImportSchemaData implements LogicStrategy {
 	}
 
 	private void createNewSessions(ExamOccationTO currentTO) {
-		String sqlCommand = "INSERT INTO sessions (session_date, session_time, session_location) VALUES ('" 
+		String sqlCommand = "INSERT INTO sessions (session_date, time, session_location) VALUES ('" 
 				+ currentTO.getExamDate() + "', '" + currentTO.getExamStartTime() 
 				+ "', '" + currentTO.getExamRoom() + "');";
 		dbm.insert(sqlCommand);
