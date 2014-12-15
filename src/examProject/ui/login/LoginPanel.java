@@ -7,6 +7,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import examProject.logic.BackendFacade;
+import java.awt.Color;
 
 public class LoginPanel extends JPanel {
 	private BackendFacade backendFacade;
@@ -17,6 +18,7 @@ public class LoginPanel extends JPanel {
 	private JPasswordField tbPwd = new JPasswordField();
 	private JButton btnLogin = new JButton("Logga in");
 	private JButton btnCancel = new JButton("Avbryt");
+	private JButton btnForgotPwd = new JButton("Gl\u00F6mt l\u00F6senordet");
 	
 	public LoginPanel(BackendFacade backendFacade) {
 		this.backendFacade = backendFacade;
@@ -55,6 +57,7 @@ public class LoginPanel extends JPanel {
 		btnLogin.setBounds(10, 128, 100, 30);
 		btnCancel.setBounds(120, 128, 100, 31);
 		lblStatus.setBounds(10, 170, 210, 25);
+		btnForgotPwd.setBounds(10, 206, 210, 23);
 	}
 	
 	private void addCtrls() {
@@ -65,5 +68,8 @@ public class LoginPanel extends JPanel {
 		add(tbPwd);
 		add(btnLogin);
 		add(btnCancel);
+		btnForgotPwd.setToolTipText("F\u00E5 anv\u00E4ndarnamn och tempor\u00E4rt l\u00F6senord skickat till din e-post adress");
+		btnForgotPwd.setForeground(Color.BLUE);
+		add(btnForgotPwd);
 	}
 }
