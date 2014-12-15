@@ -110,7 +110,7 @@ public class ImportSchemaData implements LogicStrategy {
 	private void createExamOccations(ExamOccationTO currentTO) {
 		String sqlCommand = "INSERT INTO exam_occasion (exam_date, exam_time, exam_location, booking_id, summary) VALUES ('" +
 			currentTO.getExamDate() + "', '" + currentTO.getExamStartTime()+ "', '"+ currentTO.getExamRoom() + "', '" 
-				+ currentTO.getBookingId() + "', '" + currentTO.getSummary() + ");";
+				+ currentTO.getBookingId() + "', '" + currentTO.getSummary() + "');";
 		dbm.insert(sqlCommand);
 	}
 	private void checkIfSessionExists(ExamOccationTO currentTO) {
