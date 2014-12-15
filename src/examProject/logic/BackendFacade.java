@@ -1,7 +1,6 @@
 package examProject.logic;
 
 import java.util.List;
-
 import examProject.dao.DbManipulator;
 import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
@@ -9,11 +8,13 @@ import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.AddUser;
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
+import examProject.transferObjects.HsiTO;
 import examProject.transferObjects.UpdateUser;
 import examProject.transferObjects.LoggedInUserTO;
 
 public class BackendFacade {
 	private DbManipulator dbManipulator;
+	private LoggedInUserTO currentUser;
 	
 	public BackendFacade() {
 		createDbObjects();
@@ -80,6 +81,17 @@ public class BackendFacade {
 	
 	public LoggedInUserTO login(String username, char[] pwd) {
 		Login login = new Login(dbManipulator);
-		return login.login(username, pwd);
+		currentUser = login.login(username, pwd); 
+		return currentUser;
+	}
+
+	public List<HsiTO> getHsiList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public List<HsiTO> getHsiList(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
