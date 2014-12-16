@@ -14,16 +14,12 @@ package examProject.ui.updateUserInformation;
 
 		
 		public void readOptionFile() throws NullPointerException {
-			
+		
+
 			 try {
 		            Scanner scan = new Scanner(System.in);
 		              File file = new File("D:/Gitup/Exam-Personel-Assignment-Project/Options.txt");
 		              scan = new Scanner(file);
-
-		            
-		            //  File file = new File(scan.nextLine());
-
-		          //  scan = new Scanner(file);
 
 		            while (scan.hasNextLine()) {
 		                String line = scan.nextLine(); 
@@ -32,7 +28,7 @@ package examProject.ui.updateUserInformation;
 		                	 
 		        			String content = "";
 		         
-		        			File file1 = new File("/users/Rambo/filename.txt");
+		        			File file1 = new File("D:/filename.txt");
 		         
 		        			if (!file1.exists()) {
 		        				file1.createNewFile();
@@ -40,7 +36,9 @@ package examProject.ui.updateUserInformation;
 		         
 		        			FileWriter fw = new FileWriter(file1.getAbsoluteFile());
 		        			BufferedWriter bw = new BufferedWriter(fw);
-		        			bw.write(content);
+		        			//bw.write(content);
+		        			bw.write(line);
+
 		        			bw.close();
 		         
 		        			System.out.println("Done");
@@ -56,6 +54,44 @@ package examProject.ui.updateUserInformation;
 		        }
 		    }		
 	}
+	
+	
+	/*	
+			 try {
+		            Scanner scan = new Scanner(System.in);
+		              File file = new File("D:/Gitup/Exam-Personel-Assignment-Project/Options.txt");
+		              scan = new Scanner(file);
 
+		            while (scan.hasNextLine()) {
+		                String line = scan.nextLine(); 
+		                System.out.println("linenumber " + line);
+		                try {
+		                	 
+		        			String content = "";
+		         
+		        			File file1 = new File("D:/filename.txt");
+		         
+		        			if (!file1.exists()) {
+		        				file1.createNewFile();
+		        			}
+		         
+		        			FileWriter fw = new FileWriter(file1.getAbsoluteFile());
+		        			BufferedWriter bw = new BufferedWriter(fw);
+		        			//bw.write(content);
+		        			bw.write(line);
 
+		        			bw.close();
+		         
+		        			System.out.println("Done");
+		         
+		        		} catch (IOException e) {
+		        			e.printStackTrace();
+		        		}
+		        }
+		            scan.close();
 
+		        } catch (Exception ex) {
+		            ex.printStackTrace();
+		        }
+		    }		
+	}*/
