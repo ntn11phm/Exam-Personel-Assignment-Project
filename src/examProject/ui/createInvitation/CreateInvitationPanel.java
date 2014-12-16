@@ -72,9 +72,10 @@ public class CreateInvitationPanel extends JPanel {
 	}
 
 	private void LoadButtonClickedMethod() {
-		if(!fromDateText.getText().equals("") 
-				&& toDateText.getText().equals("")){
-			HsiTO hsiTo = new HsiTO(fromDateText.getText(), toDateText.getText());
+		if (!fromDateText.getText().equals("")
+				&& toDateText.getText().equals("")) {
+			HsiTO hsiTo = new HsiTO(fromDateText.getText(),
+					toDateText.getText());
 			List<HsiTO> sessionsList = facade.getSessions();
 		}
 
