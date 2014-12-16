@@ -38,7 +38,7 @@ public class OptionsFileReader {
 	         
 	        			if (!file1.exists()) {
 	        				file1.createNewFile();
-	        			}
+	        			} 
 	         
 	        			FileWriter fw = new FileWriter(file1.getAbsoluteFile());
 	        			BufferedWriter bw = new BufferedWriter(fw);
