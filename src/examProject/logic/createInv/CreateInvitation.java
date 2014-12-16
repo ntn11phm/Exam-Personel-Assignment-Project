@@ -29,10 +29,8 @@ public class CreateInvitation {
 		ResultSet rs = dBm.select(sqlCommand);
 		try {
 			while (rs.next()) {
-				if (result == null)
-					result = new ArrayList<CreateInvitationTO>();
-				result.add(new CreateInvitationTO(rs.getString("hsi_date"), rs
-						.getString("hsi_time")));
+				result = new ArrayList<CreateInvitationTO>();
+				result.add(new CreateInvitationTO(rs.getString("session_date"), rs.getString("session_time")));
 			}
 			rs.close();
 		} catch (SQLException e) {
