@@ -14,11 +14,9 @@ package examProject.ui.updateUserInformation;
 
 		
 		public void readOptionFile() throws NullPointerException {
-		System.out.println("Här är det som ska skrivas");	
 			
 			 try {
 		            Scanner scan = new Scanner(System.in);
-		            System.out.print("Enter the file name with extention : ");
 		              File file = new File("D:/Gitup/Exam-Personel-Assignment-Project/Options.txt");
 		              scan = new Scanner(file);
 
