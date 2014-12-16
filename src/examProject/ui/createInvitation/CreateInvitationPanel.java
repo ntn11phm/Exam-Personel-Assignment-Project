@@ -82,9 +82,11 @@ public class CreateInvitationPanel extends JPanel {
 				&& toDateText.getText().equals("")) {
 			if (validateTextFields(fromDateText.getText())
 					&& validateTextFields(toDateText.getText())) {
+				
 				HsiTO hsiTo = new HsiTO(fromDateText.getText(),
 						toDateText.getText());
-				List<HsiTO> sessionsList = facade.getSessions();
+				//List<HsiTO> sessionsList = facade.getSessions();
+				facade.getSessions();
 				
 			}
 		}else {
