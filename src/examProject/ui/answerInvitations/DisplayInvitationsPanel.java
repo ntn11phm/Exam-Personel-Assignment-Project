@@ -20,7 +20,7 @@ public class DisplayInvitationsPanel extends JPanel {
 	
 	private void createCtrls() {
 		int xPos = 5;
-		int yPos = 5;
+		int yPos = 0;
 		int componentSizeX = 100;
 		int componentSizeY = 25;
 		int componentSpacing = 5;
