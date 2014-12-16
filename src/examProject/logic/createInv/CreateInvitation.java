@@ -17,7 +17,7 @@ public class CreateInvitation {
 	public List<HsiTO>getSessions() {
 		List<HsiTO> result = null;
 		dBm.openDb();
-		String sqlCommand = "SELECT session_date, session_time FROM sessions WHERE session_date BETWEEN '"+ hsiTo.getDate()""' AND '' GROUP BY session_date, session_time;";
+		String sqlCommand = "SELECT session_date, session_time FROM sessions WHERE session_date BETWEEN '' AND '' GROUP BY session_date, session_time;";
 		
 		
 		

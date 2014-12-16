@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -68,61 +69,64 @@ public class CreateInvitationPanel extends JPanel {
 				LoadButtonClickedMethod();
 			}
 		});
+		createInvitationButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createInvitationButtonClickedMethod();		
+			}
+		});
 
 	}
 
 	private void LoadButtonClickedMethod() {
 		if (!fromDateText.getText().equals("")
 				&& toDateText.getText().equals("")) {
-			HsiTO hsiTo = new HsiTO(fromDateText.getText(),
-					toDateText.getText());
-			List<HsiTO> sessionsList = facade.getSessions();
+			if (validateTextFields(fromDateText.getText())
+					&& validateTextFields(toDateText.getText())) {
+				HsiTO hsiTo = new HsiTO(fromDateText.getText(),
+						toDateText.getText());
+				List<HsiTO> sessionsList = facade.getSessions();
+				
+			}
+		}else {
+			JOptionPane.showMessageDialog(null, "Fyll i datum");
 		}
 
+	}
+	private void createInvitationButtonClickedMethod(){
+		
 	}
 
 	private boolean validateTextFields(String dateInput) {
 		boolean result = false;
-		if (dateInput.length() == 10) {
-			for (int i = 0; i < 10; i++) {
-				switch(i){
-				case 4: case 7: if(dateInput.charAt(i) != '-')
-					break;
-				default : if(dateInput.charAt(i) )
-				}
-
+		if (!(dateInput.length() == 10))
+			return false;
+		else if (!dateInput.substring(4, 5).equals("-"))
+			return false;
+		else if (!dateInput.substring(7, 8).equals("-"))
+			return false;
+		for (int i = 0; i < dateInput.length(); i++)
+			switch (dateInput.substring(i, i + 1).toLowerCase()) {
+			case "1":
+			case "2":
+			case "3":
+			case "4":
+			case "5":
+			case "6":
+			case "7":
+			case "8":
+			case "9":
+			case "0":
+			case "-":
+				if (i != 4 && dateInput.substring(i, i + 1).equals("-"))
+					return false;
+				else if (i == 7 && !dateInput.substring(i, i + 1).equals("-"))
+					return false;
+				break;
+			default:
+				return true;
 			}
-		}
 
 		return result;
 	}
-
-	private boolean isNumber(String dateInput) {
-		boolean number = false;
-		
-		return number;
-
-	}
-	
-	/*
-	private String validateCivicFormat(String str){
-		if (!(str.length()==11))
-			return "Not Valid";
-		else if (!str.substring(6, 7).equals("-"))
-			return "Not Valid";
-		for (int i = 0; i < str.length(); i++)
-			switch (str.substring(i, i+1).toLowerCase()){
-			case "1": case "2": case "3": case "4": case "5": case "6": case "7": case "8": case "9": case "0": case "-":
-				if (i != 6 && str.substring(i, i+1).equals("-"))
-					return "Not Valid";
-				else if (i == 6 && !str.substring(i, i+1).equals("-"))
-					return "Not Valid";
-				break;
-			default:
-				return "Not Valid";
-			}
-		return str;
-	}
-	 */
 
 }
