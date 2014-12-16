@@ -33,6 +33,7 @@ public class DisplayInvitationsPanel extends JPanel {
 			lblTmp.setBounds(xPos, yPos, componentSizeX, componentSizeY);
 			add(lblTmp);
 			cbTmp = new JCheckBox(hsiList.get(i).getTime());
+			cbTmp.setSelected(hsiList.get(i).getAnswer());
 			cbTmp.setName(hsiList.get(i).getTime() + "_" + hsiList.get(i).getDate());
 			cbTmp.setBounds((xPos + componentSizeX + componentSpacing), yPos, componentSizeX, componentSizeY);
 			add(cbTmp);
