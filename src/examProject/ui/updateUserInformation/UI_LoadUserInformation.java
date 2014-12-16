@@ -64,75 +64,65 @@ public class UI_LoadUserInformation extends JPanel {
 		setBounds();
 		addCtrls();
 		guiButtonListener();
-	//	makePanelsAndLayoutComponents();
-	//	makeAndInstallTheListeners();
 	}
 	
-	/*public UI_LoadUserInformation() {
-		makePanelsAndLayoutComponents();
-		makeAndInstallTheListeners();
-		setMinimumSize(getMinimumSize());
-	}*/
 	private void setBounds() {
 		
-	/*	firstNameLabel.setBounds(29, 85, 130, 28);
-		lastNameLabel.setBounds(29, 27, 130, 23);
-		emailLabel.setBounds(169, 26, 130, 25);
-		retypeEmailLabel.setBounds(29, 145, 130, 25);
-		phoneNrLabel.setBounds(29, 246, 170, 23);
-		mobilNrLabel.setBounds(29, 109, 130, 25);
-		/*addressLabel.setBounds(29, 27, 130, 23);
-		cityLabel.setBounds(29, 27, 130, 23);
-		zipCodeLabel.setBounds(29, 27, 130, 23);
-		civicNrLabel.setBounds(29, 27, 130, 23);*/
-		
-		
-		//update.setBounds(29, 85, 130, 28);
-		firstNameTextField.setBounds(29, 49, 130, 25);
-	//	lastNameTextField.setBounds(29, 166, 130, 25);
-		//firstNameLabel.setBounds(29, 85, 130, 28);
-	//	emailTextField.setBounds(199, 115, 130, 13);
-	/*	retypeEmailTextField.setBounds(29, 27, 130, 23);
-		phoneNrTextField.setBounds(29, 27, 130, 23);
-		mobileNrTextField.setBounds(29, 27, 130, 23);
-		addressTextField.setBounds(29, 27, 130, 23);
-		cityTextField.setBounds(29, 27, 130, 23);
-		zipCodeTextField.setBounds(29, 27, 130, 23);
-		civicNRTextField.setBounds(29, 27, 130, 23);
-			 
-		isActive.setBounds(199, 115, 130, 13);
-		isAdmin.setBounds(199, 115, 130, 13);
-
-		
-		JPanel checkBoxPanel = new JPanel(new FlowLayout());
-		checkBoxPanel.add(isActive);
-		checkBoxPanel.add(isAdmin);
-*/		
-	
+		firstNameLabel.setBounds(29, 27, 140, 25);
+		lastNameLabel.setBounds(300, 26, 140, 25);
+		firstNameTextField.setBounds(29, 50, 150, 25);
+		lastNameTextField.setBounds(300, 50, 150, 25);
+		emailLabel.setBounds(29, 80, 150, 25);
+		retypeEmailLabel.setBounds(300, 80, 150, 25);
+		emailTextField.setBounds(29, 105, 150, 25);
+		retypeEmailTextField.setBounds(300, 105, 150, 25);
+		civicNrLabel.setBounds(29, 130, 150, 25);
+		cityLabel.setBounds(300, 130, 150, 25);
+		civicNRTextField.setBounds(29, 155, 150, 25);
+		cityTextField.setBounds(300, 155, 150, 25);
+		addressLabel.setBounds(29, 180, 150, 25);
+		zipCodeLabel.setBounds(300, 180, 150, 25);
+		addressTextField.setBounds(29, 205, 150, 25);
+		zipCodeTextField.setBounds(300, 205, 150, 25);
+		phoneNrLabel.setBounds(29, 230, 150, 25);
+		mobilNrLabel.setBounds(300, 230, 150, 25);
+		phoneNrTextField.setBounds(29, 255, 150, 25);
+		mobileNrTextField.setBounds(300, 255, 150, 25);
+		update.setBounds(29, 400, 150, 28);
+		isActive.setBounds(300, 300, 150, 25);
+		isAdmin.setBounds(300, 330, 150, 25);	
 	}
 		private void addCtrls() {
 
-		//add(firstNameLabel);
-		//add(lastNameLabel);
-		//add(emailLabel);
-		//add(retypeEmailLabel);
-		//add(phoneNrLabel);
-		//add(mobilNrLabel);
-		//add(update);
+		add(firstNameLabel);
+		add(lastNameLabel);
 		add(firstNameTextField);
-		//add(lastNameTextField);
-		//add(emailTextField);
-		
-		
-		
-		
-		
+		add(lastNameTextField);
+		add(emailLabel);
+		add(retypeEmailLabel);
+		add(emailTextField);
+		add(retypeEmailTextField);
+		add(civicNrLabel);
+		add(cityLabel);
+		add(civicNRTextField);
+		add(cityTextField);
+		add(addressLabel);
+		add(zipCodeLabel);
+		add(addressTextField);
+		add(zipCodeTextField);
+		add(phoneNrLabel);
+		add(mobilNrLabel);
+		add(phoneNrTextField);
+		add(mobileNrTextField);
+		add(update);
+		add(isActive);
+		add(isAdmin);
 	}
   
 	private class ButtonListener implements ActionListener {
 
 		@Override
-		public void actionPerformed(ActionEvent event) {
+		public void actionPerformed(ActionEvent event) { 
 
 			Object source = event.getSource();
 			if (source == update) {
