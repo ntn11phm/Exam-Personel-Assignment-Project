@@ -2,15 +2,16 @@ package examProject.ui.createInvitation;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import examProject.logic.BackendFacade;
+import examProject.transferObjects.HsiTO;
 
 public class CreateInvitationPanel extends JPanel {
 	private static final long serialVersionUID = -1887688398933276294L;
@@ -71,7 +72,11 @@ public class CreateInvitationPanel extends JPanel {
 	}
 
 	private void LoadButtonClickedMethod() {
-		
+		if(!fromDateText.getText().equals("") 
+				&& toDateText.getText().equals("")){
+			HsiTO hsiTo = new HsiTO(fromDateText.getText(), toDateText.getText());
+			List<HsiTO> sessionsList = facade.getSessions();
+		}
 
 	}
 
