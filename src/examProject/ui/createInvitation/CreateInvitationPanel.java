@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import examProject.logic.BackendFacade;
+import examProject.transferObjects.CreateInvitationTO;
 import examProject.transferObjects.HsiTO;
 
 public class CreateInvitationPanel extends JPanel {
@@ -71,7 +72,7 @@ public class CreateInvitationPanel extends JPanel {
 		});
 		createInvitationButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				createInvitationButtonClickedMethod();		
+				createInvitationButtonClickedMethod();
 			}
 		});
 
@@ -82,20 +83,21 @@ public class CreateInvitationPanel extends JPanel {
 				&& toDateText.getText().equals("")) {
 			if (validateTextFields(fromDateText.getText())
 					&& validateTextFields(toDateText.getText())) {
+
+				CreateInvitationTO cTo = new CreateInvitationTO(
+						fromDateText.getText(), toDateText.getText());
+				List<CreateInvitationTO> sessionList = facade.getSessions();
 				
-				HsiTO hsiTo = new HsiTO(fromDateText.getText(),
-						toDateText.getText());
-				//List<HsiTO> sessionsList = facade.getSessions();
-				facade.getSessions();
-				
+
 			}
-		}else {
+		} else {
 			JOptionPane.showMessageDialog(null, "Fyll i datum");
 		}
 
 	}
-	private void createInvitationButtonClickedMethod(){
-		
+
+	private void createInvitationButtonClickedMethod() {
+
 	}
 
 	private boolean validateTextFields(String dateInput) {

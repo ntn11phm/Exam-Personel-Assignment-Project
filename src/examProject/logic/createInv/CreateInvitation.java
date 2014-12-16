@@ -6,33 +6,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import examProject.dao.DbManipulator;
+import examProject.transferObjects.CreateInvitationTO;
 import examProject.transferObjects.HsiTO;
 
 public class CreateInvitation {
-	private HsiTO hsiTo;
+	private CreateInvitationTO cTo;
 	private DbManipulator dBm;
 
-	public CreateInvitation(HsiTO hsiTo, DbManipulator dBm) {
-		this.hsiTo = hsiTo;
+	public CreateInvitation(CreateInvitationTO cTo, DbManipulator dBm) {
+		this.cTo = cTo;
 		this.dBm = dBm;
-
 	}
 
-	public List<HsiTO> getSessions() {
-		List<HsiTO> result = null;
+	public List<CreateInvitationTO> getSessions() {
+		List<CreateInvitationTO> result = null;
 		dBm.openDb();
 		String sqlCommand = "SELECT session_date, session_time FROM sessions WHERE session_date BETWEEN '"
-				+ hsiTo.getDate()
+				+ cTo.getDate()
 				+ "' AND '"
-				+ hsiTo.getDate()
+				+ cTo.getDate()
 				+ "' GROUP BY session_date, session_time;";
 		ResultSet rs = dBm.select(sqlCommand);
 		try {
 			while (rs.next()) {
 				if (result == null)
-					result = new ArrayList<HsiTO>();
-				result.add(new HsiTO(rs.getString("hsi_date"), rs
-						.getString("hsi_time"), rs.getBoolean("can_host")));
+					result = new ArrayList<CreateInvitationTO>();
+				result.add(new CreateInvitationTO(rs.getString("hsi_date"), rs
+						.getString("hsi_time")));
 			}
 			rs.close();
 		} catch (SQLException e) {

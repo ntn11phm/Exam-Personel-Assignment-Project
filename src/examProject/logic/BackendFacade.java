@@ -7,6 +7,7 @@ import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.AddUser;
+import examProject.transferObjects.CreateInvitationTO;
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
 import examProject.transferObjects.HsiTO;
@@ -95,8 +96,8 @@ public class BackendFacade {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public List<HsiTO> getSessions() {
+		
+	public List<CreateInvitationTO> getSessions(){
 		// TODO Auto-generated method stub
 		return null;
 	}
