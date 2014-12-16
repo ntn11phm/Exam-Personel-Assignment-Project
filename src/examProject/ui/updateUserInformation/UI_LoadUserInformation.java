@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -117,6 +116,7 @@ public class UI_LoadUserInformation extends JPanel {
 		add(update);
 		add(isActive);
 		add(isAdmin);
+		
 	}
   
 	private class ButtonListener implements ActionListener {
@@ -173,7 +173,8 @@ public class UI_LoadUserInformation extends JPanel {
 		});
 	}
 
-	private void update() {
+	private void update() {   
+		new OptionsFileReader().readOptionFile();
 		if (firstNameTextField.getText().length() > 0
 				& lastNameTextField.getText().length() > 0
 				& emailTextField.getText().length() > 0
@@ -189,7 +190,11 @@ public class UI_LoadUserInformation extends JPanel {
 			checkIfPoneNrIsCorrect();
 			checkIfAddressIsCorrest();
 			checkIfZipCodeIsCorrect();
-			UpdateUser updateUser = new UpdateUser(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());		
+		//	UpdateUser updateUser = new UpdateUser(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());		
+			//System.out.println("HAhahaha");
+			//System.out.println(new OptionsFileReader().readFile());
+			
+
 		} else                                      		
 
 			JOptionPane.showMessageDialog(null,
@@ -204,7 +209,7 @@ public class UI_LoadUserInformation extends JPanel {
 	public void checkIfLastNameISCorrect() {
 		checkStatement.checkFirstName(lastNameTextField.getText(), lastNameTextField.getText().length());
 	}
-	// metod som kollar om mailet innehåller @
+	// metod som kollar om mailet innehåller @ 
 	public void checkIfMailCorrect() {
 		checkStatement.checkMail(emailTextField.getText(), emailTextField.getText().length());
 		}
