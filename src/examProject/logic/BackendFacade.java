@@ -1,6 +1,7 @@
 package examProject.logic;
 
 import java.util.List;
+
 import examProject.dao.DbManipulator;
 import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
@@ -94,4 +95,10 @@ public class BackendFacade {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public List<HsiTO> getSessions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
