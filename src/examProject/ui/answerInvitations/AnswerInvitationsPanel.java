@@ -13,16 +13,11 @@ import javax.swing.JLabel;
 public class AnswerInvitationsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JScrollPane scrollPane = new JScrollPane();
-	private JPanel panel = new JPanel();
-	private List<HsiTO> hsiList;
 	private JButton btnCommitAnswers = new JButton("Spara svar!");
 	private JLabel lblStatusText = new JLabel("");
 	private JButton btnLoadInv = new JButton("Ladda inbjudningar");
 	
 	public AnswerInvitationsPanel(BackendFacade backendFacade) {
-		hsiList = backendFacade.getHsiList();
-		DisplayInvitationsPanel dip = new DisplayInvitationsPanel(hsiList);
-		this.panel = dip.getPanel();
 		setLayout(null);
 		setBounds();
 		addCtrls();
@@ -37,9 +32,20 @@ public class AnswerInvitationsPanel extends JPanel {
 	
 	private void addCtrls() {
 		add(scrollPane);
-		scrollPane.setViewportView(panel);
 		add(btnCommitAnswers);
 		add(lblStatusText);
 		add(btnLoadInv);
+	}
+	
+	public JButton getLoadInvBtn() {
+		return btnLoadInv;
+	}
+	
+	public JButton getCommitAnswerBtn() {
+		return btnCommitAnswers;
+	}
+	
+	public JScrollPane getScollPane() {
+		return scrollPane;
 	}
 }

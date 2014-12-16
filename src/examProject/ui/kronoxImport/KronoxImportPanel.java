@@ -22,7 +22,7 @@ public class KronoxImportPanel extends JPanel {
 	private JLabel lblLenght = new JLabel("Period längd");
 	private JLabel lblPeriod = new JLabel("Period typ");
 	private JButton btnGetData = new JButton("Hämta Data");
-	private JScrollPane scrollBar = new JScrollPane();
+	private JScrollPane scrollPane = new JScrollPane();
 	private JList<String> listExams = new JList<String>();
 	private JButton btnRemove = new JButton("Ta bort vald");
 	private JButton btnImport = new JButton("Importera");
@@ -98,7 +98,7 @@ public class KronoxImportPanel extends JPanel {
 		lblPeriod.setBounds(10, 11, 150, 14);
 		lblLenght.setBounds(170, 11, 150, 14);
 		btnGetData.setBounds(330, 35, 100, 23);
-		scrollBar.setBounds(10, 89, 310, 400);
+		scrollPane.setBounds(10, 89, 310, 400);
 		listExams.setBounds(10, 89, 310, 400);
 		tbDate.setBounds(330, 87, 260, 20);
 		tbTime.setBounds(330, 118, 260, 20);
@@ -130,8 +130,8 @@ public class KronoxImportPanel extends JPanel {
 		add(lblPeriod);
 		add(lblLenght);
 		add(btnGetData);
-		scrollBar.setViewportView(listExams);
-		add(scrollBar);
+		scrollPane.setViewportView(listExams);
+		add(scrollPane);
 		add(tbDate);
 		add(tbTime);
 		add(tbLocation);
