@@ -14,16 +14,17 @@ import examProject.transferObjects.LoggedInUserTO;
 public class AnswerInvitation {
 	private LoggedInUserTO currentUser;
 	private DbManipulator dbm;
+	private String timeStamp;
 	
 	public AnswerInvitation(DbManipulator dbm,LoggedInUserTO currentUser) {
 		this.currentUser = currentUser;
 		this.dbm = dbm;
+		this.timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
 	}
 	
 	public List<HsiTO> getInvitations() {
 		List<HsiTO> result = null;
 		dbm.openDb();
-		String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
 		String sqlCommand = "SELECT hsi_date, hsi_time FROM hosts_sessions_invitation WHERE host_id = (SELECT host_id FROM hosts WHERE user_id = "
 				+ currentUser.getUser_id() + ") AND hsi_date > '" + timeStamp + "' ORDER BY hsi_date, hsi_time;";
 		ResultSet rs = dbm.select(sqlCommand);
@@ -36,6 +37,23 @@ public class AnswerInvitation {
 			rs.close();
 		} catch (SQLException e) {}
 		dbm.closeDb();
+		return result;
+	}
+	
+	public boolean commitAnswers(List<HsiTO> answerList) {
+		boolean result = false;
+		if (answerList != null) {
+			dbm.openDb();
+			for (int i = 0; i < answerList.size(); i++) {
+				String sqlCommand = "UPDATE hosts_sessions_invitation SET (answer_date = '" 
+						+ timeStamp + "', can_host = " + answerList.get(i).getAnswer() 
+						+ ") WHERE host_id = (SELECT host_id FROM hosts WHERE user_id = "
+						+ currentUser.getUser_id() + ") AND hsi_date = '" 
+						+ answerList.get(i).getDate() + "' AND hsi_time = '" + answerList.get(i).getTime() + "';";
+				result = dbm.insert(sqlCommand);
+			}
+			dbm.closeDb();
+		}
 		return result;
 	}
 }
