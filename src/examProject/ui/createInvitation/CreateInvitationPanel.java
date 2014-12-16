@@ -1,29 +1,27 @@
 package examProject.ui.createInvitation;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
-
-import java.awt.Component;
-import java.util.Date;
-
-import org.jdatepicker.JDatePicker;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
+import javax.swing.JTextField;
 
 import examProject.logic.BackendFacade;
 
 public class CreateInvitationPanel extends JPanel {
 	private static final long serialVersionUID = -1887688398933276294L;
 	private BackendFacade facade;
-	private UtilDateModel dateModel = new UtilDateModel();
-	private JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, null);
-	private JDatePicker fromDate = new JDatePickerImpl(datePanel, null);
-	private JDatePicker toDate = new JDatePickerImpl(datePanel, null);
+	private JList<String> occasionsList = new JList<String>();
 	private JButton createInvitationButton = new JButton("Skapa inbjudan");
+	private JButton loadPeriodButton = new JButton("Visa Period");
 	private JLabel fromDateLabel = new JLabel("Datum från:");
 	private JLabel toDateLabel = new JLabel("Datum till");
+	private JTextField fromDateText = new JTextField();
+	private JTextField toDateText = new JTextField();
 
 	public CreateInvitationPanel() {
 		this(new BackendFacade());
@@ -35,29 +33,45 @@ public class CreateInvitationPanel extends JPanel {
 		setLayout(null);
 		setBounds();
 		addCtrls();
+		buttonListener();
 	}
 
 	private void setBounds() {
-		((Component) fromDate).setBounds(10,68,120,30);
-		((Component) toDate).setBounds(231,68,120,30);
-		createInvitationButton.setBounds(29, 246, 170, 34);
-		fromDateLabel.setBounds(28, 44, 130, 28);
-		toDateLabel.setBounds(257, 44, 130, 28);
-		
-		
+
+		createInvitationButton.setBounds(28, 421, 143, 34);
+		loadPeriodButton.setBounds(28, 156, 130, 29);
+		fromDateLabel.setBounds(28, 21, 130, 28);
+		toDateLabel.setBounds(28, 90, 130, 28);
+		occasionsList.setBounds(10, 196, 177, 214);
+		fromDateText.setToolTipText("Datumformat: yyyy-mm-dd");
+		fromDateText.setBounds(28, 50, 130, 29);
+		toDateText.setToolTipText("Datumformat: yyyy-mm-dd");
+		toDateText.setBounds(28, 116, 130, 29);
 
 	}
 
 	private void addCtrls() {
 		add(createInvitationButton);
+		add(loadPeriodButton);
 		add(fromDateLabel);
 		add(toDateLabel);
-		add((Component) fromDate);
-		add((Component) toDate);
+		add(occasionsList);
+		add(fromDateText);
+		add(toDateText);
 
 	}
 
 	private void buttonListener() {
+		loadPeriodButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoadButtonClickedMethod();
+			}
+		});
+
+	}
+
+	private void LoadButtonClickedMethod() {
+		
 
 	}
 

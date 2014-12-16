@@ -9,6 +9,7 @@ import examProject.logic.BackendFacade;
 import examProject.transferObjects.LoggedInUserTO;
 import examProject.ui.addUser.AddUserGUI;
 import examProject.ui.changePwd.ChangePwdPanel;
+import examProject.ui.createInvitation.CreateInvitationPanel;
 import examProject.ui.forgotPwd.ForgotPwdPanel;
 import examProject.ui.kronoxImport.KronoxImportPanel;
 import examProject.ui.setUpDb.SetUpDbGui;
@@ -46,6 +47,8 @@ public class TabbedPane extends JFrame {
 		jtp.setMnemonicAt(0, KeyEvent.VK_5);
 		jtp.addTab("DB Setup", new SetUpDbGui());
 		jtp.setMnemonicAt(0, KeyEvent.VK_6);
+		jtp.addTab("Inbjudningar", new CreateInvitationPanel());
+		jtp.setMnemonicAt(0, KeyEvent.VK_7);
 
 	}
 
