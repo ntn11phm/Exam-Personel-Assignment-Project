@@ -103,5 +103,26 @@ public class CreateInvitationPanel extends JPanel {
 		return number;
 
 	}
+	
+	/*
+	private String validateCivicFormat(String str){
+		if (!(str.length()==11))
+			return "Not Valid";
+		else if (!str.substring(6, 7).equals("-"))
+			return "Not Valid";
+		for (int i = 0; i < str.length(); i++)
+			switch (str.substring(i, i+1).toLowerCase()){
+			case "1": case "2": case "3": case "4": case "5": case "6": case "7": case "8": case "9": case "0": case "-":
+				if (i != 6 && str.substring(i, i+1).equals("-"))
+					return "Not Valid";
+				else if (i == 6 && !str.substring(i, i+1).equals("-"))
+					return "Not Valid";
+				break;
+			default:
+				return "Not Valid";
+			}
+		return str;
+	}
+	 */
 
 }
