@@ -81,4 +81,27 @@ public class CreateInvitationPanel extends JPanel {
 
 	}
 
+	private boolean validateTextFields(String dateInput) {
+		boolean result = false;
+		if (dateInput.length() == 10) {
+			for (int i = 0; i < 10; i++) {
+				switch(i){
+				case 4: case 7: if(dateInput.charAt(i) != '-')
+					break;
+				default : if(dateInput.charAt(i) )
+				}
+
+			}
+		}
+
+		return result;
+	}
+
+	private boolean isNumber(String dateInput) {
+		boolean number = false;
+		
+		return number;
+
+	}
+
 }
