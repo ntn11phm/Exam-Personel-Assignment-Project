@@ -174,13 +174,13 @@ public class UI_LoadUserInformation extends JPanel {
 	}
 
 	private void update() {   
-		new OptionsFileReader().readOptionFile();
+		new OptionsFileReader().readOptionFile();// ta bort denna rad för att den testar bara om OptionFileReader funkar
+	
 		if (firstNameTextField.getText().length() > 0
 				& lastNameTextField.getText().length() > 0
 				& emailTextField.getText().length() > 0
 				& retypeEmailTextField.getText().length() > 0) {
-			// new UI_LoadUserInformation();
-			checkIfFirstNameISCorrect();
+ 			checkIfFirstNameISCorrect();
 			checkIfLastNameISCorrect();
 			checkIfMailCorrect();
 			checkStatement.compareMail(retypeEmailTextField, emailTextField);
@@ -190,11 +190,7 @@ public class UI_LoadUserInformation extends JPanel {
 			checkIfPoneNrIsCorrect();
 			checkIfAddressIsCorrest();
 			checkIfZipCodeIsCorrect();
-		//	UpdateUser updateUser = new UpdateUser(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());		
-			//System.out.println("HAhahaha");
-			//System.out.println(new OptionsFileReader().readFile());
-			
-
+			UpdateUser updateUser = new UpdateUser(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());
 		} else                                      		
 
 			JOptionPane.showMessageDialog(null,
