@@ -47,6 +47,7 @@ public class AnswerInvitationsListener {
 				if (parts.length==2)
 					answerList.add(new HsiTO(parts[1], parts[0], answer));
 			}
+			backendFacade.commitInvitationAnswers(answerList);
 		}
 	}
 }
