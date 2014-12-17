@@ -48,4 +48,8 @@ public class AnswerInvitationsPanel extends JPanel {
 	public JScrollPane getScollPane() {
 		return scrollPane;
 	}
+	
+	public JLabel getStatusTextCtrl() {
+		return lblStatusText;
+	}
 }

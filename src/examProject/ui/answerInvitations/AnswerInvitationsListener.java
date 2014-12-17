@@ -5,10 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
-
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.HsiTO;
 
@@ -38,6 +36,7 @@ public class AnswerInvitationsListener {
 	
 	private void commitAnswers() {
 		List<HsiTO> answerList = new ArrayList<HsiTO>();
+		boolean result = false;
 		for (Component c: panel.getComponents()) {
 			boolean answer;
 			if (c instanceof JCheckBox) {
@@ -47,7 +46,11 @@ public class AnswerInvitationsListener {
 				if (parts.length==2)
 					answerList.add(new HsiTO(parts[1], parts[0], answer));
 			}
-			backendFacade.commitInvitationAnswers(answerList);
+			result = backendFacade.commitInvitationAnswers(answerList);
 		}
+		if (result)
+			answerPanel.getStatusTextCtrl().setText("Dina svar har sparats!");
+		else
+			answerPanel.getStatusTextCtrl().setText("Något gick fel!");
 	}
 }
