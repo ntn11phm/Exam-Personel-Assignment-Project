@@ -102,4 +102,10 @@ public class BackendFacade {
 		return null;
 	}
 
+	public boolean commitInvitationAnswers(List<HsiTO> answerList) {
+		boolean result = false;
+		
+		return result;
+	}
+
 }
