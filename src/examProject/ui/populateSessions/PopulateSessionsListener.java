@@ -1,5 +1,8 @@
 package examProject.ui.populateSessions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import examProject.logic.BackendFacade;
 
 public class PopulateSessionsListener {
@@ -12,7 +15,7 @@ public class PopulateSessionsListener {
 	}
 	
 	public void createListeners() {
-		psPanel.getBtnLoadSessions();
+		psPanel.getBtnLoadSessions().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {loadSessions();}});
 		psPanel.getBtnCommitSession();
 		psPanel.getHost1_btn();
 		psPanel.getHost2_btn();
@@ -20,4 +23,7 @@ public class PopulateSessionsListener {
 		psPanel.getHost2_btn();
 	}
 	
+	private void loadSessions() {
+		
+	}
 }

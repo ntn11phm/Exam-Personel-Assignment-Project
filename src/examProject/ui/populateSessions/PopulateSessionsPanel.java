@@ -41,7 +41,7 @@ public class PopulateSessionsPanel extends JPanel {
 	private JCheckBox host4_cb = new JCheckBox("Huvudvärd");
 	private JButton host4_btn = new JButton("Lägg till vald...");
 	private JButton host4_btnClear = new JButton("X");
-	private JLabel lblTllgngligaVrdar = new JLabel("Tillgängliga värdar");
+	private JLabel lblAvailableHosts = new JLabel("Tillgängliga värdar");
 
 	public PopulateSessionsPanel() {
 		setLayout(null);
@@ -85,6 +85,26 @@ public class PopulateSessionsPanel extends JPanel {
 		return host3_btnClear;
 	}
 	
+	public JList<String> getHostList() {
+		return hostList;
+	}
+
+	public JCheckBox getHost1_cb() {
+		return host1_cb;
+	}
+
+	public JCheckBox getHost2_cb() {
+		return host2_cb;
+	}
+
+	public JCheckBox getHost3_cb() {
+		return host3_cb;
+	}
+
+	public JCheckBox getHost4_cb() {
+		return host4_cb;
+	}
+
 	public JButton gethost4_btnClear() {
 		return host4_btnClear;
 	}
@@ -118,7 +138,7 @@ public class PopulateSessionsPanel extends JPanel {
 		host4_cb.setBounds(270, 449, 125, 23);
 		host4_btn.setBounds(401, 453, 129, 30);
 		host4_btnClear.setBounds(536, 421, 52, 61);
-		lblTllgngligaVrdar.setBounds(10, 120, 250, 20);
+		lblAvailableHosts.setBounds(10, 120, 250, 20);
 	}
 	
 	private void createCtrls() {
@@ -152,7 +172,7 @@ public class PopulateSessionsPanel extends JPanel {
 		add(host4_tb);
 		add(host4_cb);
 		add(host4_btn);
-		add(lblTllgngligaVrdar);
+		add(lblAvailableHosts);
 		host1_btnClear.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		add(host1_btnClear);
 		host2_btnClear.setFont(new Font("Tahoma", Font.PLAIN, 24));
