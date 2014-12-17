@@ -44,6 +44,30 @@ public class PopulateSessionsPanel extends JPanel {
 		createCtrls();
 	}
 	
+	public JButton getBtnLoadSessions() {
+		return btnLoadSessions;
+	}
+
+	public JButton getBtnCommitSession() {
+		return btnCommitSession;
+	}
+
+	public JButton getHost1_btn() {
+		return host1_btn;
+	}
+
+	public JButton getHost2_btn() {
+		return host2_btn;
+	}
+
+	public JButton getHost3_btn() {
+		return host3_btn;
+	}
+
+	public JButton getHost4_btn() {
+		return host4_btn;
+	}
+	
 	private void setBounds() {
 		lblInformation.setBounds(10, 10, 350, 20);
 		lblFromDate.setBounds(10, 30, 150, 20);
