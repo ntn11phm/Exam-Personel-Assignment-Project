@@ -7,25 +7,35 @@ import java.io.File;
 import java.io.IOException;
 
 import examProject.logic.BackendFacade;
+import examProject.transferObjects.DBConnectionTO;
 
 public class OptionsFileReader {
 
 	@SuppressWarnings("resource")
 	public void readOptionFile() throws NullPointerException {
-		String string="";
+		String[] string = null;
 		try {
 			Scanner scan = new Scanner(System.in);
 			File openedFile = new File("Options.txt");
 			scan = new Scanner(openedFile);
 
 			try {
+			  for (int i = 0; i <5; i++ ){
 				while (scan.hasNextLine()) {
 					String line = scan.nextLine();
-					string = string + "\n"+ line;
+					
+					string[i] = line;		
+					  System.out.println(string[i] );
+
 				}
+			}
+			  
+
+			//	new DBConnectionTO(string[0], string[1], string[2], string[3], string[4], b );
+			//	System.out.println("jhfhfh " + string);
+
 			scan.close();
 			//new BackendFacade().createDbObjects(); 
-			System.out.println("jhfhfh " + string);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
