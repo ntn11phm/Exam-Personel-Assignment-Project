@@ -22,9 +22,9 @@ public class CreateInvitation {
 		List<CreateInvitationTO> result = null;
 		dBm.openDb();
 		String sqlCommand = "SELECT session_date, session_time FROM sessions WHERE session_date BETWEEN '"
-				+ cTo.getDate()
+				+ cTo.getFromDate()
 				+ "' AND '"
-				+ cTo.getDate()
+				+ cTo.getToDate()
 				+ "' GROUP BY session_date, session_time;";
 		ResultSet rs = dBm.select(sqlCommand);
 		try {
