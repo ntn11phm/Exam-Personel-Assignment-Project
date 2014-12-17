@@ -80,7 +80,7 @@ public class CreateInvitationPanel extends JPanel {
 
 	private void LoadButtonClickedMethod() {
 		if (!fromDateText.getText().equals("")
-				&& toDateText.getText().equals("")) {
+				&& !toDateText.getText().equals("")) {
 			if (validateTextFields(fromDateText.getText())
 					&& validateTextFields(toDateText.getText())) {
 

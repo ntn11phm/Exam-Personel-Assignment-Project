@@ -61,6 +61,25 @@ public class CreateInvitation {
 							+ sessionList.get(x).getDate()
 							+ "', '"
 							+ sessionList.get(x).getTime() + "';";
+					String currentHsi = "SELECT hsi_time FROM hosts_sessions_invitations WHERE host_id = '"
+							+ hostList.get(i)
+							+ "' AND hsi_date ='"
+							+ sessionList.get(x).getDate()
+							+ "' AND  = hsi_time'"
+							+ sessionList.get(x).getTime() + "' ;";
+					rs = dBm.select(currentHsi);
+					boolean notFound = true;
+					try {
+						while (rs.next()) {
+							notFound = false;
+
+						}
+						if (notFound) {
+							dBm.insert(sqlCommand);
+						}
+					} catch (SQLException e) {
+
+					}
 				}
 			}
 		} catch (SQLException e) {
