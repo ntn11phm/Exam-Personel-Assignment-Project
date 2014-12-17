@@ -21,8 +21,7 @@ public class BackendFacade {
 	public BackendFacade() {
 		createDbObjects();
 	}
-	
-	public void createDbObjects() {
+	private void createDbObjects() {
 		this.dbManipulator = new DbManipulator();
 	}
 	
