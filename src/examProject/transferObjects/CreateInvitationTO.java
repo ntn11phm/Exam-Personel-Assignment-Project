@@ -2,25 +2,25 @@ package examProject.transferObjects;
 
 public class CreateInvitationTO {
 
-	private String date;
-	private String time;
+	private String fromDate;
+	private String toDate;
 
-	public CreateInvitationTO(String date, String time) {
-		this.date = date;
-		this.time = time;
+	public CreateInvitationTO(String fromDate, String toDate) {
+		this.fromDate = fromDate;
+		this.toDate = toDate;
 	}
 
-	public String getDate() {
-		return date;
+	public String getFromDate() {
+		return fromDate;
 	}
 
-	public String getTime() {
-		return time;
+	public String getToDate() {
+		return toDate;
 	}
 
 	@Override
 	public String toString() {
-		return "" + date + "   " + time;
+		return "" + fromDate + "   " + toDate;
 	}
 
 }
