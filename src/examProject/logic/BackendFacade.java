@@ -9,12 +9,14 @@ import examProject.logic.login.Login;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.AddUser;
 import examProject.transferObjects.CreateInvitationTO;
+import examProject.transferObjects.DBConnectionTO;
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
 import examProject.transferObjects.UpdateUser;
 import examProject.transferObjects.LoggedInUserTO;
+import examProject.ui.updateUserInformation.OptionsFileReader;
 
 public class BackendFacade {
 	private DbManipulator dbManipulator;
@@ -24,7 +26,9 @@ public class BackendFacade {
 		createDbObjects();
 	}
 	private void createDbObjects() {
-		this.dbManipulator = new DbManipulator(null);
+		OptionsFileReader optionsFileReader = new OptionsFileReader();
+		optionsFileReader.readOptionFile();
+		this.dbManipulator = new DbManipulator(optionsFileReader.getConnTO()); 
 	}
 	
 	public boolean validateCurrentPwd(char[] pwd) {
