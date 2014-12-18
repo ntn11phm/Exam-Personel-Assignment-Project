@@ -23,7 +23,7 @@ public class BackendFacade {
 		createDbObjects();
 	}
 	private void createDbObjects() {
-		this.dbManipulator = new DbManipulator();
+		this.dbManipulator = new DbManipulator(null);
 	}
 	
 	public boolean validateCurrentPwd(char[] pwd) {
@@ -115,6 +115,10 @@ public class BackendFacade {
 	public boolean checkHostSessionAvailabillity(String text, int host_id) {
 		
 		return false;
+	}
+	public List<CreateInvitationTO> getSessions(CreateInvitationTO cTo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
