@@ -81,15 +81,14 @@ public class CreateInvitationPanel extends JPanel {
 	private void LoadButtonClickedMethod() {
 		if (!fromDateText.getText().equals("")
 				&& !toDateText.getText().equals("")) {
-			if (validateTextFields(fromDateText.getText())
-					&& validateTextFields(toDateText.getText())) {
+			if (validateTextFields(fromDateText.getText()) && validateTextFields(toDateText.getText())) {
 
-				CreateInvitationTO cTo = new CreateInvitationTO(
-						fromDateText.getText(), toDateText.getText());
+				CreateInvitationTO cTo = new CreateInvitationTO(fromDateText.getText(), toDateText.getText());
 				List<CreateInvitationTO> sessionList = facade.getSessions();
 				
 
-			}
+			}else 
+				JOptionPane.showMessageDialog(null, "Felaktig inmatning");
 		} else {
 			JOptionPane.showMessageDialog(null, "Fyll i datum");
 		}
@@ -101,7 +100,7 @@ public class CreateInvitationPanel extends JPanel {
 	}
 
 	private boolean validateTextFields(String dateInput) {
-		boolean result = false;
+		boolean result = true;
 		if (!(dateInput.length() == 10))
 			return false;
 		else if (!dateInput.substring(4, 5).equals("-"))
@@ -121,13 +120,18 @@ public class CreateInvitationPanel extends JPanel {
 			case "9":
 			case "0":
 			case "-":
-				if (i != 4 && dateInput.substring(i, i + 1).equals("-"))
-					return false;
-				else if (i == 7 && !dateInput.substring(i, i + 1).equals("-"))
-					return false;
+				if (dateInput.substring(i, i + 1).equals("-"))
+					switch (i){
+					case 7:
+					case 4:
+						break;
+					default : 
+							return false;
+					}
+						
 				break;
 			default:
-				return true;
+				return false;
 			}
 
 		return result;
