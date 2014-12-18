@@ -2,6 +2,8 @@ package examProject.dao;
 
 import java.sql.*;
 
+import examProject.transferObjects.DBConnectionTO;
+
 /**
  * 
  * @author Code skeleton
@@ -10,7 +12,11 @@ import java.sql.*;
  */
 public class JdbcConnect {
 	private Connection c = null;
-
+	DBConnectionTO r ;
+public JdbcConnect(DBConnectionTO s){
+	this.r= s;
+	
+}
 	public Connection getC() {
 		return c;
 	}
@@ -28,7 +34,8 @@ public class JdbcConnect {
 
 	public Connection openDbConnection() {
 		try {
-			Class.forName("org.postgresql.Driver");
+			//Class.forName("org.postgresql.Driver");
+			Class.forName(r.getDatabaseDriver()); 
 			c = DriverManager.getConnection(
 					"jdbc:postgresql://localhost:5432/Tentamensprojekt",
 					"postgres", "Destroyer");
