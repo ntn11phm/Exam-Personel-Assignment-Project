@@ -25,7 +25,7 @@ public class CreateInvitationPanel extends JPanel {
 	private JLabel toDateLabel = new JLabel("Datum till");
 	private JTextField fromDateText = new JTextField();
 	private JTextField toDateText = new JTextField();
-	private List<CreateInvitationTO> sessionList;
+	private List<HsiTO> sessionList;
 
 	public CreateInvitationPanel() {
 		this(new BackendFacade());
