@@ -3,8 +3,11 @@ package examProject.ui.populateSessions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+
 import javax.swing.JOptionPane;
+
 import examProject.logic.BackendFacade;
+import examProject.transferObjects.CreateInvitationTO;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
 
@@ -62,7 +65,7 @@ public class PopulateSessionsListener {
 	}
 
 	private void loadSessionComboBox() {
-		
+		sessionList = backendFacade.getSessions(new CreateInvitationTO(psPanel.getTbDate().getText(), psPanel.getTbDate().getText()));
 	}
 	
 	private boolean validateDate(String date) {
