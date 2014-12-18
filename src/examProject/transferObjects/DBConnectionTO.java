@@ -6,15 +6,28 @@ public class DBConnectionTO {
 	private String databasePath;
 	private String databasePort;
 	private String mailServerPath;
+	private String databaseName;
 	private boolean firstTimeLaunch;
 	
-	public DBConnectionTO(String username, String databaseDriver, String databasePath, String databasePort, String mailServerPath, boolean firstTimeLaunch){
+	
+	public DBConnectionTO(){
+		
+	}
+	public DBConnectionTO(String username, String databaseDriver, String databasePath, String databasePort, String mailServerPath,String databaseName, boolean firstTimeLaunch){
 		this.usernames = username;
 		this.databaseDriver = databaseDriver;
 		this.databasePath = databasePath;
 		this.databasePort = databasePort;
 		this.mailServerPath = mailServerPath;
 		this.firstTimeLaunch = firstTimeLaunch;
+	}
+
+	public String getDatabaseName() {
+		return databaseName; 
+	}
+
+	public void setDatabaseName(String databaseName) {
+		this.databaseName = databaseName;
 	}
 
 	public String getUsernames() {
@@ -40,7 +53,29 @@ public class DBConnectionTO {
 	public boolean isFirstTimeLaunch() {
 		return firstTimeLaunch;
 	}
+	public void setUsernames(String usernames) {
+		this.usernames = usernames;
+	}
 
+	public void setDatabaseDriver(String databaseDriver) {
+		this.databaseDriver = databaseDriver;
+	}
+
+	public void setDatabasePath(String databasePath) {
+		this.databasePath = databasePath;
+	}
+
+	public void setDatabasePort(String databasePort) {
+		this.databasePort = databasePort;
+	}
+
+	public void setMailServerPath(String mailServerPath) {
+		this.mailServerPath = mailServerPath;
+	}
+
+	public void setFirstTimeLaunch(boolean firstTimeLaunch) {
+		this.firstTimeLaunch = firstTimeLaunch;
+	}
 
 
 }

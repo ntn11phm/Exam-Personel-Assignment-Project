@@ -1,56 +1,64 @@
 package examProject.ui.updateUserInformation;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.File;
-import java.io.IOException;
-
-import examProject.logic.BackendFacade;
 import examProject.transferObjects.DBConnectionTO;
 
 public class OptionsFileReader {
 
-	@SuppressWarnings("resource")
+	@SuppressWarnings({ "resource", "null" })
 	public void readOptionFile() throws NullPointerException {
-		String[] string = null;
-		try {
-			Scanner scan = new Scanner(System.in);
-			File openedFile = new File("Options.txt");
-			scan = new Scanner(openedFile);
-
-			try {
-			  for (int i = 0; i <5; i++ ){
-				while (scan.hasNextLine()) {
-					String line = scan.nextLine();
-					
-					string[i] = line;		
-					  System.out.println(string[i] );
-
+		boolean firstTimeLaunch= false;
+			
+				Scanner scan = new Scanner(System.in);
+				try {
+					File openedFile = new File("Options.txt");
+					scan = new Scanner(openedFile);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
 				}
+				DBConnectionTO c = new DBConnectionTO();
+				
+				try {
+					while (scan.hasNextLine()) {
+						String line = scan.nextLine();
+						if (line.startsWith("username")){
+							c.setUsernames(line);
+						}
+						else if (line.startsWith("databaseDriver")){
+							c.setDatabaseDriver(line);
+						}
+						else if(line.startsWith("databasePath")){
+							c.setDatabasePath(line);
+						}
+						else if(line.startsWith("databasePort")){
+							c.setDatabasePort(line);
+						}
+						else if (line.startsWith("databaseName")){
+							c.setDatabaseName(line);
+						}
+						else if (line.startsWith("mailServerPath")){
+							c.setMailServerPath(line);
+						}
+						else if(line.startsWith("firstTimeLaunch")){
+							c.setFirstTimeLaunch(true);
+						}
+				}					
+					System.out.println("11 "+ c.getUsernames() );
+					System.out.println("12 "+ c.getDatabaseDriver() );
+					System.out.println("13 "+ c.getDatabasePath() );
+					System.out.println("14 "+ c.getDatabasePort() );
+					System.out.println("15 "+ c.getDatabaseName() );
+					System.out.println("16 "+ c.getMailServerPath() );
+					System.out.println("17 "+ c.isFirstTimeLaunch() );
+
+					scan.close();
+			} catch (Exception ex) {
+				ex.printStackTrace();
 			}
-			  
-
-			//	new DBConnectionTO(string[0], string[1], string[2], string[3], string[4], b );
-			//	System.out.println("jhfhfh " + string);
-
-			scan.close();
-			//new BackendFacade().createDbObjects(); 
-		} catch (Exception ex) {
-			ex.printStackTrace();
 		}
-	} catch (IOException e) {
-		e.printStackTrace();
-	}
-}
-}
-
-
-
-
-
-
-
+		}
 
 
 
