@@ -16,7 +16,6 @@ import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
 import examProject.transferObjects.UpdateUser;
 import examProject.transferObjects.LoggedInUserTO;
-import examProject.ui.updateUserInformation.OptionsFileReader;
 
 public class BackendFacade {
 	private DbManipulator dbManipulator;
@@ -29,7 +28,7 @@ public class BackendFacade {
 		OptionsFileReader optionsFileReader = new OptionsFileReader();
 		optionsFileReader.readOptionFile();
 		this.dbManipulator = new DbManipulator(optionsFileReader.getConnTO()); 
-	}
+	} 
 	
 	public boolean validateCurrentPwd(char[] pwd) {
 

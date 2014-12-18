@@ -12,7 +12,7 @@ public class UppdateUserInformation {
 	
 	public void updateAdminInformation(){
 		/*if (isAdmin() = ture) {
-			
+			  
 			
 		}
 		*/
