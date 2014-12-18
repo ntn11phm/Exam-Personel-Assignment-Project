@@ -3,6 +3,7 @@ package examProject.logic;
 import java.util.List;
 
 import examProject.dao.DbManipulator;
+import examProject.logic.createInv.CreateInvitation;
 import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
 import examProject.logic.schemaReader.KronoxImporter;
@@ -97,11 +98,6 @@ public class BackendFacade {
 		return null;
 	}
 		
-	public List<CreateInvitationTO> getSessions(){
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public boolean commitInvitationAnswers(List<HsiTO> answerList) {
 		boolean result = false;
 		
@@ -116,9 +112,9 @@ public class BackendFacade {
 		
 		return false;
 	}
-	public List<CreateInvitationTO> getSessions(CreateInvitationTO cTo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<HsiTO> getSessions(CreateInvitationTO cTo) {
+		CreateInvitation ci = new CreateInvitation(cTo, dbManipulator);
+		return ci.getSessions(cTo);
 	}
 
 }
