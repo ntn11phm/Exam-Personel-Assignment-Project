@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -21,6 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import examProject.logic.BackendFacade;
+import examProject.logic.OptionsFileReader;
 import examProject.transferObjects.UpdateUser;
 
 @SuppressWarnings("serial")

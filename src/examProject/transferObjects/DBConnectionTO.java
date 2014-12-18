@@ -8,20 +8,10 @@ public class DBConnectionTO {
 	private String mailServerPath;
 	private String databaseName;
 	private boolean firstTimeLaunch;
-	
-	
-	public DBConnectionTO(){
 		
+	public DBConnectionTO(){
 	}
-	public DBConnectionTO(String username, String databaseDriver, String databasePath, String databasePort, String mailServerPath,String databaseName, boolean firstTimeLaunch){
-		this.usernames = username;
-		this.databaseDriver = databaseDriver;
-		this.databasePath = databasePath;
-		this.databasePort = databasePort;
-		this.mailServerPath = mailServerPath;
-		this.firstTimeLaunch = firstTimeLaunch;
-	}
-
+	
 	public String getDatabaseName() {
 		return databaseName; 
 	}
@@ -76,6 +66,4 @@ public class DBConnectionTO {
 	public void setFirstTimeLaunch(boolean firstTimeLaunch) {
 		this.firstTimeLaunch = firstTimeLaunch;
 	}
-
-
 }

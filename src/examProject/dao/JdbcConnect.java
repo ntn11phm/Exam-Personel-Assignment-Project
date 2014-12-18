@@ -12,9 +12,9 @@ import examProject.transferObjects.DBConnectionTO;
  */
 public class JdbcConnect {
 	private Connection c = null;
-	DBConnectionTO r ;
-public JdbcConnect(DBConnectionTO s){
-	this.r= s;
+	DBConnectionTO dbConnectionTo ;
+public JdbcConnect(DBConnectionTO dbConnectionTo){
+	this.dbConnectionTo= dbConnectionTo;
 	
 }
 	public Connection getC() {
@@ -33,14 +33,27 @@ public JdbcConnect(DBConnectionTO s){
 	private ResultSet rs = null;
 
 	public Connection openDbConnection() {
+		
 		try {
-			//Class.forName("org.postgresql.Driver");
-			Class.forName(r.getDatabaseDriver()); 
+			Class.forName(dbConnectionTo.getDatabaseDriver()); 
+			c = DriverManager.getConnection(
+					"jdbc:" + dbConnectionTo.getDatabaseDriver() + "://" + dbConnectionTo.getDatabasePath() + ":" + dbConnectionTo.getDatabasePort() + "/" + dbConnectionTo.getDatabaseName(), 
+					"postgres", "Destroyer");
+			
+			System.out.println("Opened database successfully");
+		} 
+		 
+		// original kod nedan bara try-sats		
+		/*try {
+			Class.forName("org.postgresql.Driver");
+			Class.forName(dbConnectionTo.getDatabaseDriver()); 
 			c = DriverManager.getConnection(
 					"jdbc:postgresql://localhost:5432/Tentamensprojekt",
 					"postgres", "Destroyer");
 			System.out.println("Opened database successfully");
-		} catch (Exception e) {
+		}*/ 
+		
+		catch (Exception e) {
 			// e.printStackTrace();
 			// System.err.println(e.getClass().getName() + ": " +
 			// e.getMessage());
