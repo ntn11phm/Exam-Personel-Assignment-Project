@@ -35,7 +35,7 @@ public JdbcConnect(DBConnectionTO dbConnectionTo){
 	public Connection openDbConnection() {
 		
 		try {
-			Class.forName(dbConnectionTo.getDatabaseDriver()); 
+			Class.forName("org.postgresql.Driver");
 			c = DriverManager.getConnection(
 					"jdbc:" + dbConnectionTo.getDatabaseDriver() + "://" + dbConnectionTo.getDatabasePath() + ":" + dbConnectionTo.getDatabasePort() + "/" + dbConnectionTo.getDatabaseName(), 
 					"postgres", "Destroyer");
@@ -44,14 +44,13 @@ public JdbcConnect(DBConnectionTO dbConnectionTo){
 		} 
 		 
 		// original kod nedan bara try-sats		
-		/*try {
-			Class.forName("org.postgresql.Driver");
-			Class.forName(dbConnectionTo.getDatabaseDriver()); 
-			c = DriverManager.getConnection(
-					"jdbc:postgresql://localhost:5432/Tentamensprojekt",
-					"postgres", "Destroyer");
-			System.out.println("Opened database successfully");
-		}*/ 
+		/*
+		 * try { Class.forName("org.postgresql.Driver");
+		 * Class.forName(dbConnectionTo.getDatabaseDriver()); c =
+		 * DriverManager.getConnection(
+		 * "jdbc:postgresql://localhost:5432/Tentamensprojekt", "postgres",
+		 * "Destroyer"); System.out.println("Opened database successfully"); }
+		 */ 
 		
 		catch (Exception e) {
 			// e.printStackTrace();

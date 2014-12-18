@@ -22,7 +22,7 @@ public class CreateInvitationPanel extends JPanel {
 	private JButton createInvitationButton = new JButton("Skapa inbjudan");
 	private JButton loadPeriodButton = new JButton("Visa Period");
 	private JLabel fromDateLabel = new JLabel("Datum från:");
-	private JLabel toDateLabel = new JLabel("Datum till");
+	private JLabel toDateLabel = new JLabel("Datum till:");
 	private JTextField fromDateText = new JTextField();
 	private JTextField toDateText = new JTextField();
 	private List<HsiTO> sessionList;
@@ -82,18 +82,20 @@ public class CreateInvitationPanel extends JPanel {
 	private void LoadButtonClickedMethod() {
 		if (!fromDateText.getText().equals("")
 				&& !toDateText.getText().equals("")) {
-			if (validateTextFields(fromDateText.getText()) && validateTextFields(toDateText.getText())) {
+			if (validateTextFields(fromDateText.getText())
+					&& validateTextFields(toDateText.getText())) {
 
-				CreateInvitationTO cTo = new CreateInvitationTO(fromDateText.getText(), toDateText.getText());
+				CreateInvitationTO cTo = new CreateInvitationTO(
+						fromDateText.getText(), toDateText.getText());
 				sessionList = facade.getSessions(cTo);
 
-				int lenght = sessionList.size()-1;
-				String [] arrString = new String[lenght];
+				int lenght = sessionList.size() - 1;
+				String[] arrString = new String[lenght];
 				for (int i = 0; i < lenght; i++)
 					arrString[i] = sessionList.get(i).toString();
 				occasionsList.setListData(arrString);
-				
-			}else 
+
+			} else
 				JOptionPane.showMessageDialog(null, "Felaktig inmatning");
 		} else {
 			JOptionPane.showMessageDialog(null, "Fyll i datum");
@@ -101,7 +103,12 @@ public class CreateInvitationPanel extends JPanel {
 
 	}
 
-	private void createInvitationButtonClickedMethod() {
+	private boolean createInvitationButtonClickedMethod() {
+		boolean result = facade.createHsi(sessionList);
+		if(result )
+			result = true;
+		
+		return result;
 
 	}
 
@@ -127,14 +134,14 @@ public class CreateInvitationPanel extends JPanel {
 			case "0":
 			case "-":
 				if (dateInput.substring(i, i + 1).equals("-"))
-					switch (i){
+					switch (i) {
 					case 7:
 					case 4:
 						break;
-					default : 
-							return false;
+					default:
+						return false;
 					}
-						
+
 				break;
 			default:
 				return false;

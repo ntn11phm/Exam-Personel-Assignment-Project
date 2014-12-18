@@ -13,7 +13,7 @@ public class CreateInvitation {
 	private CreateInvitationTO cTo;
 	private DbManipulator dBm;
 
-	public CreateInvitation(CreateInvitationTO cTo, DbManipulator dBm) {
+	public CreateInvitation( DbManipulator dBm) {
 		this.cTo = cTo;
 		this.dBm = dBm;
 	}
@@ -42,8 +42,9 @@ public class CreateInvitation {
 
 	}
 
-	public List<CreateInvitationTO> getHostId(List<HsiTO> sessionList) {
-		List<CreateInvitationTO> hostIdList = null;
+	public boolean createHsi(List<HsiTO> sessionList) {
+		
+		boolean result = true;
 		dBm.openDb();
 		String sqlCommand = "SELECT host_id FROM hosts Where is_active = TRUE;";
 		ResultSet rs = dBm.select(sqlCommand);
@@ -78,15 +79,16 @@ public class CreateInvitation {
 							dBm.insert(sqlCommand);
 						}
 					} catch (SQLException e) {
-
+						result = false;
 					}
 				}
 			}
 		} catch (SQLException e) {
+			result = false;
 
 		}
 
 		dBm.closeDb();
-		return hostIdList;
+		return result;
 	}
 }
