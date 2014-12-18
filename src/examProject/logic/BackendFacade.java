@@ -112,5 +112,9 @@ public class BackendFacade {
 		
 		return null;
 	}
+	public boolean checkHostSessionAvailabillity(String text, int host_id) {
+		
+		return false;
+	}
 
 }
