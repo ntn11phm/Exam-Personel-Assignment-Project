@@ -10,6 +10,7 @@ import examProject.transferObjects.AddUser;
 import examProject.transferObjects.CreateInvitationTO;
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
+import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
 import examProject.transferObjects.UpdateUser;
 import examProject.transferObjects.LoggedInUserTO;
@@ -105,6 +106,11 @@ public class BackendFacade {
 		boolean result = false;
 		
 		return result;
+	}
+	
+	public List<HostTO> getAvailableHostsList(String date) {
+		
+		return null;
 	}
 
 }
