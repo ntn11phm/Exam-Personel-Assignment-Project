@@ -18,7 +18,7 @@ public class CreateInvitation {
 		this.dBm = dBm;
 	}
 
-	public List<HsiTO> getSessions() {
+	public List<HsiTO> getSessions(CreateInvitationTO cTo) {
 		List<HsiTO> dateTime = null;
 		dBm.openDb();
 		String sqlCommand = "SELECT session_date, session_time FROM sessions WHERE session_date BETWEEN '"

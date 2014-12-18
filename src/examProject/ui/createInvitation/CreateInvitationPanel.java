@@ -25,6 +25,7 @@ public class CreateInvitationPanel extends JPanel {
 	private JLabel toDateLabel = new JLabel("Datum till");
 	private JTextField fromDateText = new JTextField();
 	private JTextField toDateText = new JTextField();
+	private List<CreateInvitationTO> sessionList;
 
 	public CreateInvitationPanel() {
 		this(new BackendFacade());
@@ -84,9 +85,14 @@ public class CreateInvitationPanel extends JPanel {
 			if (validateTextFields(fromDateText.getText()) && validateTextFields(toDateText.getText())) {
 
 				CreateInvitationTO cTo = new CreateInvitationTO(fromDateText.getText(), toDateText.getText());
-				List<CreateInvitationTO> sessionList = facade.getSessions();
-				
+				sessionList = facade.getSessions(cTo);
 
+				int lenght = sessionList.size()-1;
+				String [] arrString = new String[lenght];
+				for (int i = 0; i < lenght; i++)
+					arrString[i] = sessionList.get(i).toString();
+				occasionsList.setListData(arrString);
+				
 			}else 
 				JOptionPane.showMessageDialog(null, "Felaktig inmatning");
 		} else {
