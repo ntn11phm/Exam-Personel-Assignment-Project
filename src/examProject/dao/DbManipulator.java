@@ -5,16 +5,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import examProject.transferObjects.DBConnectionTO;
+
 public class DbManipulator {
-	private JdbcConnect jdbc = new JdbcConnect();
+	private JdbcConnect jdbc;
 	private Connection con;
 	private ResultSet rs;
 	private Statement state;
 
-	public DbManipulator() {
+	public DbManipulator(DBConnectionTO c) {
 		this.state = jdbc.getS();
 		this.con = jdbc.getC();
 		this.rs = jdbc.getRs();
+		this.jdbc = new JdbcConnect(c);
 	}
 
 	public ResultSet select(String selectCommand) {
