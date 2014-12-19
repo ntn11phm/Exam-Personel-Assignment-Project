@@ -89,6 +89,10 @@ public class PopulateSessionsPanel extends JPanel {
 		return host3_btnClear;
 	}
 	
+	public JButton gethost4_btnClear() {
+		return host4_btnClear;
+	}
+	
 	public JList<String> getHostList() {
 		return hostList;
 	}
@@ -108,11 +112,11 @@ public class PopulateSessionsPanel extends JPanel {
 	public JCheckBox getHost4_cb() {
 		return host4_cb;
 	}
-
-	public JButton gethost4_btnClear() {
-		return host4_btnClear;
-	}
 	
+	public JComboBox<String> getSessionCb() {
+		return cbSessions;
+	}
+
 	private void setBounds() {
 		lblInformation.setBounds(10, 10, 350, 20);
 		lblDate.setBounds(10, 30, 150, 20);

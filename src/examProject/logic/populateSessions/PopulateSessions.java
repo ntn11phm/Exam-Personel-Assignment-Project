@@ -30,11 +30,12 @@ public class PopulateSessions {
 	public boolean checkHostSessionAvailabillity(String date, int host_id) {
 		boolean isAvailable = true;
 		dbm.openDb();
-		String sqlCommand = "SELECT answer_date FROM hosts_sessions_invitation WHERE hsi_date = '" + date + "' AND host_id = " + host_id + ";";
+		String sqlCommand = "SELECT answer_date FROM hosts_sessions_invitation WHERE hsi_date = '" + date 
+				+ "' AND host_id = " + host_id + " AND NOT answer_date = '1970-01-01';";
 		ResultSet rs = dbm.select(sqlCommand);
 		try {
 			while (rs.next()){
-				if (!rs.getString("answer_date").equals("1970-01-01"))
+				//if (!rs.getString("answer_date").equals("1970-01-01"))
 					isAvailable = false;
 			}
 		} catch (SQLException e) {}

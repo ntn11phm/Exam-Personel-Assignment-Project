@@ -2,8 +2,11 @@ package examProject.ui.populateSessions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 import examProject.logic.BackendFacade;
@@ -30,6 +33,11 @@ public class PopulateSessionsListener {
 		psPanel.getHost2_btn();
 		psPanel.getHost2_btn();
 		psPanel.getHost2_btn();
+		psPanel.getSessionCb().addItemListener(new ItemListener() {public void itemStateChanged(ItemEvent arg0) {cbSessionsChanged();}});
+	}
+	
+	private void cbSessionsChanged() {
+		
 	}
 	
 	private void loadCtrls() {
@@ -39,6 +47,13 @@ public class PopulateSessionsListener {
 		} else
 			JOptionPane.showMessageDialog(null, "Felaktigt datumformat!\n(yyyy-MM-dd)");
 		
+	}
+	
+	private void loadSessionComboBox() {
+		sessionList = backendFacade.getSessions(new CreateInvitationTO(psPanel.getTbDate().getText(), psPanel.getTbDate().getText()));
+		psPanel.getSessionCb().setModel(new DefaultComboBoxModel<String>());
+		for (int i = 0; i < sessionList.size(); i++)
+			psPanel.getSessionCb().addItem(sessionList.get(i).toString());
 	}
 
 	private void loadHostList() {
@@ -62,10 +77,6 @@ public class PopulateSessionsListener {
 		for (int i = 0; i < lenght; i++)
 			arrString[i] = hostList.get(i).toString();
 		psPanel.getHostList().setListData(arrString);
-	}
-
-	private void loadSessionComboBox() {
-		sessionList = backendFacade.getSessions(new CreateInvitationTO(psPanel.getTbDate().getText(), psPanel.getTbDate().getText()));
 	}
 	
 	private boolean validateDate(String date) {
