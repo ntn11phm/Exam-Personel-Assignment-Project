@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import examProject.logic.BackendFacade;
@@ -19,6 +20,7 @@ public class CreateInvitationPanel extends JPanel {
 	private static final long serialVersionUID = -1887688398933276294L;
 	private BackendFacade facade;
 	private JList<String> occasionsList = new JList<String>();
+	private JScrollPane listPane = new JScrollPane(occasionsList);
 	private JButton createInvitationButton = new JButton("Skapa inbjudan");
 	private JButton loadPeriodButton = new JButton("Visa Period");
 	private JLabel fromDateLabel = new JLabel("Datum från:");
@@ -41,7 +43,9 @@ public class CreateInvitationPanel extends JPanel {
 		loadPeriodButton.setBounds(28, 156, 130, 29);
 		fromDateLabel.setBounds(28, 21, 130, 28);
 		toDateLabel.setBounds(28, 90, 130, 28);
-		occasionsList.setBounds(10, 196, 177, 214);
+		listPane.setBounds(10, 196, 177, 214);
+		listPane.setViewportView(occasionsList);
+		//occasionsList.setBounds(10, 196, 177, 214);
 		fromDateText.setToolTipText("Datumformat: yyyy-mm-dd");
 		fromDateText.setBounds(28, 50, 130, 29);
 		toDateText.setToolTipText("Datumformat: yyyy-mm-dd");
@@ -54,7 +58,8 @@ public class CreateInvitationPanel extends JPanel {
 		add(loadPeriodButton);
 		add(fromDateLabel);
 		add(toDateLabel);
-		add(occasionsList);
+		add(listPane);
+		//add(occasionsList);
 		add(fromDateText);
 		add(toDateText);
 
