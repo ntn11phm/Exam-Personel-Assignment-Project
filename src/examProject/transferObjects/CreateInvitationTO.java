@@ -2,8 +2,6 @@ package examProject.transferObjects;
 
 import java.util.List;
 
-import javax.swing.JList;
-
 public class CreateInvitationTO {
 
 	private String fromDate;

@@ -10,11 +10,9 @@ import examProject.transferObjects.CreateInvitationTO;
 import examProject.transferObjects.HsiTO;
 
 public class CreateInvitation {
-	private CreateInvitationTO cTo;
 	private DbManipulator dBm;
 
 	public CreateInvitation( DbManipulator dBm) {
-		this.cTo = cTo;
 		this.dBm = dBm;
 	}
 
