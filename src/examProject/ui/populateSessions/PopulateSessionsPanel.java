@@ -19,7 +19,7 @@ public class PopulateSessionsPanel extends JPanel {
 	private JLabel lblSessionList = new JLabel("Sessioner");
 	private JScrollPane scrollPane = new JScrollPane();
 	private JList<String> hostList = new JList<String>();
-	private JComboBox<String> cbHosts = new JComboBox<String>();
+	private JComboBox<String> cbSessions = new JComboBox<String>();
 	private JButton btnCommitSession = new JButton("Spara knytning!");
 	private JLabel host1_lbl = new JLabel("Värd 1");
 	private JTextField host1_tb = new JTextField();
@@ -120,7 +120,7 @@ public class PopulateSessionsPanel extends JPanel {
 		btnLoadSessions.setBounds(170, 47, 150, 30);
 		lblSessionList.setBounds(330, 30, 200, 20);
 		scrollPane.setBounds(10, 145, 250, 400);
-		cbHosts.setBounds(330, 50, 200, 25);
+		cbSessions.setBounds(330, 50, 258, 25);
 		btnCommitSession.setBounds(390, 529, 150, 30);
 		host1_lbl.setBounds(270, 147, 260, 14);
 		host1_tb.setBounds(270, 172, 260, 20);
@@ -154,7 +154,7 @@ public class PopulateSessionsPanel extends JPanel {
 		add(lblSessionList);
 		scrollPane.setViewportView(hostList);
 		add(scrollPane);
-		add(cbHosts);
+		add(cbSessions);
 		add(btnCommitSession);
 		add(host1_lbl);
 		host1_tb.setEditable(false);
