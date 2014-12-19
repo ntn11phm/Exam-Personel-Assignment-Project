@@ -2,14 +2,10 @@ package examProject.transferObjects;
 
 import java.util.List;
 
-import javax.swing.JList;
-
 public class CreateInvitationTO {
 
 	private String fromDate;
 	private String toDate;
-	private String time;
-	private JList<String>sessionsList;
 
 	public CreateInvitationTO(String fromDate, String toDate) {
 		this.fromDate = fromDate;
@@ -23,11 +19,10 @@ public class CreateInvitationTO {
 	public String getToDate() {
 		return toDate;
 	}
-	
 
 	public String toString(List<CreateInvitationTO> sessionList) {
 		return "" + fromDate + "   " + toDate;
-		//return "sessionsList";
+
 	}
 
 }
