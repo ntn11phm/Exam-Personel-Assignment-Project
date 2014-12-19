@@ -42,6 +42,7 @@ public class AnswerInvitation {
 	
 	public boolean commitAnswers(List<HsiTO> answerList) {
 		boolean result = false;
+		int updates = 0;
 		if (answerList != null) {
 			dbm.openDb();
 			for (int i = 0; i < answerList.size(); i++) {
@@ -51,9 +52,15 @@ public class AnswerInvitation {
 						+ currentUser.getUser_id() + ") AND hsi_date = '" 
 						+ answerList.get(i).getDate() + "' AND hsi_time = '" + answerList.get(i).getTime() + "';";
 				result = dbm.insert(sqlCommand);
+				if (result)
+					updates++;
 			}
 			dbm.closeDb();
 		}
+		if (updates == answerList.size())
+			result = true;
+		else
+			result = false;
 		return result;
 	}
 }
