@@ -57,6 +57,10 @@ public class PopulateSessionsPanel extends JPanel {
 		return btnCommitSession;
 	}
 
+	public JTextField getTbDate() {
+		return tbDate;
+	}
+
 	public JButton getHost1_btn() {
 		return host1_btn;
 	}

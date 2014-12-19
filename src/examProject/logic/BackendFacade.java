@@ -115,8 +115,14 @@ public class BackendFacade {
 		
 		return false;
 	}
+	
+	public boolean createHsi(List<HsiTO> sessionList) {
+		CreateInvitation ci = new CreateInvitation( dbManipulator);
+		return ci.createHsi(sessionList);
+	}
+	
 	public List<HsiTO> getSessions(CreateInvitationTO cTo) {
-		CreateInvitation ci = new CreateInvitation(cTo, dbManipulator);
+		CreateInvitation ci = new CreateInvitation(dbManipulator);
 		return ci.getSessions(cTo);
 	}
 
