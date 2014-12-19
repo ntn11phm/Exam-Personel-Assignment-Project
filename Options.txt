@@ -1,7 +1,7 @@
-username=
+username=dööö
 databaseDriver=postgresql
 databasePath=localhost
 databasePort=5432
 databaseName=Tentamensprojekt
-mailServerPath=
+mailServerPath=dööö
 firstTimeLaunch=true
