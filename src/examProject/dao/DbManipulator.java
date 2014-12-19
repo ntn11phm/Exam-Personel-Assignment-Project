@@ -15,9 +15,7 @@ public class DbManipulator {
 
 	public DbManipulator(DBConnectionTO dbConnectionTo) {
 		this.jdbc = new JdbcConnect(dbConnectionTo);
-//		this.state = jdbc.getS();
 		this.con = jdbc.getC();
-//		this.rs = jdbc.getRs();
 	} 
 
 	public ResultSet select(String selectCommand) {
@@ -82,13 +80,9 @@ public class DbManipulator {
 			state.close();
 			con.close();
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
-
 		boolean close = jdbc.closeDbConnection(con);
-
 		return close;
 	}
-
 }
