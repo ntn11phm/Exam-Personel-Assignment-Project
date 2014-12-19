@@ -24,11 +24,7 @@ public class ForgotPwdPanel extends JPanel {
 		ForgotPwdListener forgotPwdListener = new ForgotPwdListener(this, backendFacade);
 		forgotPwdListener.createButtonListeners();
 	}
-	
-	public ForgotPwdPanel() {
-		this(new BackendFacade());
-	}
-	
+
 	private void setBounds() {
 		lblHeader1.setBounds(58, 5, 275, 14);
 		lblHeader2.setBounds(58, 30, 275, 14);

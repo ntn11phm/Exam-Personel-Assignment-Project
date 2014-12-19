@@ -16,15 +16,16 @@ import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
 import examProject.transferObjects.UpdateUser;
 import examProject.transferObjects.LoggedInUserTO;
+import examProject.ui.updateUserInformation.SetupIncompleteException;
 
 public class BackendFacade {
 	private DbManipulator dbManipulator;
 	private LoggedInUserTO currentUser;
 	
-	public BackendFacade() {
+	public BackendFacade() throws SetupIncompleteException {
 		createDbObjects();
 	}
-	private void createDbObjects() {
+	private void createDbObjects() throws SetupIncompleteException {
 		OptionsFileReader optionsFileReader = new OptionsFileReader();
 		optionsFileReader.readOptionFile();
 		this.dbManipulator = new DbManipulator(optionsFileReader.getConnTO()); 

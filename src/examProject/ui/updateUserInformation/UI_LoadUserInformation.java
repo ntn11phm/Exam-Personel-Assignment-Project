@@ -54,10 +54,6 @@ public class UI_LoadUserInformation extends JPanel {
 	private JTextField retypeEmailTextField = new JTextField(75);
 	private JTextField phoneNrTextField = new JTextField();
 	private JTextField mobileNrTextField = new JTextField();
-	
-	public UI_LoadUserInformation() {
-		this(new BackendFacade());
-	}
 
 	public UI_LoadUserInformation(BackendFacade facade) {
 		this.facade = facade;

@@ -21,10 +21,6 @@ public class ChangePwdPanel extends JPanel {
 	private JLabel lblStatus = new JLabel("");
 	private JButton btnBytLsenord = new JButton("Byt lösenord");
 
-	public ChangePwdPanel() {
-		this(new BackendFacade());
-	}
-
 	public ChangePwdPanel(BackendFacade backendFacade) {
 		setLayout(null);
 		setBounds();

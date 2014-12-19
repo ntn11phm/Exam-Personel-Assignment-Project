@@ -15,7 +15,7 @@ public class OptionsFileReader {
 	}
 
 	@SuppressWarnings({ "resource", "null" })
-	public void readOptionFile() throws NullPointerException, SetupIncompleteException {
+	public void readOptionFile() throws SetupIncompleteException {
 
 		Scanner scan = new Scanner(System.in);
 		try {
@@ -57,6 +57,7 @@ public class OptionsFileReader {
 		
 		} catch (Exception ex) {
 			System.out.println(ex +" "+ ex.getCause() +" "+  ex.getMessage());
+			throw new SetupIncompleteException();
 		}
 	}
 }

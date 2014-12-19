@@ -31,10 +31,6 @@ public class AddUserGUI extends JPanel {
 	private JButton clearTextFields = new JButton("Rensa fält");
 	private JCheckBox isAdminCheckBox = new JCheckBox("Administratör");
 
-	public AddUserGUI() {
-		this(new BackendFacade());
-	}
-
 	public AddUserGUI(BackendFacade facade) {
 		this.facade = facade;
 		setLayout(null);

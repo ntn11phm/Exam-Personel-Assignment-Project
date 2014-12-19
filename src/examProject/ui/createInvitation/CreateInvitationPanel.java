@@ -27,11 +27,6 @@ public class CreateInvitationPanel extends JPanel {
 	private JTextField toDateText = new JTextField();
 	private List<HsiTO> sessionList;
 
-	public CreateInvitationPanel() {
-		this(new BackendFacade());
-
-	}
-
 	public CreateInvitationPanel(BackendFacade facade) {
 		this.facade = facade;
 		setLayout(null);

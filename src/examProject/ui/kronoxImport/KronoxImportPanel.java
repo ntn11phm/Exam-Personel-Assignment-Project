@@ -38,10 +38,6 @@ public class KronoxImportPanel extends JPanel {
 		kronoxImportListener.createListeners();
 	}
 	
-	public KronoxImportPanel() {
-		this(new BackendFacade());
-	}
-	
 	public void updateStatusText(String text) {
 		lblStatus.setText(text);
 	}
