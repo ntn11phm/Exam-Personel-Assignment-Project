@@ -6,7 +6,7 @@ public class UpdateUsersInformation {
 	
 	private UpdateUser updateUser;
 
-	private String sqlCommand = "UPDATE hosts SET first_name " +updateUser.getFirstName() + "last_name = " + updateUser.getLastName() + "civicnr = " + updateUser.getCivic() + "address = " + updateUser.getAddress()+ "zipcode = " + updateUser.getZipCode()+ "city = " + updateUser.getCity() + "email =" + updateUser.getEmail()+ "phone_nr =" + updateUser.getPhoneNr() + "mobile_phone =" + updateUser.getMobileNr() + "is_active= " + updateUser.isActive()+ "is_admin " + updateUser.isAdmin();
+	private String sqlCommand = "UPDATE hosts SET first_name " + updateUser.getFirstName() + "last_name = " + updateUser.getLastName() + "civicnr = " + updateUser.getCivic() + "address = " + updateUser.getAddress()+ "zipcode = " + updateUser.getZipCode()+ "city = " + updateUser.getCity() + "email =" + updateUser.getEmail()+ "phone_nr =" + updateUser.getPhoneNr() + "mobile_phone =" + updateUser.getMobileNr() + "is_active= " + updateUser.isActive()+ "is_admin " + updateUser.isAdmin();
 
 	private DbManipulator dBm;
 	
