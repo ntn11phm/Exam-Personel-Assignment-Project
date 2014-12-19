@@ -128,12 +128,9 @@ public class UI_LoadUserInformation extends JPanel {
 
 			Object source = event.getSource();
 			if (source == update) {
-				try {
+				
 					update();
-				} catch (NullPointerException | SetupIncompleteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
 			} else if (source == isAdmin)
 				System.out.println();
 
@@ -180,8 +177,8 @@ public class UI_LoadUserInformation extends JPanel {
 		});
 	}
 
-	private void update() throws NullPointerException, SetupIncompleteException {   
-		new OptionsFileReader().readOptionFile();// ta bort denna rad för att den testar bara om OptionFileReader funkar
+	private void update() {   
+	//	new OptionsFileReader().readOptionFile();// ta bort denna rad för att den testar bara om OptionFileReader funkar
 	
 		if (firstNameTextField.getText().length() > 0
 				& lastNameTextField.getText().length() > 0
