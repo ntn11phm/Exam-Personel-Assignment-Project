@@ -14,10 +14,10 @@ public class DbManipulator {
 	private Statement state;
 
 	public DbManipulator(DBConnectionTO dbConnectionTo) {
-		this.state = jdbc.getS();
-		this.con = jdbc.getC();
-		this.rs = jdbc.getRs();
 		this.jdbc = new JdbcConnect(dbConnectionTo);
+//		this.state = jdbc.getS();
+		this.con = jdbc.getC();
+//		this.rs = jdbc.getRs();
 	} 
 
 	public ResultSet select(String selectCommand) {

@@ -12,25 +12,25 @@ import examProject.transferObjects.DBConnectionTO;
  */
 public class JdbcConnect {
 	private Connection c = null;
-	DBConnectionTO dbConnectionTo ;
-public JdbcConnect(DBConnectionTO dbConnectionTo){
-	this.dbConnectionTo= dbConnectionTo;
+//	private Statement s = null;
+//	private ResultSet rs = null;
+	private DBConnectionTO dbConnectionTo ;
 	
-}
+	public JdbcConnect(DBConnectionTO dbConnectionTo){
+		this.dbConnectionTo= dbConnectionTo;
+	
+	}
 	public Connection getC() {
 		return c;
 	}
-
-	public Statement getS() {
-		return s;
-	}
-
-	public ResultSet getRs() {
-		return rs;
-	}
-
-	private Statement s = null;
-	private ResultSet rs = null;
+//
+//	public Statement getS() {
+//		return s;
+//	}
+//
+//	public ResultSet getRs() {
+//		return rs;
+//	}
 
 	public Connection openDbConnection() {
 		
@@ -72,10 +72,10 @@ public JdbcConnect(DBConnectionTO dbConnectionTo){
 			// System.exit(0);
 		} finally {
 			try {
-				if (rs != null)
-					rs.close();
-				if (s != null)
-					s.close();
+//				if (rs != null)
+//					rs.close();
+//				if (s != null)
+//					s.close();
 				if (con != null)
 					con.close();
 				System.out.println("Closed database successfully");
