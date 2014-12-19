@@ -38,7 +38,7 @@ public class JdbcConnect {
 			Class.forName("org.postgresql.Driver");
 			c = DriverManager.getConnection(
 					"jdbc:" + dbConnectionTo.getDatabaseDriver() + "://" + dbConnectionTo.getDatabasePath() + ":" + dbConnectionTo.getDatabasePort() + "/" + dbConnectionTo.getDatabaseName(), 
-					"postgres", "Destroyer");
+					"postgres", "silvana");
 			
 			System.out.println("Opened database successfully");
 		} 
