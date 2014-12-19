@@ -18,7 +18,7 @@ public class DbManipulator {
 		this.con = jdbc.getC();
 		this.rs = jdbc.getRs();
 		this.jdbc = new JdbcConnect(dbConnectionTo);
-	}
+	} 
 
 	public ResultSet select(String selectCommand) {
 		ResultSet result = null;
