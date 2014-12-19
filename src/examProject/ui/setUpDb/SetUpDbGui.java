@@ -43,15 +43,15 @@ public class SetUpDbGui extends JPanel {
 		dBPortLabel.setBounds(29, 151, 130, 20);
 		dBNameLabel.setBounds(29, 111, 130, 20);
 		mailServPathLabel.setBounds(29, 231, 130, 20);
-		userNameText.setBounds(131, 72, 130, 20);
-		dBDriverText.setBounds(131, 32, 130, 20);
-		dBPathText.setBounds(131, 191, 130, 20);
-		dBPortText.setBounds(131, 151, 130, 20);
-		dBNameText.setBounds(131, 111, 130, 20);
-		mailServPathText.setBounds(131, 231, 130, 20);
+		userNameText.setBounds(131, 72, 160, 20);
+		dBDriverText.setBounds(131, 32, 160, 20);
+		dBPathText.setBounds(131, 191, 160, 20);
+		dBPortText.setBounds(131, 151, 160, 20);
+		dBNameText.setBounds(131, 111, 160, 20);
+		mailServPathText.setBounds(131, 231, 160, 20);
 		firstTimeLaunchCb.setBounds(29, 271, 130, 20);
 		saveButton.setBounds(29, 322, 90, 30);
-		clearFieldsButton.setBounds(131, 323, 129, 29);
+		clearFieldsButton.setBounds(162, 323, 129, 29);
 	}
 
 	private void addCtrls() {
