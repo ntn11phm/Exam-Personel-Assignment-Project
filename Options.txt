@@ -1,4 +1,3 @@
-username=dööö
 databaseDriver=postgresql
 databasePath=localhost
 databasePort=5432
