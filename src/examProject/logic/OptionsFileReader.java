@@ -34,9 +34,10 @@ public class OptionsFileReader {
 					if (split.length != 2)
 						throw new SetupIncompleteException();
 					else {
-					if (split[0].equalsIgnoreCase("username")) {
-						dbConnection.setUsernames(split[1]);
-					} else if (split[0].equalsIgnoreCase("databaseDriver")) {
+//					if (split[0].equalsIgnoreCase("username")) {
+//						dbConnection.setUsernames(split[1]);
+//					} else 
+						if (split[0].equalsIgnoreCase("databaseDriver")) {
 						dbConnection.setDatabaseDriver(split[1]);
 					} else if (split[0].equalsIgnoreCase("databasePath")) {
 						dbConnection.setDatabasePath(split[1]);

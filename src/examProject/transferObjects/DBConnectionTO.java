@@ -1,7 +1,7 @@
 package examProject.transferObjects;
 
 public class DBConnectionTO {
-	private String usernames;
+	//private String usernames;
 	private String databaseDriver;
 	private String databasePath;
 	private String databasePort;
@@ -20,9 +20,9 @@ public class DBConnectionTO {
 		this.databaseName = databaseName;
 	}
 
-	public String getUsernames() {
-		return usernames;
-	}
+//	public String getUsernames() {
+//		return usernames;
+//	}
 
 	public String getDatabaseDriver() {
 		return databaseDriver;
@@ -43,9 +43,9 @@ public class DBConnectionTO {
 	public boolean isFirstTimeLaunch() {
 		return firstTimeLaunch;
 	}
-	public void setUsernames(String usernames) {
-		this.usernames = usernames;
-	}
+//	public void setUsernames(String usernames) {
+//		this.usernames = usernames;
+//	}
 
 	public void setDatabaseDriver(String databaseDriver) {
 		this.databaseDriver = databaseDriver;
