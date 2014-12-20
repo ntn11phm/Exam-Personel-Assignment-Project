@@ -28,12 +28,53 @@ public class PopulateSessionsListener {
 	
 	public void createListeners() {
 		psPanel.getBtnLoadSessions().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {loadCtrls();}});
-		psPanel.getBtnCommitSession();
-		psPanel.getHost1_btn();
-		psPanel.getHost2_btn();
-		psPanel.getHost2_btn();
-		psPanel.getHost2_btn();
+		psPanel.getBtnCommitSession().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {commitCurrentSession();}});
+		psPanel.getHost1_btn().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {addHost1();}});
+		psPanel.getHost2_btn().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {addHost2();}});
+		psPanel.getHost3_btn().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {addHost3();}});
+		psPanel.getHost4_btn().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {addHost4();}});
 		psPanel.getSessionCb().addItemListener(new ItemListener() {public void itemStateChanged(ItemEvent arg0) {cbSessionsChanged();}});
+		psPanel.gethost1_btnClear().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {clearHost1();}});
+		psPanel.gethost2_btnClear().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {clearHost2();}});
+		psPanel.gethost3_btnClear().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {clearHost3();}});
+		psPanel.gethost4_btnClear().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {clearHost4();}});
+		
+	}
+	
+	private void addHost1() {
+		
+	}
+	
+	private void addHost2() {
+		
+	}
+	
+	private void addHost3() {
+		
+	}
+	
+	private void addHost4() {
+		
+	}
+	
+	private void clearHost1() {
+		
+	}
+	
+	private void clearHost2() {
+		
+	}
+	
+	private void clearHost3() {
+		
+	}
+	
+	private void clearHost4() {
+		
+	}
+	
+	private void commitCurrentSession() {
+		
 	}
 	
 	private void cbSessionsChanged() {
