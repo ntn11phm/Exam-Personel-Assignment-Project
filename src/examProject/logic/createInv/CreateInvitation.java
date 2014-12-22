@@ -56,16 +56,16 @@ public class CreateInvitation {
 				for (int x = 0; x < sessionList.size(); x++) {
 					sqlCommand = "INSERT INTO hosts_sessions_invitations (host_id, hsi_date, hsi_time) VALUES ('"
 							+ hostList.get(i)
-							+ "', '"
+							+ "','"
 							+ sessionList.get(x).getDate()
-							+ "', '"
-							+ sessionList.get(x).getTime() + "';";
+							+ "','"
+							+ sessionList.get(x).getTime() + "');";
 					String currentHsi = "SELECT hsi_time FROM hosts_sessions_invitations WHERE host_id = '"
 							+ hostList.get(i)
-							+ "' AND hsi_date ='"
+							+ "'AND hsi_date ='"
 							+ sessionList.get(x).getDate()
-							+ "' AND  = hsi_time'"
-							+ sessionList.get(x).getTime() + "' ;";
+							+ "'AND  hsi_time ='"
+							+ sessionList.get(x).getTime() + "';";
 					rs = dBm.select(currentHsi);
 					boolean notFound = true;
 					try {
