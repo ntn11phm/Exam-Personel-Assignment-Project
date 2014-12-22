@@ -78,7 +78,7 @@ public class BackendFacade {
 		return isd.execute();
 	}
 	public boolean uppdateUser(UpdateUserTransfere updateUser) {
-		UpdateUserLogic updateUserLogic= new UpdateUserLogic(updateUser, dbManipulator);
+		UpdateUserLogic updateUserLogic= new UpdateUserLogic(currentUser, updateUser, dbManipulator);
 		
 		return updateUserLogic.uppdateUser();
 	}
