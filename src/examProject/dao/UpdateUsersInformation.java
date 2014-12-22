@@ -12,7 +12,7 @@ public class UpdateUsersInformation {
 			this.updateUser = updateUser;
 			this.dBm = dBm;
 		}
-			//SELECTSATS
+			//SELECTSATS 
 		
 		public String updateUserStrCommand(String firstName, String lastName, String email, String retypeEmail,String address, String city, String zipCode, int civic, int phoneNr, int mobilenr, boolean isActive, boolean is_admin) {
 			String sqlCommand = "UPDATE hosts SET (first_name = ' " + firstName+ "last-name = ' "+ lastName+ 

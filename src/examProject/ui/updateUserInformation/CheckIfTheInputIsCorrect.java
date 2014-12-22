@@ -109,11 +109,11 @@ public class CheckIfTheInputIsCorrect {
 				if (checkSQLCommand(textFieldText)== false) {
 					int counter = 0;
 					for (int i = 0; i < textFieldLength; i++) {
-						if ((int) textFieldText.charAt(i) > 64
+					/*	if ((int) textFieldText.charAt(i) > 64
 								& (int) textFieldText.charAt(i) < 91
 								|| (int) textFieldText.charAt(i) > 96
 								& (int) textFieldText.charAt(i) < 123
-								||(int) textFieldText.charAt(i) == 32)
+								||(int) textFieldText.charAt(i) == 32)*/
 							counter++;
 					}
 					if (counter != textFieldLength){
