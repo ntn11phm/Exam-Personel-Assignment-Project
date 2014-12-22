@@ -23,7 +23,7 @@ public class CreateInvitation {
 				+ cTo.getFromDate()
 				+ "' AND '"
 				+ cTo.getToDate()
-				+ "' GROUP BY session_date, session_time;";
+				+ "' GROUP BY session_date, session_time ORDER BY session_date;";
 		ResultSet rs = dBm.select(sqlCommand);
 		try {
 			dateTime = new ArrayList<HsiTO>();
