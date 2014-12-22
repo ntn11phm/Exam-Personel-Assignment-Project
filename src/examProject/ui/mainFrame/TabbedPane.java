@@ -44,6 +44,7 @@ public class TabbedPane extends JFrame {
 	public boolean login() {
 		boolean result = false;
 		currentUser = new LoggedInUserTO("", 6, true, false);
+		currentUser.setHost_id(4);
 		result = true;
 		return result;
 	}
