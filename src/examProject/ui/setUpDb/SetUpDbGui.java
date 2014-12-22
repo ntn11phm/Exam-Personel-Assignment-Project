@@ -33,7 +33,7 @@ public class SetUpDbGui extends JPanel {
 	private JTextField dBPortText = new JTextField(30);
 	private JTextField dBNameText = new JTextField(30);
 	private JTextField mailServPathText = new JTextField(30);
-	private JButton currentSetupButton = new JButton("Get current Setup");
+	private JButton currentSetupButton = new JButton("View Setup");
 	private JButton saveButton = new JButton("Save");
 	private JButton clearFieldsButton = new JButton("Clear Fields");
 
@@ -59,9 +59,9 @@ public class SetUpDbGui extends JPanel {
 		dBNameText.setBounds(131, 111, 160, 20);
 		mailServPathText.setBounds(131, 231, 160, 20);
 		firstTimeLaunchCb.setBounds(29, 271, 130, 20);
-		saveButton.setBounds(29, 322, 90, 30);
-		clearFieldsButton.setBounds(162, 323, 129, 29);
-		currentSetupButton.setBounds(161, 283, 129, 29);
+		saveButton.setBounds(29, 345, 90, 30);
+		clearFieldsButton.setBounds(163, 346, 129, 29);
+		currentSetupButton.setBounds(162, 306, 129, 29);
 	}
 
 	private void addCtrls() {
