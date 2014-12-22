@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
+
+import examProject.logic.BackendFacade;
+
 import java.awt.Font;
 
 public class PopulateSessionsPanel extends JPanel {
@@ -43,10 +46,12 @@ public class PopulateSessionsPanel extends JPanel {
 	private JButton host4_btnClear = new JButton("X");
 	private JLabel lblAvailableHosts = new JLabel("Tillgängliga värdar");
 
-	public PopulateSessionsPanel() {
+	public PopulateSessionsPanel(BackendFacade backendFacade) {
 		setLayout(null);
 		setBounds();
 		createCtrls();
+		PopulateSessionsListener psl = new PopulateSessionsListener(this, backendFacade);
+		psl.createListeners();
 	}
 	
 	public JButton getBtnLoadSessions() {
