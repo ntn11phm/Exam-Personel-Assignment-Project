@@ -110,8 +110,9 @@ public class SetUpDbGui extends JPanel {
 	}
 
 	private void saveButtonClickedMethod() {
+		BufferedWriter save = null;
 		try {
-			BufferedWriter save = new BufferedWriter(new FileWriter("Options.txt"));
+			save = new BufferedWriter(new FileWriter("Options.txt"));
 			save.write("databaseDriver=" + dBDriverText.getText() + "\n");
 			save.write("databasePath=" + dBPathText.getText() + "\n");
 			save.write("databasePort=" + dBPortText.getText() + "\n");
@@ -121,6 +122,14 @@ public class SetUpDbGui extends JPanel {
 			save.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			if (save != null)
+				try {
+					save.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
 		}
 
 	}
