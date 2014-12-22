@@ -9,6 +9,7 @@ import examProject.transferObjects.LoggedInUserTO;
 public class LoginListener {
 	private LoginPanel loginPanel;
 	private BackendFacade backendFacade;
+	private LoggedInUserTO user;
 	
 	public LoginListener(LoginPanel loginPanel, BackendFacade backendFacade) {
 		this.loginPanel = loginPanel;
@@ -22,7 +23,7 @@ public class LoginListener {
 	}
 	
 	private void login() {
-		LoggedInUserTO user = backendFacade.login(loginPanel.getUsername(), loginPanel.getPwd());
+		user = backendFacade.login(loginPanel.getUsername(), loginPanel.getPwd());
 		if (user == null) {
 			loginPanel.getStatusTextLabel().setText("Fel användarnamn eller lösenord!");
 		} else
@@ -30,10 +31,14 @@ public class LoginListener {
 	}
 	
 	private void close() {
-		
+		loginPanel.setVisible(false);
 	}
 	
 	private void forgotPwd() {
 		
+	}
+	
+	public LoggedInUserTO getUser() {
+		return user;
 	}
 }
