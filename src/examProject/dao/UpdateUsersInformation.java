@@ -1,16 +1,14 @@
 package examProject.dao;
-import examProject.transferObjects.UpdateUser;
+import examProject.transferObjects.UpdateUserTransfere;
 
 
 public class UpdateUsersInformation {
 	
-	private UpdateUser updateUser;
-
+	private UpdateUserTransfere updateUser;
 	private String sqlCommand = "UPDATE hosts SET first_name " + updateUser.getFirstName() + "last_name = " + updateUser.getLastName() + "civicnr = " + updateUser.getCivic() + "address = " + updateUser.getAddress()+ "zipcode = " + updateUser.getZipCode()+ "city = " + updateUser.getCity() + "email =" + updateUser.getEmail()+ "phone_nr =" + updateUser.getPhoneNr() + "mobile_phone =" + updateUser.getMobileNr() + "is_active= " + updateUser.isActive()+ "is_admin " + updateUser.isAdmin();
-
 	private DbManipulator dBm;
 	
-			public UpdateUsersInformation(UpdateUser updateUser, DbManipulator dBm){
+			public UpdateUsersInformation(UpdateUserTransfere updateUser, DbManipulator dBm){
 			this.updateUser = updateUser;
 			this.dBm = dBm;
 		}

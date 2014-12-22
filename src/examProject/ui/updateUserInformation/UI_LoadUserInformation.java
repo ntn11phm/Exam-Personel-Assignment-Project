@@ -23,7 +23,7 @@ import javax.swing.SwingUtilities;
 
 import examProject.logic.BackendFacade;
 import examProject.logic.OptionsFileReader;
-import examProject.transferObjects.UpdateUser;
+import examProject.transferObjects.UpdateUserTransfere;
 
 @SuppressWarnings("serial")
 public class UI_LoadUserInformation extends JPanel {
@@ -190,7 +190,7 @@ public class UI_LoadUserInformation extends JPanel {
 			checkIfPoneNrIsCorrect();
 			checkIfAddressIsCorrest();
 			checkIfZipCodeIsCorrect();
-			UpdateUser updateUser = new UpdateUser(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());
+			UpdateUserTransfere updateUser = new UpdateUserTransfere(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());
 		} else                                      		
 
 			JOptionPane.showMessageDialog(null,
