@@ -106,12 +106,12 @@ public class BackendFacade {
 	
 	public List<HostTO> getAvailableHostsList(String date, String time) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
-		ps.loadAvailableHosts(date, time);
-		return null;
+		return ps.loadAvailableHosts(date, time);
 	}
-	public boolean checkHostSessionAvailabillity(String text, int host_id) {
-		
-		return false;
+	
+	public boolean checkHostSessionAvailabillity(String date, String time, int host_id) {
+		PopulateSessions ps = new PopulateSessions(dbManipulator);
+		return ps.checkHostSessionAvailabillity(date, time, host_id);
 	}
 	
 	public boolean createHsi(List<HsiTO> sessionList) {

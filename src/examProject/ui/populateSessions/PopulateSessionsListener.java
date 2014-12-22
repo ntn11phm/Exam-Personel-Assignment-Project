@@ -189,7 +189,7 @@ public class PopulateSessionsListener {
 	private void checkHostList() {
 		if (hostList.size() > 0)
 			for (int i = (hostList.size() - 1); i > -1; i--)
-				if (backendFacade.checkHostSessionAvailabillity(psPanel.getTbDate().getText(), hostList.get(i).getHost_id())) {
+				if (backendFacade.checkHostSessionAvailabillity(psPanel.getTbDate().getText(), getTime(), hostList.get(i).getHost_id())) {
 					inUseHostList.add(hostList.get(i));
 					hostList.remove(i);
 				}
