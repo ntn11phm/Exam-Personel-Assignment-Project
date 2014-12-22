@@ -32,7 +32,7 @@ public class PopulateSessions {
 	public boolean checkHostSessionAvailabillity(String date, String time, int host_id) {
 		boolean isAvailable = true;
 		dbm.openDb();
-		String sqlCommand = "host_sessions.host_id FROM host_sessions, sessions WHERE session_date =  '" + date 
+		String sqlCommand = "SELECT host_sessions.host_id FROM host_sessions, sessions WHERE session_date =  '" + date 
 				+ "' AND session_time = '" + time + "' AND host_id = " + host_id + " AND host_sessions.session_id = sessions.session_id;";
 		ResultSet rs = dbm.select(sqlCommand);
 		try {

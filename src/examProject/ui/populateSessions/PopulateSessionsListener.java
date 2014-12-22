@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
@@ -187,16 +188,17 @@ public class PopulateSessionsListener {
 	}
 	
 	private void checkHostList() {
+		inUseHostList = new ArrayList<HostTO>();
 		if (hostList.size() > 0)
 			for (int i = (hostList.size() - 1); i > -1; i--)
-				if (backendFacade.checkHostSessionAvailabillity(psPanel.getTbDate().getText(), getTime(), hostList.get(i).getHost_id())) {
+				if (!backendFacade.checkHostSessionAvailabillity(psPanel.getTbDate().getText(), getTime(), hostList.get(i).getHost_id())) {
 					inUseHostList.add(hostList.get(i));
 					hostList.remove(i);
 				}
 	}
 	
 	private void loadHostListCtrl() {
-		int lenght = hostList.size()-1;
+		int lenght = hostList.size();
 		String [] arrString = new String[lenght];
 		for (int i = 0; i < lenght; i++)
 			arrString[i] = hostList.get(i).toString();
