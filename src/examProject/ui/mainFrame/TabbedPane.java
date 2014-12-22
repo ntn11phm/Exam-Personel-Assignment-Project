@@ -24,9 +24,10 @@ public class TabbedPane extends JFrame {
 	private BackendFacade backendFacade;
 
 	public TabbedPane() { 
+		login();
 		JTabbedPane jtp = new JTabbedPane();
 		try {
-			backendFacade = new BackendFacade();
+			backendFacade = new BackendFacade(currentUser);
 			makeTabs(jtp);
 		} catch (SetupIncompleteException e) {
 			JPanel setup = new SetUpDbGui();

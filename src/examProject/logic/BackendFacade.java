@@ -22,7 +22,8 @@ public class BackendFacade {
 	private DbManipulator dbManipulator;
 	private LoggedInUserTO currentUser;
 	
-	public BackendFacade() throws SetupIncompleteException {
+	public BackendFacade(LoggedInUserTO currentUser) throws SetupIncompleteException {
+		this.currentUser = currentUser;
 		createDbObjects();
 	}
 	private void createDbObjects() throws SetupIncompleteException {
