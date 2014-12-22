@@ -177,19 +177,6 @@ public class UI_LoadUserInformation extends JPanel {
 	}
 
 	private void update() {   
-		buttonClickedMethod();
-		BackendFacade b = null;
-		try {
-			b = new BackendFacade();
-		} catch (SetupIncompleteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		LoggedInUserTO liut;
-		char[] pwd = null;
-		liut= b.login("Olle", pwd);
-		
-		
 		
 		if (firstNameTextField.getText().length() > 0
 				& lastNameTextField.getText().length() > 0
@@ -219,7 +206,7 @@ public class UI_LoadUserInformation extends JPanel {
 			getCityTextField().getText(), getAddressTextField().getText(), getMobileNrTextField().getText(), getPhoneNrTextField().getText(), getZipCodeTextField().getText(),getCityTextField().getText(),isActive.isSelected(), isAdmin.isSelected());
 			facade.uppdateUser(au);
 
-}
+	}
 	
 	
 	
