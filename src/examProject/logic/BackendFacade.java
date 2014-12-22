@@ -106,7 +106,7 @@ public class BackendFacade {
 	
 	public List<HostTO> getAvailableHostsList(String date, String time) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
-		ps.checkHostSessionAvailabillity(date, time);
+		ps.loadAvailableHosts(date, time);
 		return null;
 	}
 	public boolean checkHostSessionAvailabillity(String text, int host_id) {
