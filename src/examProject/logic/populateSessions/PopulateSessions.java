@@ -15,7 +15,7 @@ public class PopulateSessions {
 	
 	public List<String> loadAvailableHosts(String date, String time) {
 		dbm.openDb();
-		String sqlCommand = "SELECT host_id FROM hosts_sessions_invitation WHERE hsi_date = '" + date 
+		String sqlCommand = "SELECT host_id FROM hosts_sessions_invitations WHERE hsi_date = '" + date 
 				+ "' AND hsi_time = '" + time + "' AND answer_date = '1970-01-01'" + ";";
 		ResultSet rs = dbm.select(sqlCommand);
 		try {
@@ -30,7 +30,7 @@ public class PopulateSessions {
 	public boolean checkHostSessionAvailabillity(String date, int host_id) {
 		boolean isAvailable = true;
 		dbm.openDb();
-		String sqlCommand = "SELECT answer_date FROM hosts_sessions_invitation WHERE hsi_date = '" + date 
+		String sqlCommand = "SELECT answer_date FROM hosts_sessions_invitations WHERE hsi_date = '" + date 
 				+ "' AND host_id = " + host_id + " AND NOT answer_date = '1970-01-01';";
 		ResultSet rs = dbm.select(sqlCommand);
 		try {

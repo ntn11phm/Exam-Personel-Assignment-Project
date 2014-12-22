@@ -3,13 +3,13 @@ package examProject.logic;
 import java.util.List;
 
 import examProject.dao.DbManipulator;
+import examProject.logic.answerInv.AnswerInvitation;
 import examProject.logic.createInv.CreateInvitation;
 import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.AddUser;
 import examProject.transferObjects.CreateInvitationTO;
-import examProject.transferObjects.DBConnectionTO;
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
 import examProject.transferObjects.HostTO;
@@ -22,7 +22,8 @@ public class BackendFacade {
 	private DbManipulator dbManipulator;
 	private LoggedInUserTO currentUser;
 	
-	public BackendFacade() throws SetupIncompleteException {
+	public BackendFacade(LoggedInUserTO currentUser) throws SetupIncompleteException {
+		this.currentUser = currentUser;
 		createDbObjects();
 	}
 	private void createDbObjects() throws SetupIncompleteException {
@@ -93,19 +94,13 @@ public class BackendFacade {
 	}
 
 	public List<HsiTO> getHsiList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public List<HsiTO> getHsiList(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		AnswerInvitation ai = new AnswerInvitation(dbManipulator, currentUser);
+		return ai.getInvitations();
 	}
 		
 	public boolean commitInvitationAnswers(List<HsiTO> answerList) {
-		boolean result = false;
-		
-		return result;
+		AnswerInvitation ai = new AnswerInvitation(dbManipulator, currentUser);
+		return ai.commitAnswers(answerList);
 	}
 	
 	public List<HostTO> getAvailableHostsList(String date) {

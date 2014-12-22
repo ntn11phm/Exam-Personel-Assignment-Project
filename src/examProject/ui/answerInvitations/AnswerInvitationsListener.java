@@ -46,8 +46,10 @@ public class AnswerInvitationsListener {
 				if (parts.length==2)
 					answerList.add(new HsiTO(parts[1], parts[0], answer));
 			}
-			result = backendFacade.commitInvitationAnswers(answerList);
+			
 		}
+		if (answerList.size()>0)
+			result = backendFacade.commitInvitationAnswers(answerList);
 		if (result)
 			answerPanel.getStatusTextCtrl().setText("Dina svar har sparats!");
 		else

@@ -16,8 +16,3 @@ public class StartUp {
 		}
 	}
 }
-
-//select session_date, session_time from sessions where session_date between '20141220' and '20150117'
-//group by session_date, session_time;
-
-//select host_id from hosts where is_active = true;
