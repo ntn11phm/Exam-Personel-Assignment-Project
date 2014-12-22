@@ -113,6 +113,22 @@ public class PopulateSessionsPanel extends JPanel {
 		return host4_cb;
 	}
 	
+	public JTextField getHost1_tb() {
+		return host1_tb;
+	}
+
+	public JTextField getHost2_tb() {
+		return host2_tb;
+	}
+
+	public JTextField getHost3_tb() {
+		return host3_tb;
+	}
+
+	public JTextField getHost4_tb() {
+		return host4_tb;
+	}
+	
 	public JComboBox<String> getSessionCb() {
 		return cbSessions;
 	}
