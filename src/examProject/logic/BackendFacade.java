@@ -14,7 +14,7 @@ import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
-import examProject.transferObjects.UpdateUser;
+import examProject.transferObjects.UpdateUserTransfere;
 import examProject.transferObjects.LoggedInUserTO;
 import examProject.ui.updateUserInformation.SetupIncompleteException;
 
@@ -76,14 +76,14 @@ public class BackendFacade {
 		ImportSchemaData isd = new ImportSchemaData(dbManipulator, arrList);
 		return isd.execute();
 	}
-	public boolean uppdateUser(UpdateUser updateUser) {
+	public boolean uppdateUser(UpdateUserTransfere updateUser) {
 		UpdateUserLogic updateUserLogic= new UpdateUserLogic(updateUser, dbManipulator);
 		
 		return updateUserLogic.uppdateUser();
 	}
 		
 	public boolean uppdateUser(String firstName, String lastName, String email, String retypeEmail, String civicNr, String mobileNr, String phoneNr, String city, String address, String zipCode,boolean isActive, boolean isAdmin) {
-		return uppdateUser(new UpdateUser(firstName, lastName, email, retypeEmail, city, address, mobileNr, phoneNr, zipCode, civicNr, isActive, isAdmin));
+		return uppdateUser(new UpdateUserTransfere(firstName, lastName, email, retypeEmail, city, address, mobileNr, phoneNr, zipCode, civicNr, isActive, isAdmin));
 	}
 	
 	public LoggedInUserTO login(String username, char[] pwd) {
