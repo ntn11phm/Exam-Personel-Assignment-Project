@@ -99,9 +99,8 @@ public class BackendFacade {
 	}
 		
 	public boolean commitInvitationAnswers(List<HsiTO> answerList) {
-		boolean result = false;
-		
-		return result;
+		AnswerInvitation ai = new AnswerInvitation(dbManipulator, currentUser);
+		return ai.commitAnswers(answerList);
 	}
 	
 	public List<HostTO> getAvailableHostsList(String date) {
