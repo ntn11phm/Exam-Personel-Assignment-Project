@@ -45,7 +45,6 @@ public class CreateInvitationPanel extends JPanel {
 		toDateLabel.setBounds(28, 90, 130, 28);
 		listPane.setBounds(10, 196, 177, 214);
 		listPane.setViewportView(occasionsList);
-		//occasionsList.setBounds(10, 196, 177, 214);
 		fromDateText.setToolTipText("Datumformat: yyyy-mm-dd");
 		fromDateText.setBounds(28, 50, 130, 29);
 		toDateText.setToolTipText("Datumformat: yyyy-mm-dd");
@@ -59,7 +58,6 @@ public class CreateInvitationPanel extends JPanel {
 		add(fromDateLabel);
 		add(toDateLabel);
 		add(listPane);
-		//add(occasionsList);
 		add(fromDateText);
 		add(toDateText);
 
