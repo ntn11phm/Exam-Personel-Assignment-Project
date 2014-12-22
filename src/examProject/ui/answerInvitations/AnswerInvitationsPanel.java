@@ -1,13 +1,9 @@
 package examProject.ui.answerInvitations;
 
-import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import examProject.logic.BackendFacade;
-import examProject.transferObjects.HsiTO;
 import javax.swing.JLabel;
 
 public class AnswerInvitationsPanel extends JPanel {
@@ -21,6 +17,8 @@ public class AnswerInvitationsPanel extends JPanel {
 		setLayout(null);
 		setBounds();
 		addCtrls();
+		AnswerInvitationsListener ail = new AnswerInvitationsListener(this, backendFacade);
+		ail.createButtonListeners();
 	}
 	
 	private void setBounds() {

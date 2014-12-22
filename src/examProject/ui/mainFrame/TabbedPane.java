@@ -9,6 +9,7 @@ import javax.swing.JTabbedPane;
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.LoggedInUserTO;
 import examProject.ui.addUser.AddUserGUI;
+import examProject.ui.answerInvitations.AnswerInvitationsPanel;
 import examProject.ui.changePwd.ChangePwdPanel;
 import examProject.ui.createInvitation.CreateInvitationPanel;
 import examProject.ui.forgotPwd.ForgotPwdPanel;
@@ -60,6 +61,8 @@ public class TabbedPane extends JFrame {
 		jtp.setMnemonicAt(0, KeyEvent.VK_6);
 		jtp.addTab("Inbjudningar", new CreateInvitationPanel(backendFacade));
 		jtp.setMnemonicAt(0, KeyEvent.VK_7);
+		jtp.addTab("Svara på inbjudningar", new AnswerInvitationsPanel(backendFacade));
+		jtp.setMnemonicAt(0, KeyEvent.VK_8);
 
 	}
 
