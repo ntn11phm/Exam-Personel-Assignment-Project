@@ -7,6 +7,7 @@ import examProject.logic.answerInv.AnswerInvitation;
 import examProject.logic.createInv.CreateInvitation;
 import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
+import examProject.logic.populateSessions.PopulateSessions;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.AddUser;
 import examProject.transferObjects.CreateInvitationTO;
@@ -103,8 +104,9 @@ public class BackendFacade {
 		return ai.commitAnswers(answerList);
 	}
 	
-	public List<HostTO> getAvailableHostsList(String date) {
-		
+	public List<HostTO> getAvailableHostsList(String date, String time) {
+		PopulateSessions ps = new PopulateSessions(dbManipulator);
+		ps.checkHostSessionAvailabillity(date, time);
 		return null;
 	}
 	public boolean checkHostSessionAvailabillity(String text, int host_id) {
