@@ -1,10 +1,12 @@
 package examProject.ui.populateSessions;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
@@ -45,6 +47,9 @@ public class PopulateSessionsPanel extends JPanel {
 	private JButton host4_btn = new JButton("Lägg till vald...");
 	private JButton host4_btnClear = new JButton("X");
 	private JLabel lblAvailableHosts = new JLabel("Tillgängliga värdar");
+	private ButtonGroup timeGrp = new ButtonGroup();
+	private JRadioButton rbAM = new JRadioButton("08:00");
+	private JRadioButton rbPM = new JRadioButton("14:00");
 
 	public PopulateSessionsPanel(BackendFacade backendFacade) {
 		setLayout(null);
@@ -64,6 +69,14 @@ public class PopulateSessionsPanel extends JPanel {
 
 	public JTextField getTbDate() {
 		return tbDate;
+	}
+
+	public JRadioButton getRbAM() {
+		return rbAM;
+	}
+
+	public JRadioButton getRbPM() {
+		return rbPM;
 	}
 
 	public JButton getHost1_btn() {
@@ -142,6 +155,8 @@ public class PopulateSessionsPanel extends JPanel {
 		lblInformation.setBounds(10, 10, 350, 20);
 		lblDate.setBounds(10, 30, 150, 20);
 		tbDate.setBounds(10, 50, 150, 25);
+		rbAM.setBounds(10, 80, 80, 20);
+		rbPM.setBounds(100, 80, 80, 20);
 		btnLoadSessions.setBounds(170, 47, 150, 30);
 		lblSessionList.setBounds(330, 30, 200, 20);
 		scrollPane.setBounds(10, 145, 250, 400);
@@ -175,6 +190,11 @@ public class PopulateSessionsPanel extends JPanel {
 		add(lblDate);
 		tbDate.setToolTipText("Datumformat: yyyy-MM-dd");
 		add(tbDate);
+		add(rbAM);
+		add(rbPM);
+		timeGrp.add(rbAM);
+		timeGrp.add(rbPM);
+		rbAM.setSelected(true);
 		add(btnLoadSessions);
 		add(lblSessionList);
 		scrollPane.setViewportView(hostList);

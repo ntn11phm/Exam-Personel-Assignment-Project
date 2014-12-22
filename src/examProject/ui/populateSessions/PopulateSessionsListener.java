@@ -23,6 +23,8 @@ public class PopulateSessionsListener {
 	private List<HostTO> inUseHostList;
 	private HostTO tmpHost;
 	private List<HsiTO> sessionList;
+	private final String timeAM = "08:00";
+	private final String timePM = "14:00";
 	
 	public PopulateSessionsListener(PopulateSessionsPanel psPanel, BackendFacade backendFacade) {
 		this.psPanel = psPanel;
@@ -170,9 +172,18 @@ public class PopulateSessionsListener {
 	}
 
 	private void loadHostList() {
-		hostList = backendFacade.getAvailableHostsList(psPanel.getTbDate().getText());
+		hostList = backendFacade.getAvailableHostsList(psPanel.getTbDate().getText(), getTime());
 		checkHostList();
 		loadHostListCtrl();
+	}
+	
+	private String getTime() {
+		String result = "";
+		if (psPanel.getRbAM().isSelected())
+			result = timeAM;
+		else
+			result = timePM;
+		return result;
 	}
 	
 	private void checkHostList() {
