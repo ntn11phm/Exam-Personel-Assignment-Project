@@ -2,8 +2,11 @@ package examProject.ui.setUpDb;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -107,7 +110,18 @@ public class SetUpDbGui extends JPanel {
 	}
 
 	private void saveButtonClickedMethod() {
-		// gör nåt..
+		try {
+			BufferedWriter save = new BufferedWriter(new FileWriter("Options.txt"));
+			save.write("databaseDriver=" + dBDriverText.getText() + "\n");
+			save.write("databasePath=" + dBPathText.getText() + "\n");
+			save.write("databasePort=" + dBPortText.getText() + "\n");
+			save.write("databaseName=" + dBNameText.getText() + "\n");
+			save.write("mailServerPath=" + mailServPathText.getText() + "\n");
+			save.write("firstTimeLaunch=" + firstTimeLaunchCb.isSelected());
+			save.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 
