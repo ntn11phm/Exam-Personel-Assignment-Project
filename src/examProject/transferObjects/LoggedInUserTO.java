@@ -5,7 +5,8 @@ public class LoggedInUserTO {
 	private boolean is_admin;
 	private int user_id;
 	private boolean has_tmp_pwd;
-	
+	private int host_id;
+
 	public LoggedInUserTO(String username, int user_id, boolean is_admin, boolean has_tmp_pwd) {
 		this.username = username;
 		this.has_tmp_pwd = has_tmp_pwd;
@@ -27,5 +28,13 @@ public class LoggedInUserTO {
 
 	public boolean isHas_tmp_pwd() {
 		return has_tmp_pwd;
+	}
+
+	public int getHost_id() {
+		return host_id;
+	}
+
+	public void setHost_id(int host_id) {
+		this.host_id = host_id;
 	}
 }
