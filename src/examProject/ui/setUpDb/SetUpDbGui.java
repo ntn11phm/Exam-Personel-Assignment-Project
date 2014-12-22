@@ -2,12 +2,17 @@ package examProject.ui.setUpDb;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import examProject.ui.updateUserInformation.SetupIncompleteException;
 
 public class SetUpDbGui extends JPanel {
 
@@ -25,6 +30,7 @@ public class SetUpDbGui extends JPanel {
 	private JTextField dBPortText = new JTextField(30);
 	private JTextField dBNameText = new JTextField(30);
 	private JTextField mailServPathText = new JTextField(30);
+	private JButton currentSetupButton = new JButton("Get current Setup");
 	private JButton saveButton = new JButton("Save");
 	private JButton clearFieldsButton = new JButton("Clear Fields");
 
@@ -52,6 +58,7 @@ public class SetUpDbGui extends JPanel {
 		firstTimeLaunchCb.setBounds(29, 271, 130, 20);
 		saveButton.setBounds(29, 322, 90, 30);
 		clearFieldsButton.setBounds(162, 323, 129, 29);
+		currentSetupButton.setBounds(161, 283, 129, 29);
 	}
 
 	private void addCtrls() {
@@ -70,14 +77,20 @@ public class SetUpDbGui extends JPanel {
 		add(firstTimeLaunchCb);
 		add(saveButton);
 		add(clearFieldsButton);
+		add(currentSetupButton);
 
 	}
 
 	private void guiButtonListener() {
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				buttonClickedMethod();
+				saveButtonClickedMethod();
 
+			}
+		});
+		currentSetupButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentButtonClickedMethod();
 			}
 		});
 		clearFieldsButton.addActionListener(new ActionListener() {
@@ -93,9 +106,44 @@ public class SetUpDbGui extends JPanel {
 
 	}
 
-	private void buttonClickedMethod() {
-		//gör nåt..
+	private void saveButtonClickedMethod() {
+		// gör nåt..
 
 	}
 
+	private void currentButtonClickedMethod() {
+		Scanner scan = new Scanner(System.in);
+		try {
+			File getFile = new File("Options.txt");
+			scan = new Scanner(getFile);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		try {
+			while (scan.hasNextLine()) {
+				String[] split = new String[2];
+				String line = scan.nextLine();
+				split = line.split("=");
+				if (split.length != 2)
+					throw new SetupIncompleteException();
+				else {
+					if (split[0].equalsIgnoreCase("databaseDriver")) {
+						dBDriverText.setText(split[1]);
+					} else if (split[0].equalsIgnoreCase("databasePath")) {
+						dBPathText.setText(split[1]);
+					} else if (split[0].equalsIgnoreCase("databasePort")) {
+						dBPortText.setText(split[1]);
+					} else if (split[0].equalsIgnoreCase("databaseName")) {
+						dBNameText.setText(split[1]);
+					} else if (split[0].equalsIgnoreCase("mailServerPath")) {
+						mailServPathText.setText(split[1]);
+
+					}
+				}
+
+			}
+		} catch (Exception e) {
+
+		}
+	}
 }
