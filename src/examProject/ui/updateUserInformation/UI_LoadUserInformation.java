@@ -21,8 +21,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import examProject.dao.GetUserID;
 import examProject.logic.BackendFacade;
 import examProject.logic.OptionsFileReader;
+import examProject.transferObjects.AddUser;
+import examProject.transferObjects.LoggedInUserTO;
 import examProject.transferObjects.UpdateUserTransfere;
 
 @SuppressWarnings("serial")
@@ -174,8 +177,20 @@ public class UI_LoadUserInformation extends JPanel {
 	}
 
 	private void update() {   
-	//	new OptionsFileReader().readOptionFile();// ta bort denna rad för att den testar bara om OptionFileReader funkar
-	
+		buttonClickedMethod();
+		BackendFacade b = null;
+		try {
+			b = new BackendFacade();
+		} catch (SetupIncompleteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		LoggedInUserTO liut;
+		char[] pwd = null;
+		liut= b.login("Olle", pwd);
+		
+		
+		
 		if (firstNameTextField.getText().length() > 0
 				& lastNameTextField.getText().length() > 0
 				& emailTextField.getText().length() > 0
@@ -196,6 +211,18 @@ public class UI_LoadUserInformation extends JPanel {
 			JOptionPane.showMessageDialog(null,
 					"Du måste fylla in de fält med *");
 	}
+	
+	private void buttonClickedMethod() {
+
+			UpdateUserTransfere au = new UpdateUserTransfere(
+			getFirstNameTextField().getText(),getLastNameTextField().getText(), getEmailTextField().getText(), getRetypeTextField().getText(), 
+			getCityTextField().getText(), getAddressTextField().getText(), getMobileNrTextField().getText(), getPhoneNrTextField().getText(), getZipCodeTextField().getText(),getCityTextField().getText(),isActive.isSelected(), isAdmin.isSelected());
+			facade.uppdateUser(au);
+
+}
+	
+	
+	
 	
 	// MEtod kollar om den inmatade förnamn är rätt
 	public void checkIfFirstNameISCorrect() {
