@@ -229,7 +229,8 @@ public class PopulateSessionsListener {
 				return true;
 			}
 		clearCtrls();
-		return false;
+		isSaved = true;
+		return true;
 	}
 	
 	private void clearCtrls() {
