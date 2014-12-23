@@ -6,14 +6,12 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.print.attribute.standard.JobMessageFromOperator;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.CreateInvitationTO;
+import examProject.transferObjects.HostSessionTO;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
 
@@ -25,6 +23,7 @@ public class PopulateSessionsListener {
 	private List<HostTO> inUseHostList;
 	private HostTO tmpHost;
 	private List<HsiTO> sessionList;
+	private List<HostSessionTO> toStoreList;
 	private final String timeAM = "08:00";
 	private final String timePM = "14:00";
 	private boolean isSaved = true;
@@ -211,11 +210,48 @@ public class PopulateSessionsListener {
 	}
 	
 	private void commitCurrentSession() {
-		isSaved = true;
+		if(!isSaved) {
+			if(hasHeadHost()) {
+				toStoreList = new ArrayList<HostSessionTO>();
+				for (int x = 0; x < 4; x++) {
+					int host_id = -1;
+					String [] parts = psPanel.getHost1_tb().getText().split(" "); 
+					if (x==1)
+						parts = psPanel.getHost2_tb().getText().split(" ");
+					else if (x==2)
+						parts = psPanel.getHost3_tb().getText().split(" ");
+					else if (x==3)
+						parts = psPanel.getHost4_tb().getText().split(" ");
+					for (int i = 0; i < inUseHostList.size(); i++)
+						if (inUseHostList.get(i).getLastName().equals(parts[1])) 
+							if (inUseHostList.get(i).getFirstName().equals(parts[0]))
+								host_id = inUseHostList.get(i).getHost_id();
+					//toStoreList.add(new HostSessionTO(session_id, host_id, isResponsible));
+				}
+				isSaved = true;
+			} else
+				JOptionPane.showMessageDialog(null, "Endast 1 huvudvärd ska vara vald!", "Huvudvärds-fel", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+	private boolean hasHeadHost() {
+		boolean result = false;
+		int counter = 0;
+		if (psPanel.getHost1_cb().isSelected())
+			counter++;
+		if (psPanel.getHost2_cb().isSelected())
+			counter++;
+		if (psPanel.getHost3_cb().isSelected())
+			counter++;
+		if (psPanel.getHost4_cb().isSelected())
+			counter++;
+		if (counter == 1)
+			result = true;
+		return result;
 	}
 	
 	private void cbSessionsChanged() {
-		if(isSaved) {
+		if(noSaveCheck()) {
 			
 		}
 	}
