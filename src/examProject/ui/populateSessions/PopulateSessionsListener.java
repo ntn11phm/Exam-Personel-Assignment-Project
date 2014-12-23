@@ -7,6 +7,7 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.attribute.standard.JobMessageFromOperator;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -26,6 +27,7 @@ public class PopulateSessionsListener {
 	private List<HsiTO> sessionList;
 	private final String timeAM = "08:00";
 	private final String timePM = "14:00";
+	private boolean isSaved = true;
 	
 	public PopulateSessionsListener(PopulateSessionsPanel psPanel, BackendFacade backendFacade) {
 		this.psPanel = psPanel;
@@ -50,6 +52,7 @@ public class PopulateSessionsListener {
 	
 	private void addHost1() {
 		if (hostListCtrl.getSelectedIndex() != -1) {
+			isSaved = false;
 			int target = -1;
 			if (!psPanel.getHost1_tb().getText().equals("")) {
 				String [] parts = psPanel.getHost1_tb().getText().split(" ");
@@ -71,6 +74,7 @@ public class PopulateSessionsListener {
 	
 	private void addHost2() {
 		if (hostListCtrl.getSelectedIndex() != -1) {
+			isSaved = false;
 			int target = -1;
 			if (!psPanel.getHost2_tb().getText().equals("")) {
 				String [] parts = psPanel.getHost2_tb().getText().split(" ");
@@ -92,6 +96,7 @@ public class PopulateSessionsListener {
 	
 	private void addHost3() {
 		if (hostListCtrl.getSelectedIndex() != -1) {
+			isSaved = false;
 			int target = -1;
 			if (!psPanel.getHost3_tb().getText().equals("")) {
 				String [] parts = psPanel.getHost3_tb().getText().split(" ");
@@ -113,6 +118,7 @@ public class PopulateSessionsListener {
 	
 	private void addHost4() {
 		if (hostListCtrl.getSelectedIndex() != -1) {
+			isSaved = false;
 			int target = -1;
 			if (!psPanel.getHost4_tb().getText().equals("")) {
 				String [] parts = psPanel.getHost4_tb().getText().split(" ");
@@ -133,6 +139,7 @@ public class PopulateSessionsListener {
 	}
 	
 	private void clearHost1() {
+		isSaved = false;
 		int target = -1;
 		if (!psPanel.getHost1_tb().getText().equals("")) {
 			String [] parts = psPanel.getHost1_tb().getText().split(" ");
@@ -150,6 +157,7 @@ public class PopulateSessionsListener {
 	}
 	
 	private void clearHost2() {
+		isSaved = false;
 		int target = -1;
 		if (!psPanel.getHost2_tb().getText().equals("")) {
 			String [] parts = psPanel.getHost2_tb().getText().split(" ");
@@ -167,6 +175,7 @@ public class PopulateSessionsListener {
 	}
 	
 	private void clearHost3() {
+		isSaved = false;
 		int target = -1;
 		if (!psPanel.getHost3_tb().getText().equals("")) {
 			String [] parts = psPanel.getHost3_tb().getText().split(" ");
@@ -184,6 +193,7 @@ public class PopulateSessionsListener {
 	}
 	
 	private void clearHost4() {
+		isSaved = false;
 		int target = -1;
 		if (!psPanel.getHost4_tb().getText().equals("")) {
 			String [] parts = psPanel.getHost4_tb().getText().split(" ");
@@ -201,20 +211,47 @@ public class PopulateSessionsListener {
 	}
 	
 	private void commitCurrentSession() {
-		
+		isSaved = true;
 	}
 	
 	private void cbSessionsChanged() {
-		
+		if(isSaved) {
+			
+		}
 	}
 	
-	private void loadCtrls() {
-		if (validateDate(psPanel.getTbDate().getText())) {
-			loadSessionComboBox();
-			loadHostList();
-		} else
-			JOptionPane.showMessageDialog(null, "Felaktigt datumformat!\n(yyyy-MM-dd)");
+	private boolean noSaveCheck(){
+		if (isSaved)
+			return true;
+		else
+			if(JOptionPane.showConfirmDialog(null, "Fortsätta utan att spara?", "Data ej sparat", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION){
+				commitCurrentSession();
+				return true;
+			}
+		clearCtrls();
+		return false;
+	}
+	
+	private void clearCtrls() {
+		psPanel.getHost1_cb().setSelected(false);
+		psPanel.getHost2_cb().setSelected(false);
+		psPanel.getHost3_cb().setSelected(false);
+		psPanel.getHost4_cb().setSelected(false);
+		psPanel.getHost1_tb().setText("");
+		psPanel.getHost2_tb().setText("");
+		psPanel.getHost3_tb().setText("");
+		psPanel.getHost4_tb().setText("");
 		
+	}
+
+	private void loadCtrls() {
+		if(noSaveCheck()) {
+			if (validateDate(psPanel.getTbDate().getText())) {
+				loadSessionComboBox();
+				loadHostList();
+			} else
+				JOptionPane.showMessageDialog(null, "Felaktigt datumformat!\n(yyyy-MM-dd)");
+		} 
 	}
 	
 	private void loadSessionComboBox() {
