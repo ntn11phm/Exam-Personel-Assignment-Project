@@ -10,15 +10,17 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 import examProject.logic.BackendFacade;
 
+import java.awt.Color;
 import java.awt.Font;
 
 public class PopulateSessionsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel lblInformation = new JLabel("Välj datum att knyta ihop värdar och sessioner mellan!");
-	private JLabel lblDate = new JLabel("Datum:");
 	private JTextField tbDate = new JTextField();
 	private JButton btnLoadSessions = new JButton("Ladda sessioner");
 	private JLabel lblSessionList = new JLabel("Sessioner");
@@ -50,6 +52,7 @@ public class PopulateSessionsPanel extends JPanel {
 	private ButtonGroup timeGrp = new ButtonGroup();
 	private JRadioButton rbAM = new JRadioButton("08:00");
 	private JRadioButton rbPM = new JRadioButton("14:00");
+	private JPanel dateBorder = new JPanel();
 
 	public PopulateSessionsPanel(BackendFacade backendFacade) {
 		setLayout(null);
@@ -152,11 +155,11 @@ public class PopulateSessionsPanel extends JPanel {
 	}
 
 	private void setBounds() {
+		dateBorder.setBounds(10, 33, 157, 81);
 		lblInformation.setBounds(10, 10, 350, 20);
-		lblDate.setBounds(10, 30, 150, 20);
-		tbDate.setBounds(10, 50, 150, 25);
-		rbAM.setBounds(10, 80, 80, 20);
-		rbPM.setBounds(100, 80, 80, 20);
+		tbDate.setBounds(10, 20, 137, 25);
+		rbAM.setBounds(10, 52, 69, 20);
+		rbPM.setBounds(78, 52, 69, 20);
 		btnLoadSessions.setBounds(170, 47, 150, 30);
 		lblSessionList.setBounds(330, 30, 200, 20);
 		scrollPane.setBounds(10, 145, 250, 400);
@@ -186,12 +189,14 @@ public class PopulateSessionsPanel extends JPanel {
 	}
 	
 	private void createCtrls() {
+		dateBorder.setLayout(null);
+		add(dateBorder);
+		dateBorder.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Datum:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		add(lblInformation);
-		add(lblDate);
 		tbDate.setToolTipText("Datumformat: yyyy-MM-dd");
-		add(tbDate);
-		add(rbAM);
-		add(rbPM);
+		dateBorder.add(tbDate);
+		dateBorder.add(rbAM);
+		dateBorder.add(rbPM);
 		timeGrp.add(rbAM);
 		timeGrp.add(rbPM);
 		rbAM.setSelected(true);
