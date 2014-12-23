@@ -20,7 +20,7 @@ import java.awt.Font;
 
 public class PopulateSessionsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private JLabel lblInformation = new JLabel("Välj datum att knyta ihop värdar och sessioner mellan!");
+	private JLabel lblInformation = new JLabel("Välj datum och tid att knyta ihop värdar och sessioner mellan!");
 	private JTextField tbDate = new JTextField();
 	private JButton btnLoadSessions = new JButton("Ladda sessioner");
 	private JLabel lblSessionList = new JLabel("Sessioner");
@@ -191,7 +191,7 @@ public class PopulateSessionsPanel extends JPanel {
 	private void createCtrls() {
 		dateBorder.setLayout(null);
 		add(dateBorder);
-		dateBorder.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Datum:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		dateBorder.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Datum", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		add(lblInformation);
 		tbDate.setToolTipText("Datumformat: yyyy-MM-dd");
 		dateBorder.add(tbDate);
