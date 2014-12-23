@@ -81,7 +81,7 @@ public class PopulateSessionsListener {
 				tmpHost = inUseHostList.get(target);
 				inUseHostList.remove(target);
 			}
-			psPanel.getHost1_tb().setText(hostListCtrl.getSelectedValue());
+			psPanel.getHost2_tb().setText(hostListCtrl.getSelectedValue());
 			inUseHostList.add(hostList.get(hostListCtrl.getSelectedIndex()));
 			hostList.remove(hostListCtrl.getSelectedIndex());
 			if (target != -1)
@@ -102,7 +102,7 @@ public class PopulateSessionsListener {
 				tmpHost = inUseHostList.get(target);
 				inUseHostList.remove(target);
 			}
-			psPanel.getHost1_tb().setText(hostListCtrl.getSelectedValue());
+			psPanel.getHost3_tb().setText(hostListCtrl.getSelectedValue());
 			inUseHostList.add(hostList.get(hostListCtrl.getSelectedIndex()));
 			hostList.remove(hostListCtrl.getSelectedIndex());
 			if (target != -1)
@@ -123,7 +123,7 @@ public class PopulateSessionsListener {
 				tmpHost = inUseHostList.get(target);
 				inUseHostList.remove(target);
 			}
-			psPanel.getHost1_tb().setText(hostListCtrl.getSelectedValue());
+			psPanel.getHost4_tb().setText(hostListCtrl.getSelectedValue());
 			inUseHostList.add(hostList.get(hostListCtrl.getSelectedIndex()));
 			hostList.remove(hostListCtrl.getSelectedIndex());
 			if (target != -1)
@@ -133,19 +133,71 @@ public class PopulateSessionsListener {
 	}
 	
 	private void clearHost1() {
-		
+		int target = -1;
+		if (!psPanel.getHost1_tb().getText().equals("")) {
+			String [] parts = psPanel.getHost1_tb().getText().split(" ");
+			for (int i = 0; i < inUseHostList.size(); i++)
+				if (inUseHostList.get(i).getLastName().equals(parts[1])) 
+					if (inUseHostList.get(i).getFirstName().equals(parts[0]))
+						target = i;
+			tmpHost = inUseHostList.get(target);
+			inUseHostList.remove(target);
+		}
+		psPanel.getHost1_tb().setText("");
+		if (target != -1)
+			hostList.add(tmpHost);
+		loadHostListCtrl();
 	}
 	
 	private void clearHost2() {
-		
+		int target = -1;
+		if (!psPanel.getHost2_tb().getText().equals("")) {
+			String [] parts = psPanel.getHost2_tb().getText().split(" ");
+			for (int i = 0; i < inUseHostList.size(); i++)
+				if (inUseHostList.get(i).getLastName().equals(parts[1])) 
+					if (inUseHostList.get(i).getFirstName().equals(parts[0]))
+						target = i;
+			tmpHost = inUseHostList.get(target);
+			inUseHostList.remove(target);
+		}
+		psPanel.getHost2_tb().setText("");
+		if (target != -1)
+			hostList.add(tmpHost);
+		loadHostListCtrl();
 	}
 	
 	private void clearHost3() {
-		
+		int target = -1;
+		if (!psPanel.getHost3_tb().getText().equals("")) {
+			String [] parts = psPanel.getHost3_tb().getText().split(" ");
+			for (int i = 0; i < inUseHostList.size(); i++)
+				if (inUseHostList.get(i).getLastName().equals(parts[1])) 
+					if (inUseHostList.get(i).getFirstName().equals(parts[0]))
+						target = i;
+			tmpHost = inUseHostList.get(target);
+			inUseHostList.remove(target);
+		}
+		psPanel.getHost3_tb().setText("");
+		if (target != -1)
+			hostList.add(tmpHost);
+		loadHostListCtrl();
 	}
 	
 	private void clearHost4() {
-		
+		int target = -1;
+		if (!psPanel.getHost4_tb().getText().equals("")) {
+			String [] parts = psPanel.getHost4_tb().getText().split(" ");
+			for (int i = 0; i < inUseHostList.size(); i++)
+				if (inUseHostList.get(i).getLastName().equals(parts[1])) 
+					if (inUseHostList.get(i).getFirstName().equals(parts[0]))
+						target = i;
+			tmpHost = inUseHostList.get(target);
+			inUseHostList.remove(target);
+		}
+		psPanel.getHost4_tb().setText("");
+		if (target != -1)
+			hostList.add(tmpHost);
+		loadHostListCtrl();
 	}
 	
 	private void commitCurrentSession() {
