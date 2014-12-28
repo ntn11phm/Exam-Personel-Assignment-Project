@@ -15,6 +15,7 @@ import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
+import examProject.transferObjects.SessionLocationTO;
 import examProject.transferObjects.UpdateUserTransfere;
 import examProject.transferObjects.LoggedInUserTO;
 import examProject.ui.updateUserInformation.SetupIncompleteException;
@@ -119,6 +120,10 @@ public class BackendFacade {
 		return ci.createHsi(sessionList);
 	}
 	
+	public List<SessionLocationTO> loadLocations(String date, String time) {
+		PopulateSessions ps = new PopulateSessions(dbManipulator);
+		return ps.loadLocations(date, time);
+	}
 	public List<HsiTO> getSessions(CreateInvitationTO cTo) {
 		CreateInvitation ci = new CreateInvitation(dbManipulator);
 		return ci.getSessions(cTo);

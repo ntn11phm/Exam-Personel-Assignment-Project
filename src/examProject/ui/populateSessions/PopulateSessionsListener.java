@@ -6,14 +6,17 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.CreateInvitationTO;
 import examProject.transferObjects.HostSessionTO;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
+import examProject.transferObjects.SessionLocationTO;
 
 public class PopulateSessionsListener {
 	private PopulateSessionsPanel psPanel;
@@ -22,10 +25,10 @@ public class PopulateSessionsListener {
 	private List<HostTO> hostList;
 	private List<HostTO> inUseHostList;
 	private HostTO tmpHost;
-	private List<HsiTO> sessionList;
+	private List<SessionLocationTO> sessionList;
 	private List<HostSessionTO> toStoreList;
 	private final String timeAM = "08:00";
-	private final String timePM = "14:00";
+	private final String timePM = "15:00";
 	private boolean isSaved = true;
 	
 	public PopulateSessionsListener(PopulateSessionsPanel psPanel, BackendFacade backendFacade) {
@@ -222,17 +225,26 @@ public class PopulateSessionsListener {
 						parts = psPanel.getHost3_tb().getText().split(" ");
 					else if (x==3)
 						parts = psPanel.getHost4_tb().getText().split(" ");
-					for (int i = 0; i < inUseHostList.size(); i++)
-						if (inUseHostList.get(i).getLastName().equals(parts[1])) 
-							if (inUseHostList.get(i).getFirstName().equals(parts[0]))
-								host_id = inUseHostList.get(i).getHost_id();
-					//toStoreList.add(new HostSessionTO(session_id, host_id, isResponsible));
+//					for (int i = 0; i < inUseHostList.size(); i++)
+//						if (inUseHostList.get(i).getLastName().equals(parts[1])) 
+//							if (inUseHostList.get(i).getFirstName().equals(parts[0]))
+//								host_id = inUseHostList.get(i).getHost_id();
+					//toStoreList.add(new HostSessionTO(session_id, parts[2], isResponsible));
 				}
 				isSaved = true;
 			} else
 				JOptionPane.showMessageDialog(null, "Endast 1 huvudvärd ska vara vald!", "Huvudvärds-fel", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
+	
+//	private int getSessionId() {
+//		int result = -1;
+//		String []parts = psPanel.getSessionCb().getSelectedItem().toString().split(" ");
+//		for (int i = 0; i < sessionList.size(); i++)
+//			if (sessionList.get(i).getDate().equals(parts[0]) && sessionList.get(i).getTime().equals(parts[1]))
+//				result = sessionList.get(i).g
+//		return result;
+//	}
 	
 	private boolean hasHeadHost() {
 		boolean result = false;
@@ -292,7 +304,7 @@ public class PopulateSessionsListener {
 	}
 	
 	private void loadSessionComboBox() {
-		sessionList = backendFacade.getSessions(new CreateInvitationTO(psPanel.getTbDate().getText(), psPanel.getTbDate().getText()));
+		sessionList = backendFacade.loadLocations(psPanel.getTbDate().getText(), getTime());
 		psPanel.getSessionCb().setModel(new DefaultComboBoxModel<String>());
 		for (int i = 0; i < sessionList.size(); i++)
 			psPanel.getSessionCb().addItem(sessionList.get(i).toString());

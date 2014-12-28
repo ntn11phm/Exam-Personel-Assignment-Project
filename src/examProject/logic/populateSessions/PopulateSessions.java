@@ -4,8 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import examProject.dao.DbManipulator;
 import examProject.transferObjects.HostTO;
+import examProject.transferObjects.SessionLocationTO;
 
 public class PopulateSessions {
 	private DbManipulator dbm;
@@ -43,6 +45,21 @@ public class PopulateSessions {
 		} catch (SQLException e) {}
 		dbm.closeDb();
 		return isAvailable;
+	}
+	
+	public List<SessionLocationTO> loadLocations(String date, String time) {
+		List<SessionLocationTO> result = new ArrayList<SessionLocationTO>();
+		dbm.openDb();
+		String sqlCommand = "SELECT session_location, session_id FROM sessions WHERE session_date = '" + date 
+				+ "' AND session_time ='" + time + "';";
+		ResultSet rs = dbm.select(sqlCommand);
+		try {
+			while (rs.next()){
+				result.add(new SessionLocationTO(rs.getString("session_location"), rs.getInt("session_id")));
+			}
+		} catch (SQLException e) {}
+		dbm.closeDb();
+		return result;
 	}
 
 }
