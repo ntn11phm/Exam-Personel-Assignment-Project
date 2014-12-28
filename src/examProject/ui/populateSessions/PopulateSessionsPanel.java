@@ -51,7 +51,7 @@ public class PopulateSessionsPanel extends JPanel {
 	private JLabel lblAvailableHosts = new JLabel("Tillgängliga värdar");
 	private ButtonGroup timeGrp = new ButtonGroup();
 	private JRadioButton rbAM = new JRadioButton("08:00");
-	private JRadioButton rbPM = new JRadioButton("14:00");
+	private JRadioButton rbPM = new JRadioButton("15:00");
 	private JPanel dateBorder = new JPanel();
 
 	public PopulateSessionsPanel(BackendFacade backendFacade) {
