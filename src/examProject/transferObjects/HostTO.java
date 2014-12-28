@@ -25,6 +25,6 @@ public class HostTO {
 
 	@Override
 	public String toString() {
-		return "" + firstName + " " + lastName;
+		return "" + firstName + " " + lastName + " " + host_id;
 	}
 }
