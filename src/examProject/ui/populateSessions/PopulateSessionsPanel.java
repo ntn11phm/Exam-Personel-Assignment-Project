@@ -23,7 +23,7 @@ public class PopulateSessionsPanel extends JPanel {
 	private JLabel lblInformation = new JLabel("Välj datum och tid att knyta ihop värdar och sessioner mellan!");
 	private JTextField tbDate = new JTextField();
 	private JButton btnLoadSessions = new JButton("Ladda sessioner");
-	private JLabel lblSessionList = new JLabel("Sessioner");
+	private JLabel lblSessionList = new JLabel("Lokaler");
 	private JScrollPane scrollPane = new JScrollPane();
 	private JList<String> hostList = new JList<String>();
 	private JComboBox<String> cbSessions = new JComboBox<String>();
