@@ -7,6 +7,7 @@ import examProject.logic.answerInv.AnswerInvitation;
 import examProject.logic.createInv.CreateInvitation;
 import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
+import examProject.logic.populateSessions.PopulateSessions;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.AddUser;
 import examProject.transferObjects.CreateInvitationTO;
@@ -14,6 +15,7 @@ import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
+import examProject.transferObjects.SessionLocationTO;
 import examProject.transferObjects.UpdateUserTransfere;
 import examProject.transferObjects.LoggedInUserTO;
 import examProject.ui.updateUserInformation.SetupIncompleteException;
@@ -103,13 +105,14 @@ public class BackendFacade {
 		return ai.commitAnswers(answerList);
 	}
 	
-	public List<HostTO> getAvailableHostsList(String date) {
-		
-		return null;
+	public List<HostTO> getAvailableHostsList(String date, String time) {
+		PopulateSessions ps = new PopulateSessions(dbManipulator);
+		return ps.loadAvailableHosts(date, time);
 	}
-	public boolean checkHostSessionAvailabillity(String text, int host_id) {
-		
-		return false;
+	
+	public boolean checkHostSessionAvailabillity(String date, String time, int host_id) {
+		PopulateSessions ps = new PopulateSessions(dbManipulator);
+		return ps.checkHostSessionAvailabillity(date, time, host_id);
 	}
 	
 	public boolean createHsi(List<HsiTO> sessionList) {
@@ -117,6 +120,10 @@ public class BackendFacade {
 		return ci.createHsi(sessionList);
 	}
 	
+	public List<SessionLocationTO> loadLocations(String date, String time) {
+		PopulateSessions ps = new PopulateSessions(dbManipulator);
+		return ps.loadLocations(date, time);
+	}
 	public List<HsiTO> getSessions(CreateInvitationTO cTo) {
 		CreateInvitation ci = new CreateInvitation(dbManipulator);
 		return ci.getSessions(cTo);

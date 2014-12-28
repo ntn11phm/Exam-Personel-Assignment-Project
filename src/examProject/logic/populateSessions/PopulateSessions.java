@@ -2,9 +2,12 @@ package examProject.logic.populateSessions;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import examProject.dao.DbManipulator;
+import examProject.transferObjects.HostTO;
+import examProject.transferObjects.SessionLocationTO;
 
 public class PopulateSessions {
 	private DbManipulator dbm;
@@ -13,25 +16,26 @@ public class PopulateSessions {
 		this.dbm = dbm;
 	}
 	
-	public List<String> loadAvailableHosts(String date, String time) {
+	public List<HostTO> loadAvailableHosts(String date, String time) {
+		List<HostTO> result = new ArrayList<HostTO>();
 		dbm.openDb();
-		String sqlCommand = "SELECT host_id FROM hosts_sessions_invitations WHERE hsi_date = '" + date 
-				+ "' AND hsi_time = '" + time + "' AND answer_date = '1970-01-01'" + ";";
+		String sqlCommand = "SELECT hosts_sessions_invitations.host_id, first_name, last_name FROM hosts_sessions_invitations, hosts WHERE hosts_sessions_invitations.host_id = hosts.host_id AND hsi_date = '" + date 
+				+ "' AND hsi_time = '" + time + "' AND NOT answer_date = '1970-01-01'" + " AND can_host=true;";
 		ResultSet rs = dbm.select(sqlCommand);
 		try {
 			while (rs.next()){
-				
+				result.add(new HostTO(rs.getInt("host_id"), rs.getString("first_name"), rs.getString("last_name")));
 			}
 		} catch (SQLException e) {}
 		dbm.closeDb();
-		return null;
+		return result;
 	}
 	
-	public boolean checkHostSessionAvailabillity(String date, int host_id) {
+	public boolean checkHostSessionAvailabillity(String date, String time, int host_id) {
 		boolean isAvailable = true;
 		dbm.openDb();
-		String sqlCommand = "SELECT answer_date FROM hosts_sessions_invitations WHERE hsi_date = '" + date 
-				+ "' AND host_id = " + host_id + " AND NOT answer_date = '1970-01-01';";
+		String sqlCommand = "SELECT host_sessions.host_id FROM host_sessions, sessions WHERE session_date =  '" + date 
+				+ "' AND session_time = '" + time + "' AND host_id = " + host_id + " AND host_sessions.session_id = sessions.session_id;";
 		ResultSet rs = dbm.select(sqlCommand);
 		try {
 			while (rs.next()){
@@ -41,6 +45,21 @@ public class PopulateSessions {
 		} catch (SQLException e) {}
 		dbm.closeDb();
 		return isAvailable;
+	}
+	
+	public List<SessionLocationTO> loadLocations(String date, String time) {
+		List<SessionLocationTO> result = new ArrayList<SessionLocationTO>();
+		dbm.openDb();
+		String sqlCommand = "SELECT session_location, session_id FROM sessions WHERE session_date = '" + date 
+				+ "' AND session_time ='" + time + "';";
+		ResultSet rs = dbm.select(sqlCommand);
+		try {
+			while (rs.next()){
+				result.add(new SessionLocationTO(rs.getString("session_location"), rs.getInt("session_id")));
+			}
+		} catch (SQLException e) {}
+		dbm.closeDb();
+		return result;
 	}
 
 }

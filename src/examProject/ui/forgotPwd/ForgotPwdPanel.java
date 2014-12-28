@@ -28,9 +28,9 @@ public class ForgotPwdPanel extends JPanel {
 	private void setBounds() {
 		lblHeader1.setBounds(58, 5, 275, 14);
 		lblHeader2.setBounds(58, 30, 275, 14);
-		lblUsername.setBounds(58, 55, 130, 14);
+		lblUsername.setBounds(58, 55, 275, 14);
 		tbUsername.setBounds(58, 80, 275, 20);
-		lblEpostAdress.setBounds(58, 111, 130, 14);
+		lblEpostAdress.setBounds(58, 111, 275, 14);
 		tbEmail.setBounds(58, 136, 275, 20);
 		btnRequestPwd.setBounds(58, 167, 130, 23);
 		lblStatusText.setBounds(58, 201, 275, 14);

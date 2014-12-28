@@ -151,6 +151,6 @@ public class CheckIfTheInputIsCorrect {
 				if (checkSQLCommand(textFieldText)== false) {
 					return;
 				}
-			}
+			} 
 
 }

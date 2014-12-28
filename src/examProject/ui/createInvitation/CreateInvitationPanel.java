@@ -66,7 +66,7 @@ public class CreateInvitationPanel extends JPanel {
 	private void buttonListener() {
 		loadPeriodButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoadButtonClickedMethod();
+				loadButtonClickedMethod();
 			}
 		});
 		createInvitationButton.addActionListener(new ActionListener() {
@@ -77,7 +77,7 @@ public class CreateInvitationPanel extends JPanel {
 
 	}
 
-	private void LoadButtonClickedMethod() {
+	private void loadButtonClickedMethod() {
 		if (!fromDateText.getText().equals("")
 				&& !toDateText.getText().equals("")) {
 			if (validateTextFields(fromDateText.getText())

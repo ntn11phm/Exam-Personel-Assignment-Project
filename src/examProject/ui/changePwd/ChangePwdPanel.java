@@ -30,17 +30,17 @@ public class ChangePwdPanel extends JPanel {
 	}
 	
 	private void setBounds() {
-		lblNuvarandeLsenord.setBounds(66, 8, 97, 14);
-		currentPwd.setBounds(76, 33, 155, 20);
-		lblNyttLsenord.setBounds(66, 64, 65, 14);
-		newPwd.setBounds(76, 89, 155, 20);
-		lblRepeteraNyttLsenord.setBounds(66, 120, 112, 14);
+		lblNuvarandeLsenord.setBounds(10, 11, 165, 14);
+		currentPwd.setBounds(10, 33, 155, 20);
+		lblNyttLsenord.setBounds(10, 64, 165, 14);
+		newPwd.setBounds(10, 89, 155, 20);
+		lblRepeteraNyttLsenord.setBounds(10, 120, 165, 14);
 		lblCurrentPwdStatus.setBounds(241, 36, 75, 14);
 		lblNewPwdStatus0.setBounds(241, 92, 75, 14);
 		lblNewPwdStatus1.setBounds(241, 148, 75, 14);
-		retypeNewPwd.setBounds(76, 145, 155, 20);
-		lblStatus.setBounds(66, 222, 250, 14);
-		btnBytLsenord.setBounds(76, 188, 155, 23);
+		retypeNewPwd.setBounds(10, 142, 155, 20);
+		lblStatus.setBounds(10, 207, 250, 20);
+		btnBytLsenord.setBounds(10, 173, 155, 23);
 	}
 	
 	private void addCtrls() {

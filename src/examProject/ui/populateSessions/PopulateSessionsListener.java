@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
@@ -12,8 +13,10 @@ import javax.swing.JOptionPane;
 
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.CreateInvitationTO;
+import examProject.transferObjects.HostSessionTO;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
+import examProject.transferObjects.SessionLocationTO;
 
 public class PopulateSessionsListener {
 	private PopulateSessionsPanel psPanel;
@@ -22,7 +25,11 @@ public class PopulateSessionsListener {
 	private List<HostTO> hostList;
 	private List<HostTO> inUseHostList;
 	private HostTO tmpHost;
-	private List<HsiTO> sessionList;
+	private List<SessionLocationTO> sessionList;
+	private List<HostSessionTO> toStoreList;
+	private final String timeAM = "08:00";
+	private final String timePM = "15:00";
+	private boolean isSaved = true;
 	
 	public PopulateSessionsListener(PopulateSessionsPanel psPanel, BackendFacade backendFacade) {
 		this.psPanel = psPanel;
@@ -47,6 +54,7 @@ public class PopulateSessionsListener {
 	
 	private void addHost1() {
 		if (hostListCtrl.getSelectedIndex() != -1) {
+			isSaved = false;
 			int target = -1;
 			if (!psPanel.getHost1_tb().getText().equals("")) {
 				String [] parts = psPanel.getHost1_tb().getText().split(" ");
@@ -68,6 +76,7 @@ public class PopulateSessionsListener {
 	
 	private void addHost2() {
 		if (hostListCtrl.getSelectedIndex() != -1) {
+			isSaved = false;
 			int target = -1;
 			if (!psPanel.getHost2_tb().getText().equals("")) {
 				String [] parts = psPanel.getHost2_tb().getText().split(" ");
@@ -78,7 +87,7 @@ public class PopulateSessionsListener {
 				tmpHost = inUseHostList.get(target);
 				inUseHostList.remove(target);
 			}
-			psPanel.getHost1_tb().setText(hostListCtrl.getSelectedValue());
+			psPanel.getHost2_tb().setText(hostListCtrl.getSelectedValue());
 			inUseHostList.add(hostList.get(hostListCtrl.getSelectedIndex()));
 			hostList.remove(hostListCtrl.getSelectedIndex());
 			if (target != -1)
@@ -89,6 +98,7 @@ public class PopulateSessionsListener {
 	
 	private void addHost3() {
 		if (hostListCtrl.getSelectedIndex() != -1) {
+			isSaved = false;
 			int target = -1;
 			if (!psPanel.getHost3_tb().getText().equals("")) {
 				String [] parts = psPanel.getHost3_tb().getText().split(" ");
@@ -99,7 +109,7 @@ public class PopulateSessionsListener {
 				tmpHost = inUseHostList.get(target);
 				inUseHostList.remove(target);
 			}
-			psPanel.getHost1_tb().setText(hostListCtrl.getSelectedValue());
+			psPanel.getHost3_tb().setText(hostListCtrl.getSelectedValue());
 			inUseHostList.add(hostList.get(hostListCtrl.getSelectedIndex()));
 			hostList.remove(hostListCtrl.getSelectedIndex());
 			if (target != -1)
@@ -110,6 +120,7 @@ public class PopulateSessionsListener {
 	
 	private void addHost4() {
 		if (hostListCtrl.getSelectedIndex() != -1) {
+			isSaved = false;
 			int target = -1;
 			if (!psPanel.getHost4_tb().getText().equals("")) {
 				String [] parts = psPanel.getHost4_tb().getText().split(" ");
@@ -120,7 +131,7 @@ public class PopulateSessionsListener {
 				tmpHost = inUseHostList.get(target);
 				inUseHostList.remove(target);
 			}
-			psPanel.getHost1_tb().setText(hostListCtrl.getSelectedValue());
+			psPanel.getHost4_tb().setText(hostListCtrl.getSelectedValue());
 			inUseHostList.add(hostList.get(hostListCtrl.getSelectedIndex()));
 			hostList.remove(hostListCtrl.getSelectedIndex());
 			if (target != -1)
@@ -130,62 +141,202 @@ public class PopulateSessionsListener {
 	}
 	
 	private void clearHost1() {
-		
+		isSaved = false;
+		int target = -1;
+		if (!psPanel.getHost1_tb().getText().equals("")) {
+			String [] parts = psPanel.getHost1_tb().getText().split(" ");
+			for (int i = 0; i < inUseHostList.size(); i++)
+				if (inUseHostList.get(i).getLastName().equals(parts[1])) 
+					if (inUseHostList.get(i).getFirstName().equals(parts[0]))
+						target = i;
+			tmpHost = inUseHostList.get(target);
+			inUseHostList.remove(target);
+		}
+		psPanel.getHost1_tb().setText("");
+		if (target != -1)
+			hostList.add(tmpHost);
+		loadHostListCtrl();
 	}
 	
 	private void clearHost2() {
-		
+		isSaved = false;
+		int target = -1;
+		if (!psPanel.getHost2_tb().getText().equals("")) {
+			String [] parts = psPanel.getHost2_tb().getText().split(" ");
+			for (int i = 0; i < inUseHostList.size(); i++)
+				if (inUseHostList.get(i).getLastName().equals(parts[1])) 
+					if (inUseHostList.get(i).getFirstName().equals(parts[0]))
+						target = i;
+			tmpHost = inUseHostList.get(target);
+			inUseHostList.remove(target);
+		}
+		psPanel.getHost2_tb().setText("");
+		if (target != -1)
+			hostList.add(tmpHost);
+		loadHostListCtrl();
 	}
 	
 	private void clearHost3() {
-		
+		isSaved = false;
+		int target = -1;
+		if (!psPanel.getHost3_tb().getText().equals("")) {
+			String [] parts = psPanel.getHost3_tb().getText().split(" ");
+			for (int i = 0; i < inUseHostList.size(); i++)
+				if (inUseHostList.get(i).getLastName().equals(parts[1])) 
+					if (inUseHostList.get(i).getFirstName().equals(parts[0]))
+						target = i;
+			tmpHost = inUseHostList.get(target);
+			inUseHostList.remove(target);
+		}
+		psPanel.getHost3_tb().setText("");
+		if (target != -1)
+			hostList.add(tmpHost);
+		loadHostListCtrl();
 	}
 	
 	private void clearHost4() {
-		
+		isSaved = false;
+		int target = -1;
+		if (!psPanel.getHost4_tb().getText().equals("")) {
+			String [] parts = psPanel.getHost4_tb().getText().split(" ");
+			for (int i = 0; i < inUseHostList.size(); i++)
+				if (inUseHostList.get(i).getLastName().equals(parts[1])) 
+					if (inUseHostList.get(i).getFirstName().equals(parts[0]))
+						target = i;
+			tmpHost = inUseHostList.get(target);
+			inUseHostList.remove(target);
+		}
+		psPanel.getHost4_tb().setText("");
+		if (target != -1)
+			hostList.add(tmpHost);
+		loadHostListCtrl();
 	}
 	
 	private void commitCurrentSession() {
-		
+		if(!isSaved) {
+			if(hasHeadHost()) {
+				toStoreList = new ArrayList<HostSessionTO>();
+				for (int x = 0; x < 4; x++) {
+					int host_id = -1;
+					String [] parts = psPanel.getHost1_tb().getText().split(" "); 
+					if (x==1)
+						parts = psPanel.getHost2_tb().getText().split(" ");
+					else if (x==2)
+						parts = psPanel.getHost3_tb().getText().split(" ");
+					else if (x==3)
+						parts = psPanel.getHost4_tb().getText().split(" ");
+//					for (int i = 0; i < inUseHostList.size(); i++)
+//						if (inUseHostList.get(i).getLastName().equals(parts[1])) 
+//							if (inUseHostList.get(i).getFirstName().equals(parts[0]))
+//								host_id = inUseHostList.get(i).getHost_id();
+					//toStoreList.add(new HostSessionTO(session_id, parts[2], isResponsible));
+				}
+				isSaved = true;
+			} else
+				JOptionPane.showMessageDialog(null, "Endast 1 huvudvärd ska vara vald!", "Huvudvärds-fel", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+//	private int getSessionId() {
+//		int result = -1;
+//		String []parts = psPanel.getSessionCb().getSelectedItem().toString().split(" ");
+//		for (int i = 0; i < sessionList.size(); i++)
+//			if (sessionList.get(i).getDate().equals(parts[0]) && sessionList.get(i).getTime().equals(parts[1]))
+//				result = sessionList.get(i).g
+//		return result;
+//	}
+	
+	private boolean hasHeadHost() {
+		boolean result = false;
+		int counter = 0;
+		if (psPanel.getHost1_cb().isSelected())
+			counter++;
+		if (psPanel.getHost2_cb().isSelected())
+			counter++;
+		if (psPanel.getHost3_cb().isSelected())
+			counter++;
+		if (psPanel.getHost4_cb().isSelected())
+			counter++;
+		if (counter == 1)
+			result = true;
+		return result;
 	}
 	
 	private void cbSessionsChanged() {
-		
+		if(noSaveCheck()) {
+			
+		}
 	}
 	
-	private void loadCtrls() {
-		if (validateDate(psPanel.getTbDate().getText())) {
-			loadSessionComboBox();
-			loadHostList();
-		} else
-			JOptionPane.showMessageDialog(null, "Felaktigt datumformat!\n(yyyy-MM-dd)");
+	private boolean noSaveCheck(){
+		if (isSaved)
+			return true;
+		else
+			if(JOptionPane.showConfirmDialog(null, "Fortsätta utan att spara?", "Data ej sparat", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION){
+				commitCurrentSession();
+				return true;
+			}
+		clearCtrls();
+		isSaved = true;
+		return true;
+	}
+	
+	private void clearCtrls() {
+		psPanel.getHost1_cb().setSelected(false);
+		psPanel.getHost2_cb().setSelected(false);
+		psPanel.getHost3_cb().setSelected(false);
+		psPanel.getHost4_cb().setSelected(false);
+		psPanel.getHost1_tb().setText("");
+		psPanel.getHost2_tb().setText("");
+		psPanel.getHost3_tb().setText("");
+		psPanel.getHost4_tb().setText("");
 		
+	}
+
+	private void loadCtrls() {
+		if(noSaveCheck()) {
+			if (validateDate(psPanel.getTbDate().getText())) {
+				loadSessionComboBox();
+				loadHostList();
+			} else
+				JOptionPane.showMessageDialog(null, "Felaktigt datumformat!\n(yyyy-MM-dd)");
+		} 
 	}
 	
 	private void loadSessionComboBox() {
-		sessionList = backendFacade.getSessions(new CreateInvitationTO(psPanel.getTbDate().getText(), psPanel.getTbDate().getText()));
+		sessionList = backendFacade.loadLocations(psPanel.getTbDate().getText(), getTime());
 		psPanel.getSessionCb().setModel(new DefaultComboBoxModel<String>());
 		for (int i = 0; i < sessionList.size(); i++)
 			psPanel.getSessionCb().addItem(sessionList.get(i).toString());
 	}
 
 	private void loadHostList() {
-		hostList = backendFacade.getAvailableHostsList(psPanel.getTbDate().getText());
+		hostList = backendFacade.getAvailableHostsList(psPanel.getTbDate().getText(), getTime());
 		checkHostList();
 		loadHostListCtrl();
 	}
 	
+	private String getTime() {
+		String result = "";
+		if (psPanel.getRbAM().isSelected())
+			result = timeAM;
+		else
+			result = timePM;
+		return result;
+	}
+	
 	private void checkHostList() {
+		inUseHostList = new ArrayList<HostTO>();
 		if (hostList.size() > 0)
 			for (int i = (hostList.size() - 1); i > -1; i--)
-				if (backendFacade.checkHostSessionAvailabillity(psPanel.getTbDate().getText(), hostList.get(i).getHost_id())) {
+				if (!backendFacade.checkHostSessionAvailabillity(psPanel.getTbDate().getText(), getTime(), hostList.get(i).getHost_id())) {
 					inUseHostList.add(hostList.get(i));
 					hostList.remove(i);
 				}
 	}
 	
 	private void loadHostListCtrl() {
-		int lenght = hostList.size()-1;
+		int lenght = hostList.size();
 		String [] arrString = new String[lenght];
 		for (int i = 0; i < lenght; i++)
 			arrString[i] = hostList.get(i).toString();

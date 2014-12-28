@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import examProject.logic.BackendFacade;
+import examProject.logic.populateSessions.PopulateSessions;
 import examProject.transferObjects.LoggedInUserTO;
 import examProject.ui.addUser.AddUserGUI;
 import examProject.ui.answerInvitations.AnswerInvitationsPanel;
@@ -14,6 +15,8 @@ import examProject.ui.changePwd.ChangePwdPanel;
 import examProject.ui.createInvitation.CreateInvitationPanel;
 import examProject.ui.forgotPwd.ForgotPwdPanel;
 import examProject.ui.kronoxImport.KronoxImportPanel;
+import examProject.ui.populateSessions.PopulateSessionsPanel;
+import examProject.ui.print.PrintPanel;
 import examProject.ui.setUpDb.SetUpDbGui;
 import examProject.ui.updateUserInformation.SetupIncompleteException;
 import examProject.ui.updateUserInformation.UI_LoadUserInformation;
@@ -42,6 +45,7 @@ public class TabbedPane extends JFrame {
 	public boolean login() {
 		boolean result = false;
 		currentUser = new LoggedInUserTO("", 6, true, false);
+		currentUser.setHost_id(4);
 		result = true;
 		return result;
 	}
@@ -64,6 +68,10 @@ public class TabbedPane extends JFrame {
 		jtp.setMnemonicAt(0, KeyEvent.VK_7);
 		jtp.addTab("Svara på inbjudningar", new AnswerInvitationsPanel(backendFacade));
 		jtp.setMnemonicAt(0, KeyEvent.VK_8);
+		jtp.addTab("Populera sessioner", new PopulateSessionsPanel(backendFacade));
+		jtp.setMnemonicAt(0, KeyEvent.VK_9);
+		jtp.addTab("Skriv ut", new PrintPanel(backendFacade));
+		jtp.setMnemonicAt(0, KeyEvent.VK_0);
 
 	}
 
