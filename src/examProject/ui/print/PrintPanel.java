@@ -12,7 +12,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import examProject.logic.BackendFacade;
-import examProject.transferObjects.CreateInvitationTO;
 
 public class PrintPanel extends JPanel {
 	private BackendFacade facade;
@@ -37,6 +36,7 @@ public class PrintPanel extends JPanel {
 		listPane.setBounds(23, 129, 130, 156);
 		dateLabel.setBounds(23, 11, 130, 29);
 		dateFieldText.setBounds(23, 42, 130, 29);
+		dateFieldText.setToolTipText("Datumformat: yyyy-mm-dd");
 		loadButton.setBounds(23, 82, 130, 29);
 		printButton.setBounds(23, 296, 130, 29);
 	}
@@ -68,15 +68,15 @@ public class PrintPanel extends JPanel {
 		if (!dateFieldText.getText().equals("")) {
 			if (validateTextFields(dateFieldText.getText())) {
 
-//				CreateInvitationTO cTo = new CreateInvitationTO(
-//						dateFieldText.getText());
-//				sessionsList = facade.getSessions(cTo);
-//
-//				int lenght = sessionsList.size() - 1;
-//				String[] arrString = new String[lenght];
-//				for (int i = 0; i < lenght; i++)
-//					arrString[i] = sessionsList.get(i).toString();
-//				occasionsList.setListData(arrString);
+				// CreateInvitationTO cTo = new CreateInvitationTO(
+				// dateFieldText.getText());
+				// sessionsList = facade.getSessions(cTo);
+				//
+				// int lenght = sessionsList.size() - 1;
+				// String[] arrString = new String[lenght];
+				// for (int i = 0; i < lenght; i++)
+				// arrString[i] = sessionsList.get(i).toString();
+				// occasionsList.setListData(arrString);
 
 			} else
 				JOptionPane.showMessageDialog(null, "Felaktig inmatning");
@@ -85,6 +85,7 @@ public class PrintPanel extends JPanel {
 		}
 
 	}
+
 	private boolean validateTextFields(String dateInput) {
 		boolean result = true;
 		if (!(dateInput.length() == 10))
