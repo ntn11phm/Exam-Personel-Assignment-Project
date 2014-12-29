@@ -25,9 +25,10 @@ public class PrintSessions {
 		try {
 			dateLocation = new ArrayList<PrintSessionsTO>();
 			while (rs.next()) {
-				dateLocation.add(new PrintSessionsTO(rs
-						.getString("session_time"), rs
-						.getString("session_location"), rs.getInt("session_id")));
+				dateLocation
+						.add(new PrintSessionsTO(rs.getString("session_time"),
+								rs.getString("session_location"), rs
+										.getInt("session_id")));
 			}
 			rs.close();
 		} catch (SQLException e) {

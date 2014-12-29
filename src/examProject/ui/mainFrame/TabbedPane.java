@@ -60,6 +60,8 @@ public class TabbedPane extends JFrame {
 		//jtp.setMnemonicAt(0, KeyEvent.VK_2);
 		//jtp.addTab("Glömt Lösenord", new ForgotPwdPanel(backendFacade));
 		//jtp.setMnemonicAt(0, KeyEvent.VK_3);
+		jtp.addTab("Skriv ut", new SessionsPrintPanel(backendFacade));
+		jtp.setMnemonicAt(0, KeyEvent.VK_3);
 		jtp.addTab("Uppdatera användare", new UI_LoadUserInformation(backendFacade));
 		jtp.setMnemonicAt(0, KeyEvent.VK_4);
 		jtp.addTab("Importera", new KronoxImportPanel(backendFacade));

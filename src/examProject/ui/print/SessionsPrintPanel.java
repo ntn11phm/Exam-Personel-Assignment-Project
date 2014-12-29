@@ -79,7 +79,6 @@ public class SessionsPrintPanel extends JPanel {
 	private void loadSessionsButtonClickedMethod() {
 		if (!dateFieldText.getText().equals("")) {
 			if (validateTextFields(dateFieldText.getText())) {
-				//PrintSessionsTO pTo = new PrintSessionsTO(dateFieldText.getText());
 				printSessionsList = facade.getSessions(dateFieldText.getText());
 				int length = printSessionsList.size() -1;
 				String[]arrString = new String[length];
