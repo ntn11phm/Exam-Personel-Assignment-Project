@@ -138,5 +138,9 @@ public class BackendFacade {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
 		return ps.storeToSessionHost(currentList);
 	}
+	public boolean removeHostSessionPost(int host_id, int sessionId) {
+		PopulateSessions ps = new PopulateSessions(dbManipulator);
+		return ps.removeHostSessionPost(host_id, sessionId);
+	}
 
 }
