@@ -32,6 +32,7 @@ public class AnswerInvitationsListener {
 		this.panel = dip.getPanel();
 		answerPanel.getScollPane().setViewportView(panel);
 		answerPanel.repaint();
+		
 	}
 	
 	private void commitAnswers() {

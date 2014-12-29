@@ -8,13 +8,16 @@ import examProject.logic.createInv.CreateInvitation;
 import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
 import examProject.logic.populateSessions.PopulateSessions;
+import examProject.logic.printSessions.PrintSessions;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.AddUser;
 import examProject.transferObjects.CreateInvitationTO;
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
+import examProject.transferObjects.HostSessionTO;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
+import examProject.transferObjects.PrintSessionsTO;
 import examProject.transferObjects.SessionLocationTO;
 import examProject.transferObjects.UpdateUserTransfere;
 import examProject.transferObjects.LoggedInUserTO;
@@ -128,9 +131,22 @@ public class BackendFacade {
 		CreateInvitation ci = new CreateInvitation(dbManipulator);
 		return ci.getSessions(cTo);
 	}
+	public List<PrintSessionsTO>getSessions(String date){
+		PrintSessions ps = new PrintSessions(dbManipulator);
+		return ps.getSessions(date);
+	}
 	public List<HostTO> getHostsForSession(int sessionId) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
 		return ps.getHostsForSession(sessionId);
+	}
+	
+	public boolean storeToSessionHost(List<HostSessionTO> currentList) {
+		PopulateSessions ps = new PopulateSessions(dbManipulator);
+		return ps.storeToSessionHost(currentList);
+	}
+	public boolean removeHostSessionPost(int host_id, int sessionId) {
+		PopulateSessions ps = new PopulateSessions(dbManipulator);
+		return ps.removeHostSessionPost(host_id, sessionId);
 	}
 
 }

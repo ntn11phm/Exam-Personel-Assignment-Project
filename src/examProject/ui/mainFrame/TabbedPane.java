@@ -18,7 +18,7 @@ import examProject.ui.createInvitation.CreateInvitationPanel;
 import examProject.ui.forgotPwd.ForgotPwdPanel;
 import examProject.ui.kronoxImport.KronoxImportPanel;
 import examProject.ui.populateSessions.PopulateSessionsPanel;
-import examProject.ui.print.PrintPanel;
+import examProject.ui.print.SessionsPrintPanel;
 import examProject.ui.setUpDb.SetUpDbGui;
 import examProject.ui.updateUserInformation.SetupIncompleteException;
 import examProject.ui.updateUserInformation.UI_LoadUserInformation;
@@ -60,6 +60,8 @@ public class TabbedPane extends JFrame {
 		//jtp.setMnemonicAt(0, KeyEvent.VK_2);
 		//jtp.addTab("Glömt Lösenord", new ForgotPwdPanel(backendFacade));
 		//jtp.setMnemonicAt(0, KeyEvent.VK_3);
+		jtp.addTab("Skriv ut", new SessionsPrintPanel(backendFacade));
+		jtp.setMnemonicAt(0, KeyEvent.VK_3);
 		jtp.addTab("Uppdatera användare", new UI_LoadUserInformation(backendFacade));
 		jtp.setMnemonicAt(0, KeyEvent.VK_4);
 		jtp.addTab("Importera", new KronoxImportPanel(backendFacade));

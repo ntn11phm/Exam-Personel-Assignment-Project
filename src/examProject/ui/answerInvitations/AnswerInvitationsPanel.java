@@ -1,9 +1,13 @@
 package examProject.ui.answerInvitations;
 
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
 import examProject.logic.BackendFacade;
+
 import javax.swing.JLabel;
 
 public class AnswerInvitationsPanel extends JPanel {
@@ -29,6 +33,7 @@ public class AnswerInvitationsPanel extends JPanel {
 	}
 	
 	private void addCtrls() {
+		scrollPane.setPreferredSize(new Dimension(240,500));
 		add(scrollPane);
 		add(btnCommitAnswers);
 		add(lblStatusText);
