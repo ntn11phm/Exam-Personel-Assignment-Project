@@ -131,9 +131,9 @@ public class BackendFacade {
 		CreateInvitation ci = new CreateInvitation(dbManipulator);
 		return ci.getSessions(cTo);
 	}
-	public List<PrintSessionsTO>getSessions(PrintSessionsTO pTo){
+	public List<PrintSessionsTO>getSessions(String date){
 		PrintSessions ps = new PrintSessions(dbManipulator);
-		return ps.getSessions(pTo);
+		return ps.getSessions(date);
 	}
 	public List<HostTO> getHostsForSession(int sessionId) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
