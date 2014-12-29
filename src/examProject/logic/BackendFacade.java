@@ -8,6 +8,7 @@ import examProject.logic.createInv.CreateInvitation;
 import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
 import examProject.logic.populateSessions.PopulateSessions;
+import examProject.logic.printSessions.PrintSessions;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.AddUser;
 import examProject.transferObjects.CreateInvitationTO;
@@ -16,6 +17,7 @@ import examProject.transferObjects.ExamOccationTO;
 import examProject.transferObjects.HostSessionTO;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
+import examProject.transferObjects.PrintSessionsTO;
 import examProject.transferObjects.SessionLocationTO;
 import examProject.transferObjects.UpdateUserTransfere;
 import examProject.transferObjects.LoggedInUserTO;
@@ -128,6 +130,10 @@ public class BackendFacade {
 	public List<HsiTO> getSessions(CreateInvitationTO cTo) {
 		CreateInvitation ci = new CreateInvitation(dbManipulator);
 		return ci.getSessions(cTo);
+	}
+	public List<HsiTO>getSessions(PrintSessionsTO pTo){
+		PrintSessions ps = new PrintSessions(dbManipulator);
+		return ps.getSessions(pTo);
 	}
 	public List<HostTO> getHostsForSession(int sessionId) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);

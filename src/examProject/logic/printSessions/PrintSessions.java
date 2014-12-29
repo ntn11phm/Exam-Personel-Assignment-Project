@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import examProject.dao.DbManipulator;
-import examProject.transferObjects.CreateInvitationTO;
 import examProject.transferObjects.HsiTO;
 import examProject.transferObjects.PrintSessionsTO;
 
