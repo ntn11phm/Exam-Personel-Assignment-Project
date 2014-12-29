@@ -64,8 +64,10 @@ public class PopulateSessionsListener {
 			psPanel.getHost1_tb().setText(hostListCtrl.getSelectedValue());
 			inUseHostList.add(hostList.get(hostListCtrl.getSelectedIndex()));
 			hostList.remove(hostListCtrl.getSelectedIndex());
-			if (target != -1)
+			if (target != -1) {
 				hostList.add(tmpHost);
+				backendFacade.removeHostSessionPost(tmpHost.getHost_id(), getSessionId());
+			}
 			loadHostListCtrl();
 		}
 	}
@@ -86,8 +88,10 @@ public class PopulateSessionsListener {
 			psPanel.getHost2_tb().setText(hostListCtrl.getSelectedValue());
 			inUseHostList.add(hostList.get(hostListCtrl.getSelectedIndex()));
 			hostList.remove(hostListCtrl.getSelectedIndex());
-			if (target != -1)
+			if (target != -1) {
 				hostList.add(tmpHost);
+				backendFacade.removeHostSessionPost(tmpHost.getHost_id(), getSessionId());
+			}
 			loadHostListCtrl();
 		}
 	}
@@ -108,8 +112,10 @@ public class PopulateSessionsListener {
 			psPanel.getHost3_tb().setText(hostListCtrl.getSelectedValue());
 			inUseHostList.add(hostList.get(hostListCtrl.getSelectedIndex()));
 			hostList.remove(hostListCtrl.getSelectedIndex());
-			if (target != -1)
+			if (target != -1) {
 				hostList.add(tmpHost);
+				backendFacade.removeHostSessionPost(tmpHost.getHost_id(), getSessionId());
+			}
 			loadHostListCtrl();
 		}
 	}
@@ -130,8 +136,10 @@ public class PopulateSessionsListener {
 			psPanel.getHost4_tb().setText(hostListCtrl.getSelectedValue());
 			inUseHostList.add(hostList.get(hostListCtrl.getSelectedIndex()));
 			hostList.remove(hostListCtrl.getSelectedIndex());
-			if (target != -1)
+			if (target != -1) {
 				hostList.add(tmpHost);
+				backendFacade.removeHostSessionPost(tmpHost.getHost_id(), getSessionId());
+			}
 			loadHostListCtrl();
 		}
 	}
