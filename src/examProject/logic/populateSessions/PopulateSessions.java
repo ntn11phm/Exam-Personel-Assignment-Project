@@ -63,9 +63,11 @@ public class PopulateSessions {
 		return result;
 	}
 	
-	public List<HostTO> getHostsForSession(String date, String time, String location) {
+	public List<HostTO> getHostsForSession(int sessionId) {
 		List<HostTO> hostList = new ArrayList<HostTO>();
-		
+		dbm.openDb();
+		String sqlCommand = "SELECT * FROM hosts ";
+		dbm.closeDb();
 		return hostList;
 	}
 

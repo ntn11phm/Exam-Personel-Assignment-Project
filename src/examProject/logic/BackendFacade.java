@@ -128,9 +128,9 @@ public class BackendFacade {
 		CreateInvitation ci = new CreateInvitation(dbManipulator);
 		return ci.getSessions(cTo);
 	}
-	public List<HostTO> getHostsForSession(String date, String time, String location) {
+	public List<HostTO> getHostsForSession(int sessionId) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
-		return ps.getHostsForSession(date, time, location);
+		return ps.getHostsForSession(sessionId);
 	}
 
 }
