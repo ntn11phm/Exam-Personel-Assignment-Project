@@ -4,6 +4,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 public class HostsPrintPanel extends JPanel {
+	private static final long serialVersionUID = 60477093723435356L;
 	private JCheckBox firstName = new JCheckBox("Förnamn");
 	private JCheckBox lastName = new JCheckBox("Efternamn");
 	private JCheckBox civicNr = new JCheckBox("Personnummer");
