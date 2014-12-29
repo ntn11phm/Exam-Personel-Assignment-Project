@@ -1,5 +1,7 @@
 package examProject.logic;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import examProject.dao.DbManipulator;
 import examProject.dao.UpdateUsersInformation;
 import examProject.transferObjects.LoggedInUserTO;
@@ -18,13 +20,12 @@ public class UpdateUserLogic {
 	public boolean uppdateUser() {
 		dBm.openDb();
 		boolean result = false;
-		String sqlCommand = "SELECT user_id FROM hosts WHERE first_name = 'Olle';";
-						//+ uppdateUser.getFirstName() + "';";
+		String sqlCommand = "SELECT user_id FROM hosts WHERE first_name = '" + uppdateUser.getFirstName() + "';";
 		ResultSet rs = dBm.select(sqlCommand);
 		
 					
-		//	try {
-				//if (!rs.next()) {
+		/*try {
+				if (!rs.next()) {*/
 					UpdateUsersInformation updateUser = new UpdateUsersInformation(uppdateUser, dBm);			
 					dBm.insert(updateUser.updateUserStrCommand());	
 					sqlCommand = "UPDATE hosts SET (first_name = ' " + uppdateUser.getFirstName()+ "'),'"+"last-name = ' "+ uppdateUser.getLastName()+ "'),'"+ 
@@ -32,10 +33,9 @@ public class UpdateUserLogic {
 					dBm.update(sqlCommand);
 					result = true;
 					
-				//}
-		/*	} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			/*	}
+		} catch (Exception e) {} finally {
+			dBm.closeDb();
 			}*/
 		return result;
 	}

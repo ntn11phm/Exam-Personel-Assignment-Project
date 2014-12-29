@@ -39,9 +39,12 @@ public class CheckIfTheInputIsCorrect {
 							counter++;
 					}
 					if (counter == textFieldLength)
-						System.out.println(" done " + textFieldText);
+						//System.out.println(" done " + textFieldText);
+						System.out.print("");
+
 					else {
-						System.out.println(" nej " + textFieldText);
+						//System.out.println(" nej " + textFieldText);
+						System.out.print("");
 						JOptionPane.showMessageDialog(null,
 								"Den inmatade förnamn är inte rätt");
 						// använd null för att dialogrutan ska visas i mitte på skärmen
@@ -72,10 +75,12 @@ public class CheckIfTheInputIsCorrect {
 				if (textFieldLength > 1) {
 					if (textFieldText.contains("@")) {
 						b = true;
-						System.out.println("det finns @ " + b);
+						//System.out.println("det finns @ " + b);
+						System.out.print("");
 
 					} else
-						System.out.println("det finns inte @ " + b);
+						System.out.println("");
+						//System.out.println("det finns inte @ " + b);
 				} else
 					JOptionPane.showMessageDialog(null, "Mata in rätt e-mail");
 				for (int i = 0; i < textFieldLength; i++) {
@@ -94,7 +99,8 @@ public class CheckIfTheInputIsCorrect {
 						dotCounter = 1 ;
 				}
 				if (counter == textFieldLength & dotCounter == 1)
-					System.out.println(" done " + textFieldText);
+					System.out.print("");
+					//System.out.println(" done " + textFieldText);
 				else {
 					JOptionPane.showMessageDialog(null, "Du får använda bara följande tecken (- , _ , . , nummer, små och stora bokstäver )");
 				}

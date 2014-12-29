@@ -3,13 +3,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import examProject.logic.BackendFacade;
+import examProject.transferObjects.LoggedInUserTO;
 import examProject.transferObjects.UpdateUserTransfere;
 
 @SuppressWarnings("serial")
@@ -37,7 +40,7 @@ public class UI_LoadUserInformation extends JPanel {
 	private JTextField zipCodeTextField = new JTextField();
 	private JTextField cityTextField = new JTextField(50);
 	private JTextField civicNRTextField = new JTextField();
-	private static JTextField emailTextField = new JTextField(75);
+	private JTextField emailTextField = new JTextField(75);
 	private JTextField retypeEmailTextField = new JTextField(75);
 	private JTextField phoneNrTextField = new JTextField();
 	private JTextField mobileNrTextField = new JTextField();
@@ -75,6 +78,9 @@ public class UI_LoadUserInformation extends JPanel {
 		update.setBounds(29, 400, 150, 28);
 		isActive.setBounds(300, 300, 150, 25);
 		isAdmin.setBounds(300, 330, 150, 25);	
+
+		
+		
 	}
 		private void addCtrls() {
 
@@ -129,8 +135,8 @@ public class UI_LoadUserInformation extends JPanel {
 		isAdmin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(e.getID() == ActionEvent.ACTION_PERFORMED ? "ACTION_PERFORMED"
-						: e.getID());
+			//	System.out.println(e.getID() == ActionEvent.ACTION_PERFORMED ? "ACTION_PERFORMED"
+				//		: e.getID());
 			}
 		});
 		isAdmin.addItemListener(new ItemListener() {
@@ -153,18 +159,24 @@ public class UI_LoadUserInformation extends JPanel {
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				System.out.println(e.getStateChange() == ItemEvent.SELECTED ? "SELECTED"
-						: "DESELECTED");
+				//System.out.println(e.getStateChange() == ItemEvent.SELECTED ? "SELECTED"
+					//	: "DESELECTED");
 			}
 		});
 	}
-
-	private void update() {   
-		
+	private boolean checkFielts(){
 		if (firstNameTextField.getText().length() > 0
 				& lastNameTextField.getText().length() > 0
 				& emailTextField.getText().length() > 0
-				& retypeEmailTextField.getText().length() > 0) {
+				& retypeEmailTextField.getText().length() > 0){
+			return true;
+		} else
+			return false;
+	}
+	private void update() {   
+	//	LoggedInUserTO lo = new LoggedInUserTO("Olle", user_id, is_admin, has_tmp_pwd)
+		
+		 if(checkFielts()){
  			checkIfFirstNameISCorrect();
 			checkIfLastNameISCorrect();
 			checkIfMailCorrect();
@@ -176,6 +188,8 @@ public class UI_LoadUserInformation extends JPanel {
 			checkIfAddressIsCorrest();
 			checkIfZipCodeIsCorrect();
 			UpdateUserTransfere updateUser = new UpdateUserTransfere(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());
+			facade.uppdateUser(updateUser);
+		
 		} else                                      		
 
 			JOptionPane.showMessageDialog(null,
@@ -190,8 +204,6 @@ public class UI_LoadUserInformation extends JPanel {
 			facade.uppdateUser(updateUser);
 			
 	}
-	
-	
 	
 	
 	// MEtod kollar om den inmatade förnamn är rätt
