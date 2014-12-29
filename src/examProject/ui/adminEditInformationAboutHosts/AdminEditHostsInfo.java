@@ -1,19 +1,21 @@
 package examProject.ui.adminEditInformationAboutHosts;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
 import examProject.logic.BackendFacade;
 import examProject.ui.updateUserInformation.UI_LoadUserInformation;
 
 public class AdminEditHostsInfo extends JPanel {
 	
-		private JPanel mainPanel = new JPanel();
+	private static final long serialVersionUID = 1L;
 		private String	listData[] = { "Item 1", "Item 2", "Item 3", "Item 4"};
-		private	JList listbox = new JList(listData);
+		private	JList<Object> listbox = new JList<Object>(listData);
 		private BackendFacade facade;
 	    JScrollPane scrollPanel = new JScrollPane(listbox);
 

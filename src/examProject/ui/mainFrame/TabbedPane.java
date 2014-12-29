@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import e.xamProject.ui.showInformationAboutHosts.ShowHostsInformation;
 import examProject.logic.BackendFacade;
 import examProject.logic.populateSessions.PopulateSessions;
 import examProject.transferObjects.LoggedInUserTO;
@@ -75,7 +76,7 @@ public class TabbedPane extends JFrame {
 		jtp.setMnemonicAt(0, KeyEvent.VK_A);
 		jtp.addTab("Admin redigerar info om värdar", new AdminEditHostsInfo(backendFacade));
 		jtp.setMnemonicAt(0, KeyEvent.VK_B);
-		jtp.addTab("Visa info om värdar", new AdminEditHostsInfo(backendFacade));		
+		jtp.addTab("Visa info om värdar", new ShowHostsInformation(backendFacade));		
 		jtp.setMnemonicAt(0, KeyEvent.VK_0);
 
 	}
