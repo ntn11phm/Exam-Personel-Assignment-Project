@@ -10,6 +10,7 @@ import examProject.logic.BackendFacade;
 import examProject.logic.populateSessions.PopulateSessions;
 import examProject.transferObjects.LoggedInUserTO;
 import examProject.ui.addUser.AddUserGUI;
+import examProject.ui.adminEditInformationAboutHosts.AdminEditHostsInfo;
 import examProject.ui.answerInvitations.AnswerInvitationsPanel;
 import examProject.ui.changePwd.ChangePwdPanel;
 import examProject.ui.createInvitation.CreateInvitationPanel;
@@ -71,6 +72,10 @@ public class TabbedPane extends JFrame {
 		jtp.addTab("Populera sessioner", new PopulateSessionsPanel(backendFacade));
 		jtp.setMnemonicAt(0, KeyEvent.VK_9);
 		jtp.addTab("Skriv ut", new PrintPanel(backendFacade));
+		jtp.setMnemonicAt(0, KeyEvent.VK_A);
+		jtp.addTab("Admin redigerar info om värdar", new AdminEditHostsInfo(backendFacade));
+		jtp.setMnemonicAt(0, KeyEvent.VK_B);
+		jtp.addTab("Visa info om värdar", new AdminEditHostsInfo(backendFacade));		
 		jtp.setMnemonicAt(0, KeyEvent.VK_0);
 
 	}
