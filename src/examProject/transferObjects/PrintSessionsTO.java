@@ -18,8 +18,9 @@ public class PrintSessionsTO {
 	public String getSessionLocation(){
 		return sessionLocation;
 	}
+	
 	public String toString(List<PrintSessionsTO> printSessionsList) {
-		return "" + sessionLocation + "   " + sessionTime;
+		return "" + sessionTime + "   " + sessionLocation;
 	}
 
 }

@@ -79,16 +79,23 @@ public class SessionsPrintPanel extends JPanel {
 	private void loadSessionsButtonClickedMethod() {
 		if (!dateFieldText.getText().equals("")) {
 			if (validateTextFields(dateFieldText.getText())) {
+				PrintSessionsTO pTo = new PrintSessionsTO(dateFieldText.getText(), null);
+				sessionsList = (JList<String>) facade.getSessions(pTo);
+				int length = printSessionsList.size() -1;
+				String[]arrString = new String[length];
+				for(int i = 0; i < length; i++)
+					arrString[i] = printSessionsList.get(i).toString();
+				((JList<String>) printSessionsList).setListData(arrString);
 
-				// CreateInvitationTO cTo = new CreateInvitationTO(
-				// dateFieldText.getText());
-				// sessionsList = facade.getSessions(cTo);
-				//
-				// int lenght = sessionsList.size() - 1;
-				// String[] arrString = new String[lenght];
-				// for (int i = 0; i < lenght; i++)
-				// arrString[i] = sessionsList.get(i).toString();
-				// occasionsList.setListData(arrString));
+//				PrintSessionsTO pTo = new PrintSessionsTO(
+//				 dateFieldText.getText());
+//				 sessionsList = facade.getSessions(pTo);
+//				
+//				 int lenght = sessionsList.size() - 1;
+//				 String[] arrString = new String[lenght];
+//				 for (int i = 0; i < lenght; i++)
+//				 arrString[i] = sessionsList.get(i).toString();
+//				 sessionsList.setListData(arrString));
 
 			} else
 				JOptionPane.showMessageDialog(null, "Felaktig inmatning");
