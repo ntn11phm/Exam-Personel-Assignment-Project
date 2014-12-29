@@ -1,5 +1,6 @@
 package examProject.ui.answerInvitations;
 
+import java.awt.Dimension;
 import java.util.List;
 
 import javax.swing.JCheckBox;
@@ -39,6 +40,7 @@ public class DisplayInvitationsPanel extends JPanel {
 			add(cbTmp);
 			yPos += componentSizeY;
 		}
+		setPreferredSize(new Dimension(xPos,yPos));
 	}
 	
 	public JPanel getPanel() {
