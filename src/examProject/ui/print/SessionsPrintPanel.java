@@ -1,7 +1,9 @@
 package examProject.ui.print;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,21 +14,24 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import examProject.logic.BackendFacade;
+import examProject.transferObjects.PrintSessionsTO;
 
-public class PrintPanel extends JPanel {
+public class SessionsPrintPanel extends JPanel {
 	private BackendFacade facade;
 	private static final long serialVersionUID = -3121763534904494306L;
-	private JScrollPane sessionsListPane = new JScrollPane();
-	private JScrollPane hostsListPane = new JScrollPane();
 	private JList<String> sessionsList = new JList<String>();
 	private JList<String> hostList = new JList<String>();
+	private JScrollPane sessionsListPane = new JScrollPane(sessionsList);
+	private JScrollPane hostsListPane = new JScrollPane(hostList);
 	private JLabel dateLabel = new JLabel("Välj datum");
 	private JTextField dateFieldText = new JTextField();
 	private JButton printButton = new JButton("Skriv ut");
 	private JButton loadSessionsButton = new JButton("Visa tillfälle");
 	private JButton loadHostsButton = new JButton("Visa värdar");
+	private List<PrintSessionsTO> printSessionsList;
+	
 
-	public PrintPanel(BackendFacade facade) {
+	public SessionsPrintPanel(BackendFacade facade) {
 		this.facade = facade;
 		setLayout(null);
 		setBounds();
@@ -37,7 +42,9 @@ public class PrintPanel extends JPanel {
 
 	private void setBounds() {
 		sessionsListPane.setBounds(23, 129, 130, 156);
+		sessionsListPane.setViewportView(sessionsList);
 		hostsListPane.setBounds(206, 129, 130, 156);
+		hostsListPane.setViewportView(hostList);
 		dateLabel.setBounds(23, 11, 130, 29);
 		dateFieldText.setBounds(23, 42, 130, 29);
 		dateFieldText.setToolTipText("Datumformat: yyyy-mm-dd");
@@ -83,7 +90,7 @@ public class PrintPanel extends JPanel {
 				// String[] arrString = new String[lenght];
 				// for (int i = 0; i < lenght; i++)
 				// arrString[i] = sessionsList.get(i).toString();
-				// occasionsList.setListData(arrString);
+				// occasionsList.setListData(arrString));
 
 			} else
 				JOptionPane.showMessageDialog(null, "Felaktig inmatning");

@@ -18,7 +18,7 @@ import examProject.ui.createInvitation.CreateInvitationPanel;
 import examProject.ui.forgotPwd.ForgotPwdPanel;
 import examProject.ui.kronoxImport.KronoxImportPanel;
 import examProject.ui.populateSessions.PopulateSessionsPanel;
-import examProject.ui.print.PrintPanel;
+import examProject.ui.print.SessionsPrintPanel;
 import examProject.ui.setUpDb.SetUpDbGui;
 import examProject.ui.updateUserInformation.SetupIncompleteException;
 import examProject.ui.updateUserInformation.UI_LoadUserInformation;
