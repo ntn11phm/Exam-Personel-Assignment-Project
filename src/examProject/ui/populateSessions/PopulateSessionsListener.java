@@ -45,6 +45,10 @@ public class PopulateSessionsListener {
 		psPanel.gethost2_btnClear().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {clearHost2();}});
 		psPanel.gethost3_btnClear().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {clearHost3();}});
 		psPanel.gethost4_btnClear().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {clearHost4();}});
+		psPanel.getHost1_cb().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {isSaved=false;}});
+		psPanel.getHost2_cb().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {isSaved=false;}});
+		psPanel.getHost3_cb().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {isSaved=false;}});
+		psPanel.getHost4_cb().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {isSaved=false;}});
 		
 	}
 	
