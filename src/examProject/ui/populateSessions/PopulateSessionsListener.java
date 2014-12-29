@@ -6,16 +6,12 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-
 import examProject.logic.BackendFacade;
-import examProject.transferObjects.CreateInvitationTO;
 import examProject.transferObjects.HostSessionTO;
 import examProject.transferObjects.HostTO;
-import examProject.transferObjects.HsiTO;
 import examProject.transferObjects.SessionLocationTO;
 
 public class PopulateSessionsListener {
@@ -216,20 +212,21 @@ public class PopulateSessionsListener {
 		if(!isSaved) {
 			if(hasHeadHost()) {
 				toStoreList = new ArrayList<HostSessionTO>();
+				boolean isResponsible = false;
 				for (int x = 0; x < 4; x++) {
-					int host_id = -1;
-					String [] parts = psPanel.getHost1_tb().getText().split(" "); 
-					if (x==1)
+					String [] parts = psPanel.getHost1_tb().getText().split(" ");
+					isResponsible = psPanel.getHost1_cb().isSelected();
+					if (x==1) {
 						parts = psPanel.getHost2_tb().getText().split(" ");
-					else if (x==2)
+						isResponsible = psPanel.getHost2_cb().isSelected();
+					} else if (x==2) {
 						parts = psPanel.getHost3_tb().getText().split(" ");
-					else if (x==3)
+						isResponsible = psPanel.getHost3_cb().isSelected();
+					} else if (x==3) {
 						parts = psPanel.getHost4_tb().getText().split(" ");
-//					for (int i = 0; i < inUseHostList.size(); i++)
-//						if (inUseHostList.get(i).getLastName().equals(parts[1])) 
-//							if (inUseHostList.get(i).getFirstName().equals(parts[0]))
-//								host_id = inUseHostList.get(i).getHost_id();
-					//toStoreList.add(new HostSessionTO(session_id, parts[2], isResponsible));
+						isResponsible = psPanel.getHost4_cb().isSelected();
+					}
+					toStoreList.add(new HostSessionTO(getSessionId(), Integer.parseInt(parts[2]), isResponsible));
 				}
 				isSaved = true;
 			} else
@@ -237,14 +234,13 @@ public class PopulateSessionsListener {
 		}
 	}
 	
-//	private int getSessionId() {
-//		int result = -1;
-//		String []parts = psPanel.getSessionCb().getSelectedItem().toString().split(" ");
-//		for (int i = 0; i < sessionList.size(); i++)
-//			if (sessionList.get(i).getDate().equals(parts[0]) && sessionList.get(i).getTime().equals(parts[1]))
-//				result = sessionList.get(i).g
-//		return result;
-//	}
+	private int getSessionId() {
+		int result = -1;
+		for (int i = 0; i < sessionList.size(); i++)
+			if (sessionList.get(i).getDate().equals(psPanel.getTbDate().getText()) && sessionList.get(i).getTime().equals(getTime()) && sessionList.get(i).getLocation().equals(psPanel.getSessionCb().getSelectedItem().toString()))
+				result = sessionList.get(i).getSession_id();
+		return result;
+	}
 	
 	private boolean hasHeadHost() {
 		boolean result = false;

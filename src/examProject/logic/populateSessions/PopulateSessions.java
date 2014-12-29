@@ -55,7 +55,7 @@ public class PopulateSessions {
 		ResultSet rs = dbm.select(sqlCommand);
 		try {
 			while (rs.next()){
-				result.add(new SessionLocationTO(rs.getString("session_location"), rs.getInt("session_id")));
+				result.add(new SessionLocationTO(rs.getString("session_location"), rs.getInt("session_id"), date, time));
 			}
 		} catch (SQLException e) {}
 		dbm.closeDb();
