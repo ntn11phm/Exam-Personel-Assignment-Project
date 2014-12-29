@@ -16,12 +16,15 @@ import examProject.logic.BackendFacade;
 public class PrintPanel extends JPanel {
 	private BackendFacade facade;
 	private static final long serialVersionUID = -3121763534904494306L;
-	private JScrollPane listPane = new JScrollPane();
+	private JScrollPane sessionsListPane = new JScrollPane();
+	private JScrollPane hostsListPane = new JScrollPane();
 	private JList<String> sessionsList = new JList<String>();
+	private JList<String> hostList = new JList<String>();
 	private JLabel dateLabel = new JLabel("Välj datum");
 	private JTextField dateFieldText = new JTextField();
 	private JButton printButton = new JButton("Skriv ut");
-	private JButton loadButton = new JButton("Visa tillfällen");
+	private JButton loadSessionsButton = new JButton("Visa tillfälle");
+	private JButton loadHostsButton = new JButton("Visa värdar");
 
 	public PrintPanel(BackendFacade facade) {
 		this.facade = facade;
@@ -33,26 +36,30 @@ public class PrintPanel extends JPanel {
 	}
 
 	private void setBounds() {
-		listPane.setBounds(23, 129, 130, 156);
+		sessionsListPane.setBounds(23, 129, 130, 156);
+		hostsListPane.setBounds(206, 129, 130, 156);
 		dateLabel.setBounds(23, 11, 130, 29);
 		dateFieldText.setBounds(23, 42, 130, 29);
 		dateFieldText.setToolTipText("Datumformat: yyyy-mm-dd");
-		loadButton.setBounds(23, 82, 130, 29);
-		printButton.setBounds(23, 296, 130, 29);
+		loadSessionsButton.setBounds(23, 82, 130, 29);
+		printButton.setBounds(23, 401, 130, 29);
+		loadHostsButton.setBounds(206, 82, 130, 29);
 	}
 
 	private void addCtrls() {
-		add(listPane);
+		add(hostsListPane);
+		add(sessionsListPane);
 		add(dateLabel);
 		add(dateFieldText);
 		add(printButton);
-		add(loadButton);
+		add(loadSessionsButton);
+		add(loadHostsButton);
 	}
 
 	private void buttonListener() {
-		loadButton.addActionListener(new ActionListener() {
+		loadSessionsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				loadButtonClickedMethod();
+				loadSessionsButtonClickedMethod();
 
 			}
 		});
@@ -64,7 +71,7 @@ public class PrintPanel extends JPanel {
 		});
 	}
 
-	private void loadButtonClickedMethod() {
+	private void loadSessionsButtonClickedMethod() {
 		if (!dateFieldText.getText().equals("")) {
 			if (validateTextFields(dateFieldText.getText())) {
 
