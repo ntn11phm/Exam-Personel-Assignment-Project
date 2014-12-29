@@ -1,6 +1,5 @@
 package examProject.ui.print;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -29,7 +28,6 @@ public class SessionsPrintPanel extends JPanel {
 	private JButton loadSessionsButton = new JButton("Visa tillfälle");
 	private JButton loadHostsButton = new JButton("Visa värdar");
 	private List<PrintSessionsTO> printSessionsList;
-	
 
 	public SessionsPrintPanel(BackendFacade facade) {
 		this.facade = facade;
