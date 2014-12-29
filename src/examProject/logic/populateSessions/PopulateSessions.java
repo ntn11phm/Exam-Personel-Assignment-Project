@@ -94,6 +94,9 @@ public class PopulateSessions {
 						+ currentList.get(i).getSession_id() + ", " + currentList.get(i).getHost_id() + ", " 
 						+ currentList.get(i).isResponsible() + ");";
 				result = dbm.insert(sqlCommand);
+			} else {
+				String sqlCommand = "UPDATE host_sessions SET is_responsible =" + currentList.get(i).isResponsible() + " WHERE session_id =" + currentList.get(i).getSession_id() + " AND host_id =" + currentList.get(i).getHost_id() + ";";
+				result = dbm.update(sqlCommand);
 			}
 		}
 		dbm.closeDb();
