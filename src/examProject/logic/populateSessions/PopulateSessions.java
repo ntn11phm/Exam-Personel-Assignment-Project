@@ -88,4 +88,13 @@ public class PopulateSessions {
 		dbm.closeDb();
 		return result;
 	}
+
+	public boolean removeHostSessionPost(int host_id, int sessionId) {
+		boolean result = false;
+		dbm.openDb();
+		String sqlCommand = "DELETE FROM host_sessions WHERE host_id =" + host_id + " AND session_id =" + sessionId+ ";";
+		result = dbm.delete(sqlCommand);
+		dbm.closeDb();
+		return result;
+	}
 }
