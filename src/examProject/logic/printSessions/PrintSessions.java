@@ -15,19 +15,19 @@ public class PrintSessions {
 		this.dBm = dBm;
 	}
 
-	public List<PrintSessionsTO> getSessions(PrintSessionsTO pTo) {
+	public List<PrintSessionsTO> getSessions(String date) {
 		List<PrintSessionsTO> dateLocation = null;
 		dBm.openDb();
-		String sqlCommand = "SELECT session_date, session_location FROM sessions WHERE session_date = '"
-				+ pTo.getSessionTime()
-				+ "' GROUP BY session_date, session_time ORDER BY session_date;";
+		String sqlCommand = "SELECT session_time, session_location, session_id FROM sessions WHERE session_date = '"
+				+ date
+				+ "' GROUP BY session_time, session_location, session_id ORDER BY session_date;";
 		ResultSet rs = dBm.select(sqlCommand);
 		try {
 			dateLocation = new ArrayList<PrintSessionsTO>();
 			while (rs.next()) {
 				dateLocation.add(new PrintSessionsTO(rs
-						.getString("session_date"), rs
-						.getString("session_location")));
+						.getString("session_time"), rs
+						.getString("session_location"), rs.getInt("session_id")));
 			}
 			rs.close();
 		} catch (SQLException e) {

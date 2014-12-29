@@ -6,10 +6,12 @@ public class PrintSessionsTO {
 	
 	private String sessionTime;
 	private String sessionLocation;
+	private int sessionId;
 	
-	public PrintSessionsTO(String sessionTime, String sessionLocation){
+	public PrintSessionsTO(String sessionTime, String sessionLocation, int sessionId){
 		this.sessionTime = sessionTime;
 		this.sessionLocation = sessionLocation;
+		this.sessionId = sessionId;
 		
 	}
 	public String getSessionTime(){
@@ -18,8 +20,11 @@ public class PrintSessionsTO {
 	public String getSessionLocation(){
 		return sessionLocation;
 	}
+	public int getSessionId(){
+		return sessionId;
+	}
 	
-	public String toString(List<PrintSessionsTO> printSessionsList) {
+	public String toString() {
 		return "" + sessionTime + "   " + sessionLocation;
 	}
 
