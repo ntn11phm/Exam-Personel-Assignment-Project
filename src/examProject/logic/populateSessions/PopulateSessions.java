@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import examProject.dao.DbManipulator;
+import examProject.transferObjects.HostSessionTO;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.SessionLocationTO;
 
@@ -61,5 +62,25 @@ public class PopulateSessions {
 		dbm.closeDb();
 		return result;
 	}
+	
+	public List<HostTO> getHostsForSession(int sessionId) {
+		List<HostTO> hostList = new ArrayList<HostTO>();
+		dbm.openDb();
+		String sqlCommand = "SELECT * FROM hosts ";
+		dbm.closeDb();
+		return hostList;
+	}
 
+	public boolean storeToSessionHost(List<HostSessionTO> currentList) {
+		boolean result = false;
+		dbm.openDb();
+		for (int i = 0; i < currentList.size(); i++) {
+			String sqlCommand = "INSERT INTO host_sessions (session_id, host_id, is_responsible) VALUES (" 
+					+ currentList.get(i).getSession_id() + ", " + currentList.get(i).getHost_id() + ", " 
+					+ currentList.get(i).isResponsible() + ");";
+			result = dbm.insert(sqlCommand);
+		}
+		dbm.closeDb();
+		return result;
+	}
 }
