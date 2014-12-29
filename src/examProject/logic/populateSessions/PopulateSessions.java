@@ -62,6 +62,12 @@ public class PopulateSessions {
 		dbm.closeDb();
 		return result;
 	}
+	
+	public List<HostTO> getHostsForSession(String date, String time, String location) {
+		List<HostTO> hostList = new ArrayList<HostTO>();
+		
+		return hostList;
+	}
 
 	public boolean storeToSessionHost(List<HostSessionTO> currentList) {
 		boolean result = false;

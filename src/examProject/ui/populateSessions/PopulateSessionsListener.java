@@ -260,7 +260,7 @@ public class PopulateSessionsListener {
 	
 	private void cbSessionsChanged() {
 		if(noSaveCheck()) {
-			
+			List<HostTO> hostList = backendFacade.getHostsForSession(psPanel.getTbDate().getText(), getTime(), psPanel.getSessionCb().getSelectedItem().toString());
 		}
 	}
 	
