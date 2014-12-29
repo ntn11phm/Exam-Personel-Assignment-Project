@@ -29,10 +29,12 @@ public class UpdateUserTransfere {
 			this.isActive = isActive;
 		}
 		public String getFirstName() {
+			System.out.println("öö " +firstName);
 			return firstName;
 		}
 
 		public String getLastName() {
+			System.out.println("ööö " +firstName);
 			return lastName;
 		}
 
