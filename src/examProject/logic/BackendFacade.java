@@ -13,6 +13,7 @@ import examProject.transferObjects.AddUser;
 import examProject.transferObjects.CreateInvitationTO;
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
+import examProject.transferObjects.HostSessionTO;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
 import examProject.transferObjects.SessionLocationTO;
@@ -131,6 +132,11 @@ public class BackendFacade {
 	public List<HostTO> getHostsForSession(int sessionId) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
 		return ps.getHostsForSession(sessionId);
+	}
+	
+	public boolean storeToSessionHost(List<HostSessionTO> currentList) {
+		PopulateSessions ps = new PopulateSessions(dbManipulator);
+		return ps.storeToSessionHost(currentList);
 	}
 
 }

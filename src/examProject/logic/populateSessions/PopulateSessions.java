@@ -66,7 +66,12 @@ public class PopulateSessions {
 	public List<HostTO> getHostsForSession(int sessionId) {
 		List<HostTO> hostList = new ArrayList<HostTO>();
 		dbm.openDb();
-		String sqlCommand = "SELECT * FROM hosts ";
+		String sqlCommand = "SELECT hosts.host_id, first_name, last_name, is_responsible FROM hosts, host_sessions WHERE session_id =" + sessionId + " AND hosts.host_id = host_sessions.host_id;";
+		ResultSet rs = dbm.select(sqlCommand);
+		try {
+			while (rs.next())
+				hostList.add(new HostTO(rs.getInt("host_id"), rs.getString("first_name"), rs.getString("last_name"), rs.getBoolean("is_responsible")));
+		} catch (SQLException e) {}
 		dbm.closeDb();
 		return hostList;
 	}

@@ -214,20 +214,26 @@ public class PopulateSessionsListener {
 				toStoreList = new ArrayList<HostSessionTO>();
 				boolean isResponsible = false;
 				for (int x = 0; x < 4; x++) {
-					String [] parts = psPanel.getHost1_tb().getText().split(" ");
-					isResponsible = psPanel.getHost1_cb().isSelected();
-					if (x==1) {
+					String [] parts = {"a", "b", "-1"};
+					if (x==0 && !psPanel.getHost1_tb().getText().equals("")) {
+						parts = psPanel.getHost1_tb().getText().split(" ");
+						isResponsible = psPanel.getHost1_cb().isSelected();
+					}
+					if (x==1 && !psPanel.getHost2_tb().getText().equals("")) {
 						parts = psPanel.getHost2_tb().getText().split(" ");
 						isResponsible = psPanel.getHost2_cb().isSelected();
-					} else if (x==2) {
+					} else if (x==2 && !psPanel.getHost3_tb().getText().equals("")) {
 						parts = psPanel.getHost3_tb().getText().split(" ");
 						isResponsible = psPanel.getHost3_cb().isSelected();
-					} else if (x==3) {
+					} else if (x==3 && !psPanel.getHost4_tb().getText().equals("")) {
 						parts = psPanel.getHost4_tb().getText().split(" ");
 						isResponsible = psPanel.getHost4_cb().isSelected();
 					}
-					toStoreList.add(new HostSessionTO(getSessionId(), Integer.parseInt(parts[2]), isResponsible));
+					if (!parts[2].equals("-1"))
+						toStoreList.add(new HostSessionTO(getSessionId(), Integer.parseInt(parts[2]), isResponsible));
 				}
+				if (toStoreList.size()>0)
+					backendFacade.storeToSessionHost(toStoreList);
 				isSaved = true;
 			} else
 				JOptionPane.showMessageDialog(null, "Endast 1 huvudvärd ska vara vald!", "Huvudvärds-fel", JOptionPane.INFORMATION_MESSAGE);
@@ -261,6 +267,21 @@ public class PopulateSessionsListener {
 	private void cbSessionsChanged() {
 		if(noSaveCheck()) {
 			List<HostTO> hostList = backendFacade.getHostsForSession(getSessionId());
+			for (int i = 0; i < hostList.size(); i++) {
+				if (i==0) {
+					psPanel.getHost1_tb().setText(hostList.get(i).toString());
+					psPanel.getHost1_cb().setSelected(hostList.get(i).isResponsible());
+				} else if (i==1) {
+					psPanel.getHost2_tb().setText(hostList.get(i).toString());
+					psPanel.getHost2_cb().setSelected(hostList.get(i).isResponsible());
+				} else if (i==2) {
+					psPanel.getHost3_tb().setText(hostList.get(i).toString());
+					psPanel.getHost3_cb().setSelected(hostList.get(i).isResponsible());
+				} else if (i==3) {
+					psPanel.getHost4_tb().setText(hostList.get(i).toString());
+					psPanel.getHost4_cb().setSelected(hostList.get(i).isResponsible());
+				}
+			}
 		}
 	}
 	
