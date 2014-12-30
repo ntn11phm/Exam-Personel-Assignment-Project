@@ -1,16 +1,22 @@
 package examProject.ui.print;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.print.PrinterException;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.PrintSessionsTO;
@@ -70,19 +76,38 @@ public class SessionsPrintPanel extends JPanel {
 		});
 		printButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				try {
+					printButtonClickedMethod();
+				} catch (PrinterException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 			}
 		});
+	}
+
+	private void printButtonClickedMethod() throws PrinterException {
+		UIManager.put("swing.boldMetal", Boolean.FALSE);
+		JFrame f = new JFrame("Tillfällen");
+		f.addWindowListener(new WindowAdapter() {
+		});
+		sessionsListPane.setPreferredSize(new Dimension(500, 500));
+		f.add("Center", sessionsListPane);
+		JButton printWindowButton = new JButton("Skriv ut");
+		printWindowButton.addActionListener(new Printer(f));
+		f.add("South", printWindowButton);
+		f.pack();
+		f.setVisible(true);
 	}
 
 	private void loadSessionsButtonClickedMethod() {
 		if (!dateFieldText.getText().equals("")) {
 			if (validateTextFields(dateFieldText.getText())) {
 				printSessionsList = facade.getSessions(dateFieldText.getText());
-				int length = printSessionsList.size() -1;
-				String[]arrString = new String[length];
-				for(int i = 0; i < length; i++)
+				int length = printSessionsList.size() - 1;
+				String[] arrString = new String[length];
+				for (int i = 0; i < length; i++)
 					arrString[i] = printSessionsList.get(i).toString();
 				sessionsList.setListData(arrString);
 
