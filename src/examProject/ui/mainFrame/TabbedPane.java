@@ -59,15 +59,16 @@ public class TabbedPane extends JFrame {
 		final LoginPanel lp = new LoginPanel(backendFacade, modalWindow);
 		modalWindow.showLoginWindow(lp);
 		while (currentUser==null) {
+			try {
+			    Thread.sleep(1000);
+			} catch (InterruptedException e) {
+			    Thread.currentThread().interrupt();
+			}
 			currentUser = lp.getUser();
-			System.out.println(currentUser!=null);
 		}
 		if (isUserLoggedIn()) {
 			result = true;
 		}
-//		currentUser = new LoggedInUserTO("", 6, true, false);
-//		currentUser.setHost_id(1);
-//		result = true;
 		return result;
 	}
 

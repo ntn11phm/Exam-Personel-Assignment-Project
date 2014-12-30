@@ -1,10 +1,14 @@
 package examProject.ui.login;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
+
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.LoggedInUserTO;
+import examProject.ui.forgotPwd.ForgotPwdPanel;
 
 public class LoginListener {
 	private LoginPanel loginPanel;
@@ -30,6 +34,7 @@ public class LoginListener {
 			loginPanel.getStatusTextLabel().setText("Fel användarnamn eller lösenord!");
 		} else {
 			loginPanel.getStatusTextLabel().setText("Inloggad!");
+			Thread.currentThread().interrupt();
 			close();
 		}
 	}
@@ -39,7 +44,11 @@ public class LoginListener {
 	}
 	
 	private void forgotPwd() {
-		
+		JFrame nextFrame = new JFrame();
+		ForgotPwdPanel fpp = new ForgotPwdPanel(backendFacade);
+		nextFrame.setContentPane(fpp);
+		nextFrame.setSize(new Dimension(400, 300));
+		nextFrame.setVisible(true);
 	}
 	
 	public LoggedInUserTO getUser() {
