@@ -12,7 +12,7 @@ public class LoginFrame extends JFrame{
 	
 	public void showLoginWindow(LoginPanel lp) {
 		setSize(new Dimension(250, 300));
-        setDefaultCloseOperation(HIDE_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(lp);
         setVisible(true);
 	}

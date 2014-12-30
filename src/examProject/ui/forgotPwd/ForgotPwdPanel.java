@@ -8,7 +8,7 @@ import examProject.logic.BackendFacade;
 
 public class ForgotPwdPanel extends JPanel {
 	private static final long serialVersionUID = -3300329971221520973L;
-	private JLabel lblHeader1 = new JLabel("Om du har glömt ditt användarnamn eller lösenord ");
+	private JLabel lblHeader1 = new JLabel("Om du har glömt ditt användarnamn eller lösenord");
 	private JLabel lblHeader2 = new JLabel("fyll i  ditt användarnamn eller e-post adress");
 	private JTextField tbUsername = new JTextField();;
 	private JTextField tbEmail = new JTextField();
@@ -26,14 +26,14 @@ public class ForgotPwdPanel extends JPanel {
 	}
 
 	private void setBounds() {
-		lblHeader1.setBounds(58, 5, 275, 14);
-		lblHeader2.setBounds(58, 30, 275, 14);
-		lblUsername.setBounds(58, 55, 275, 14);
-		tbUsername.setBounds(58, 80, 275, 20);
-		lblEpostAdress.setBounds(58, 111, 275, 14);
-		tbEmail.setBounds(58, 136, 275, 20);
-		btnRequestPwd.setBounds(58, 167, 130, 23);
-		lblStatusText.setBounds(58, 201, 275, 14);
+		lblHeader1.setBounds(10, 5, 295, 14);
+		lblHeader2.setBounds(10, 30, 295, 14);
+		lblUsername.setBounds(10, 55, 275, 14);
+		tbUsername.setBounds(10, 80, 275, 20);
+		lblEpostAdress.setBounds(10, 111, 275, 14);
+		tbEmail.setBounds(10, 136, 275, 20);
+		btnRequestPwd.setBounds(10, 167, 130, 23);
+		lblStatusText.setBounds(10, 201, 275, 14);
 	}
 	
 	private void addCtrls() {
