@@ -34,6 +34,7 @@ public class SessionsPrintPanel extends JPanel {
 	private JButton loadSessionsButton = new JButton("Visa tillfälle");
 	private JButton loadHostsButton = new JButton("Visa värdar");
 	private List<PrintSessionsTO> printSessionsList;
+	private String[] arrString;
 
 	public SessionsPrintPanel(BackendFacade facade) {
 		this.facade = facade;
@@ -90,10 +91,12 @@ public class SessionsPrintPanel extends JPanel {
 	private void printButtonClickedMethod() throws PrinterException {
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
 		JFrame f = new JFrame("Tillfällen");
-		f.addWindowListener(new WindowAdapter() {
-		});
-		sessionsListPane.setPreferredSize(new Dimension(500, 500));
-		f.add("Center", sessionsListPane);
+		JList<String> printList = new JList<String>();
+		printList.setListData(arrString);
+		//sessionsListPane.setPreferredSize(new Dimension(500, 500));
+		printList.setPreferredSize(new Dimension (500, 500));
+		//f.add("Center", sessionsListPane);
+		f.add("Center", printList);
 		JButton printWindowButton = new JButton("Skriv ut");
 		printWindowButton.addActionListener(new Printer(f));
 		f.add("South", printWindowButton);
@@ -106,7 +109,7 @@ public class SessionsPrintPanel extends JPanel {
 			if (validateTextFields(dateFieldText.getText())) {
 				printSessionsList = facade.getSessions(dateFieldText.getText());
 				int length = printSessionsList.size() - 1;
-				String[] arrString = new String[length];
+				arrString = new String[length];
 				for (int i = 0; i < length; i++)
 					arrString[i] = printSessionsList.get(i).toString();
 				sessionsList.setListData(arrString);
