@@ -26,8 +26,9 @@ public class LoginListener {
 		user = backendFacade.login(loginPanel.getUsername(), loginPanel.getPwd());
 		if (user == null) {
 			loginPanel.getStatusTextLabel().setText("Fel användarnamn eller lösenord!");
-		} else
+		} else {
 			loginPanel.getStatusTextLabel().setText("Inloggad!");
+		}
 	}
 	
 	private void close() {
