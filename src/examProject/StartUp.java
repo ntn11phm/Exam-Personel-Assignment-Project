@@ -8,7 +8,10 @@ public class StartUp {
 
 	public static void main(String[] args) {
 		TabbedPane tp = new TabbedPane();
-		if (tp.login()) {
+		while (!tp.isUserLoggedIn()) {
+			
+		}
+		if (tp.isUserLoggedIn()) {
 			tp.setTitle("Main Gui");
 			tp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			tp.setSize(1400, 1000);

@@ -22,7 +22,7 @@ public class Printer implements Printable, ActionListener {
 
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.translate(pf.getImageableX(), pf.getImageableY());
-		frameToPrint.printAll(g);
+		frameToPrint.printComponents(g);
 		return PAGE_EXISTS;
 	}
 

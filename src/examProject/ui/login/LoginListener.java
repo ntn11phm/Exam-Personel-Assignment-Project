@@ -10,10 +10,12 @@ public class LoginListener {
 	private LoginPanel loginPanel;
 	private BackendFacade backendFacade;
 	private LoggedInUserTO user;
+	private LoginFrame frame;
 	
-	public LoginListener(LoginPanel loginPanel, BackendFacade backendFacade) {
+	public LoginListener(LoginPanel loginPanel, BackendFacade backendFacade, LoginFrame frame) {
 		this.loginPanel = loginPanel;
 		this.backendFacade = backendFacade;
+		this.frame = frame;
 	}
 	
 	public void createListeners() {
@@ -28,11 +30,12 @@ public class LoginListener {
 			loginPanel.getStatusTextLabel().setText("Fel användarnamn eller lösenord!");
 		} else {
 			loginPanel.getStatusTextLabel().setText("Inloggad!");
+			close();
 		}
 	}
 	
 	private void close() {
-		loginPanel.setVisible(false);
+		frame.dispose();
 	}
 	
 	private void forgotPwd() {

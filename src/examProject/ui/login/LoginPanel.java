@@ -1,15 +1,12 @@
 package examProject.ui.login;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.LoggedInUserTO;
-
 import java.awt.Color;
 
 public class LoginPanel extends JPanel {
@@ -24,11 +21,11 @@ public class LoginPanel extends JPanel {
 	private JButton btnForgotPwd = new JButton("Gl\u00F6mt l\u00F6senordet");
 	private LoginListener loginListener;
 	
-	public LoginPanel(BackendFacade backendFacade) {
+	public LoginPanel(BackendFacade backendFacade, LoginFrame frame) {
 		setLayout(null);
 		setBounds();
 		addCtrls();
-		this.loginListener = new LoginListener(this, backendFacade);
+		this.loginListener = new LoginListener(this, backendFacade, frame);
 		loginListener.createListeners();
 	}
 	

@@ -1,6 +1,7 @@
 package examProject.ui.mainFrame;
 
 import java.awt.event.KeyEvent;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -12,6 +13,7 @@ import examProject.ui.adminEditInformationAboutHosts.AdminEditHostsInfo;
 import examProject.ui.answerInvitations.AnswerInvitationsPanel;
 import examProject.ui.createInvitation.CreateInvitationPanel;
 import examProject.ui.kronoxImport.KronoxImportPanel;
+import examProject.ui.login.LoginFrame;
 import examProject.ui.login.LoginPanel;
 import examProject.ui.populateSessions.PopulateSessionsPanel;
 import examProject.ui.print.SessionsPrintPanel;
@@ -40,15 +42,29 @@ public class TabbedPane extends JFrame {
 		}
 	}
 	
+	public boolean isUserLoggedIn() {
+		boolean result = false;
+		if (currentUser!=null)
+			if (!currentUser.getUsername().equals("nouser"))
+				result = true;
+		return result;
+	}
+	
 	public boolean login() {
 		boolean result = false;
-		JFrame modalWindow = new JFrame();
-		LoginPanel lp = new LoginPanel(backendFacade);
-		modalWindow.setAlwaysOnTop(true);
-		modalWindow.setContentPane(lp);
-		modalWindow.setSize(250, 300);;
-		modalWindow.setVisible(true);
-		
+		try {
+			this.backendFacade = new BackendFacade(new LoggedInUserTO("nouser", 1, true, false));
+		} catch (SetupIncompleteException e) {}
+		final LoginFrame modalWindow = new LoginFrame();
+		final LoginPanel lp = new LoginPanel(backendFacade, modalWindow);
+		modalWindow.showLoginWindow(lp);
+		while (currentUser==null) {
+			currentUser = lp.getUser();
+			System.out.println(currentUser!=null);
+		}
+		if (isUserLoggedIn()) {
+			result = true;
+		}
 //		currentUser = new LoggedInUserTO("", 6, true, false);
 //		currentUser.setHost_id(1);
 //		result = true;
