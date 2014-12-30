@@ -35,12 +35,12 @@ public class LoginListener {
 		} else {
 			loginPanel.getStatusTextLabel().setText("Inloggad!");
 			Thread.currentThread().interrupt();
-			close();
+			frame.dispose();
 		}
 	}
 	
 	private void close() {
-		frame.dispose();
+		System.exit(0);
 	}
 	
 	private void forgotPwd() {
