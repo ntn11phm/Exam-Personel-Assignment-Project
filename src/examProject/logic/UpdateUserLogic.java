@@ -36,7 +36,7 @@ public class UpdateUserLogic {
 	public boolean uppdateUser() {
 		dBm.openDb();
 		boolean result = false;
-		String sqlCommand = "SELECT user_id FROM hosts WHERE host_id='" + currentUser.getHost_id() + "';";
+		String sqlCommand = "SELECT user_id FROM hosts WHERE host_id=" + currentUser.getHost_id() + ";";
 		ResultSet rs = dBm.select(sqlCommand);
 		try {
 			if (!rs.next()) {
