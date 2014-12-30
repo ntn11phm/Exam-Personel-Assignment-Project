@@ -40,9 +40,7 @@ public class AdminEditHostsInfo extends JPanel {
 		}
 			private void addCtrls() {
 				this.add(scrollPanel);
-				this.add(updateUserInfo);
-			
-			
+				this.add(updateUserInfo);			
 		}
 	  
 		private class ButtonListener implements ActionListener {
@@ -79,6 +77,13 @@ public class AdminEditHostsInfo extends JPanel {
 
 			
 		}
+		
+		public String selectedItem(){
+			return "";
+			
+		}
+		
+		
 
 		private void update() {   
 			
