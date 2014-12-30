@@ -1,8 +1,6 @@
 package examProject.logic;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import examProject.dao.DbManipulator;
 import examProject.dao.UpdateUsersInformation;
 import examProject.transferObjects.LoggedInUserTO;
@@ -11,6 +9,7 @@ import examProject.transferObjects.UpdateUserTransfere;
 public class UpdateUserLogic {
 	private UpdateUserTransfere uppdateUser;
 	private DbManipulator dBm;
+	private LoggedInUserTO currentUser;
 
 	public UpdateUserLogic(LoggedInUserTO currentUser,
 			UpdateUserTransfere uppdateUser, DbManipulator dBm) {
@@ -41,7 +40,7 @@ public class UpdateUserLogic {
 						+ uppdateUser.getZipCode() + ",phone_nr='"
 						+ uppdateUser.getPhoneNr() + "',mobile_phone='"
 						+ uppdateUser.getMobileNr() + "',is_active="
-						+ uppdateUser.isActive() + ";";
+						+ uppdateUser.isActive() + "WHERE host_id=" + currentUser.getHost_id() + ";";
 
 				dBm.update(sqlCommand);
 				result = true;
