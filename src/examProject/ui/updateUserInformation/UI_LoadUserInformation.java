@@ -323,9 +323,12 @@ public class UI_LoadUserInformation extends JPanel {
 		this.mobileNrTextField = mobileNrTextField;
 	}
 	public boolean isAdmin(){
+		System.out.println("isAdmin "+ isAdmin.isSelected());
 		return isAdmin.isSelected();
 	}
 	public boolean isActive(){
+		System.out.println("isActiva "+ isActive.isSelected());
+
 		return isActive.isSelected();
 	}
 }

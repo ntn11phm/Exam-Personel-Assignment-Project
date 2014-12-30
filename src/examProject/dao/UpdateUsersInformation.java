@@ -8,60 +8,40 @@ public class UpdateUsersInformation {
 	private DbManipulator dBm;
 	private String sqlCommand = "UPDATE hosts SET first_name ='";
 
-	/*
-	 * private String sqlCommand = "UPDATE hosts SET (first_name = '" +
-	 * updateUser.getFirstName() + "last_name = '" + updateUser.getLastName() +
-	 * "civicnr = '" + updateUser.getCivic() + "address = '" +
-	 * updateUser.getAddress() + "zipcode = '" + updateUser.getZipCode() +
-	 * "city = '" + updateUser.getCity() + "email = '" + updateUser.getEmail() +
-	 * "phone_nr = '" + updateUser.getPhoneNr() + "mobile_phone = '" +
-	 * updateUser.getMobileNr() + "is_active=" + updateUser.isActive() +
-	 * "is_admin=" + updateUser.isAdmin()+ ");";
-	 */
-
 	public UpdateUsersInformation(UpdateUserTransfere updateUser,
 			DbManipulator dBm) {
 		this.updateUser = updateUser;
 		this.dBm = dBm;
 	}
 
-	// SELECTSATS
-
 	public String updateUserStrCommand(String firstName, String lastName,
 			String email, String retypeEmail, String address, String city,
 			String zipCode, int civic, int phoneNr, int mobilenr,
 			boolean isActive, boolean is_admin) {
-		String sqlCommand = "UPDATE hosts SET first_name ='" + firstName
-				+ "', last_name ='" + lastName + "', civicnr=" + civic
-				+ ", email='" + email + /*"', retypeEmail='" + retypeEmail
-				+*/ "', city='" + city + "', address='" + address
-				+ "', zipcode=" + zipCode + /*"', is_admin=" + is_admin
-				+ "', is_active =" + isActive +*/ ";";
+
+		String sqlCommand = "UPDATE hosts SET first_name='" + firstName
+				+ "',last_name='" + lastName + "',civicnr=" + civic
+				+ ",email='" + email + "',city='" + city + "',address='"
+				+ address + "',zipcode=" + zipCode + ",phone_nr='" + phoneNr
+				+ "',mobile_phone='" + mobilenr + "',is_active=" + isActive
+				+ ";";
 
 		return sqlCommand;
 
 	}
 
 	public String updateUserStrCommand() {
-		/*
-		 * String sqlCommand = "UPDATE hosts SET first_name='" +
-		 * updateUser.getFirstName() + "last-name = ' " +
-		 * updateUser.getLastName() + "civicnr = " + updateUser.getCivic() +
-		 * "email = '" + updateUser.getEmail() + "retypeEmail '" +
-		 * updateUser.getRetypeEmail() + "city = '" + updateUser.getCity() +
-		 * "address = '" + updateUser.getAddress() + "zipcode =" +
-		 * updateUser.getZipCode() + "is_admin = " + updateUser.isAdmin() +
-		 * "is_active =" + updateUser.isActive() + "'"+"');";
-		 */
+
 		String sqlCommand = "UPDATE hosts SET first_name='"
-				+ updateUser.getFirstName() + "', last_name ='"
-				+ updateUser.getLastName() + "', civicnr="
-				+ updateUser.getCivic() + "', email='" + updateUser.getEmail()
-				/*+ "', retypeEmail='" + updateUser.getRetypeEmail()*/
-				+ ", city='" + updateUser.getCity() + "', address='"
-				+ updateUser.getAddress() + "', zipcode="
-				+ updateUser.getZipCode() + /*"', is_admin=" + updateUser.isAdmin
-				+ "', is_active =" + updateUser.isActive + */";";
+				+ updateUser.getFirstName() + "', last_name='"
+				+ updateUser.getLastName() + "',civicnr="
+				+ updateUser.getCivic() + ",email='" + updateUser.getEmail()
+				+ "',city='" + updateUser.getCity() + "',address='"
+				+ updateUser.getAddress() + "',zipcode="
+				+ updateUser.getZipCode() + ",phone_nr='"
+				+ updateUser.getPhoneNr() + "',mobile_phone='"
+				+ updateUser.getMobileNr() + ",'is_active="
+				+ updateUser.isActive() + ";";
 
 		return sqlCommand;
 
