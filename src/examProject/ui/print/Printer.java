@@ -14,6 +14,10 @@ import javax.swing.JFrame;
 public class Printer implements Printable, ActionListener {
 	JFrame frameToPrint = new JFrame();
 
+	public Printer(JFrame f) {
+		frameToPrint = f;
+	}
+
 	public int print(Graphics g, PageFormat pf, int page)
 			throws PrinterException {
 		if (page > 0) {
@@ -38,7 +42,4 @@ public class Printer implements Printable, ActionListener {
 		}
 	}
 
-	public Printer(JFrame f) {
-		frameToPrint = f;
-	}
 }
