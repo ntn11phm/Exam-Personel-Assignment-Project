@@ -73,8 +73,18 @@ public class TabbedPane extends JFrame {
 
 	private void makeTabs(JTabbedPane jtp) {
 		getContentPane().add(jtp);
-		jtp.addTab("Lägg till användare", new AddUserGUI(backendFacade));
-		jtp.setMnemonicAt(0, KeyEvent.VK_1);
+		if (currentUser.isIs_admin()) {
+			jtp.addTab("Lägg till användare", new AddUserGUI(backendFacade));
+			jtp.setMnemonicAt(0, KeyEvent.VK_1);
+			jtp.addTab("Importera", new KronoxImportPanel(backendFacade));
+			jtp.setMnemonicAt(0, KeyEvent.VK_5);
+			jtp.addTab("Inbjudningar", new CreateInvitationPanel(backendFacade));
+			jtp.setMnemonicAt(0, KeyEvent.VK_7);
+			jtp.addTab("Populera sessioner", new PopulateSessionsPanel(backendFacade));
+			jtp.setMnemonicAt(0, KeyEvent.VK_9);
+			jtp.addTab("Admin redigerar info om värdar", new AdminEditHostsInfo(backendFacade));
+			jtp.setMnemonicAt(0, KeyEvent.VK_2);
+		}
 		//jtp.addTab("Begär nytt Lösenord", new ChangePwdPanel(backendFacade));
 		//jtp.setMnemonicAt(0, KeyEvent.VK_2);
 		//jtp.addTab("Glömt Lösenord", new ForgotPwdPanel(backendFacade));
@@ -83,20 +93,16 @@ public class TabbedPane extends JFrame {
 		jtp.setMnemonicAt(0, KeyEvent.VK_3);
 		jtp.addTab("Uppdatera användare", new UI_LoadUserInformation(backendFacade));
 		jtp.setMnemonicAt(0, KeyEvent.VK_4);
-		jtp.addTab("Importera", new KronoxImportPanel(backendFacade));
-		jtp.setMnemonicAt(0, KeyEvent.VK_5);
+		
 		//jtp.addTab("DB Setup", new SetUpDbGui());
 		//jtp.setMnemonicAt(0, KeyEvent.VK_6);
-		jtp.addTab("Inbjudningar", new CreateInvitationPanel(backendFacade));
-		jtp.setMnemonicAt(0, KeyEvent.VK_7);
+		
 		jtp.addTab("Svara på inbjudningar", new AnswerInvitationsPanel(backendFacade));
 		jtp.setMnemonicAt(0, KeyEvent.VK_8);
-		jtp.addTab("Populera sessioner", new PopulateSessionsPanel(backendFacade));
-		jtp.setMnemonicAt(0, KeyEvent.VK_9);
+		
 		//jtp.addTab("Skriv ut", new PrintPanel(backendFacade));
 		//jtp.setMnemonicAt(0, KeyEvent.VK_A);
-		jtp.addTab("Admin redigerar info om värdar", new AdminEditHostsInfo(backendFacade));
-		jtp.setMnemonicAt(0, KeyEvent.VK_2);
+		
 		jtp.addTab("Visa info om värdar", new ShowHostsInformation(backendFacade));		
 		jtp.setMnemonicAt(0, KeyEvent.VK_0);
 
