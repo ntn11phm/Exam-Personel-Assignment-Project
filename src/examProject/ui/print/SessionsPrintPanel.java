@@ -80,7 +80,6 @@ public class SessionsPrintPanel extends JPanel {
 				try {
 					printButtonClickedMethod();
 				} catch (PrinterException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -93,9 +92,7 @@ public class SessionsPrintPanel extends JPanel {
 		JFrame f = new JFrame("Tillfällen");
 		JList<String> printList = new JList<String>();
 		printList.setListData(arrString);
-		//sessionsListPane.setPreferredSize(new Dimension(500, 500));
-		printList.setPreferredSize(new Dimension (500, 500));
-		//f.add("Center", sessionsListPane);
+		printList.setPreferredSize(new Dimension(500, 500));
 		f.add("Center", printList);
 		JButton printWindowButton = new JButton("Skriv ut");
 		printWindowButton.addActionListener(new Printer(f));
