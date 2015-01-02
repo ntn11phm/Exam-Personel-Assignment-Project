@@ -12,6 +12,7 @@ import examProject.transferObjects.LoggedInUserTO;
 import examProject.ui.addUser.AddUserGUI;
 import examProject.ui.adminEditInformationAboutHosts.AdminEditHostsInfo;
 import examProject.ui.answerInvitations.AnswerInvitationsPanel;
+import examProject.ui.changePwd.ChangePwdFrame;
 import examProject.ui.changePwd.ChangePwdPanel;
 import examProject.ui.createInvitation.CreateInvitationPanel;
 import examProject.ui.kronoxImport.KronoxImportPanel;
@@ -30,14 +31,7 @@ public class TabbedPane extends JFrame {
 
 	public TabbedPane() {
 		login();
-		if (currentUser.isHas_tmp_pwd()) {
-			JFrame frame = new JFrame();
-			frame.setDefaultCloseOperation(HIDE_ON_CLOSE);
-			ChangePwdPanel changePwdPanel = new ChangePwdPanel(backendFacade);
-			frame.setContentPane(changePwdPanel);
-			frame.setSize(new Dimension(250, 300));
-			frame.setVisible(true);
-		}
+		changedPwd();
 		JTabbedPane jtp = new JTabbedPane();
 		try {
 			backendFacade = new BackendFacade(currentUser);
@@ -51,6 +45,27 @@ public class TabbedPane extends JFrame {
 			frame.setVisible(true);
 		}
 	}
+	
+	private boolean changedPwd() {
+		boolean result = false;
+		if (currentUser.isHas_tmp_pwd()) {
+			final ChangePwdFrame frame = new ChangePwdFrame();
+			frame.setDefaultCloseOperation(HIDE_ON_CLOSE);
+			final ChangePwdPanel changePwdPanel = new ChangePwdPanel(backendFacade, frame);
+			frame.showCPPWindow(changePwdPanel);
+			while (currentUser.isHas_tmp_pwd()) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
+				int host_id = currentUser.getHost_id();
+				currentUser = new LoggedInUserTO(currentUser.getUsername(), currentUser.getUser_id(), currentUser.isIs_admin(), changePwdPanel.getChangedPwdResult());
+				currentUser.setHost_id(host_id);
+			}
+		}
+		return result;
+	}
 
 	public boolean isUserLoggedIn() {
 		boolean result = false;
@@ -60,13 +75,11 @@ public class TabbedPane extends JFrame {
 		return result;
 	}
 
-	public boolean login() {
+	private boolean login() {
 		boolean result = false;
 		try {
-			this.backendFacade = new BackendFacade(new LoggedInUserTO("nouser",
-					1, true, false));
-		} catch (SetupIncompleteException e) {
-		}
+			this.backendFacade = new BackendFacade(new LoggedInUserTO("nouser",	1, true, false));
+		} catch (SetupIncompleteException e) {}
 		final LoginFrame modalWindow = new LoginFrame();
 		final LoginPanel lp = new LoginPanel(backendFacade, modalWindow);
 		modalWindow.showLoginWindow(lp);

@@ -18,12 +18,13 @@ public class ChangePwdPanel extends JPanel {
 	private JLabel lblNewPwdStatus1 = new JLabel("");
 	private JLabel lblStatus = new JLabel("");
 	private JButton btnBytLsenord = new JButton("Byt lösenord");
+	private ChangePwdListener changePwdListener;
 
-	public ChangePwdPanel(BackendFacade backendFacade) {
+	public ChangePwdPanel(BackendFacade backendFacade, ChangePwdFrame frame) {
 		setLayout(null);
 		setBounds();
 		addCtrls();
-		ChangePwdListener changePwdListener = new ChangePwdListener(this, backendFacade);
+		changePwdListener = new ChangePwdListener(this, backendFacade, frame);
 		changePwdListener.createButtonListeners();
 	}
 	
@@ -89,5 +90,9 @@ public class ChangePwdPanel extends JPanel {
 	
 	public void updatePwdSuccessfulStatusText() {
 		lblStatus.setText("Nytt lösenord sparat!");
+	}
+	
+	public boolean getChangedPwdResult() {
+		return changePwdListener.getChangedPwdResult();
 	}
 }

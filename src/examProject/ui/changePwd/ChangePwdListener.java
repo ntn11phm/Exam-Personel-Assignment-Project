@@ -9,8 +9,9 @@ public class ChangePwdListener {
 	private JButton changePwdButton;
 	private ChangePwdPanel changePwdPanel;
 	private BackendFacade backendFacade;
+	private boolean result;
 
-	public ChangePwdListener(ChangePwdPanel changePwdPanel, BackendFacade backendFacade) {
+	public ChangePwdListener(ChangePwdPanel changePwdPanel, BackendFacade backendFacade, ChangePwdFrame frame) {
 		this.changePwdButton = changePwdPanel.getChangePwdButton();
 		this.changePwdPanel = changePwdPanel;
 		this.backendFacade = backendFacade;
@@ -21,7 +22,7 @@ public class ChangePwdListener {
 	}
 	
 	private void validatePwd() {
-		boolean result = false;
+		result = false;
 		if (validateNewPwd())
 				result = backendFacade.changePwd(changePwdPanel.getNewPwd().getPassword());
 		if (result)
@@ -39,6 +40,10 @@ public class ChangePwdListener {
 					break;
 			}
 		changePwdPanel.updateNewPwdStatus(result);
+		return result;
+	}
+	
+	public boolean getChangedPwdResult() {
 		return result;
 	}
 }
