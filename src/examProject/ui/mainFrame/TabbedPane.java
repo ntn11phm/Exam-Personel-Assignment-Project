@@ -108,6 +108,6 @@ public class TabbedPane extends JFrame {
 		jtp.addTab("Uppdatera användare", new UI_LoadUserInformation(backendFacade));
 		jtp.addTab("Svara på inbjudningar", new AnswerInvitationsPanel(backendFacade));
 		jtp.addTab("Visa info om värdar", new ShowHostsInformation(backendFacade));
-		jtp.addTab("Skriv ut Värdinfo", new HostsPrintPanel());
+		jtp.addTab("Skriv ut Värdinfo", new HostsPrintPanel(backendFacade));
 	}
 }

@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 import e.xamProject.ui.showInformationAboutHosts.ShowHostsInformation;
+import examProject.logic.BackendFacade;
 import examProject.ui.updateUserInformation.UI_LoadUserInformation;
 
 public class HostsPrintPanel extends JPanel {
@@ -28,10 +29,12 @@ public class HostsPrintPanel extends JPanel {
 	private JCheckBox mobile = new JCheckBox("Mobil");
 	private JButton printButton = new JButton("Skriv ut");
 	private String[] arrString;
-	private ShowHostsInformation sHi = new ShowHostsInformation(null);
-	private UI_LoadUserInformation loadUI = new UI_LoadUserInformation(null);
+	private ShowHostsInformation sHi;
+	private UI_LoadUserInformation loadUI;
 
-	public HostsPrintPanel() {
+	public HostsPrintPanel(BackendFacade facade) {
+		sHi = new ShowHostsInformation(facade);
+		loadUI = new UI_LoadUserInformation(facade);
 		setLayout(null);
 		setBounds();
 		addCtrls();
