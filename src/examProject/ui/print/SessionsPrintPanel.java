@@ -83,6 +83,12 @@ public class SessionsPrintPanel extends JPanel {
 
 			}
 		});
+		loadHostsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+		});
 	}
 
 	private void printButtonClickedMethod() throws PrinterException {
