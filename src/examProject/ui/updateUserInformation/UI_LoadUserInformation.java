@@ -58,6 +58,16 @@ public class UI_LoadUserInformation extends JPanel {
 		UpdateUserTransfere storedData = facade.getCurrentHostData();
 		firstNameTextField.setText(storedData.getFirstName());
 		lastNameTextField.setText(storedData.getLastName());
+		emailTextField.setText(storedData.getEmail());
+		retypeEmailTextField.setText(storedData.getEmail());
+		civicNRTextField.setText(storedData.getCivic());
+		cityTextField.setText(storedData.getCity());
+		addressTextField.setText(storedData.getAddress());
+		zipCodeTextField.setText(storedData.getZipCode());
+		phoneNrTextField.setText(storedData.getPhoneNr());
+		mobileNrTextField.setText(storedData.getMobileNr());
+		
+		
 	}
 	
 	private void setBounds() {
