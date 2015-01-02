@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 import e.xamProject.ui.showInformationAboutHosts.ShowHostsInformation;
+import examProject.ui.updateUserInformation.UI_LoadUserInformation;
 
 public class HostsPrintPanel extends JPanel {
 	private static final long serialVersionUID = 60477093723435356L;
@@ -28,6 +29,7 @@ public class HostsPrintPanel extends JPanel {
 	private JButton printButton = new JButton("Skriv ut");
 	private String[] arrString;
 	private ShowHostsInformation sHi = new ShowHostsInformation(null);
+	private UI_LoadUserInformation loadUI = new UI_LoadUserInformation(null);
 
 	public HostsPrintPanel() {
 		setLayout(null);
@@ -82,12 +84,21 @@ public class HostsPrintPanel extends JPanel {
 	}
 
 	private void printButtonClickedMethod() throws PrinterException {
+
 		if (firstName.isSelected() || lastName.isSelected()
 				|| civicNr.isSelected() || address.isSelected()
 				|| zipcode.isSelected() || city.isSelected()
 				|| email.isSelected() || phone.isSelected()
 				|| mobile.isSelected()) {
-
+			loadUI.getFirstNameTextField();
+			loadUI.getLastNameTextField();
+			loadUI.getCivicNRTextField();
+			loadUI.getZipCodeTextField();
+			loadUI.getAddressTextField();
+			loadUI.getCityTextField();
+			loadUI.getPhoneNrTextField();
+			loadUI.getMobileNrTextField();
+			loadUI.getEmailTextField();
 		}
 
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
