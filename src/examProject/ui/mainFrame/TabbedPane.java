@@ -19,6 +19,7 @@ import examProject.ui.kronoxImport.KronoxImportPanel;
 import examProject.ui.login.LoginFrame;
 import examProject.ui.login.LoginPanel;
 import examProject.ui.populateSessions.PopulateSessionsPanel;
+import examProject.ui.print.HostsPrintPanel;
 import examProject.ui.print.SessionsPrintPanel;
 import examProject.ui.setUpDb.SetUpDbGui;
 import examProject.ui.updateUserInformation.SetupIncompleteException;
@@ -110,6 +111,6 @@ public class TabbedPane extends JFrame {
 		jtp.addTab("Uppdatera användare", new UI_LoadUserInformation(backendFacade));
 		jtp.addTab("Svara på inbjudningar", new AnswerInvitationsPanel(backendFacade));
 		jtp.addTab("Visa info om värdar", new ShowHostsInformation(backendFacade));
-		// jtp.addTab("Skriv ut värdinfo", new HostsPrintPanel());
+		jtp.addTab("Skriv ut Värdinfo", new HostsPrintPanel());
 	}
 }
