@@ -2,7 +2,6 @@ package examProject.logic.requestNewPassword;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import examProject.dao.DbManipulator;
 import examProject.dao.GetEmailAddress;
 import examProject.dao.SelectUsernameWithEmail;
@@ -12,7 +11,7 @@ import examProject.logic.mail.Emailto;
 import examProject.logic.mail.Mail_Interface;
 import examProject.transferObjects.RequestNewPwdTO;
 
-public class requestNewPwd implements LogicStrategy {
+public class RequestNewPwd implements LogicStrategy {
 	private DbManipulator dbm;
 	private String input;
 	private GetEmailAddress getEmailAdress = new GetEmailAddress();
@@ -20,7 +19,7 @@ public class requestNewPwd implements LogicStrategy {
 	private final String EMAIL_SUBJECT = "Begäran om nytt lösenord till Tentamensvärdar";
 	private String emailBody = "Du har begärt ett nytt lösenord till systemet för Tentamensvärdar.\n";
 	
-	public requestNewPwd(DbManipulator dbm, String input) {
+	public RequestNewPwd(DbManipulator dbm, String input) {
 		this.dbm = dbm;
 		this.input = input;
 	}
@@ -79,5 +78,4 @@ public class requestNewPwd implements LogicStrategy {
 		dbm.closeDb();
 		return result;
 	}
-
 }
