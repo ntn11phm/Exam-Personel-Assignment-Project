@@ -1,11 +1,8 @@
 package examProject.ui.mainFrame;
 
-import java.awt.Dimension;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-
 import e.xamProject.ui.showInformationAboutHosts.ShowHostsInformation;
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.LoggedInUserTO;
