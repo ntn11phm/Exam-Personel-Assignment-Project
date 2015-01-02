@@ -27,8 +27,8 @@ public class UpdateUserLogic {
 	public UpdateUserTransfere getLogginUserData() {
 		UpdateUserTransfere storedUserdata = null;
 		dBm.openDb();
-		String sqlCommand = "SELECT first_name, last_name, civicnr, address, zipcode, city, phone_nr, mobile_phone, email, is_active FROM hosts WHERE host_id =" + currentUser.getHost_id() + ";";
-//		String sqlCommand = "SELECT first_name, last_name, civicnr, address, zipcode, city, phone_nr, mobile_phone, email, is_active FROM hosts WHERE host_id =19;";
+//		String sqlCommand = "SELECT first_name, last_name, civicnr, address, zipcode, city, phone_nr, mobile_phone, email, is_active FROM hosts WHERE host_id =" + currentUser.getHost_id() + ";";
+		String sqlCommand = "SELECT first_name, last_name, civicnr, address, zipcode, city, phone_nr, mobile_phone, email, is_active FROM hosts WHERE host_id =19;";
 
 		ResultSet rs = dBm.select(sqlCommand);
 		try {
@@ -46,8 +46,8 @@ public class UpdateUserLogic {
 
 		dBm.openDb();
 		boolean result = false;
-		//String sqlCommand = "SELECT user_id FROM hosts WHERE host_id=" + currentUser.getHost_id() + ";";
-		String sqlCommand = "SELECT user_id FROM hosts WHERE host_id=19;";
+		String sqlCommand = "SELECT user_id FROM hosts WHERE host_id=" + currentUser.getHost_id() + ";";
+		//String sqlCommand = "SELECT user_id FROM hosts WHERE host_id=19;";
 		
 
 		ResultSet rs = dBm.select(sqlCommand);
