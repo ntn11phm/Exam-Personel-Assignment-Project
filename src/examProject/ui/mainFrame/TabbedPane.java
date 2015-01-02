@@ -1,7 +1,6 @@
 package examProject.ui.mainFrame;
 
 import java.awt.event.KeyEvent;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -86,27 +85,13 @@ public class TabbedPane extends JFrame {
 			jtp.addTab("Admin redigerar info om värdar", new AdminEditHostsInfo(backendFacade));
 			jtp.setMnemonicAt(0, KeyEvent.VK_2);
 		}
-		//jtp.addTab("Begär nytt Lösenord", new ChangePwdPanel(backendFacade));
-		//jtp.setMnemonicAt(0, KeyEvent.VK_2);
-		//jtp.addTab("Glömt Lösenord", new ForgotPwdPanel(backendFacade));
-		//jtp.setMnemonicAt(0, KeyEvent.VK_3);
 		jtp.addTab("Skriv ut", new SessionsPrintPanel(backendFacade));
 		jtp.setMnemonicAt(0, KeyEvent.VK_3);
 		jtp.addTab("Uppdatera användare", new UI_LoadUserInformation(backendFacade));
 		jtp.setMnemonicAt(0, KeyEvent.VK_4);
-		
-		//jtp.addTab("DB Setup", new SetUpDbGui());
-		//jtp.setMnemonicAt(0, KeyEvent.VK_6);
-		
 		jtp.addTab("Svara på inbjudningar", new AnswerInvitationsPanel(backendFacade));
 		jtp.setMnemonicAt(0, KeyEvent.VK_8);
-		
-		//jtp.addTab("Skriv ut", new PrintPanel(backendFacade));
-		//jtp.setMnemonicAt(0, KeyEvent.VK_A);
-		
 		jtp.addTab("Visa info om värdar", new ShowHostsInformation(backendFacade));		
 		jtp.setMnemonicAt(0, KeyEvent.VK_0);
-
 	}
-
 }
