@@ -2,7 +2,9 @@ package examProject.ui.changePwd;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+
 import examProject.logic.BackendFacade;
 
 public class ChangePwdListener {
@@ -10,11 +12,14 @@ public class ChangePwdListener {
 	private ChangePwdPanel changePwdPanel;
 	private BackendFacade backendFacade;
 	private boolean result;
+	private ChangePwdFrame frame;
 
 	public ChangePwdListener(ChangePwdPanel changePwdPanel, BackendFacade backendFacade, ChangePwdFrame frame) {
 		this.changePwdButton = changePwdPanel.getChangePwdButton();
 		this.changePwdPanel = changePwdPanel;
 		this.backendFacade = backendFacade;
+		this.frame = frame;
+		this.result = true;
 	}
 	
 	public void createButtonListeners() {
@@ -22,11 +27,15 @@ public class ChangePwdListener {
 	}
 	
 	private void validatePwd() {
-		result = false;
+		boolean result = false;
 		if (validateNewPwd())
 				result = backendFacade.changePwd(changePwdPanel.getNewPwd().getPassword());
-		if (result)
+		if (result) {
 			changePwdPanel.updatePwdSuccessfulStatusText();
+			this.result = false;
+			Thread.currentThread().interrupt();
+			frame.dispose();
+		}
 	}
 	
 	private boolean validateNewPwd() {
