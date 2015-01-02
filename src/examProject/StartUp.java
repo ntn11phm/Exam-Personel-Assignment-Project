@@ -15,6 +15,7 @@ public class StartUp {
 			tp.setTitle("Main Gui");
 			tp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			tp.setSize(1400, 1000);
+			tp.repaint();
 			tp.setVisible(true);
 		}
 	}
