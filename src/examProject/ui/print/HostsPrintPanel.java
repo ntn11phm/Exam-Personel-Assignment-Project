@@ -82,6 +82,14 @@ public class HostsPrintPanel extends JPanel {
 	}
 
 	private void printButtonClickedMethod() throws PrinterException {
+		if (firstName.isSelected() || lastName.isSelected()
+				|| civicNr.isSelected() || address.isSelected()
+				|| zipcode.isSelected() || city.isSelected()
+				|| email.isSelected() || phone.isSelected()
+				|| mobile.isSelected()) {
+
+		}
+
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
 		JFrame f = new JFrame("VärdInfo");
 		JList<String> printList = new JList<String>();
