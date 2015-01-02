@@ -66,8 +66,6 @@ public class UI_LoadUserInformation extends JPanel {
 		zipCodeTextField.setText(storedData.getZipCode());
 		phoneNrTextField.setText(storedData.getPhoneNr());
 		mobileNrTextField.setText(storedData.getMobileNr());
-		
-		
 	}
 	
 	private void setBounds() {

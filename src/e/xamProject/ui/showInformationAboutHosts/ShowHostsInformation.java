@@ -26,11 +26,12 @@ import examProject.ui.updateUserInformation.UI_LoadUserInformation;
 		    private JLabel mobilNumberLabel = new JLabel("Mobilnummer: ");
 		    private JLabel postLabel = new JLabel("Epost: ");
 
-			private UI_LoadUserInformation updateUserInfo = new UI_LoadUserInformation(facade);
+			private UI_LoadUserInformation updateUserInfo;
 
 			
 			public ShowHostsInformation(BackendFacade facade) {
 				this.facade = facade;
+				updateUserInfo = new UI_LoadUserInformation(facade);
 				setLayout(null);
 				setBounds();
 				addCtrls();
