@@ -4,6 +4,7 @@ import java.util.List;
 
 import examProject.dao.DbManipulator;
 import examProject.logic.answerInv.AnswerInvitation;
+import examProject.logic.changePassword.ChangePassword;
 import examProject.logic.createInv.CreateInvitation;
 import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
@@ -37,15 +38,10 @@ public class BackendFacade {
 		optionsFileReader.readOptionFile();
 		this.dbManipulator = new DbManipulator(optionsFileReader.getConnTO()); 
 	} 
-	
-	public boolean validateCurrentPwd(char[] pwd) {
-
-		return false;
-	}
 
 	public boolean changePwd(char[] pwd) {
-
-		return false;
+		ChangePassword changePwd = new ChangePassword(dbManipulator);
+		return changePwd.changePassword(currentUser.getUsername(), pwd);
 	}
 
 	public boolean requestNewPwdEmail(String email) {

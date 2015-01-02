@@ -47,7 +47,7 @@ public class LoginListener {
 		JFrame nextFrame = new JFrame();
 		ForgotPwdPanel fpp = new ForgotPwdPanel(backendFacade);
 		nextFrame.setContentPane(fpp);
-		nextFrame.setSize(new Dimension(350, 250));
+		nextFrame.setSize(new Dimension(350, 280));
 		nextFrame.setVisible(true);
 	}
 	

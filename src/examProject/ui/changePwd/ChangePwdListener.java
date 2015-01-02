@@ -22,19 +22,10 @@ public class ChangePwdListener {
 	
 	private void validatePwd() {
 		boolean result = false;
-		if (validateCurrentPwd())
-			if (validateNewPwd())
+		if (validateNewPwd())
 				result = backendFacade.changePwd(changePwdPanel.getNewPwd().getPassword());
 		if (result)
 			changePwdPanel.updatePwdSuccessfulStatusText();
-	}
-	
-	private boolean validateCurrentPwd() {
-		boolean result = false;
-		if (changePwdPanel.getCurrentPwd().getPassword() != null)
-			result = backendFacade.validateCurrentPwd(changePwdPanel.getCurrentPwd().getPassword());
-		changePwdPanel.updatePwdStatus(result);
-		return result;
 	}
 	
 	private boolean validateNewPwd() {

@@ -9,10 +9,8 @@ import examProject.logic.BackendFacade;
 
 public class ChangePwdPanel extends JPanel {
 	private static final long serialVersionUID = -6713688094181624949L;
-	private JPasswordField currentPwd = new JPasswordField();
 	private JPasswordField newPwd = new JPasswordField();
 	private JPasswordField retypeNewPwd = new JPasswordField();
-	private JLabel lblNuvarandeLsenord = new JLabel("Nuvarande lösenord");
 	private JLabel lblNyttLsenord = new JLabel("Nytt lösenord");
 	private JLabel lblRepeteraNyttLsenord = new JLabel("Repetera nytt lösenord");
 	private JLabel lblCurrentPwdStatus = new JLabel("");
@@ -30,22 +28,18 @@ public class ChangePwdPanel extends JPanel {
 	}
 	
 	private void setBounds() {
-		lblNuvarandeLsenord.setBounds(10, 11, 165, 14);
-		currentPwd.setBounds(10, 33, 155, 20);
-		lblNyttLsenord.setBounds(10, 64, 165, 14);
-		newPwd.setBounds(10, 89, 155, 20);
-		lblRepeteraNyttLsenord.setBounds(10, 120, 165, 14);
+		lblNyttLsenord.setBounds(10, 11, 221, 14);
+		newPwd.setBounds(10, 36, 221, 20);
+		lblRepeteraNyttLsenord.setBounds(10, 67, 221, 14);
 		lblCurrentPwdStatus.setBounds(241, 36, 75, 14);
 		lblNewPwdStatus0.setBounds(241, 92, 75, 14);
 		lblNewPwdStatus1.setBounds(241, 148, 75, 14);
-		retypeNewPwd.setBounds(10, 142, 155, 20);
+		retypeNewPwd.setBounds(10, 89, 221, 20);
 		lblStatus.setBounds(10, 207, 250, 20);
-		btnBytLsenord.setBounds(10, 173, 155, 23);
+		btnBytLsenord.setBounds(10, 120, 155, 23);
 	}
 	
 	private void addCtrls() {
-		add(lblNuvarandeLsenord);
-		add(currentPwd);
 		add(lblNyttLsenord);
 		add(newPwd);
 		add(lblRepeteraNyttLsenord);
@@ -59,10 +53,6 @@ public class ChangePwdPanel extends JPanel {
 	
 	public JButton getChangePwdButton() {
 		return this.btnBytLsenord;
-	}
-
-	public JPasswordField getCurrentPwd() {
-		return currentPwd;
 	}
 
 	public JPasswordField getNewPwd() {
