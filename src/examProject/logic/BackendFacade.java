@@ -145,5 +145,9 @@ public class BackendFacade {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
 		return ps.removeHostSessionPost(host_id, sessionId);
 	}
+	public UpdateUserTransfere getCurrentHostData() {
+		UpdateUserLogic uul = new UpdateUserLogic(currentUser, null, dbManipulator);
+		return uul.getLogginUserData();
+	}
 
 }
