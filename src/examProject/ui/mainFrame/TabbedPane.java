@@ -1,6 +1,6 @@
 package examProject.ui.mainFrame;
 
-import java.awt.event.KeyEvent;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,12 +12,12 @@ import examProject.transferObjects.LoggedInUserTO;
 import examProject.ui.addUser.AddUserGUI;
 import examProject.ui.adminEditInformationAboutHosts.AdminEditHostsInfo;
 import examProject.ui.answerInvitations.AnswerInvitationsPanel;
+import examProject.ui.changePwd.ChangePwdPanel;
 import examProject.ui.createInvitation.CreateInvitationPanel;
 import examProject.ui.kronoxImport.KronoxImportPanel;
 import examProject.ui.login.LoginFrame;
 import examProject.ui.login.LoginPanel;
 import examProject.ui.populateSessions.PopulateSessionsPanel;
-import examProject.ui.print.HostsPrintPanel;
 import examProject.ui.print.SessionsPrintPanel;
 import examProject.ui.setUpDb.SetUpDbGui;
 import examProject.ui.updateUserInformation.SetupIncompleteException;
@@ -30,6 +30,14 @@ public class TabbedPane extends JFrame {
 
 	public TabbedPane() {
 		login();
+		if (currentUser.isHas_tmp_pwd()) {
+			JFrame frame = new JFrame();
+			frame.setDefaultCloseOperation(HIDE_ON_CLOSE);
+			ChangePwdPanel changePwdPanel = new ChangePwdPanel(backendFacade);
+			frame.setContentPane(changePwdPanel);
+			frame.setSize(new Dimension(250, 300));
+			frame.setVisible(true);
+		}
 		JTabbedPane jtp = new JTabbedPane();
 		try {
 			backendFacade = new BackendFacade(currentUser);
