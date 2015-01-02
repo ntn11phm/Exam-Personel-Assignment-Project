@@ -10,8 +10,7 @@ public class UpdateUsersInformation {
 	private String sqlCommand = "UPDATE hosts SET first_name ='";
 	private LoggedInUserTO currentUser;
 
-	public UpdateUsersInformation(UpdateUserTransfere updateUser,
-			DbManipulator dBm) {
+	public UpdateUsersInformation(UpdateUserTransfere updateUser, DbManipulator dBm) {
 		this.updateUser = updateUser;
 		this.dBm = dBm;
 	}
@@ -25,8 +24,8 @@ public class UpdateUsersInformation {
 				+ "',last_name='" + lastName + "',civicnr=" + civic
 				+ ",email='" + email + "',city='" + city + "',address='"
 				+ address + "',zipcode=" + zipCode + ",phone_nr='" + phoneNr
-				+ "',mobile_phone='" + mobilenr/* + "',is_active=" + isActive
-				*/+ "' WHERE host_id=" + currentUser.getHost_id()  +";";
+				+ "',mobile_phone='" + mobilenr /*+ "',is_active=" + isActive
+				/*+ "' WHERE host_id=" + currentUser.getHost_id() */ +"';";
 
 		return sqlCommand;
 
@@ -42,9 +41,9 @@ public class UpdateUsersInformation {
 				+ updateUser.getAddress() + "',zipcode="
 				+ updateUser.getZipCode() + ",phone_nr='"
 				+ updateUser.getPhoneNr() + "',mobile_phone='"
-				+ updateUser.getMobileNr() /*+ ",'is_active="
-				+ updateUser.isActive() + */+
-				"' WHERE host_id=" + currentUser.getHost_id()  +";";
+				+ updateUser.getMobileNr() + /*",'is_active="
+				+ updateUser.isActive() + +
+				"' WHERE host_id=" + currentUser.getHost_id()*/  "';";
 
 		return sqlCommand;
 
