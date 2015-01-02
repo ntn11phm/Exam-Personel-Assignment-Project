@@ -42,7 +42,7 @@ public class RequestNewPwd implements LogicStrategy {
 		ResultSet rs = dbm.select(getUsername.getUsername(email));
 		try {
 			while (rs.next()) {
-				result = rs.getString(0);
+				result = rs.getString("username");
 			}
 			rs.close();
 		} catch (SQLException e) {}

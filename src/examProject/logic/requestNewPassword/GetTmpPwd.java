@@ -19,7 +19,7 @@ public class GetTmpPwd {
 		ResultSet rs = dbm.select(selectCommand);
 		try {
 			while (rs.next())
-				result = rs.getInt(0);
+				result = rs.getInt("max");
 			rs.close();
 		} catch (SQLException e) {}
 		return result;
@@ -36,7 +36,7 @@ public class GetTmpPwd {
 			ResultSet rs = dbm.select(sqlCommand);
 			try {
 				while (rs.next()) {
-					result = rs.getString(0);
+					result = rs.getString("tmp_pwd");
 				}
 				rs.close();
 			} catch (SQLException e) {}
