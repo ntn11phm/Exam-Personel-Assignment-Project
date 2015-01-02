@@ -51,6 +51,13 @@ public class UI_LoadUserInformation extends JPanel {
 		setBounds();
 		addCtrls();
 		guiButtonListener();
+		loadTextFields();
+	}
+	
+	private void loadTextFields() {
+		UpdateUserTransfere storedData = facade.getCurrentHostData();
+		firstNameTextField.setText(storedData.getFirstName());
+		lastNameTextField.setText(storedData.getLastName());
 	}
 	
 	private void setBounds() {
