@@ -20,11 +20,12 @@ public class AdminEditHostsInfo extends JPanel {
 	    JScrollPane scrollPanel = new JScrollPane(listbox);
 
 
-		private UI_LoadUserInformation updateUserInfo = new UI_LoadUserInformation(facade);
+		private UI_LoadUserInformation updateUserInfo;
 
 		
 		public AdminEditHostsInfo(BackendFacade facade) {
 			this.facade = facade;
+			updateUserInfo = new UI_LoadUserInformation(facade);
 			setLayout(null);
 			setBounds();
 			addCtrls();

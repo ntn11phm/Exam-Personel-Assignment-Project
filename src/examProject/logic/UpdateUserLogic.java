@@ -18,6 +18,7 @@ public class UpdateUserLogic {
 
 	public UpdateUserLogic(LoggedInUserTO currentUser, UpdateUserTransfere uppdateUser, DbManipulator dBm) {
 		this.uppdateUser = uppdateUser;
+		this.currentUser = currentUser;
 		System.out.println("currenttttt " + currentUser.getHost_id());
 		this.dBm = dBm;
 		getLogginUserData();
@@ -26,8 +27,8 @@ public class UpdateUserLogic {
 	public UpdateUserTransfere getLogginUserData() {
 		UpdateUserTransfere storedUserdata = null;
 		dBm.openDb();
-		//String sqlCommand = "SELECT first_name, last_name, civicnr, address, zipcode, city, phone_nr, mobile_phone, email, is_active FROM hosts WHERE host_id =" + currentUser.getHost_id() + ";";
-		String sqlCommand = "SELECT first_name, last_name, civicnr, address, zipcode, city, phone_nr, mobile_phone, email, is_active FROM hosts WHERE host_id =19;";
+		String sqlCommand = "SELECT first_name, last_name, civicnr, address, zipcode, city, phone_nr, mobile_phone, email, is_active FROM hosts WHERE host_id =" + currentUser.getHost_id() + ";";
+//		String sqlCommand = "SELECT first_name, last_name, civicnr, address, zipcode, city, phone_nr, mobile_phone, email, is_active FROM hosts WHERE host_id =19;";
 
 		ResultSet rs = dBm.select(sqlCommand);
 		try {
@@ -35,7 +36,7 @@ public class UpdateUserLogic {
 				storedUserdata = new UpdateUserTransfere(rs.getString("first_name"), rs.getString("last_name"),
 						rs.getString("email"), rs.getString("email"), rs.getString("city"),
 						rs.getString("address"), rs.getString("mobile_phone"), rs.getString("phone_nr"),
-						rs.getString("zipcode"), rs.getString("civicnr"),true, true /*rs.getBoolean("is_active"),  currentUser.isIs_admin()*/);
+						rs.getString("zipcode"), rs.getString("civicnr"),rs.getBoolean("is_active"),  currentUser.isIs_admin());
 		} catch (SQLException e) {}
 		dBm.closeDb();
 		return storedUserdata;
