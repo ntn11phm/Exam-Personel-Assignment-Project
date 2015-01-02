@@ -29,7 +29,7 @@ public class RequestNewPwd implements LogicStrategy {
 		ResultSet rs = dbm.select(getEmailAdress.getUserEmailAddress(input));
 		try {
 			while (rs.next()) {
-				emailAdress = rs.getString(0);
+				emailAdress = rs.getString("email");
 			}
 			rs.close();
 		} catch (SQLException e) {}
@@ -62,8 +62,8 @@ public class RequestNewPwd implements LogicStrategy {
 	@Override
 	public boolean execute() {
 		boolean result = false;
-		String emailAdress = getEmailAdress();
 		dbm.openDb();
+		String emailAdress = getEmailAdress();
 		if (!emailAdress.equals("")) {
 			GetTmpPwd tempPassword = new GetTmpPwd(dbm);
 			String tempPwd = tempPassword.getTmpPwd();

@@ -54,8 +54,8 @@ public class BackendFacade {
 	}
 
 	public boolean requestNewPwdUsername(String username) {
-
-		return false;
+		RequestNewPwd rnp = new RequestNewPwd(dbManipulator, username);
+		return rnp.execute();
 	}
 
 	public boolean addUser(AddUser addUser) {

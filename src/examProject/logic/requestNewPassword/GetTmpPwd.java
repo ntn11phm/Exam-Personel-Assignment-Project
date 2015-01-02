@@ -15,7 +15,7 @@ public class GetTmpPwd {
 	
 	private int getNoOfTmpPasswords() {
 		int result = 0;
-		String selectCommand = "SELECT MAX(tp_id) FROM temporary_password";
+		String selectCommand = "SELECT MAX(tp_id) FROM temporary_passwords";
 		ResultSet rs = dbm.select(selectCommand);
 		try {
 			while (rs.next())
