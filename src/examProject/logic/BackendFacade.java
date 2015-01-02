@@ -9,6 +9,7 @@ import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
 import examProject.logic.populateSessions.PopulateSessions;
 import examProject.logic.printSessions.PrintSessions;
+import examProject.logic.requestNewPassword.RequestNewPwd;
 import examProject.logic.schemaReader.KronoxImporter;
 import examProject.transferObjects.AddUser;
 import examProject.transferObjects.CreateInvitationTO;
@@ -48,8 +49,8 @@ public class BackendFacade {
 	}
 
 	public boolean requestNewPwdEmail(String email) {
-
-		return false;
+		RequestNewPwd rnp = new RequestNewPwd(dbManipulator, email);
+		return rnp.execute();
 	}
 
 	public boolean requestNewPwdUsername(String username) {
