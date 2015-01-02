@@ -1,9 +1,11 @@
 package examProject.ui.mainFrame;
 
 import java.awt.event.KeyEvent;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
 import e.xamProject.ui.showInformationAboutHosts.ShowHostsInformation;
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.LoggedInUserTO;
@@ -15,6 +17,7 @@ import examProject.ui.kronoxImport.KronoxImportPanel;
 import examProject.ui.login.LoginFrame;
 import examProject.ui.login.LoginPanel;
 import examProject.ui.populateSessions.PopulateSessionsPanel;
+import examProject.ui.print.HostsPrintPanel;
 import examProject.ui.print.SessionsPrintPanel;
 import examProject.ui.setUpDb.SetUpDbGui;
 import examProject.ui.updateUserInformation.SetupIncompleteException;
@@ -25,7 +28,7 @@ public class TabbedPane extends JFrame {
 	private LoggedInUserTO currentUser;
 	private BackendFacade backendFacade;
 
-	public TabbedPane() { 
+	public TabbedPane() {
 		login();
 		JTabbedPane jtp = new JTabbedPane();
 		try {
@@ -34,34 +37,36 @@ public class TabbedPane extends JFrame {
 		} catch (SetupIncompleteException e) {
 			JPanel setup = new SetUpDbGui();
 			JFrame frame = new JFrame("Setup");
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        frame.add(setup);
-	        frame.pack();
-	        frame.setVisible(true);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.add(setup);
+			frame.pack();
+			frame.setVisible(true);
 		}
 	}
-	
+
 	public boolean isUserLoggedIn() {
 		boolean result = false;
-		if (currentUser!=null)
+		if (currentUser != null)
 			if (!currentUser.getUsername().equals("nouser"))
 				result = true;
 		return result;
 	}
-	
+
 	public boolean login() {
 		boolean result = false;
 		try {
-			this.backendFacade = new BackendFacade(new LoggedInUserTO("nouser", 1, true, false));
-		} catch (SetupIncompleteException e) {}
+			this.backendFacade = new BackendFacade(new LoggedInUserTO("nouser",
+					1, true, false));
+		} catch (SetupIncompleteException e) {
+		}
 		final LoginFrame modalWindow = new LoginFrame();
 		final LoginPanel lp = new LoginPanel(backendFacade, modalWindow);
 		modalWindow.showLoginWindow(lp);
-		while (currentUser==null) {
+		while (currentUser == null) {
 			try {
-			    Thread.sleep(1000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-			    Thread.currentThread().interrupt();
+				Thread.currentThread().interrupt();
 			}
 			currentUser = lp.getUser();
 		}
@@ -75,23 +80,15 @@ public class TabbedPane extends JFrame {
 		getContentPane().add(jtp);
 		if (currentUser.isIs_admin()) {
 			jtp.addTab("Lägg till användare", new AddUserGUI(backendFacade));
-			jtp.setMnemonicAt(0, KeyEvent.VK_1);
 			jtp.addTab("Importera", new KronoxImportPanel(backendFacade));
-			jtp.setMnemonicAt(0, KeyEvent.VK_5);
 			jtp.addTab("Inbjudningar", new CreateInvitationPanel(backendFacade));
-			jtp.setMnemonicAt(0, KeyEvent.VK_7);
 			jtp.addTab("Populera sessioner", new PopulateSessionsPanel(backendFacade));
-			jtp.setMnemonicAt(0, KeyEvent.VK_9);
 			jtp.addTab("Admin redigerar info om värdar", new AdminEditHostsInfo(backendFacade));
-			jtp.setMnemonicAt(0, KeyEvent.VK_2);
 		}
 		jtp.addTab("Skriv ut", new SessionsPrintPanel(backendFacade));
-		jtp.setMnemonicAt(0, KeyEvent.VK_3);
 		jtp.addTab("Uppdatera användare", new UI_LoadUserInformation(backendFacade));
-		jtp.setMnemonicAt(0, KeyEvent.VK_4);
 		jtp.addTab("Svara på inbjudningar", new AnswerInvitationsPanel(backendFacade));
-		jtp.setMnemonicAt(0, KeyEvent.VK_8);
-		jtp.addTab("Visa info om värdar", new ShowHostsInformation(backendFacade));		
-		jtp.setMnemonicAt(0, KeyEvent.VK_0);
+		jtp.addTab("Visa info om värdar", new ShowHostsInformation(backendFacade));
+		// jtp.addTab("Skriv ut värdinfo", new HostsPrintPanel());
 	}
 }
