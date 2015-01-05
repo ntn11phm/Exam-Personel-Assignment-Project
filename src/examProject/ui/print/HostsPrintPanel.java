@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -15,10 +16,13 @@ import javax.swing.UIManager;
 
 import e.xamProject.ui.showInformationAboutHosts.ShowHostsInformation;
 import examProject.logic.BackendFacade;
+import examProject.transferObjects.PrintSessionsTO;
+import examProject.transferObjects.UpdateUserTransfere;
 import examProject.ui.updateUserInformation.UI_LoadUserInformation;
 
 public class HostsPrintPanel extends JPanel {
 	private static final long serialVersionUID = 60477093723435356L;
+	private BackendFacade facade;
 	private JList<String> hostList = new JList<String>();
 	private JScrollPane hostsListPane = new JScrollPane(hostList);
 	private JCheckBox firstName = new JCheckBox("Förnamn");
@@ -32,6 +36,7 @@ public class HostsPrintPanel extends JPanel {
 	private JCheckBox mobile = new JCheckBox("Mobil");
 	private JButton printButton = new JButton("Skriv ut");
 	private String[] arrString;
+	private List<UpdateUserTransfere> printHostsList;
 	private ShowHostsInformation sHi;
 	private UI_LoadUserInformation loadUI;
 
@@ -94,6 +99,23 @@ public class HostsPrintPanel extends JPanel {
 
 	private void printButtonClickedMethod() throws PrinterException {
 
+		isCheckBoxSelected();
+
+		UIManager.put("swing.boldMetal", Boolean.FALSE);
+		JFrame f = new JFrame("VärdInfo");
+		JList<String> printList = new JList<String>();
+		printList.setListData(arrString);
+		printList.setPreferredSize(new Dimension(500, 500));
+		f.getContentPane().add("Center", printList);
+		JButton printWindowButton = new JButton("Skriv ut");
+		printWindowButton.addActionListener(new Printer(f));
+		f.getContentPane().add("South", printWindowButton);
+		f.pack();
+		f.setVisible(true);
+
+	}
+
+	private void isCheckBoxSelected() {
 		if (firstName.isSelected()
 				&& !loadUI.getFirstNameTextField().getText().isEmpty()) {
 			hostList.add(firstName, loadUI.getFirstNameTextField().getText());
@@ -129,21 +151,9 @@ public class HostsPrintPanel extends JPanel {
 				&& !loadUI.getMobileNrTextField().getText().isEmpty()) {
 			hostList.add(mobile, loadUI.getMobileNrTextField().getText());
 		}
+		//printHostsList = facade.(firstName, lastName, email, civicNr, mobile, phone, city, address, zipcode);
 
 		hostList.setListData(arrString);
-
-		UIManager.put("swing.boldMetal", Boolean.FALSE);
-		JFrame f = new JFrame("VärdInfo");
-		JList<String> printList = new JList<String>();
-		printList.setListData(arrString);
-		printList.setPreferredSize(new Dimension(500, 500));
-		f.getContentPane().add("Center", printList);
-		JButton printWindowButton = new JButton("Skriv ut");
-		printWindowButton.addActionListener(new Printer(f));
-		f.getContentPane().add("South", printWindowButton);
-		f.pack();
-		f.setVisible(true);
-
 	}
 
 }
