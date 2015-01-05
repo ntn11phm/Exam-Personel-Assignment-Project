@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class FirstTimeLaunchLogic {
 	private String defaultFileName;
-	private String usernameTag = "";
-	private String pwdTag = "";
+	private String usernameTag = "databaseUser";
+	private String pwdTag = "databaseUserPW";
 	private String username = "";
 	private String pwd = "";
 	

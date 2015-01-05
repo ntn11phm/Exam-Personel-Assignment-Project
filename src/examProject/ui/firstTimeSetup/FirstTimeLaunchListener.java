@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 public class FirstTimeLaunchListener {
 	private FirstTimeLaunchPanel panel;
+	private boolean isNotSaved = true;
 	
 	public FirstTimeLaunchListener(FirstTimeLaunchPanel panel) {
 		this.panel = panel;
@@ -12,6 +13,10 @@ public class FirstTimeLaunchListener {
 	
 	public void createButtonListeners() {
 		panel.getStoreButton().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {store();}});
+	}
+	
+	public boolean getSavedStatus() {
+		return isNotSaved;
 	}
 	
 	private void store() {
@@ -23,9 +28,10 @@ public class FirstTimeLaunchListener {
 		else {
 			FirstTimeLaunchLogic logic = new FirstTimeLaunchLogic();
 			result = logic.save(panel.getUsername(), panel.getPwd());
-			if (result)
+			if (result) {
 				panel.setStatusText("Data sparat till fil!");
-			else
+				isNotSaved = false;
+			} else
 				panel.setStatusText("Något gick fel vid sparningnen!");
 		}
 	}

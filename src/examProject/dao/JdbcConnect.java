@@ -3,6 +3,7 @@ package examProject.dao;
 import java.sql.*;
 
 import examProject.transferObjects.DBConnectionTO;
+import examProject.ui.firstTimeSetup.FirstTimeLaunchLogic;
 
 /**
  * 
@@ -12,25 +13,20 @@ import examProject.transferObjects.DBConnectionTO;
  */
 public class JdbcConnect {
 	private Connection c = null;
-//	private Statement s = null;
-//	private ResultSet rs = null;
 	private DBConnectionTO dbConnectionTo ;
+	private String username;
+	private String pwd;
 	
 	public JdbcConnect(DBConnectionTO dbConnectionTo){
 		this.dbConnectionTo= dbConnectionTo;
-	
+		FirstTimeLaunchLogic ftl = new FirstTimeLaunchLogic();
+		ftl.openFile();
+		username = ftl.getUsername();
+		pwd = ftl.getPwd();
 	}
 	public Connection getC() {
 		return c;
 	}
-//
-//	public Statement getS() {
-//		return s;
-//	}
-//
-//	public ResultSet getRs() {
-//		return rs;
-//	}
 
 	public Connection openDbConnection() {
 		
@@ -38,7 +34,7 @@ public class JdbcConnect {
 			Class.forName("org.postgresql.Driver");
 			c = DriverManager.getConnection(
 					"jdbc:" + dbConnectionTo.getDatabaseDriver() + "://" + dbConnectionTo.getDatabasePath() + ":" + dbConnectionTo.getDatabasePort() + "/" + dbConnectionTo.getDatabaseName(), 
-					"postgres", "Destroyer");
+					username, pwd);
 			
 			System.out.println("Opened database successfully");
 		} 
@@ -52,12 +48,7 @@ public class JdbcConnect {
 		 * "Destroyer"); System.out.println("Opened database successfully"); }
 		 */ 
 		
-		catch (Exception e) {
-			// e.printStackTrace();
-			// System.err.println(e.getClass().getName() + ": " +
-			// e.getMessage());
-			// System.exit(0);
-		}
+		catch (Exception e) {}
 		
 		return c;
 	}
@@ -67,21 +58,12 @@ public class JdbcConnect {
 			con.close();
 			con = null;
 		} catch (Exception e) {
-			// System.err.println(e.getClass().getName() + ": " +
-			// e.getMessage());
-			// System.exit(0);
 		} finally {
 			try {
-//				if (rs != null)
-//					rs.close();
-//				if (s != null)
-//					s.close();
 				if (con != null)
 					con.close();
 				System.out.println("Closed database successfully");
-			} catch (SQLException se) {
-			}
-
+			} catch (SQLException se) {	}
 		}
 		
 		return true;

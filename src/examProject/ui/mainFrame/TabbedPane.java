@@ -1,9 +1,14 @@
 package examProject.ui.mainFrame;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
+
 import e.xamProject.ui.showInformationAboutHosts.ShowHostsInformation;
 import examProject.logic.BackendFacade;
+import examProject.logic.OptionsFileReader;
+import examProject.transferObjects.DBConnectionTO;
 import examProject.transferObjects.LoggedInUserTO;
 import examProject.ui.addUser.AddUserGUI;
 import examProject.ui.adminEditInformationAboutHosts.AdminEditHostsInfo;
@@ -11,6 +16,7 @@ import examProject.ui.answerInvitations.AnswerInvitationsPanel;
 import examProject.ui.changePwd.ChangePwdFrame;
 import examProject.ui.changePwd.ChangePwdPanel;
 import examProject.ui.createInvitation.CreateInvitationPanel;
+import examProject.ui.firstTimeSetup.FirstTimeLaunchPanel;
 import examProject.ui.kronoxImport.KronoxImportPanel;
 import examProject.ui.login.LoginFrame;
 import examProject.ui.login.LoginPanel;
@@ -27,6 +33,7 @@ public class TabbedPane extends JFrame {
 	private BackendFacade backendFacade;
 
 	public TabbedPane() {
+		setup();
 		login();
 		changedPwd();
 		JTabbedPane jtp = new JTabbedPane();
@@ -34,21 +41,52 @@ public class TabbedPane extends JFrame {
 			backendFacade = new BackendFacade(currentUser);
 			makeTabs(jtp);
 		} catch (SetupIncompleteException e) {
-			SetUpDbGui setup = new SetUpDbGui();
-			JFrame frame = new JFrame("Setup");
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.add(setup);
-			frame.pack();
-			frame.setVisible(true);
-			while (setup.getSavedStatus()) {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					Thread.currentThread().interrupt();
-				}
-			}
-			frame.dispose();
+			showSetFrames();
 		}
+	}
+	
+	private void setup() {
+		OptionsFileReader ofr = new OptionsFileReader();
+		try {
+			ofr.readOptionFile();
+		} catch (SetupIncompleteException e) {}
+		DBConnectionTO dbTo = ofr.getConnTO();
+		if(dbTo.isFirstTimeLaunch()) {
+			showSetFrames();
+		}
+	}
+	
+	private void showSetFrames() {
+		SetUpDbGui setup = new SetUpDbGui();
+		JFrame frame = new JFrame("Setup");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		FirstTimeLaunchPanel setup2 = new FirstTimeLaunchPanel();
+		frame.add(setup2);
+		frame.pack();
+		frame.setSize(new Dimension(400, 235));
+		frame.setVisible(true);
+		while (setup2.getSavedStatus()) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e1) {
+				Thread.currentThread().interrupt();
+			}
+		}
+		
+		frame.setVisible(false);
+		frame.remove(setup2);
+		frame.add(setup);
+		frame.pack();
+		frame.setSize(new Dimension(300, 260));
+		frame.setVisible(true);
+		while (setup.getSavedStatus()) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e1) {
+				Thread.currentThread().interrupt();
+			}
+		}
+		frame.dispose();
 	}
 	
 	private boolean changedPwd() {

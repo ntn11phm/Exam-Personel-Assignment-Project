@@ -39,7 +39,10 @@ public class OptionsFileReader {
 					} else if (split[0].equalsIgnoreCase("databaseName")) {
 						dbConnection.setDatabaseName(split[1]);
 					} else if (split[0].equalsIgnoreCase("firstTimeLaunch")) {
-						dbConnection.setFirstTimeLaunch(true);
+						if (split[1].equals("true"))
+							dbConnection.setFirstTimeLaunch(true);
+						else
+							dbConnection.setFirstTimeLaunch(false);
 					}
 				}
 			}  
