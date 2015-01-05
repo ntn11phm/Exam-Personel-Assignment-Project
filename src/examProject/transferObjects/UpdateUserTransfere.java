@@ -20,6 +20,7 @@ public class UpdateUserTransfere {
 			this.lastName = lastName;
 			this.civic = civic;
 			this.email = email;
+			this.Address = address;
 			this.retypeEmail = retypeEmail;
 			this.city = city;
 			this.zipCode = zipCode;

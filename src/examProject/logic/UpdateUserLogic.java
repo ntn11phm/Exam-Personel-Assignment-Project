@@ -19,7 +19,6 @@ public class UpdateUserLogic {
 	public UpdateUserLogic(LoggedInUserTO currentUser, UpdateUserTransfere uppdateUser, DbManipulator dBm) {
 		this.uppdateUser = uppdateUser;
 		this.currentUser = currentUser;
-		System.out.println("currenttttt " + currentUser.getHost_id());
 		this.dBm = dBm;
 		getLogginUserData();
 	}
@@ -28,7 +27,6 @@ public class UpdateUserLogic {
 		UpdateUserTransfere storedUserdata = null;
 		dBm.openDb();
 		String sqlCommand = "SELECT first_name, last_name, civicnr, address, zipcode, city, phone_nr, mobile_phone, email, is_active FROM hosts WHERE host_id =" + currentUser.getHost_id() + ";";
-//		String sqlCommand = "SELECT first_name, last_name, civicnr, address, zipcode, city, phone_nr, mobile_phone, email, is_active FROM hosts WHERE host_id =19;";
 
 		ResultSet rs = dBm.select(sqlCommand);
 		try {
@@ -47,15 +45,15 @@ public class UpdateUserLogic {
 		dBm.openDb();
 		boolean result = false;
 		String sqlCommand = "SELECT user_id FROM hosts WHERE host_id=" + currentUser.getHost_id() + ";";
-		//String sqlCommand = "SELECT user_id FROM hosts WHERE host_id=19;";
-		
 
 		ResultSet rs = dBm.select(sqlCommand);
 		try {
 			//if (!rs.next()) {
 			if (rs.next()) {
 				UpdateUsersInformation updateUser = new UpdateUsersInformation(uppdateUser, dBm);
-				dBm.update(updateUser.updateUserStrCommand());
+				dBm.update(updateUser.getSqlCommand());
+//				dBm.update(updateUser.updateUserStrCommand());
+
 
 				sqlCommand = "UPDATE hosts SET first_name='"
 						+ uppdateUser.getFirstName() + "',last_name='"
@@ -66,8 +64,8 @@ public class UpdateUserLogic {
 						+ uppdateUser.getAddress() + "',zipcode="
 						+ uppdateUser.getZipCode() + ",phone_nr='"
 						+ uppdateUser.getPhoneNr() + "',mobile_phone='"
-						+ uppdateUser.getMobileNr()/* + "',is_active="
-						+ uppdateUser.isActive() */ + "' WHERE host_id=" 
+						+ uppdateUser.getMobileNr() + "',is_active="
+						+ uppdateUser.isActive()  + " WHERE host_id=" 
 						+ currentUser.getHost_id()  +";";
 
 				dBm.update(sqlCommand);
