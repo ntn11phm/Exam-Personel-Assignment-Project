@@ -88,22 +88,40 @@ public class HostsPrintPanel extends JPanel {
 
 	private void printButtonClickedMethod() throws PrinterException {
 
-		if (firstName.isSelected() || lastName.isSelected()
-				|| civicNr.isSelected() || address.isSelected()
-				|| zipcode.isSelected() || city.isSelected()
-				|| email.isSelected() || phone.isSelected()
-				|| mobile.isSelected()) {
+		if (firstName.isSelected()) {
 			loadUI.getFirstNameTextField();
+		}
+		if (lastName.isSelected()) {
 			loadUI.getLastNameTextField();
+		}
+		if (civicNr.isSelected()) {
 			loadUI.getCivicNRTextField();
-			loadUI.getZipCodeTextField();
+		}
+		if (address.isSelected()) {
 			loadUI.getAddressTextField();
+		}
+		if (zipcode.isSelected()) {
+			loadUI.getZipCodeTextField();
+		}
+		if (city.isSelected()) {
 			loadUI.getCityTextField();
-			loadUI.getPhoneNrTextField();
-			loadUI.getMobileNrTextField();
+		}
+		if (email.isSelected()) {
 			loadUI.getEmailTextField();
 		}
-
+		if (phone.isSelected()) {
+			loadUI.getPhoneNrTextField();
+		}
+		if (mobile.isSelected()) {
+			loadUI.getMobileNrTextField();
+		}
+//		if (validateTextFields(dateFieldText.getText())) {
+//			printHostsList = facade.getSessions(dateFieldText.getText());
+//			int length = printHostsList.size() - 1;
+//			arrString = new String[length];
+//			for (int i = 0; i < length; i++)
+//				arrString[i] = printHostsList.get(i).toString();
+//			sessionsList.setListData(arrString);
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
 		JFrame f = new JFrame("VärdInfo");
 		JList<String> printList = new JList<String>();
