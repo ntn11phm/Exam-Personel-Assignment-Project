@@ -127,17 +127,22 @@ public class CheckIfTheInputIsCorrect {
 				}
 			}
 			// Metod kollar om den inmatade personnummer är rätt
-			public void checkCivicNr(String textFieldText, int textFieldLength) {
+			public boolean checkCivicNr(String textFieldText, int textFieldLength) {
 				int counter = 0;
 				counter = chekIfNummber(textFieldLength, textFieldText);
-						if (counter != 10 )
+						if (counter !=10 ){
 							JOptionPane.showMessageDialog(null, "civicNr är incorrect");
+							return false;
+						}
+			 
+				return true;
+
 			}
 			public void checkPhoneNr(String textFieldText, int textFieldLength) {
 				int counter = 0;
 				counter = chekIfNummber(textFieldLength, textFieldText);
 				if (counter != textFieldLength)
-						JOptionPane.showMessageDialog(null, "phonenummer är inte rätt");
+						JOptionPane.showMessageDialog(null, "Phonnummer är inte rätt");
 			}
 			// Metod kollar om den inmatade personnummer är rätt
 			public void checkMobilNr(String textFieldText, int textFieldLength) {

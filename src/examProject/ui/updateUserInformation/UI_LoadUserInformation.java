@@ -60,12 +60,12 @@ public class UI_LoadUserInformation extends JPanel {
 		lastNameTextField.setText(storedData.getLastName());
 		emailTextField.setText(storedData.getEmail());
 		retypeEmailTextField.setText(storedData.getEmail());
-		civicNRTextField.setText(storedData.getCivic());
+		civicNRTextField.setText(Integer.toString(storedData.getCivic()));
 		cityTextField.setText(storedData.getCity());
 		addressTextField.setText(storedData.getAddress());
-		zipCodeTextField.setText(storedData.getZipCode());
-		phoneNrTextField.setText(storedData.getPhoneNr());
-		mobileNrTextField.setText(storedData.getMobileNr());
+		zipCodeTextField.setText(Integer.toString(storedData.getZipCode()));
+		phoneNrTextField.setText(Integer.toString(storedData.getPhoneNr()));
+		mobileNrTextField.setText(Integer.toString(storedData.getMobileNr()));
 	}
 	
 	private void setBounds() {
@@ -134,9 +134,10 @@ public class UI_LoadUserInformation extends JPanel {
 			if (source == update) {
 				
 					update();
+					JOptionPane.showMessageDialog(null, "Din information har uppdaterad.");
 				
-			} else if (source == isAdmin)
-				System.out.println();
+			} /*else if (source == isAdmin)
+		*/		System.out.println();
 
 		}
 	}
@@ -190,7 +191,7 @@ public class UI_LoadUserInformation extends JPanel {
 	}
 	private void update() {   
 	//	LoggedInUserTO lo = new LoggedInUserTO("Olle", user_id, is_admin, has_tmp_pwd)
-		
+		UpdateUserTransfere updateUser = null;
 		 if(checkFielts()){
  			checkIfFirstNameISCorrect();
 			checkIfLastNameISCorrect();
@@ -202,13 +203,15 @@ public class UI_LoadUserInformation extends JPanel {
 			checkIfPoneNrIsCorrect();
 			checkIfAddressIsCorrest();
 			checkIfZipCodeIsCorrect();
-			UpdateUserTransfere updateUser = new UpdateUserTransfere(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());
-			facade.uppdateUser(updateUser);
-		
+		//	UpdateUserTransfere updateUser = new UpdateUserTransfere(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());
+			updateUser = new UpdateUserTransfere(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());
+	 		
 		} else                                      		
 
 			JOptionPane.showMessageDialog(null,
 					"Du måste fylla in de fält med *");
+			facade.uppdateUser(updateUser);
+
 	}
 	
 	public void buttonClickedMethod() {
@@ -236,11 +239,16 @@ public class UI_LoadUserInformation extends JPanel {
 	// Metod kollar om den inmatade ort namn är rätt dvs att den tar bara
 	// bokstäver
 	public void checkIfCityNameIsCorrect() {
-		checkStatement.checkCityName(cityTextField.getText(), civicNRTextField.getText().length());
+		checkStatement.checkCityName(cityTextField.getText(), cityTextField.getText().length());
 	}
 	public void checkIfCivicNrISCorrect() {
-		checkStatement.checkCivicNr(civicNRTextField.getText(), civicNRTextField.getText().length());
+		boolean b;
+		b =checkStatement.checkCivicNr(civicNRTextField.getText(), civicNRTextField.getText().length());
+		if (b == false){
+			checkStatement.checkCivicNr(civicNRTextField.getText(), civicNRTextField.getText().length());
+		System.out.println(b+ " bbbbbbbbb");
 		}
+	}
 	
 	// Metod kollar om den inmatade nummer är rätt
 	public void checkIfPoneNrIsCorrect() {

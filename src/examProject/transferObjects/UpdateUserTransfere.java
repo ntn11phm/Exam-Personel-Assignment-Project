@@ -37,9 +37,12 @@ public class UpdateUserTransfere {
 			return lastName;
 		}
 
-		public String getCivic() {
-			return civic;
-		}
+		public int getCivic() {
+			if (civic.equals(""))
+				return 0;
+			else
+				return Integer.parseInt(civic);
+		}		
 
 		public String getEmail() {
 			return email;
@@ -56,18 +59,31 @@ public class UpdateUserTransfere {
 		public String getAddress() {
 			return Address;
 		}
-
-		public String getZipCode() {
-			return zipCode;
+	
+		public int getZipCode(){
+			
+			if (zipCode.equals(""))
+				return 0;
+			else
+				return Integer.parseInt(zipCode);
 		}
-
-		public String getMobileNr() {
-			return mobileNr;
+		
+		
+		public int getMobileNr() {
+			if (mobileNr.equals(""))
+				return 0;
+			else
+				return Integer.parseInt(mobileNr);
 		}
+				
 
-		public String getPhoneNr() {
-			return phoneNr;
+		public int getPhoneNr() {
+			if (phoneNr.equals(""))
+				return 0;
+			else
+				return Integer.parseInt(phoneNr);
 		}
+				
 
 		public boolean isAdmin() {
 			return isAdmin;
