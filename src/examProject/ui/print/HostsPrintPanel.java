@@ -10,6 +10,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
 import e.xamProject.ui.showInformationAboutHosts.ShowHostsInformation;
@@ -18,6 +19,8 @@ import examProject.ui.updateUserInformation.UI_LoadUserInformation;
 
 public class HostsPrintPanel extends JPanel {
 	private static final long serialVersionUID = 60477093723435356L;
+	private JList<String> hostList = new JList<String>();
+	private JScrollPane hostsListPane = new JScrollPane(hostList);
 	private JCheckBox firstName = new JCheckBox("Förnamn");
 	private JCheckBox lastName = new JCheckBox("Efternamn");
 	private JCheckBox civicNr = new JCheckBox("Personnummer");
@@ -54,6 +57,8 @@ public class HostsPrintPanel extends JPanel {
 		mobile.setBounds(396, 362, 98, 20);
 		printButton.setBounds(396, 389, 130, 29);
 		sHi.setBounds(0, 0, 590, 182);
+		hostsListPane.setBounds(241, 211, 130, 156);
+		hostsListPane.setViewportView(hostList);
 
 	}
 
@@ -69,6 +74,7 @@ public class HostsPrintPanel extends JPanel {
 		add(mobile);
 		add(printButton);
 		add(sHi);
+		add(hostsListPane);
 
 	}
 
@@ -88,40 +94,44 @@ public class HostsPrintPanel extends JPanel {
 
 	private void printButtonClickedMethod() throws PrinterException {
 
-		if (firstName.isSelected()) {
-			loadUI.getFirstNameTextField();
+		if (firstName.isSelected()
+				&& !loadUI.getFirstNameTextField().getText().isEmpty()) {
+			hostList.add(firstName, loadUI.getFirstNameTextField().getText());
 		}
-		if (lastName.isSelected()) {
-			loadUI.getLastNameTextField();
+		if (lastName.isSelected()
+				&& !loadUI.getLastNameTextField().getText().isEmpty()) {
+			hostList.add(lastName, loadUI.getLastNameTextField().getText());
 		}
-		if (civicNr.isSelected()) {
-			loadUI.getCivicNRTextField();
+		if (civicNr.isSelected()
+				&& !loadUI.getCivicNRTextField().getText().isEmpty()) {
+			hostList.add(civicNr, loadUI.getCivicNRTextField().getText());
 		}
-		if (address.isSelected()) {
-			loadUI.getAddressTextField();
+		if (address.isSelected()
+				&& !loadUI.getAddressTextField().getText().isEmpty()) {
+			hostList.add(address, loadUI.getAddressTextField().getText());
 		}
-		if (zipcode.isSelected()) {
-			loadUI.getZipCodeTextField();
+		if (zipcode.isSelected()
+				&& !loadUI.getZipCodeTextField().getText().isEmpty()) {
+			hostList.add(zipcode, loadUI.getZipCodeTextField().getText());
 		}
-		if (city.isSelected()) {
-			loadUI.getCityTextField();
+		if (city.isSelected() && !loadUI.getCityTextField().getText().isEmpty()) {
+			hostList.add(city, loadUI.getCityTextField().getText());
 		}
-		if (email.isSelected()) {
-			loadUI.getEmailTextField();
+		if (email.isSelected()
+				&& !loadUI.getEmailTextField().getText().isEmpty()) {
+			hostList.add(email, loadUI.getEmailTextField().getText());
 		}
-		if (phone.isSelected()) {
-			loadUI.getPhoneNrTextField();
+		if (phone.isSelected()
+				&& !loadUI.getPhoneNrTextField().getText().isEmpty()) {
+			hostList.add(phone, loadUI.getPhoneNrTextField().getText());
 		}
-		if (mobile.isSelected()) {
-			loadUI.getMobileNrTextField();
+		if (mobile.isSelected()
+				&& !loadUI.getMobileNrTextField().getText().isEmpty()) {
+			hostList.add(mobile, loadUI.getMobileNrTextField().getText());
 		}
-//		if (validateTextFields(dateFieldText.getText())) {
-//			printHostsList = facade.getSessions(dateFieldText.getText());
-//			int length = printHostsList.size() - 1;
-//			arrString = new String[length];
-//			for (int i = 0; i < length; i++)
-//				arrString[i] = printHostsList.get(i).toString();
-//			sessionsList.setListData(arrString);
+
+		hostList.setListData(arrString);
+
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
 		JFrame f = new JFrame("VärdInfo");
 		JList<String> printList = new JList<String>();
