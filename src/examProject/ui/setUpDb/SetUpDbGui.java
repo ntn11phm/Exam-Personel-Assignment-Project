@@ -16,7 +16,6 @@ import javax.swing.JTextField;
 import examProject.ui.updateUserInformation.SetupIncompleteException;
 
 public class SetUpDbGui extends JPanel {
-
 	private static final long serialVersionUID = -1574987717437001835L;
 	private JLabel dBDriverLabel = new JLabel("Databasedriver:");
 	private JLabel dBPathLabel = new JLabel("Databasepath:");
@@ -30,6 +29,7 @@ public class SetUpDbGui extends JPanel {
 	private JButton currentSetupButton = new JButton("View Setup file");
 	private JButton saveButton = new JButton("Save");
 	private JButton clearFieldsButton = new JButton("Clear Fields");
+	private boolean isNotSaved = true;
 
 	public SetUpDbGui() {
 		setLayout(null);
@@ -69,6 +69,10 @@ public class SetUpDbGui extends JPanel {
 		add(currentSetupButton);
 
 	}
+	
+	public boolean getSavedStatus() {
+		return isNotSaved;
+	}
 
 	private void guiButtonListener() {
 		saveButton.addActionListener(new ActionListener() {
@@ -103,6 +107,7 @@ public class SetUpDbGui extends JPanel {
 			save.write("databaseName=" + dBNameText.getText() + "\n");
 			save.write("firstTimeLaunch=false");
 			save.close();
+			isNotSaved = false;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
