@@ -1,7 +1,6 @@
 package examProject.ui.mainFrame;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import e.xamProject.ui.showInformationAboutHosts.ShowHostsInformation;
 import examProject.logic.BackendFacade;
@@ -35,12 +34,20 @@ public class TabbedPane extends JFrame {
 			backendFacade = new BackendFacade(currentUser);
 			makeTabs(jtp);
 		} catch (SetupIncompleteException e) {
-			JPanel setup = new SetUpDbGui();
+			SetUpDbGui setup = new SetUpDbGui();
 			JFrame frame = new JFrame("Setup");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.add(setup);
 			frame.pack();
 			frame.setVisible(true);
+			while (setup.getSavedStatus()) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e1) {
+					Thread.currentThread().interrupt();
+				}
+			}
+			frame.dispose();
 		}
 	}
 	

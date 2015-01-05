@@ -8,80 +8,70 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import examProject.ui.updateUserInformation.SetupIncompleteException;
 
 public class SetUpDbGui extends JPanel {
-
 	private static final long serialVersionUID = -1574987717437001835L;
-	private JLabel userNameLabel = new JLabel("Username:");
 	private JLabel dBDriverLabel = new JLabel("Databasedriver:");
 	private JLabel dBPathLabel = new JLabel("Databasepath:");
 	private JLabel dBPortLabel = new JLabel("Database-PortNr:");
 	private JLabel dBNameLabel = new JLabel("Databasename:");
-	private JLabel mailServPathLabel = new JLabel("Mailserverpath:");
 	private JCheckBox firstTimeLaunchCb = new JCheckBox("First time launch");
-	private JTextField userNameText = new JTextField(30);
 	private JTextField dBDriverText = new JTextField(30);
 	private JTextField dBPathText = new JTextField(30);
 	private JTextField dBPortText = new JTextField(30);
 	private JTextField dBNameText = new JTextField(30);
-	private JTextField mailServPathText = new JTextField(30);
-	private JButton currentSetupButton = new JButton("View Setup");
+	private JButton currentSetupButton = new JButton("View Setup file");
 	private JButton saveButton = new JButton("Save");
 	private JButton clearFieldsButton = new JButton("Clear Fields");
+	private boolean isNotSaved = true;
 
 	public SetUpDbGui() {
 		setLayout(null);
 		setBounds();
 		addCtrls();
 		guiButtonListener();
-
+		currentButtonClickedMethod();
 	}
 
 	private void setBounds() {
-		userNameLabel.setBounds(29, 72, 130, 20);
-		dBDriverLabel.setBounds(29, 32, 130, 20);
-		dBPathLabel.setBounds(29, 191, 130, 20);
-		dBPortLabel.setBounds(29, 151, 130, 20);
-		dBNameLabel.setBounds(29, 111, 130, 20);
-		mailServPathLabel.setBounds(29, 231, 130, 20);
-		userNameText.setBounds(131, 72, 160, 20);
-		dBDriverText.setBounds(131, 32, 160, 20);
-		dBPathText.setBounds(131, 191, 160, 20);
-		dBPortText.setBounds(131, 151, 160, 20);
-		dBNameText.setBounds(131, 111, 160, 20);
-		mailServPathText.setBounds(131, 231, 160, 20);
-		firstTimeLaunchCb.setBounds(29, 271, 130, 20);
-		saveButton.setBounds(29, 345, 90, 30);
-		clearFieldsButton.setBounds(163, 346, 129, 29);
-		currentSetupButton.setBounds(162, 306, 129, 29);
+		dBDriverLabel.setBounds(10, 11, 130, 20);
+		dBPathLabel.setBounds(10, 104, 130, 20);
+		dBPortLabel.setBounds(10, 73, 130, 20);
+		dBNameLabel.setBounds(10, 42, 130, 20);
+		dBDriverText.setBounds(112, 11, 160, 20);
+		dBPathText.setBounds(112, 104, 160, 20);
+		dBPortText.setBounds(112, 73, 160, 20);
+		dBNameText.setBounds(112, 42, 160, 20);
+		firstTimeLaunchCb.setBounds(112, 190, 130, 20);
+		saveButton.setBounds(10, 185, 90, 30);
+		clearFieldsButton.setBounds(149, 145, 129, 29);
+		currentSetupButton.setBounds(10, 145, 129, 29);
 	}
 
 	private void addCtrls() {
-		add(userNameLabel);
 		add(dBDriverLabel);
 		add(dBPathLabel);
 		add(dBPortLabel);
 		add(dBNameLabel);
-		add(mailServPathLabel);
-		add(userNameText);
 		add(dBDriverText);
 		add(dBPathText);
 		add(dBPortText);
 		add(dBNameText);
-		add(mailServPathText);
 		add(firstTimeLaunchCb);
 		add(saveButton);
 		add(clearFieldsButton);
 		add(currentSetupButton);
 
+	}
+	
+	public boolean getSavedStatus() {
+		return isNotSaved;
 	}
 
 	private void guiButtonListener() {
@@ -98,12 +88,10 @@ public class SetUpDbGui extends JPanel {
 		});
 		clearFieldsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				userNameText.setText("");
 				dBDriverText.setText("");
 				dBPathText.setText("");
 				dBPortText.setText("");
 				dBNameText.setText("");
-				mailServPathText.setText("");
 			}
 		});
 
@@ -117,21 +105,17 @@ public class SetUpDbGui extends JPanel {
 			save.write("databasePath=" + dBPathText.getText() + "\n");
 			save.write("databasePort=" + dBPortText.getText() + "\n");
 			save.write("databaseName=" + dBNameText.getText() + "\n");
-			save.write("mailServerPath=" + mailServPathText.getText() + "\n");
-			save.write("firstTimeLaunch=" + firstTimeLaunchCb.isSelected());
+			save.write("firstTimeLaunch=false");
 			save.close();
+			isNotSaved = false;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			if (save != null)
 				try {
 					save.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
+				} catch (IOException e) {}
 		}
-
 	}
 
 	private void currentButtonClickedMethod() {
@@ -149,7 +133,7 @@ public class SetUpDbGui extends JPanel {
 				split = line.split("=");
 				if (split.length != 2)
 					throw new SetupIncompleteException();
-				else {
+				else
 					if (split[0].equalsIgnoreCase("databaseDriver")) {
 						dBDriverText.setText(split[1]);
 					} else if (split[0].equalsIgnoreCase("databasePath")) {
@@ -158,15 +142,8 @@ public class SetUpDbGui extends JPanel {
 						dBPortText.setText(split[1]);
 					} else if (split[0].equalsIgnoreCase("databaseName")) {
 						dBNameText.setText(split[1]);
-					} else if (split[0].equalsIgnoreCase("mailServerPath")) {
-						mailServPathText.setText(split[1]);
-
 					}
-				}
-
 			}
-		} catch (Exception e) {
-
-		}
+		} catch (Exception e) { }
 	}
 }
