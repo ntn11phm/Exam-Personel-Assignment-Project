@@ -3,17 +3,17 @@ package examProject.transferObjects;
 public class PrintHostsTO {
 	private String firstName;
 	private String lastName;
-	private String civicNr;
+	private int civicNr;
 	private String address;
 	private String city;
-	private String zipCode;
+	private int zipCode;
 	private String email;
-	private String mobileNr;
-	private String phoneNr;
+	private int mobileNr;
+	private int phoneNr;
 
-	public PrintHostsTO(String firstName, String lastName, String civicNr,
-			String address, String city, String zipCode, String email,
-			String mobileNr, String phoneNr) {
+	public PrintHostsTO(String firstName, String lastName, int civicNr,
+			String address, String city, int zipCode, String email,
+			int mobileNr, int phoneNr) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.civicNr = civicNr;
@@ -34,10 +34,8 @@ public class PrintHostsTO {
 	}
 
 	public int getCivicNr() {
-		if (civicNr.equals(""))
-			return 0;
-		else
-			return Integer.parseInt(civicNr);
+		return civicNr;
+
 	}
 
 	public String getAddress() {
@@ -49,10 +47,7 @@ public class PrintHostsTO {
 	}
 
 	public int getZipCode() {
-		if (zipCode.equals(""))
-			return 0;
-		else
-			return Integer.parseInt(zipCode);
+		return zipCode;
 	}
 
 	public String getEmail() {
@@ -60,17 +55,11 @@ public class PrintHostsTO {
 	}
 
 	public int getMobileNr() {
-		if (mobileNr.equals(""))
-			return 0;
-		else
-			return Integer.parseInt(mobileNr);
+		return mobileNr;
 	}
 
 	public int getPhoneNr() {
-		if (phoneNr.equals(""))
-			return 0;
-		else
-			return Integer.parseInt(phoneNr);
+		return phoneNr;
 	}
 
 }
