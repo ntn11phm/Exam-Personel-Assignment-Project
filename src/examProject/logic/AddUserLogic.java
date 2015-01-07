@@ -12,11 +12,12 @@ import examProject.ui.addUser.AddUserGUI;
 public class AddUserLogic {
 	private AddUser au;
 	private DbManipulator dBm;
+	private Password_interface hash;
 
-	public AddUserLogic(AddUser au, DbManipulator dBm) {
+	public AddUserLogic(AddUser au, DbManipulator dBm, Password_interface hash) {
 		this.au = au;
 		this.dBm = dBm;
-
+		this.hash = hash;
 	}
 
 	public boolean addUser() {
@@ -29,7 +30,7 @@ public class AddUserLogic {
 		try {
 			
 			if (!rs.next()) {
-				InsertUser iu = new InsertUser(au, dBm);			
+				InsertUser iu = new InsertUser(au, hash);			
 				dBm.insert(iu.insertUserStrCommand());			
 				sqlCommand = "INSERT INTO hosts (user_id, first_name, last_name) VALUES ((SELECT user_id FROM users WHERE username = '" + au.getUserName() + "'),'" + au.firstName + "', '" + au.lastName +"');";
 				dBm.insert(sqlCommand);

@@ -28,11 +28,20 @@ import examProject.ui.updateUserInformation.SetupIncompleteException;
 public class BackendFacade {
 	private DbManipulator dbManipulator;
 	private LoggedInUserTO currentUser;
+	private Password_interface hash;
 	
 	public BackendFacade(LoggedInUserTO currentUser) throws SetupIncompleteException {
 		this.currentUser = currentUser;
 		createDbObjects();
+		this.hash = new PasswordHashingLocal();
 	}
+	
+	public BackendFacade(LoggedInUserTO currentUser, Password_interface hash) throws SetupIncompleteException {
+		this.currentUser = currentUser;
+		createDbObjects();
+		this.hash = hash;
+	}
+	
 	private void createDbObjects() throws SetupIncompleteException {
 		OptionsFileReader optionsFileReader = new OptionsFileReader();
 		optionsFileReader.readOptionFile();
@@ -55,8 +64,7 @@ public class BackendFacade {
 	}
 
 	public boolean addUser(AddUser addUser) {
-		AddUserLogic aul = new AddUserLogic(addUser, dbManipulator);
-		
+		AddUserLogic aul = new AddUserLogic(addUser, dbManipulator, hash);
 		return aul.addUser();
 	}
 	
@@ -90,7 +98,7 @@ public class BackendFacade {
 	}
 	
 	public LoggedInUserTO login(String username, char[] pwd) {
-		Login login = new Login(dbManipulator);
+		Login login = new Login(dbManipulator, hash);
 		currentUser = login.login(username, pwd); 
 		return currentUser;
 	}
