@@ -12,7 +12,7 @@ import org.apache.commons.codec.binary.Base64;
  */
 
 
-public class PasswordHashingLocal {
+public class PasswordHashingLocal implements Password_interface {
 	    // The higher the number of iterations the more 
 	    // expensive computing the hash is for us
 	    // and also for a brute force attack.

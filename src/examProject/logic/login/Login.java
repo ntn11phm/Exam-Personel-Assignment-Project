@@ -4,12 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import examProject.logic.PasswordHashingLocal;
 import examProject.logic.CharToStringConverter;
+import examProject.logic.Password_interface;
 import examProject.dao.DbManipulator;
 import examProject.transferObjects.LoggedInUserTO;
 
 public class Login {
 	private DbManipulator dbm;
-	private PasswordHashingLocal hashingUnit = new PasswordHashingLocal();
+	private Password_interface hashingUnit = new PasswordHashingLocal();
 	private CharToStringConverter conv = new CharToStringConverter();
 	
 	public Login(DbManipulator dbm) {
