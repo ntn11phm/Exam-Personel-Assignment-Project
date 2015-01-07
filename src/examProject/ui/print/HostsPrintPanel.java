@@ -101,7 +101,7 @@ public class HostsPrintPanel extends JPanel {
 	}
 
 	private void isCheckBoxSelected() {
-		uTo = facade.getCurrentHostData();
+		//uTo = facade.getCurrentHostData();
 
 		if (firstName.isSelected() && !uTo.getFirstName().isEmpty()) {
 			hostList.add(firstName, uTo.getFirstName());
@@ -131,11 +131,11 @@ public class HostsPrintPanel extends JPanel {
 			hostList.add(mobile, uTo.getMobileNr());
 		}
 
-		// hosts.setText();
+		 //hosts.setText();
 	}
 
 	private void hostsToPrint() {
-
+		uTo = facade.getCurrentHostData();
 		String currentHostList = hosts.getText();
 		if (!currentHostList.isEmpty()) {
 			currentHostList += "/n";
