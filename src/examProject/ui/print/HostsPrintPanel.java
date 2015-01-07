@@ -4,8 +4,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
-import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -16,7 +14,6 @@ import javax.swing.UIManager;
 
 import e.xamProject.ui.showInformationAboutHosts.ShowHostsInformation;
 import examProject.logic.BackendFacade;
-import examProject.transferObjects.PrintSessionsTO;
 import examProject.transferObjects.UpdateUserTransfere;
 import examProject.ui.updateUserInformation.UI_LoadUserInformation;
 
@@ -36,7 +33,6 @@ public class HostsPrintPanel extends JPanel {
 	private JCheckBox mobile = new JCheckBox("Mobil");
 	private JButton printButton = new JButton("Skriv ut");
 	private String[] arrString;
-	private List<UpdateUserTransfere> printHostsList;
 	private ShowHostsInformation sHi;
 	private UI_LoadUserInformation loadUI;
 
@@ -116,40 +112,43 @@ public class HostsPrintPanel extends JPanel {
 	}
 
 	private void isCheckBoxSelected() {
+		UpdateUserTransfere uTo = facade.getCurrentHostData();
+		
 		if (firstName.isSelected()
-				&& !loadUI.getFirstNameTextField().getText().isEmpty()) {
-			hostList.add(firstName, loadUI.getFirstNameTextField().getText());
+				&& !uTo.firstName.isEmpty()) {
+			hostList.add(firstName, uTo.firstName);
 		}
 		if (lastName.isSelected()
-				&& !loadUI.getLastNameTextField().getText().isEmpty()) {
-			hostList.add(lastName, loadUI.getLastNameTextField().getText());
+				&& !uTo.lastName.isEmpty()) {
+			hostList.add(lastName, uTo.lastName);
 		}
 		if (civicNr.isSelected()
-				&& !loadUI.getCivicNRTextField().getText().isEmpty()) {
-			hostList.add(civicNr, loadUI.getCivicNRTextField().getText());
+				&& !uTo.civic.isEmpty()) {
+			hostList.add(civicNr,uTo.civic);
 		}
 		if (address.isSelected()
-				&& !loadUI.getAddressTextField().getText().isEmpty()) {
-			hostList.add(address, loadUI.getAddressTextField().getText());
+				&& !uTo.Address.isEmpty()) {
+			hostList.add(address, uTo.Address);
 		}
 		if (zipcode.isSelected()
-				&& !loadUI.getZipCodeTextField().getText().isEmpty()) {
-			hostList.add(zipcode, loadUI.getZipCodeTextField().getText());
+				&& !uTo.zipCode.isEmpty()) {
+			hostList.add(zipcode, uTo.zipCode);
 		}
-		if (city.isSelected() && !loadUI.getCityTextField().getText().isEmpty()) {
-			hostList.add(city, loadUI.getCityTextField().getText());
+		if (city.isSelected() 
+				&& !uTo.city.isEmpty()) {
+			hostList.add(city, uTo.city);
 		}
 		if (email.isSelected()
-				&& !loadUI.getEmailTextField().getText().isEmpty()) {
-			hostList.add(email, loadUI.getEmailTextField().getText());
+				&& !uTo.email.isEmpty()) {
+			hostList.add(email, uTo.email);
 		}
 		if (phone.isSelected()
-				&& !loadUI.getPhoneNrTextField().getText().isEmpty()) {
-			hostList.add(phone, loadUI.getPhoneNrTextField().getText());
+				&& !uTo.phoneNr.isEmpty()) {
+			hostList.add(phone, uTo.phoneNr);
 		}
 		if (mobile.isSelected()
-				&& !loadUI.getMobileNrTextField().getText().isEmpty()) {
-			hostList.add(mobile, loadUI.getMobileNrTextField().getText());
+				&& !uTo.mobileNr.isEmpty()) {
+			hostList.add(mobile, uTo.mobileNr);
 		}
 		//printHostsList = facade.(firstName, lastName, email, civicNr, mobile, phone, city, address, zipcode);
 

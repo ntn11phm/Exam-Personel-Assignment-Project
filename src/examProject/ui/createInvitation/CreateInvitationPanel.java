@@ -87,7 +87,7 @@ public class CreateInvitationPanel extends JPanel {
 						fromDateText.getText(), toDateText.getText());
 				sessionList = facade.getSessions(cTo);
 
-				int lenght = sessionList.size() - 1;
+				int lenght = sessionList.size();// - 1;
 				String[] arrString = new String[lenght];
 				for (int i = 0; i < lenght; i++)
 					arrString[i] = sessionList.get(i).toString();
