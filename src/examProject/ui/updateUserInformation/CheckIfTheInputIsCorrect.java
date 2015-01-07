@@ -111,21 +111,29 @@ public class CheckIfTheInputIsCorrect {
 			}
 			// Metod kollar om den inmatade ort namn är rätt dvs att den tar bara
 			// bokstäver
-			public void checkCityName(String textFieldText, int textFieldLength) {
+			public boolean checkCityName(String textFieldText, int textFieldLength) {
+				boolean b=false;
 				if (checkSQLCommand(textFieldText)== false) {
 					int counter = 0;
 					for (int i = 0; i < textFieldLength; i++) {
-					/*	if ((int) textFieldText.charAt(i) > 64
+						if ((int) textFieldText.charAt(i) > 64
 								& (int) textFieldText.charAt(i) < 91
 								|| (int) textFieldText.charAt(i) > 96
-								& (int) textFieldText.charAt(i) < 123
-								||(int) textFieldText.charAt(i) == 32)*/
+								& (int) textFieldText.charAt(i) < 123)
 							counter++;
 					}
 					if (counter != textFieldLength){
-						JOptionPane.showMessageDialog(null, "Ort är inte rätt");}
+						JOptionPane.showMessageDialog(null,
+								"Ort namn är inte rätt");
+						b=false;
+						
+											
 				}
-			}
+					else 
+						b= true;
+					}
+					return b;
+					}
 			// Metod kollar om den inmatade personnummer är rätt
 			public boolean checkCivicNr(String textFieldText, int textFieldLength) {
 				int counter = 0;
@@ -139,25 +147,34 @@ public class CheckIfTheInputIsCorrect {
 				return true;
 
 			}
-			public void checkPhoneNr(String textFieldText, int textFieldLength) {
+			public boolean checkPhoneNr(String textFieldText, int textFieldLength) {
 				int counter = 0;
 				counter = chekIfNummber(textFieldLength, textFieldText);
-				if (counter != textFieldLength)
+				if (counter != textFieldLength){
 						JOptionPane.showMessageDialog(null, "Phonnummer är inte rätt");
+						return false;
+				}
+				return true;
 			}
 			// Metod kollar om den inmatade personnummer är rätt
-			public void checkMobilNr(String textFieldText, int textFieldLength) {
+			public boolean checkMobilNr(String textFieldText, int textFieldLength) {
 				int counter = 0;
 				counter = chekIfNummber(textFieldLength, textFieldText);
-				if (counter != textFieldLength )
+				if (counter != textFieldLength ){
 						JOptionPane.showMessageDialog(null, "Mobilnumret är inte rätt");
+						return false;
+				}
+				return true;
 			}
 
-			public void checkZipCode(String textFieldText, int textFieldLength){
+			public boolean checkZipCode(String textFieldText, int textFieldLength){
 				int counter = 0;
 				counter = chekIfNummber(textFieldLength, textFieldText);
-				if (counter != textFieldLength)
+				if (counter != textFieldLength){
 						JOptionPane.showMessageDialog(null, "Postnummer är inte rätt");
+						return false;
+				}
+				return true;
 			}
 			public void checkIfAddressIsCorrest(String textFieldText){
 				if (checkSQLCommand(textFieldText)== false) {

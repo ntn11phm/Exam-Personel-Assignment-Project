@@ -1,4 +1,5 @@
 package examProject.ui.updateUserInformation;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -53,7 +54,7 @@ public class UI_LoadUserInformation extends JPanel {
 		guiButtonListener();
 		loadTextFields();
 	}
-	
+
 	private void loadTextFields() {
 		UpdateUserTransfere storedData = facade.getCurrentHostData();
 		firstNameTextField.setText(storedData.getFirstName());
@@ -69,9 +70,9 @@ public class UI_LoadUserInformation extends JPanel {
 		isActive.setSelected(storedData.isActive());
 		isAdmin.setSelected(storedData.isAdmin());
 	}
-	
+
 	private void setBounds() {
-		
+
 		firstNameLabel.setBounds(29, 27, 140, 25);
 		lastNameLabel.setBounds(300, 26, 140, 25);
 		firstNameTextField.setBounds(29, 50, 150, 25);
@@ -94,12 +95,11 @@ public class UI_LoadUserInformation extends JPanel {
 		mobileNrTextField.setBounds(300, 255, 150, 25);
 		update.setBounds(29, 400, 150, 28);
 		isActive.setBounds(300, 300, 150, 25);
-		isAdmin.setBounds(300, 330, 150, 25);	
+		isAdmin.setBounds(300, 330, 150, 25);
 
-		
-		
 	}
-		private void addCtrls() {
+
+	private void addCtrls() {
 
 		add(firstNameLabel);
 		add(lastNameLabel);
@@ -124,21 +124,21 @@ public class UI_LoadUserInformation extends JPanel {
 		add(update);
 		add(isActive);
 		add(isAdmin);
-		
+
 	}
-  
+
 	private class ButtonListener implements ActionListener {
 
 		@Override
-		public void actionPerformed(ActionEvent event) { 
+		public void actionPerformed(ActionEvent event) {
 
 			Object source = event.getSource();
 			if (source == update) {
-				update() ;
-				
-				
-			} /*else if (source == isAdmin)
-		*/		
+				update();
+
+			} /*
+			 * else if (source == isAdmin)
+			 */
 
 		}
 	}
@@ -152,132 +152,190 @@ public class UI_LoadUserInformation extends JPanel {
 		isAdmin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			//	System.out.println(e.getID() == ActionEvent.ACTION_PERFORMED ? "ACTION_PERFORMED"
-				//		: e.getID());
+				// System.out.println(e.getID() == ActionEvent.ACTION_PERFORMED
+				// ? "ACTION_PERFORMED"
+				// : e.getID());
 			}
 		});
 		isAdmin.addItemListener(new ItemListener() {
-			
+
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-			/*	System.out.println(e.getStateChange() == ItemEvent.SELECTED ? "SELECTED"
-						: "DESELECTED");*/
+				/*
+				 * System.out.println(e.getStateChange() == ItemEvent.SELECTED ?
+				 * "SELECTED" : "DESELECTED");
+				 */
 			}
 		});
 
 		isActive.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			/*	System.out.println(e.getID() == ActionEvent.ACTION_PERFORMED ? "ACTION_PERFORMED"
-						: e.getID());*/
+				/*
+				 * System.out.println(e.getID() == ActionEvent.ACTION_PERFORMED
+				 * ? "ACTION_PERFORMED" : e.getID());
+				 */
 			}
 		});
 		isActive.addItemListener(new ItemListener() {
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				//System.out.println(e.getStateChange() == ItemEvent.SELECTED ? "SELECTED"
-					//	: "DESELECTED");
+				// System.out.println(e.getStateChange() == ItemEvent.SELECTED ?
+				// "SELECTED"
+				// : "DESELECTED");
 			}
 		});
 	}
-	private boolean checkFielts(){
+
+	private boolean checkFielts() {
 		if (firstNameTextField.getText().length() > 0
 				& lastNameTextField.getText().length() > 0
 				& emailTextField.getText().length() > 0
-				& retypeEmailTextField.getText().length() > 0){
+				& retypeEmailTextField.getText().length() > 0) {
 			return true;
 		} else
 			return false;
 	}
-	private void update() {   
-	//	LoggedInUserTO lo = new LoggedInUserTO("Olle", user_id, is_admin, has_tmp_pwd)
-		boolean b= false;
+
+	private void update() {
+		// LoggedInUserTO lo = new LoggedInUserTO("Olle", user_id, is_admin,
+		// has_tmp_pwd)
+		boolean b = false;
 		UpdateUserTransfere updateUser = null;
-		 if(checkFielts()){
-			if(checkIfCivicNrISCorrect()){	
+		if (checkFielts()) {
+			if (checkIfCivicNrISCorrect()) {
+				if (checkIfPoneNrIsCorrect()) {
+					if (checkIfZipCodeIsCorrect()) {
+						if (checkIfMobilNrIsCorrect()) {
+							if (checkIfCityNameIsCorrect()){
+							checkIfFirstNameISCorrect();
+							checkIfLastNameISCorrect();
+							checkIfMailCorrect();
+							checkStatement.compareMail(retypeEmailTextField, emailTextField);
+							checkIfAddressIsCorrest();	
+							
+							updateUser = new UpdateUserTransfere(
+									firstNameTextField.getText(),
+									lastNameTextField.getText(),
+									emailTextField.getText(),
+									retypeEmailTextField.getText(),
+									cityTextField.getText(),
+									addressTextField.getText(),
+									mobileNrTextField.getText(),
+									phoneNrTextField.getText(),
+									zipCodeTextField.getText(),
+									civicNRTextField.getText(), isActive(),
+									isAdmin());
+							JOptionPane.showMessageDialog(null,"Din information har uppdaterad.");
 
- 			checkIfFirstNameISCorrect();
-			checkIfLastNameISCorrect();
-			checkIfMailCorrect();
-			checkStatement.compareMail(retypeEmailTextField, emailTextField);
-			//checkIfCivicNrISCorrect();	
-			checkIfCityNameIsCorrect();
-			checkIfMobilNrIsCorrect();
-			checkIfPoneNrIsCorrect();
-			checkIfAddressIsCorrest();
-			checkIfZipCodeIsCorrect();
-		//	UpdateUserTransfere updateUser = new UpdateUserTransfere(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());
-			updateUser = new UpdateUserTransfere(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());
-			JOptionPane.showMessageDialog(null, "Din information har uppdaterad.");
+						}
+					}
+				}
+			}}
+		} else
 
-			}
-		 } else  
-			 
 			JOptionPane.showMessageDialog(null,
 					"Du måste fylla in de fält med *");
-			facade.uppdateUser(updateUser);
+		facade.uppdateUser(updateUser);
 	}
+
+	public void buttonClickedMethod() {
+
+		UpdateUserTransfere updateUser = new UpdateUserTransfere(
+				getFirstNameTextField().getText(), getLastNameTextField()
+						.getText(), getEmailTextField().getText(),
+				getRetypeTextField().getText(), getCityTextField().getText(),
+				getAddressTextField().getText(), getMobileNrTextField()
+						.getText(), getPhoneNrTextField().getText(),
+				getZipCodeTextField().getText(), getCityTextField().getText(),
+				isActive.isSelected(), isAdmin.isSelected());
+		facade.uppdateUser(updateUser);
+
+	}
+
+	// MEtod kollar om den inmatade förnamn är rätt
+	public void checkIfFirstNameISCorrect() {
+		checkStatement.checkFirstName(firstNameTextField.getText(),
+				firstNameTextField.getText().length());
+	}
+
+	// Metod som kollar om den inmatade efternamn är rätt
+	public void checkIfLastNameISCorrect() {
+		checkStatement.checkFirstName(lastNameTextField.getText(),
+				lastNameTextField.getText().length());
+	}
+
+	// metod som kollar om mailet innehåller @
+	public void checkIfMailCorrect() {
+		checkStatement.checkMail(emailTextField.getText(), emailTextField
+				.getText().length());
+	}
+
+	// Metod kollar om den inmatade ort namn är rätt dvs att den tar bara
+	// bokstäver
+	public boolean checkIfCityNameIsCorrect() {
+		boolean b= false;
+		if (checkStatement.checkCityName(cityTextField.getText(), cityTextField.getText().length()))
+			b=true;
+		else
+			b=false;
+		
+		return b;
+	}
+
 	public boolean checkIfCivicNrISCorrect() {
 		boolean b = false;
 
-		if (civicNRTextField.getText().length() == 0){
+		if (civicNRTextField.getText().length() == 0) {
 			System.out.println("Tom");
 			b = true;
-		}
-		else {
-			b =checkStatement.checkCivicNr(civicNRTextField.getText(), civicNRTextField.getText().length());
+		} else {
+			b = checkStatement.checkCivicNr(civicNRTextField.getText(),
+					civicNRTextField.getText().length());
 			System.out.println("inte tom");
-	}
+		}
 		return b;
-			
-		}
-	
-	
-	public void buttonClickedMethod() {
 
-			UpdateUserTransfere updateUser = new UpdateUserTransfere(
-			getFirstNameTextField().getText(),getLastNameTextField().getText(), getEmailTextField().getText(), getRetypeTextField().getText(), 
-			getCityTextField().getText(), getAddressTextField().getText(), getMobileNrTextField().getText(), getPhoneNrTextField().getText(), getZipCodeTextField().getText(),getCityTextField().getText(),isActive.isSelected(), isAdmin.isSelected());
-			facade.uppdateUser(updateUser);
-			
 	}
-	
-	
-	// MEtod kollar om den inmatade förnamn är rätt
-	public void checkIfFirstNameISCorrect() {
-		checkStatement.checkFirstName(firstNameTextField.getText(), firstNameTextField.getText().length());
-	}
-	// Metod som kollar om den inmatade efternamn är rätt
-	public void checkIfLastNameISCorrect() {
-		checkStatement.checkFirstName(lastNameTextField.getText(), lastNameTextField.getText().length());
-	}
-	// metod som kollar om mailet innehåller @ 
-	public void checkIfMailCorrect() {
-		checkStatement.checkMail(emailTextField.getText(), emailTextField.getText().length());
-		}
-	// Metod kollar om den inmatade ort namn är rätt dvs att den tar bara
-	// bokstäver
-	public void checkIfCityNameIsCorrect() {
-		checkStatement.checkCityName(cityTextField.getText(), cityTextField.getText().length());
-	}
-	
+
 	// Metod kollar om den inmatade nummer är rätt
-	public void checkIfPoneNrIsCorrect() {
-		checkStatement.checkPhoneNr(phoneNrTextField.getText(), phoneNrTextField.getText().length());
-	}
-	// Metod kollar om den inmatade personnummer är rätt
-	public void checkIfMobilNrIsCorrect() {
-		checkStatement.checkMobilNr(mobileNrTextField.getText(), mobileNrTextField.getText().length());
+	public boolean checkIfPoneNrIsCorrect() {
+		boolean b = false;
+		if (checkStatement.checkPhoneNr(phoneNrTextField.getText(),
+				phoneNrTextField.getText().length()))
+			b = true;
+		else
+			b = false;
+		return b;
+
 	}
 
-	public void checkIfZipCodeIsCorrect(){
-		checkStatement.checkZipCode(zipCodeTextField.getText(), zipCodeTextField.getText().length());
+	// Metod kollar om den inmatade personnummer är rätt
+	public boolean checkIfMobilNrIsCorrect() {
+		boolean b = false;
+		if (checkStatement.checkMobilNr(mobileNrTextField.getText(),
+				mobileNrTextField.getText().length()))
+			b = true;
+		else
+			b = false;
+		return b;
 	}
-	
-	public void checkIfAddressIsCorrest(){
-		checkStatement.checkIfAddressIsCorrest(addressTextField.getText());		
+
+	public boolean checkIfZipCodeIsCorrect() {
+		boolean b = false;
+		if (checkStatement.checkZipCode(zipCodeTextField.getText(),
+				zipCodeTextField.getText().length()))
+			b = true;
+		else
+			b = false;
+		return b;
 	}
+
+	public void checkIfAddressIsCorrest() {
+		checkStatement.checkIfAddressIsCorrest(addressTextField.getText());
+	}
+
 	public JTextField getFirstNameTextField() {
 		return firstNameTextField;
 	}
@@ -357,12 +415,14 @@ public class UI_LoadUserInformation extends JPanel {
 	public void setMobileNrTextField(JTextField mobileNrTextField) {
 		this.mobileNrTextField = mobileNrTextField;
 	}
-	public boolean isAdmin(){
-		//System.out.println("isAdmin "+ isAdmin.isSelected());
+
+	public boolean isAdmin() {
+		// System.out.println("isAdmin "+ isAdmin.isSelected());
 		return isAdmin.isSelected();
 	}
-	public boolean isActive(){
-	//	System.out.println("isActiva "+ isActive.isSelected());
+
+	public boolean isActive() {
+		// System.out.println("isActiva "+ isActive.isSelected());
 
 		return isActive.isSelected();
 	}
