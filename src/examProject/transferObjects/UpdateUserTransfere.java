@@ -37,11 +37,8 @@ public class UpdateUserTransfere {
 			return lastName;
 		}
 
-		public int getCivic() {
-			if (civic.equals(""))
-				return 0;
-			else
-				return Integer.parseInt(civic);
+		public String getCivic() {
+			return civic;
 		}		
 
 		public String getEmail() {

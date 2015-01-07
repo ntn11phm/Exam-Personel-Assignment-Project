@@ -60,7 +60,7 @@ public class UI_LoadUserInformation extends JPanel {
 		lastNameTextField.setText(storedData.getLastName());
 		emailTextField.setText(storedData.getEmail());
 		retypeEmailTextField.setText(storedData.getEmail());
-		civicNRTextField.setText(Integer.toString(storedData.getCivic()));
+		civicNRTextField.setText(storedData.getCivic());
 		cityTextField.setText(storedData.getCity());
 		addressTextField.setText(storedData.getAddress());
 		zipCodeTextField.setText(Integer.toString(storedData.getZipCode()));
