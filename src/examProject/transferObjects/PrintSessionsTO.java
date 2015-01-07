@@ -1,7 +1,5 @@
 package examProject.transferObjects;
 
-import java.util.List;
-
 public class PrintSessionsTO {
 	
 	private String sessionTime;
