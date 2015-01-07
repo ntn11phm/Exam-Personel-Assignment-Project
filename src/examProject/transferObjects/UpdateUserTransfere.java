@@ -38,9 +38,9 @@ public class UpdateUserTransfere {
 		}
 
 		public String getCivic() {
-			if (civic.equals(""))
-				return null;
-			else
+		//	if (civic.equals(""))
+			//	return null;
+		//	else
 				return civic;
 		}		
 
