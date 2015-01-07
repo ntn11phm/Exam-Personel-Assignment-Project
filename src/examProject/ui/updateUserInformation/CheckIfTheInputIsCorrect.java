@@ -133,8 +133,9 @@ public class CheckIfTheInputIsCorrect {
 						if (counter !=10 ){
 							JOptionPane.showMessageDialog(null, "civicNr är incorrect");
 							return false;
-						}
-			 
+						
+				}
+							 
 				return true;
 
 			}

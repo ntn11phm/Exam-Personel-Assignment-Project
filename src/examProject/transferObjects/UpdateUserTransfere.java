@@ -38,7 +38,10 @@ public class UpdateUserTransfere {
 		}
 
 		public String getCivic() {
-			return civic;
+			if (civic.equals(""))
+				return null;
+			else
+				return civic;
 		}		
 
 		public String getEmail() {

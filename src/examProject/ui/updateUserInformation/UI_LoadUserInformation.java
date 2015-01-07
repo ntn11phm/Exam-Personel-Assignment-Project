@@ -132,12 +132,11 @@ public class UI_LoadUserInformation extends JPanel {
 
 			Object source = event.getSource();
 			if (source == update) {
+				update() ;
 				
-					update();
-					JOptionPane.showMessageDialog(null, "Din information har uppdaterad.");
 				
 			} /*else if (source == isAdmin)
-		*/		System.out.println();
+		*/		
 
 		}
 	}
@@ -191,13 +190,16 @@ public class UI_LoadUserInformation extends JPanel {
 	}
 	private void update() {   
 	//	LoggedInUserTO lo = new LoggedInUserTO("Olle", user_id, is_admin, has_tmp_pwd)
+		boolean b= false;
 		UpdateUserTransfere updateUser = null;
 		 if(checkFielts()){
+			if(checkIfCivicNrISCorrect()){	
+
  			checkIfFirstNameISCorrect();
 			checkIfLastNameISCorrect();
 			checkIfMailCorrect();
 			checkStatement.compareMail(retypeEmailTextField, emailTextField);
-			checkIfCivicNrISCorrect();
+			//checkIfCivicNrISCorrect();	
 			checkIfCityNameIsCorrect();
 			checkIfMobilNrIsCorrect();
 			checkIfPoneNrIsCorrect();
@@ -205,14 +207,30 @@ public class UI_LoadUserInformation extends JPanel {
 			checkIfZipCodeIsCorrect();
 		//	UpdateUserTransfere updateUser = new UpdateUserTransfere(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());
 			updateUser = new UpdateUserTransfere(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), retypeEmailTextField.getText(), cityTextField.getText(), addressTextField.getText(), mobileNrTextField.getText(), phoneNrTextField.getText(), zipCodeTextField.getText(), civicNRTextField.getText(), isActive(), isAdmin());
-	 		
-		} else                                      		
+			JOptionPane.showMessageDialog(null, "Din information har uppdaterad.");
 
+			}
+		 } else  
+			 
 			JOptionPane.showMessageDialog(null,
 					"Du måste fylla in de fält med *");
 			facade.uppdateUser(updateUser);
-
 	}
+	public boolean checkIfCivicNrISCorrect() {
+		boolean b = false;
+
+		if (civicNRTextField.getText().length() == 0){
+			System.out.println("Tom");
+			b = true;
+		}
+		else {
+			b =checkStatement.checkCivicNr(civicNRTextField.getText(), civicNRTextField.getText().length());
+			System.out.println("inte tom");
+	}
+		return b;
+			
+		}
+	
 	
 	public void buttonClickedMethod() {
 
@@ -240,14 +258,6 @@ public class UI_LoadUserInformation extends JPanel {
 	// bokstäver
 	public void checkIfCityNameIsCorrect() {
 		checkStatement.checkCityName(cityTextField.getText(), cityTextField.getText().length());
-	}
-	public void checkIfCivicNrISCorrect() {
-		boolean b;
-		b =checkStatement.checkCivicNr(civicNRTextField.getText(), civicNRTextField.getText().length());
-		if (b == false){
-			checkStatement.checkCivicNr(civicNRTextField.getText(), civicNRTextField.getText().length());
-		System.out.println(b+ " bbbbbbbbb");
-		}
 	}
 	
 	// Metod kollar om den inmatade nummer är rätt
