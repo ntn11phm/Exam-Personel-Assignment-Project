@@ -11,11 +11,9 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
-
 import e.xamProject.ui.showInformationAboutHosts.ShowHostsInformation;
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.UpdateUserTransfere;
-import examProject.ui.updateUserInformation.UI_LoadUserInformation;
 
 public class HostsPrintPanel extends JPanel {
 	private static final long serialVersionUID = 60477093723435356L;
@@ -34,16 +32,13 @@ public class HostsPrintPanel extends JPanel {
 	private JButton printButton = new JButton("Skriv ut");
 	private String[] arrString;
 	private ShowHostsInformation sHi;
-	private UI_LoadUserInformation loadUI;
 
 	public HostsPrintPanel(BackendFacade facade) {
 		sHi = new ShowHostsInformation(facade);
-		loadUI = new UI_LoadUserInformation(facade);
 		setLayout(null);
 		setBounds();
 		addCtrls();
 		buttonListener();
-
 	}
 
 	private void setBounds() {
@@ -60,7 +55,6 @@ public class HostsPrintPanel extends JPanel {
 		sHi.setBounds(0, 0, 590, 182);
 		hostsListPane.setBounds(241, 211, 130, 156);
 		hostsListPane.setViewportView(hostList);
-
 	}
 
 	private void addCtrls() {
@@ -76,7 +70,6 @@ public class HostsPrintPanel extends JPanel {
 		add(printButton);
 		add(sHi);
 		add(hostsListPane);
-
 	}
 
 	private void buttonListener() {
@@ -90,7 +83,6 @@ public class HostsPrintPanel extends JPanel {
 
 			}
 		});
-
 	}
 
 	private void printButtonClickedMethod() throws PrinterException {
@@ -108,51 +100,49 @@ public class HostsPrintPanel extends JPanel {
 		f.getContentPane().add("South", printWindowButton);
 		f.pack();
 		f.setVisible(true);
-
 	}
 
 	private void isCheckBoxSelected() {
 		UpdateUserTransfere uTo = facade.getCurrentHostData();
 		
 		if (firstName.isSelected()
-				&& !uTo.firstName.isEmpty()) {
-			hostList.add(firstName, uTo.firstName);
+				&& !uTo.getFirstName().isEmpty()) {
+			hostList.add(firstName, uTo.getFirstName());
 		}
 		if (lastName.isSelected()
-				&& !uTo.lastName.isEmpty()) {
-			hostList.add(lastName, uTo.lastName);
+				&& !uTo.getLastName().isEmpty()) {
+			hostList.add(lastName, uTo.getLastName());
 		}
 		if (civicNr.isSelected()
-				&& !uTo.civic.isEmpty()) {
-			hostList.add(civicNr,uTo.civic);
+				&& !uTo.getCivic().isEmpty()) {
+			hostList.add(civicNr,uTo.getCivic());
 		}
 		if (address.isSelected()
-				&& !uTo.Address.isEmpty()) {
-			hostList.add(address, uTo.Address);
+				&& !uTo.getAddress().isEmpty()) {
+			hostList.add(address, uTo.getAddress());
 		}
 		if (zipcode.isSelected()
-				&& !uTo.zipCode.isEmpty()) {
-			hostList.add(zipcode, uTo.zipCode);
+				&& !uTo.getZipCode().isEmpty()) {
+			hostList.add(zipcode, uTo.getZipCode());
 		}
 		if (city.isSelected() 
-				&& !uTo.city.isEmpty()) {
-			hostList.add(city, uTo.city);
+				&& !uTo.getCity().isEmpty()) {
+			hostList.add(city, uTo.getCity());
 		}
 		if (email.isSelected()
-				&& !uTo.email.isEmpty()) {
-			hostList.add(email, uTo.email);
+				&& !uTo.getEmail().isEmpty()) {
+			hostList.add(email, uTo.getEmail());
 		}
 		if (phone.isSelected()
-				&& !uTo.phoneNr.isEmpty()) {
-			hostList.add(phone, uTo.phoneNr);
+				&& !uTo.getPhoneNr().isEmpty()) {
+			hostList.add(phone, uTo.getPhoneNr());
 		}
 		if (mobile.isSelected()
-				&& !uTo.mobileNr.isEmpty()) {
-			hostList.add(mobile, uTo.mobileNr);
+				&& !uTo.getMobileNr().isEmpty()) {
+			hostList.add(mobile, uTo.getMobileNr());
 		}
 		//printHostsList = facade.(firstName, lastName, email, civicNr, mobile, phone, city, address, zipcode);
 
 		hostList.setListData(arrString);
 	}
-
 }

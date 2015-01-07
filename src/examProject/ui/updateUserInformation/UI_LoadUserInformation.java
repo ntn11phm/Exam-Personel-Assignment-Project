@@ -63,9 +63,9 @@ public class UI_LoadUserInformation extends JPanel {
 		civicNRTextField.setText(storedData.getCivic());
 		cityTextField.setText(storedData.getCity());
 		addressTextField.setText(storedData.getAddress());
-		zipCodeTextField.setText(Integer.toString(storedData.getZipCode()));
-		phoneNrTextField.setText(Integer.toString(storedData.getPhoneNr()));
-		mobileNrTextField.setText(Integer.toString(storedData.getMobileNr()));
+		zipCodeTextField.setText(storedData.getZipCode());
+		phoneNrTextField.setText(storedData.getPhoneNr());
+		mobileNrTextField.setText(storedData.getMobileNr());
 	}
 	
 	private void setBounds() {
