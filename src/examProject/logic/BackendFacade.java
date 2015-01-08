@@ -156,63 +156,124 @@ public class BackendFacade {
 	public boolean uppdateUser(String firstName, String lastName, String email, String retypeEmail, String civicNr, String mobileNr, String phoneNr, String city, String address, String zipCode,boolean isActive, boolean isAdmin) {
 		return uppdateUser(new UpdateUserTransfere(firstName, lastName, email, retypeEmail, city, address, mobileNr, phoneNr, zipCode, civicNr, isActive, isAdmin));
 	}
-	
+	/**
+	 * Login to the system.
+	 * @param username String
+	 * @param pwd char[]
+	 * @return {@link LoggedInUserTO} containing data about the logged in user.
+	 */
 	public LoggedInUserTO login(String username, char[] pwd) {
 		Login login = new Login(dbManipulator, hash);
 		currentUser = login.login(username, pwd); 
 		return currentUser;
 	}
-
+	/**
+	 * Lists all invitations that are up-to-date for the user logged in to the system.
+	 * @return List of {@link HsiTO} with all up-to-date invitations.
+	 */
 	public List<HsiTO> getHsiList() {
 		AnswerInvitation ai = new AnswerInvitation(dbManipulator, currentUser);
 		return ai.getInvitations();
 	}
-		
+	/**
+	 * Stores the logged in users answer to invitations.
+	 * @param answerList {@link List} of {@link HsiTO} with the users answers to invitations.
+	 * @return true if the data was stored successfully.
+	 */
 	public boolean commitInvitationAnswers(List<HsiTO> answerList) {
 		AnswerInvitation ai = new AnswerInvitation(dbManipulator, currentUser);
 		return ai.commitAnswers(answerList);
 	}
-	
+	/**
+	 * Returns a list of hosts that are available at a specific date and time.
+	 * @param date String with date-format yyyy-MM-dd.
+	 * @param time String but either "08:00" or "15:00".
+	 * @return List of {@link HostTO} with the available hosts.
+	 */
 	public List<HostTO> getAvailableHostsList(String date, String time) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
 		return ps.loadAvailableHosts(date, time);
 	}
-	
+	/**
+	 * Check if a host already has been assigned to a session.
+	 * @param date String with date-format yyyy-MM-dd.
+	 * @param time String but either "08:00" or "15:00".
+	 * @param host_id int
+	 * @return true if the host is available.
+	 */
 	public boolean checkHostSessionAvailabillity(String date, String time, int host_id) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
 		return ps.checkHostSessionAvailabillity(date, time, host_id);
 	}
-	
+	/**
+	 * Creates session-invitations for active hosts.
+	 * @param sessionList {@link}List of {@link HsiTO}.
+	 * @return true if the session-invitations was done successfully.
+	 */
 	public boolean createHsi(List<HsiTO> sessionList) {
-		CreateInvitation ci = new CreateInvitation( dbManipulator);
+		CreateInvitation ci = new CreateInvitation(dbManipulator);
 		return ci.createHsi(sessionList);
 	}
-	
+	/**
+	 * List all locations that are booked for a specific date and time.
+	 * @param date String with date-format yyyy-MM-dd.
+	 * @param time String but either "08:00" or "15:00".
+	 * @return {@link List} of {@link SessionLocationTO}
+	 */
 	public List<SessionLocationTO> loadLocations(String date, String time) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
 		return ps.loadLocations(date, time);
 	}
+	/**
+	 * List all sessions between two dates.
+	 * @param cTo {@link CreateInvitationTO}
+	 * @return {@link List} of {@link HsiTO}
+	 */
 	public List<HsiTO> getSessions(CreateInvitationTO cTo) {
 		CreateInvitation ci = new CreateInvitation(dbManipulator);
 		return ci.getSessions(cTo);
 	}
-	public List<PrintSessionsTO>getSessions(String date){
+	/**
+	 * List all sessions on a specific date.
+	 * @param date String with date-format yyyy-MM-dd.
+	 * @return {@link List} of {@link PrintSessionsTO}
+	 */
+	public List<PrintSessionsTO> getSessions(String date){
 		PrintSessions ps = new PrintSessions(dbManipulator);
 		return ps.getSessions(date);
 	}
+	/**
+	 * List all hosts for a specific session id.
+	 * @param sessionId int
+	 * @return {@link List} of {@link HostTO}
+	 */
 	public List<HostTO> getHostsForSession(int sessionId) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
 		return ps.getHostsForSession(sessionId);
 	}
-	
+	/**
+	 * Stores data to host_sessions relation.
+	 * @param currentList {@link List} of {@link HostSessionTO}
+	 * @return true if the data was stored successfully.
+	 */
 	public boolean storeToSessionHost(List<HostSessionTO> currentList) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
 		return ps.storeToSessionHost(currentList);
 	}
+	/**
+	 * Removes data from the host_sessions relation.
+	 * @param host_id int
+	 * @param sessionId int
+	 * @return true if the data was removed successfully.
+	 */
 	public boolean removeHostSessionPost(int host_id, int sessionId) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
 		return ps.removeHostSessionPost(host_id, sessionId);
 	}
+	/**
+	 * Loads host-information of the currently logged in host.
+	 * @return {@link UpdateUserTransfere}
+	 */
 	public UpdateUserTransfere getCurrentHostData() {
 		UpdateUserLogic uul = new UpdateUserLogic(currentUser, null, dbManipulator);
 		return uul.getLogginUserData();
