@@ -8,12 +8,15 @@ package examProject.logic;
  */
 
 import java.util.List;
+
 import examProject.dao.DbManipulator;
 import examProject.logic.answerInv.AnswerInvitation;
 import examProject.logic.changePassword.ChangePassword;
 import examProject.logic.createInv.CreateInvitation;
 import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
+import examProject.logic.mail.Emailto;
+import examProject.logic.mail.Mail_Interface;
 import examProject.logic.populateSessions.PopulateSessions;
 import examProject.logic.printSessions.PrintSessions;
 import examProject.logic.requestNewPassword.RequestNewPwd;
@@ -35,6 +38,7 @@ public class BackendFacade {
 	private DbManipulator dbManipulator;
 	private LoggedInUserTO currentUser;
 	private Password_interface hash;
+	private Mail_Interface email_eng;
 	
 	/**
 	 * Constructor
@@ -42,7 +46,7 @@ public class BackendFacade {
 	 * @throws {@link SetupIncompleteException} if the configuration files are missing the data needed to connect to the database.
 	 */
 	public BackendFacade(LoggedInUserTO currentUser) throws SetupIncompleteException {
-		this(currentUser, new PasswordHashingLocal());
+		this(currentUser, new PasswordHashingLocal(), new Emailto());
 	}
 	/**
 	 * Constructor
@@ -51,9 +55,16 @@ public class BackendFacade {
 	 * @throws {@link SetupIncompleteException} if the configuration files are missing the data needed to connect to the database.
 	 */
 	public BackendFacade(LoggedInUserTO currentUser, Password_interface hash) throws SetupIncompleteException {
+		this(currentUser, hash, new Emailto());		
+	}
+	public BackendFacade(LoggedInUserTO currentUser, Mail_Interface email_eng) throws SetupIncompleteException {
+		this(currentUser, new PasswordHashingLocal(), email_eng);
+	}
+	public BackendFacade(LoggedInUserTO currentUser, Password_interface hash, Mail_Interface email_eng) throws SetupIncompleteException {
 		this.currentUser = currentUser;
 		createDbObjects();
 		this.hash = hash;
+		this.email_eng = email_eng;
 	}
 	/**
 	 * Creates the need objects to create a connection to the database.
@@ -79,7 +90,7 @@ public class BackendFacade {
 	 * @return true if the request was completed successfully.
 	 */
 	public boolean requestNewPwdEmail(String email) {
-		RequestNewPwd rnp = new RequestNewPwd(dbManipulator, email);
+		RequestNewPwd rnp = new RequestNewPwd(dbManipulator, email, email_eng);
 		return rnp.execute();
 	}
 	/**
@@ -88,7 +99,7 @@ public class BackendFacade {
 	 * @return true if the request was completed successfully.
 	 */
 	public boolean requestNewPwdUsername(String username) {
-		RequestNewPwd rnp = new RequestNewPwd(dbManipulator, username);
+		RequestNewPwd rnp = new RequestNewPwd(dbManipulator, username, email_eng);
 		return rnp.execute();
 	}
 	/**

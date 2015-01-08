@@ -7,7 +7,6 @@ import examProject.dao.GetEmailAddress;
 import examProject.dao.SelectUsernameWithEmail;
 import examProject.logic.LogicStrategy;
 import examProject.logic.PasswordHashingLocal;
-import examProject.logic.mail.Emailto;
 import examProject.logic.mail.Mail_Interface;
 import examProject.transferObjects.RequestNewPwdTO;
 
@@ -18,10 +17,12 @@ public class RequestNewPwd implements LogicStrategy {
 	private PasswordHashingLocal hash = new PasswordHashingLocal();
 	private final String EMAIL_SUBJECT = "Begäran om nytt lösenord till Tentamensvärdar";
 	private String emailBody = "Du har begärt ett nytt lösenord till systemet för Tentamensvärdar.\n";
+	private Mail_Interface email_eng;
 	
-	public RequestNewPwd(DbManipulator dbm, String input) {
+	public RequestNewPwd(DbManipulator dbm, String input, Mail_Interface email_eng) {
 		this.dbm = dbm;
 		this.input = input;
+		this.email_eng = email_eng;
 	}
 	
 	private String getEmailAdress() {
@@ -53,7 +54,7 @@ public class RequestNewPwd implements LogicStrategy {
 		boolean result = false;
 		String sqlCommand = "";
 		try {
-			sqlCommand = "UPDATE users SET pwd = '" + hash.getSaltedHash(tmpPwd.getPassword()) + "' WHERE username = '" + tmpPwd.getUsername() + "';";
+			sqlCommand = "UPDATE users SET pwd = '" + hash.getSaltedHash(tmpPwd.getPassword()) + "', has_tmp_pwd = true WHERE username = '" + tmpPwd.getUsername() + "';";
 		} catch (Exception e) {}
 		result = dbm.update(sqlCommand);
 		return result;
@@ -70,8 +71,6 @@ public class RequestNewPwd implements LogicStrategy {
 			String username = getUsernameFromEmail(emailAdress);
 			RequestNewPwdTO newPwdHolder = new RequestNewPwdTO(username, tempPwd, "");
 			storeTmpPwd(newPwdHolder);
-			//Email API goes here...
-			Mail_Interface email_eng = new Emailto();
 			emailBody += "Användarnamn: " + username + "\nNytt lösenord: " + tempPwd;
 			email_eng.send(emailAdress, emailBody, EMAIL_SUBJECT);
 		}
