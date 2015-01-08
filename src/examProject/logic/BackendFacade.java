@@ -1,7 +1,10 @@
 package examProject.logic;
 
 /**
- * 
+ * BackendFacade for the Exam-Personel-Assignment-Project.
+ * @author Magnus Eklund
+ * @author Per Hedblom
+ * @author Silvana Yacob
  */
 
 import java.util.List;
@@ -36,7 +39,7 @@ public class BackendFacade {
 	/**
 	 * Constructor
 	 * @param currentUser {@link LoggedInUserTO} containing data about the user that has logged in.
-	 * @throws SetupIncompleteException if the configuration files are missing the data needed to connect to the database.
+	 * @throws {@link SetupIncompleteException} if the configuration files are missing the data needed to connect to the database.
 	 */
 	public BackendFacade(LoggedInUserTO currentUser) throws SetupIncompleteException {
 		this(currentUser, new PasswordHashingLocal());
@@ -45,7 +48,7 @@ public class BackendFacade {
 	 * Constructor
 	 * @param currentUser {@link LoggedInUserTO} containing data about the user that has logged in.
 	 * @param hash injection of a hashing function that implements {@link Password_interface}.
-	 * @throws SetupIncompleteException if the configuration files are missing the data needed to connect to the database.
+	 * @throws {@link SetupIncompleteException} if the configuration files are missing the data needed to connect to the database.
 	 */
 	public BackendFacade(LoggedInUserTO currentUser, Password_interface hash) throws SetupIncompleteException {
 		this.currentUser = currentUser;
@@ -54,7 +57,7 @@ public class BackendFacade {
 	}
 	/**
 	 * Creates the need objects to create a connection to the database.
-	 * @throws SetupIncompleteException if the configuration files are missing the data needed to connect to the database.
+	 * @throws {@link SetupIncompleteException} if the configuration files are missing the data needed to connect to the database.
 	 */
 	private void createDbObjects() throws SetupIncompleteException {
 		OptionsFileReader optionsFileReader = new OptionsFileReader();
@@ -112,7 +115,7 @@ public class BackendFacade {
 	/**
 	 * Imports data from kronox using a selected period.
 	 * @param examImportSelection {@link ExamImportSelectionTO} containing the needed data.
-	 * @return List of {@link ExamOccationTO} for the selected period.
+	 * @return {@link List} of {@link ExamOccationTO} for the selected period.
 	 */
 	public List<ExamOccationTO> readSchemaFromKronox(ExamImportSelectionTO examImportSelection) {
 		KronoxImporter kronoxImporter = new KronoxImporter(examImportSelection);
@@ -169,7 +172,7 @@ public class BackendFacade {
 	}
 	/**
 	 * Lists all invitations that are up-to-date for the user logged in to the system.
-	 * @return List of {@link HsiTO} with all up-to-date invitations.
+	 * @return {@link List} of {@link HsiTO} with all up-to-date invitations.
 	 */
 	public List<HsiTO> getHsiList() {
 		AnswerInvitation ai = new AnswerInvitation(dbManipulator, currentUser);
@@ -188,7 +191,7 @@ public class BackendFacade {
 	 * Returns a list of hosts that are available at a specific date and time.
 	 * @param date String with date-format yyyy-MM-dd.
 	 * @param time String but either "08:00" or "15:00".
-	 * @return List of {@link HostTO} with the available hosts.
+	 * @return {@link List} of {@link HostTO} with the available hosts.
 	 */
 	public List<HostTO> getAvailableHostsList(String date, String time) {
 		PopulateSessions ps = new PopulateSessions(dbManipulator);
