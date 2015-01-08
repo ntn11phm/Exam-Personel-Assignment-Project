@@ -30,7 +30,7 @@ public class GetTmpPwd {
 		int seeder = getNoOfTmpPasswords();
 		if (seeder > 0) {
 			Random rand = new Random();
-			int randomNumber = rand.nextInt(seeder + 1);
+			int randomNumber = rand.nextInt(seeder) + 1;
 			GetTmpPwdCommand getTmpPwdCommand = new GetTmpPwdCommand();
 			String sqlCommand = getTmpPwdCommand.getTmpPwdSqlCommand(randomNumber);
 			ResultSet rs = dbm.select(sqlCommand);
