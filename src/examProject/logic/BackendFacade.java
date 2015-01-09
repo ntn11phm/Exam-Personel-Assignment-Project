@@ -77,7 +77,7 @@ public class BackendFacade {
 	} 
 	/**
 	 * Change password for the user who is logged in.
-	 * @param pwd char[] containing the password.
+	 * @param pwd {@link char[]} containing the password.
 	 * @return true if the password was stored correctly.
 	 */
 	public boolean changePwd(char[] pwd) {
@@ -86,7 +86,7 @@ public class BackendFacade {
 	}
 	/**
 	 * Request a new temporary password.
-	 * @param email the users registered email address.
+	 * @param email {@link String} the users registered email address.
 	 * @return true if the request was completed successfully.
 	 */
 	public boolean requestNewPwdEmail(String email) {
@@ -95,7 +95,7 @@ public class BackendFacade {
 	}
 	/**
 	 * Request a new temporary password.
-	 * @param username the users registered user-name to the system.
+	 * @param username {@link String} the users registered user-name to the system.
 	 * @return true if the request was completed successfully.
 	 */
 	public boolean requestNewPwdUsername(String username) {
@@ -113,9 +113,9 @@ public class BackendFacade {
 	}
 	/**
 	 * Adds a new user to the system.
-	 * @param userName String containing the user-name.
-	 * @param firstName String containing the users first-name.
-	 * @param lastName String containing the users last-name.
+	 * @param userName {@link String} containing the user-name.
+	 * @param firstName {@link String} containing the users first-name.
+	 * @param lastName {@link String} containing the users last-name.
 	 * @param pwd char[] containing the password.
 	 * @param isAdmin boolean true if the user should have admin-rights in the system.
 	 * @return true if the user was added successfully.
@@ -153,16 +153,16 @@ public class BackendFacade {
 	}
 	/**
 	 * Updates personal data of the currently logged in user.
-	 * @param firstName String
-	 * @param lastName String
-	 * @param email String
-	 * @param retypeEmail String
-	 * @param civicNr String
-	 * @param mobileNr String
-	 * @param phoneNr String
-	 * @param city String
-	 * @param address String
-	 * @param zipCode String
+	 * @param firstName {@link String}
+	 * @param lastName {@link String}
+	 * @param email {@link String}
+	 * @param retypeEmail {@link String}
+	 * @param civicNr {@link String}
+	 * @param mobileNr {@link String}
+	 * @param phoneNr {@link String}
+	 * @param city {@link String}
+	 * @param address {@link String}
+	 * @param zipCode {@link String}
 	 * @param isActive boolean if the user is currently an active user of the system.
 	 * @param isAdmin boolean
 	 * @return true if the data was updated successfully.
