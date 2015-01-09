@@ -1,9 +1,7 @@
 package examProject.logic;
 
 import java.sql.ResultSet;
-
 import javax.swing.JOptionPane;
-
 import examProject.dao.DbManipulator;
 import examProject.dao.InsertUser;
 import examProject.transferObjects.AddUser;
@@ -23,16 +21,14 @@ public class AddUserLogic {
 	public boolean addUser() {
 		dBm.openDb();
 		boolean result = false;
-		String sqlCommand = "SELECT username FROM users WHERE username = '"
-				+ au.getUserName() + "';";
+		String sqlCommand = "SELECT username FROM users WHERE username = '" + au.getUserName() + "';";
 		ResultSet rs = dBm.select(sqlCommand);
-		
 		try {
 			
 			if (!rs.next()) {
 				InsertUser iu = new InsertUser(au, hash);			
 				dBm.insert(iu.insertUserStrCommand());			
-				sqlCommand = "INSERT INTO hosts (user_id, first_name, last_name) VALUES ((SELECT user_id FROM users WHERE username = '" + au.getUserName() + "'),'" + au.firstName + "', '" + au.lastName +"');";
+				sqlCommand = "INSERT INTO hosts (user_id, first_name, last_name) VALUES ((SELECT user_id FROM users WHERE username = '" + au.getUserName() + "'),'" + au.getFirstName() + "', '" + au.getLastName() +"');";
 				dBm.insert(sqlCommand);
 				result = true;
 			}else {
@@ -44,6 +40,5 @@ public class AddUserLogic {
 		}
 		return result;
 	}
-
 }
 
