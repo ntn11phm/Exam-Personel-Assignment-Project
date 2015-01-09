@@ -26,7 +26,7 @@ public class InsertUser {
 	public String insertUserStrCommand() {
 		String sqlCommand = "INSERT INTO users (username, pwd, is_admin) VALUES ('";
 		try {
-			sqlCommand += au.userName + "', '"+ hash.getSaltedHash(c.charToString(au.pwd)) + "', "+ au.isAdmin + ");";
+			sqlCommand += au.getUserName() + "', '"+ hash.getSaltedHash(c.charToString(au.getPwd())) + "', "+ au.isAdmin() + ");";
 		} catch (Exception e) {	}
 		return sqlCommand;
 	}
