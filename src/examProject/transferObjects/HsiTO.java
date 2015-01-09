@@ -2,7 +2,7 @@ package examProject.transferObjects;
 /**
  * Transferobject for answering to invitations. 
  * @author Per Hedblom
- *
+ * @author Magnus Eklund
  */
 public class HsiTO {
 	private String date;
