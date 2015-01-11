@@ -319,26 +319,15 @@ public class PopulateSessionsListener {
 				commitCurrentSession();
 				return true;
 			}
-		clearCtrls();
+		clearHosts();
 		isSaved = true;
 		return true;
 	}
 	
-	private void clearCtrls() {
-		psPanel.getHost1_cb().setSelected(false);
-		psPanel.getHost2_cb().setSelected(false);
-		psPanel.getHost3_cb().setSelected(false);
-		psPanel.getHost4_cb().setSelected(false);
-		psPanel.getHost1_tb().setText("");
-		psPanel.getHost2_tb().setText("");
-		psPanel.getHost3_tb().setText("");
-		psPanel.getHost4_tb().setText("");
-		
-	}
-
 	private void loadCtrls() {
 		if(noSaveCheck()) {
 			if (validateDate(psPanel.getTbDate().getText())) {
+				clearHosts();
 				loadSessionComboBox();
 				loadHostList();
 			} else

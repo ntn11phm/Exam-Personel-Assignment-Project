@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import examProject.dao.DbManipulator;
 import examProject.transferObjects.HostSessionTO;
 import examProject.transferObjects.HostTO;
