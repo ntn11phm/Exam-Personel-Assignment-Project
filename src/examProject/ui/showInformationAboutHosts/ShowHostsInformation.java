@@ -1,4 +1,4 @@
-package e.xamProject.ui.showInformationAboutHosts;
+package examProject.ui.showInformationAboutHosts;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

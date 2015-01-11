@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
-import e.xamProject.ui.showInformationAboutHosts.ShowHostsInformation;
 import examProject.logic.BackendFacade;
 import examProject.logic.OptionsFileReader;
 import examProject.transferObjects.DBConnectionTO;
@@ -24,6 +23,7 @@ import examProject.ui.populateSessions.PopulateSessionsPanel;
 import examProject.ui.print.HostsPrintPanel;
 import examProject.ui.print.SessionsPrintPanel;
 import examProject.ui.setUpDb.SetUpDbGui;
+import examProject.ui.showInformationAboutHosts.ShowHostsInformation;
 import examProject.ui.updateUserInformation.SetupIncompleteException;
 import examProject.ui.updateUserInformation.UI_LoadUserInformation;
 
