@@ -298,18 +298,14 @@ public class BackendFacade {
 		ShowHostsInfoLogic showHostsinflogic = new ShowHostsInfoLogic(null, dbManipulator);
 		return showHostsinflogic.ShowHostsInfo();
 	}
+	
 	public boolean showHostsInfo(String firstName, String lastName, String email, String mobileNr, String phoneNr) {
 		return showHostsInfo(new ShowHostsInfoTransfere(firstName, lastName));
 		//return showHostsInfo(new ShowHostsInfoTransfere(firstName, lastName, email, mobileNr, phoneNr));
-
 	}
-
 	
 	public ShowHostsInfoTransfere getCurrentHostDataShow(){
 		ShowHostsInfoLogic showHostsInfo = new ShowHostsInfoLogic(null, dbManipulator);
 		return showHostsInfo.getLogginUserData();
 	}
-
-	
-	
 }
