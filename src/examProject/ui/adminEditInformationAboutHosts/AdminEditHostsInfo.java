@@ -17,9 +17,7 @@ public class AdminEditHostsInfo extends JPanel {
 		private String	listData[] = { "Item 1", "Item 2", "Item 3", "Item 4"};
 		private	JList<Object> listbox = new JList<Object>(listData);
 		private BackendFacade facade;
-	    JScrollPane scrollPanel = new JScrollPane(listbox);
-
-
+		private JScrollPane scrollPanel = new JScrollPane(listbox);
 		private UI_LoadUserInformation updateUserInfo;
 
 		
@@ -29,7 +27,7 @@ public class AdminEditHostsInfo extends JPanel {
 			setLayout(null);
 			setBounds();
 			addCtrls();
-			guiButtonListener();
+		//	guiButtonListener();
 		}
 		
 		private void setBounds() {
@@ -44,7 +42,7 @@ public class AdminEditHostsInfo extends JPanel {
 				this.add(updateUserInfo);			
 		}
 	  
-		private class ButtonListener implements ActionListener {
+	/*	private class ButtonListener implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent event) { 
@@ -59,7 +57,7 @@ public class AdminEditHostsInfo extends JPanel {
 
 			}
 		}
-
+*/
 		private void guiButtonListener() {
 			
 			 ListSelectionListener listSelectionListener = new ListSelectionListener() {
@@ -84,19 +82,10 @@ public class AdminEditHostsInfo extends JPanel {
 			
 		}
 		
-		
-
-		private void update() {   
-			
-			
-		}
-		
+	
 		public void buttonClickedMethod() {
 
 		}
-		
-		
-		
 		
 		
 }
