@@ -19,7 +19,7 @@ public class AddUserGUI extends JPanel {
 
 	private static final long serialVersionUID = 2893288573784306256L;
 	private BackendFacade facade;
-	private JLabel userNameLabel = new JLabel("Avändarnamn");
+	private JLabel userNameLabel = new JLabel("Användarnamn");
 	private JLabel firstNameLabel = new JLabel("Förnamn");
 	private JLabel lastNameLabel = new JLabel("Efternamn");
 	private JLabel pwdLabel = new JLabel("Lösenord");
