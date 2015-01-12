@@ -48,12 +48,9 @@ public class UpdateUserLogic {
 
 		ResultSet rs = dBm.select(sqlCommand);
 		try {
-			//if (!rs.next()) {
 			if (rs.next()) {
 				UpdateUsersInformation updateUser = new UpdateUsersInformation(uppdateUser, dBm);
 				dBm.update(updateUser.getSqlCommand());
-//				dBm.update(updateUser.updateUserStrCommand());
-
 
 				sqlCommand = "UPDATE hosts SET first_name='"
 						+ uppdateUser.getFirstName() + "',last_name='"
@@ -65,7 +62,8 @@ public class UpdateUserLogic {
 						+ uppdateUser.getZipCode() + "',phone_nr='"
 						+ uppdateUser.getPhoneNr() + "',mobile_phone='"
 						+ uppdateUser.getMobileNr() + "',is_active="
-						+ uppdateUser.isActive()  + " WHERE host_id=" 
+						+ uppdateUser.isActive()  +",is_admin="
+						+uppdateUser.isAdmin() +" WHERE host_id=" 
 						+ currentUser.getHost_id()  +";";
 
 				dBm.update(sqlCommand);
