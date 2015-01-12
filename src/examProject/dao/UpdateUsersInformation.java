@@ -27,12 +27,13 @@ public class UpdateUsersInformation {
 				+ updateUser.getPhoneNr() + "',mobile_phone='"
 				+ updateUser.getMobileNr()  +",'is_active="
 				+ updateUser.isActive() +",is_admin="
-				+ updateUser.isAdmin()+";";
+				+ ";";
 				
 
 		return sqlCommand;
 
 	}
+	
 
 	public String getSqlCommand() {
 		return sqlCommand;

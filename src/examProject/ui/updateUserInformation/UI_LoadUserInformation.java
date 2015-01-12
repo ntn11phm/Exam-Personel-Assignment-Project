@@ -21,6 +21,7 @@ public class UI_LoadUserInformation extends JPanel {
 	CheckIfTheInputIsCorrect checkStatement = new CheckIfTheInputIsCorrect();
 	private BackendFacade facade;
 	private JButton update = new JButton("Update");
+	private JButton clearAllTextFields = new JButton("Rensa fält");
 	private JCheckBox isActive = new JCheckBox("Is active");
 	private JCheckBox isAdmin = new JCheckBox("Is admin");
 
@@ -73,29 +74,30 @@ public class UI_LoadUserInformation extends JPanel {
 
 	private void setBounds() {
 
-		firstNameLabel.setBounds(29, 27, 140, 25);
-		lastNameLabel.setBounds(300, 26, 140, 25);
-		firstNameTextField.setBounds(29, 50, 150, 25);
-		lastNameTextField.setBounds(300, 50, 150, 25);
-		emailLabel.setBounds(29, 80, 150, 25);
-		retypeEmailLabel.setBounds(300, 80, 150, 25);
-		emailTextField.setBounds(29, 105, 150, 25);
-		retypeEmailTextField.setBounds(300, 105, 150, 25);
-		civicNrLabel.setBounds(29, 130, 150, 25);
-		cityLabel.setBounds(300, 130, 150, 25);
-		civicNRTextField.setBounds(29, 155, 150, 25);
-		cityTextField.setBounds(300, 155, 150, 25);
-		addressLabel.setBounds(29, 180, 150, 25);
-		zipCodeLabel.setBounds(300, 180, 150, 25);
-		addressTextField.setBounds(29, 205, 150, 25);
-		zipCodeTextField.setBounds(300, 205, 150, 25);
-		phoneNrLabel.setBounds(29, 230, 150, 25);
-		mobilNrLabel.setBounds(300, 230, 150, 25);
-		phoneNrTextField.setBounds(29, 255, 150, 25);
-		mobileNrTextField.setBounds(300, 255, 150, 25);
-		update.setBounds(29, 400, 150, 28);
-		isActive.setBounds(300, 300, 150, 25);
-		isAdmin.setBounds(300, 330, 150, 25);
+		firstNameLabel.setBounds(29, 27, 175, 25);
+		lastNameLabel.setBounds(300, 26, 175, 25);
+		firstNameTextField.setBounds(29, 50, 175, 25);
+		lastNameTextField.setBounds(300, 50, 175, 25);
+		emailLabel.setBounds(29, 80, 175, 25);
+		retypeEmailLabel.setBounds(300, 80, 175, 25);
+		emailTextField.setBounds(29, 105, 175, 25);
+		retypeEmailTextField.setBounds(300, 105, 175, 25);
+		civicNrLabel.setBounds(29, 130, 300, 25);
+		cityLabel.setBounds(300, 130, 175, 25);
+		civicNRTextField.setBounds(29, 155, 175, 25);
+		cityTextField.setBounds(300, 155, 175, 25);
+		addressLabel.setBounds(29, 180, 175, 25);
+		zipCodeLabel.setBounds(300, 180, 175, 25);
+		addressTextField.setBounds(29, 205, 175, 25);
+		zipCodeTextField.setBounds(300, 205, 175, 25);
+		phoneNrLabel.setBounds(29, 230, 175, 25);
+		mobilNrLabel.setBounds(300, 230, 175, 25);
+		phoneNrTextField.setBounds(29, 255, 175, 25);
+		mobileNrTextField.setBounds(300, 255, 175, 25);
+		update.setBounds(29, 400, 175, 28);
+		clearAllTextFields.setBounds(300, 400, 175, 28);
+		isActive.setBounds(300, 300, 175, 25);
+		isAdmin.setBounds(300, 330, 175, 25);
 
 	}
 
@@ -122,6 +124,7 @@ public class UI_LoadUserInformation extends JPanel {
 		add(phoneNrTextField);
 		add(mobileNrTextField);
 		add(update);
+		add(clearAllTextFields);
 		add(isActive);
 		add(isAdmin);
 
@@ -137,6 +140,8 @@ public class UI_LoadUserInformation extends JPanel {
 				update();
 
 			}
+			else if (source == clearAllTextFields)
+				clearAllTextFields();
 		}
 	}
 
@@ -144,6 +149,7 @@ public class UI_LoadUserInformation extends JPanel {
 
 		ButtonListener buttonListener = new ButtonListener();
 		update.addActionListener(buttonListener);
+		clearAllTextFields.addActionListener(buttonListener);
 
 		// }
 		isAdmin.addActionListener(new ActionListener() {
@@ -193,6 +199,20 @@ public class UI_LoadUserInformation extends JPanel {
 			return true;
 		} else
 			return false;
+	}
+	private void clearAllTextFields(){
+		firstNameTextField.setText("");
+		lastNameTextField.setText("");
+		emailTextField.setText("");
+		retypeEmailTextField.setText("");
+		civicNRTextField.setText("");
+		addressTextField.setText("");
+		cityTextField.setText("");
+		zipCodeTextField.setText("");
+		phoneNrTextField.setText("");
+		mobileNrTextField.setText("");
+		
+		
 	}
 
 	private void update() {

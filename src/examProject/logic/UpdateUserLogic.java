@@ -62,8 +62,7 @@ public class UpdateUserLogic {
 						+ uppdateUser.getZipCode() + "',phone_nr='"
 						+ uppdateUser.getPhoneNr() + "',mobile_phone='"
 						+ uppdateUser.getMobileNr() + "',is_active="
-						+ uppdateUser.isActive()  +",is_admin="
-						+uppdateUser.isAdmin() +" WHERE host_id=" 
+						+ uppdateUser.isActive()  +" WHERE host_id=" 
 						+ currentUser.getHost_id()  +";";
 
 				dBm.update(sqlCommand);
