@@ -136,10 +136,7 @@ public class UI_LoadUserInformation extends JPanel {
 			if (source == update) {
 				update();
 
-			} /*
-			 * else if (source == isAdmin)
-			 */
-
+			}
 		}
 	}
 
@@ -199,8 +196,6 @@ public class UI_LoadUserInformation extends JPanel {
 	}
 
 	private void update() {
-		// LoggedInUserTO lo = new LoggedInUserTO("Olle", user_id, is_admin,
-		// has_tmp_pwd)
 		boolean b = false;
 		UpdateUserTransfere updateUser = null;
 		if (checkFielts()) {
@@ -213,41 +208,20 @@ public class UI_LoadUserInformation extends JPanel {
 									if (checkIfFirstNameISCorrect()) {
 										if (checkIfLastNameISCorrect()) {
 											if (checkIfAddressIsCorrest()) {
-
-											if(checkStatement.compareMail(
-														retypeEmailTextField,
-														emailTextField)){
-
-												updateUser = new UpdateUserTransfere(
-														firstNameTextField
-																.getText(),
-														lastNameTextField
-																.getText(),
-														emailTextField
-																.getText(),
-														retypeEmailTextField
-																.getText(),
-														cityTextField.getText(),
-														addressTextField
-																.getText(),
-														mobileNrTextField
-																.getText(),
-														phoneNrTextField
-																.getText(),
-														zipCodeTextField
-																.getText(),
-														civicNRTextField
-																.getText(),
-														isActive(), isAdmin());
-												facade.uppdateUser(updateUser);
-												JOptionPane
-														.showMessageDialog(
-																null,
-																"Din information har uppdaterad.");
+												if(checkStatement.compareMail(retypeEmailTextField,emailTextField)){
+													updateUser = new UpdateUserTransfere(firstNameTextField.getText(),
+														lastNameTextField.getText(),emailTextField.getText(),
+														retypeEmailTextField.getText(), cityTextField.getText(),
+														addressTextField.getText(), mobileNrTextField.getText(),
+														phoneNrTextField.getText(), zipCodeTextField.getText(),
+														civicNRTextField.getText(), isActive(), isAdmin());
+														facade.uppdateUser(updateUser);
+														JOptionPane.showMessageDialog(null,"Din information har uppdaterad.");
+												}
 											}
 										}
 									}
-								}}
+								}
 							}
 						}
 					}
@@ -257,7 +231,6 @@ public class UI_LoadUserInformation extends JPanel {
 
 			JOptionPane.showMessageDialog(null,
 					"Du måste fylla in de fält med *");
-
 	}
 
 	public void buttonClickedMethod() {
