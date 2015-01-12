@@ -133,12 +133,12 @@ public class CheckIfTheInputIsCorrect {
 			JOptionPane
 					.showMessageDialog(
 							null,
-							"Den inmatade mailet är inte rätt. Du får använda bara följande tecken (- , _ , . , nummer, små och stora bokstäver )");
+							"Den inmatade e-post är inte rätt. Du får använda bara följande tecken (- , _ , . , nummer, små och stora bokstäver )");
 		}}else 
 			JOptionPane
 			.showMessageDialog(
 					null,
-					"Den inmatade mailet är inte rätt. Du får använda bara följande tecken (- , _ , . , nummer, små och stora bokstäver )");
+					"Den inmatade e-post är inte rätt. Du får använda bara följande tecken (- , _ , . , nummer, små och stora bokstäver )");
 			return result;
 	}
 	

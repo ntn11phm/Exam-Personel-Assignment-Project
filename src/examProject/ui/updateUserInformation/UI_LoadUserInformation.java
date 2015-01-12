@@ -20,19 +20,19 @@ import examProject.transferObjects.UpdateUserTransfere;
 public class UI_LoadUserInformation extends JPanel {
 	CheckIfTheInputIsCorrect checkStatement = new CheckIfTheInputIsCorrect();
 	private BackendFacade facade;
-	private JButton update = new JButton("Update");
+	private JButton update = new JButton("Uppdatera");
 	private JButton clearAllTextFields = new JButton("Rensa fält");
-	private JCheckBox isActive = new JCheckBox("Is active");
-	private JCheckBox isAdmin = new JCheckBox("Is admin");
+	private JCheckBox isActive = new JCheckBox(" Är aktiv");
+	private JCheckBox isAdmin = new JCheckBox("Är admin");
 
-	private JLabel firstNameLabel = new JLabel("*Förnamn");
-	private JLabel lastNameLabel = new JLabel("*Efternamn");
+	private JLabel firstNameLabel = new JLabel("* Förnamn");
+	private JLabel lastNameLabel = new JLabel("* Efternamn");
 	private JLabel addressLabel = new JLabel("Adress");
 	private JLabel zipCodeLabel = new JLabel("Postnummer");
 	private JLabel cityLabel = new JLabel("Ort");
-	private JLabel civicNrLabel = new JLabel("Personnumer (ÅÅMMDDXXXX)");
-	private JLabel emailLabel = new JLabel("*E-mail");
-	private JLabel retypeEmailLabel = new JLabel("*Skriv om E-mail");
+	private JLabel civicNrLabel = new JLabel("personnummer (ÅÅMMDDXXXX)");
+	private JLabel emailLabel = new JLabel("* E-post");
+	private JLabel retypeEmailLabel = new JLabel("* Skriv om e-post");
 	private JLabel phoneNrLabel = new JLabel("Telefonnummer");
 	private JLabel mobilNrLabel = new JLabel("Mobilnummer");
 
@@ -74,30 +74,30 @@ public class UI_LoadUserInformation extends JPanel {
 
 	private void setBounds() {
 
-		firstNameLabel.setBounds(29, 27, 175, 25);
-		lastNameLabel.setBounds(300, 26, 175, 25);
-		firstNameTextField.setBounds(29, 50, 175, 25);
-		lastNameTextField.setBounds(300, 50, 175, 25);
-		emailLabel.setBounds(29, 80, 175, 25);
-		retypeEmailLabel.setBounds(300, 80, 175, 25);
-		emailTextField.setBounds(29, 105, 175, 25);
-		retypeEmailTextField.setBounds(300, 105, 175, 25);
+		firstNameLabel.setBounds(29, 27, 180, 25);
+		lastNameLabel.setBounds(300, 26, 180, 25);
+		firstNameTextField.setBounds(29, 50, 180, 25);
+		lastNameTextField.setBounds(300, 50, 180, 25);
+		emailLabel.setBounds(29, 80, 180, 25);
+		retypeEmailLabel.setBounds(300, 80, 180, 25);
+		emailTextField.setBounds(29, 105, 180, 25);
+		retypeEmailTextField.setBounds(300, 105, 180, 25);
 		civicNrLabel.setBounds(29, 130, 300, 25);
-		cityLabel.setBounds(300, 130, 175, 25);
-		civicNRTextField.setBounds(29, 155, 175, 25);
-		cityTextField.setBounds(300, 155, 175, 25);
-		addressLabel.setBounds(29, 180, 175, 25);
-		zipCodeLabel.setBounds(300, 180, 175, 25);
-		addressTextField.setBounds(29, 205, 175, 25);
-		zipCodeTextField.setBounds(300, 205, 175, 25);
-		phoneNrLabel.setBounds(29, 230, 175, 25);
-		mobilNrLabel.setBounds(300, 230, 175, 25);
-		phoneNrTextField.setBounds(29, 255, 175, 25);
-		mobileNrTextField.setBounds(300, 255, 175, 25);
-		update.setBounds(29, 400, 175, 28);
-		clearAllTextFields.setBounds(300, 400, 175, 28);
-		isActive.setBounds(300, 300, 175, 25);
-		isAdmin.setBounds(300, 330, 175, 25);
+		cityLabel.setBounds(300, 130, 180, 25);
+		civicNRTextField.setBounds(29, 155, 180, 25);
+		cityTextField.setBounds(300, 155, 180, 25);
+		addressLabel.setBounds(29, 180, 180, 25);
+		zipCodeLabel.setBounds(300, 180, 180, 25);
+		addressTextField.setBounds(29, 205, 180, 25);
+		zipCodeTextField.setBounds(300, 205, 180, 25);
+		phoneNrLabel.setBounds(29, 230, 180, 25);
+		mobilNrLabel.setBounds(300, 230, 180, 25);
+		phoneNrTextField.setBounds(29, 255, 180, 25);
+		mobileNrTextField.setBounds(300, 255, 180, 25);
+		update.setBounds(29, 400, 180, 28);
+		clearAllTextFields.setBounds(300, 400, 180, 28);
+		isActive.setBounds(300, 300, 180, 25);
+		isAdmin.setBounds(300, 330, 180, 25);
 
 	}
 
@@ -236,7 +236,7 @@ public class UI_LoadUserInformation extends JPanel {
 														phoneNrTextField.getText(), zipCodeTextField.getText(),
 														civicNRTextField.getText(), isActive(), isAdmin());
 														facade.uppdateUser(updateUser);
-														JOptionPane.showMessageDialog(null,"Din information har uppdaterad.");
+														JOptionPane.showMessageDialog(null,"Din information har uppdaterat.");
 												}
 											}
 										}
