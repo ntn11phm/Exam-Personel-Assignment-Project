@@ -34,6 +34,8 @@ public class RequestNewPwd implements LogicStrategy {
 			}
 			rs.close();
 		} catch (SQLException e) {}
+		if (emailAdress==null)
+			emailAdress = "";
 		return emailAdress;
 	}
 	
