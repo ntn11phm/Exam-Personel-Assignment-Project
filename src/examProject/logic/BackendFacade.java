@@ -293,17 +293,17 @@ public class BackendFacade {
 		UpdateUserLogic uul = new UpdateUserLogic(currentUser, null, dbManipulator);
 		return uul.getLogginUserData();
 	}
-	
+
 	public boolean showHostsInfo(ShowHostsInfoTransfere showHostsInfo){
 		ShowHostsInfoLogic showHostsinflogic = new ShowHostsInfoLogic(null, dbManipulator);
 		return showHostsinflogic.ShowHostsInfo();
 	}
-	
+
 	public boolean showHostsInfo(String firstName, String lastName, String email, String mobileNr, String phoneNr) {
 		return showHostsInfo(new ShowHostsInfoTransfere(firstName, lastName));
 		//return showHostsInfo(new ShowHostsInfoTransfere(firstName, lastName, email, mobileNr, phoneNr));
 	}
-	
+
 	public ShowHostsInfoTransfere getCurrentHostDataShow(){
 		ShowHostsInfoLogic showHostsInfo = new ShowHostsInfoLogic(null, dbManipulator);
 		return showHostsInfo.getLogginUserData();
