@@ -5,13 +5,13 @@ import examProject.transferObjects.UpdateUserTransfere;
 public class AdminEditHostsInfo {
 	
 		private UpdateUserTransfere updateUser;
-		private DbManipulator dBm;
+		private DbManipulator dbManipulator;
 		private String sqlCommand = "UPDATE hosts SET first_name ='";
 
 		public AdminEditHostsInfo(UpdateUserTransfere updateUser,
-				DbManipulator dBm) {
+				DbManipulator dbManipulator) {
 			this.updateUser = updateUser;
-			this.dBm = dBm;
+			this.dbManipulator = dbManipulator;
 		}
 
 		public String AdminEditHostsInfoStrCommand(String firstName, String lastName,
@@ -25,7 +25,6 @@ public class AdminEditHostsInfo {
 					+ address + "',zipcode=" + zipCode + ",phone_nr='" + phoneNr
 					+ "',mobile_phone='" + mobilenr + "',is_active=" + isActive
 					+ ";";
-
 			return sqlCommand;
 
 		}
@@ -44,11 +43,9 @@ public class AdminEditHostsInfo {
 					+ updateUser.isActive() + ";";
 
 			return sqlCommand;
-
 		}
 
 		public String getSqlCommand() {
 			return sqlCommand;
 		}
 	}
-

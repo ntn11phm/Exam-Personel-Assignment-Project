@@ -4,16 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import examProject.logic.BackendFacade;
-import examProject.transferObjects.LoggedInUserTO;
 import examProject.transferObjects.UpdateUserTransfere;
 
 @SuppressWarnings("serial")
@@ -98,7 +95,6 @@ public class UI_LoadUserInformation extends JPanel {
 		clearAllTextFields.setBounds(300, 400, 180, 28);
 		isActive.setBounds(300, 300, 180, 25);
 		isAdmin.setBounds(300, 330, 180, 25);
-
 	}
 
 	private void addCtrls() {
@@ -127,80 +123,49 @@ public class UI_LoadUserInformation extends JPanel {
 		add(clearAllTextFields);
 		add(isActive);
 		add(isAdmin);
-
 	}
 
 	private class ButtonListener implements ActionListener {
-
 		@Override
 		public void actionPerformed(ActionEvent event) {
 
 			Object source = event.getSource();
 			if (source == update) {
 				update();
-
-			}
-			else if (source == clearAllTextFields)
+			} else if (source == clearAllTextFields)
 				clearAllTextFields();
 		}
 	}
 
 	private void guiButtonListener() {
-
 		ButtonListener buttonListener = new ButtonListener();
 		update.addActionListener(buttonListener);
 		clearAllTextFields.addActionListener(buttonListener);
-
-		// }
 		isAdmin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// System.out.println(e.getID() == ActionEvent.ACTION_PERFORMED
-				// ? "ACTION_PERFORMED"
-				// : e.getID());
 			}
 		});
 		isAdmin.addItemListener(new ItemListener() {
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				/*
-				 * System.out.println(e.getStateChange() == ItemEvent.SELECTED ?
-				 * "SELECTED" : "DESELECTED");
-				 */
 			}
 		});
 
 		isActive.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				/*
-				 * System.out.println(e.getID() == ActionEvent.ACTION_PERFORMED
-				 * ? "ACTION_PERFORMED" : e.getID());
-				 */
 			}
 		});
 		isActive.addItemListener(new ItemListener() {
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				// System.out.println(e.getStateChange() == ItemEvent.SELECTED ?
-				// "SELECTED"
-				// : "DESELECTED");
 			}
 		});
 	}
-
-	private boolean checkFielts() {
-		if (firstNameTextField.getText().length() > 0
-				& lastNameTextField.getText().length() > 0
-				& emailTextField.getText().length() > 0
-				& retypeEmailTextField.getText().length() > 0) {
-			return true;
-		} else
-			return false;
-	}
-	private void clearAllTextFields(){
+	private void clearAllTextFields() {
 		firstNameTextField.setText("");
 		lastNameTextField.setText("");
 		emailTextField.setText("");
@@ -211,14 +176,20 @@ public class UI_LoadUserInformation extends JPanel {
 		zipCodeTextField.setText("");
 		phoneNrTextField.setText("");
 		mobileNrTextField.setText("");
-		
-		
+	}
+	private boolean checkFielts() {
+		if (firstNameTextField.getText().length() > 0
+				& lastNameTextField.getText().length() > 0
+				& emailTextField.getText().length() > 0
+				& retypeEmailTextField.getText().length() > 0) {
+			return true;
+		} else
+			return false;
 	}
 
 	private void update() {
-		boolean b = false;
 		UpdateUserTransfere updateUser = null;
-		if (checkFielts()) {
+		if (checkFielts()==true) {
 			if (checkIfCivicNrISCorrect()) {
 				if (checkIfPoneNrIsCorrect()) {
 					if (checkIfZipCodeIsCorrect()) {
@@ -228,15 +199,15 @@ public class UI_LoadUserInformation extends JPanel {
 									if (checkIfFirstNameISCorrect()) {
 										if (checkIfLastNameISCorrect()) {
 											if (checkIfAddressIsCorrest()) {
-												if(checkStatement.compareMail(retypeEmailTextField,emailTextField)){
+												if (checkStatement.compareMail(retypeEmailTextField, emailTextField)) {
 													updateUser = new UpdateUserTransfere(firstNameTextField.getText(),
-														lastNameTextField.getText(),emailTextField.getText(),
-														retypeEmailTextField.getText(), cityTextField.getText(),
-														addressTextField.getText(), mobileNrTextField.getText(),
-														phoneNrTextField.getText(), zipCodeTextField.getText(),
-														civicNRTextField.getText(), isActive(), isAdmin());
-														facade.uppdateUser(updateUser);
-														JOptionPane.showMessageDialog(null,"Din information har uppdaterat.");
+															lastNameTextField.getText(),emailTextField.getText(),
+															retypeEmailTextField.getText(),cityTextField.getText(),
+															addressTextField.getText(),	mobileNrTextField.getText(),
+															phoneNrTextField.getText(),zipCodeTextField.getText(),
+															civicNRTextField.getText(),isActive(),isAdmin());
+													facade.uppdateUser(updateUser);
+													JOptionPane.showMessageDialog(null,"Din information har uppdaterat.");
 												}
 											}
 										}
@@ -248,9 +219,7 @@ public class UI_LoadUserInformation extends JPanel {
 				}
 			}
 		} else
-
-			JOptionPane.showMessageDialog(null,
-					"Du måste fylla in de fält med *");
+			JOptionPane.showMessageDialog(null,"Du måste fylla in de fält med *");
 	}
 
 	public void buttonClickedMethod() {
@@ -267,106 +236,96 @@ public class UI_LoadUserInformation extends JPanel {
 
 	}
 
-	// MEtod kollar om den inmatade förnamn är rätt
 	public boolean checkIfFirstNameISCorrect() {
-		boolean b = false;
+		boolean result = false;
 		if (checkStatement.checkFirstName(firstNameTextField.getText(),
 				firstNameTextField.getText().length()))
-			b = true;
+			result = true;
 		else
-			b = false;
-		return b;
+			result = false;
+		return result;
 	}
 
-	// Metod som kollar om den inmatade efternamn är rätt
 	public boolean checkIfLastNameISCorrect() {
-		boolean b = false;
+		boolean result = false;
 		if (checkStatement.checkFirstName(lastNameTextField.getText(),
 				lastNameTextField.getText().length()))
-			b = true;
-		return b;
+			result = true;
+		return result;
 	}
-
-	// metod som kollar om mailet innehåller @
+	/**
+	 * This Method check if E-mail contain @ simbole
+	 */
 	public boolean checkIfMailCorrect() {
-		boolean b = false;
+		boolean result = false;
 		if (checkStatement.checkMail(emailTextField.getText(), emailTextField
 				.getText().length()))
-			b = true;
+			result = true;
 		else
-			b = false;
-		return b;
+			result = false;
+		return result;
 	}
-
-	// Metod kollar om den inmatade ort namn är rätt dvs att den tar bara
-	// bokstäver
+	
 	public boolean checkIfCityNameIsCorrect() {
-		boolean b = false;
+		boolean result = false;
 		if (checkStatement.checkCityName(cityTextField.getText(), cityTextField
 				.getText().length()))
-			b = true;
+			result = true;
 		else
-			b = false;
-
-		return b;
+			result = false;
+		return result;
 	}
 
 	public boolean checkIfCivicNrISCorrect() {
-		boolean b = false;
+		boolean result = false;
 
 		if (civicNRTextField.getText().length() == 0) {
-			b = true;
+			result = true;
 		} else {
-			b = checkStatement.checkCivicNr(civicNRTextField.getText(),
+			result = checkStatement.checkCivicNr(civicNRTextField.getText(),
 					civicNRTextField.getText().length());
 		}
-		return b;
-
+		return result;
 	}
 
-	// Metod kollar om den inmatade nummer är rätt
 	public boolean checkIfPoneNrIsCorrect() {
-		boolean b = false;
+		boolean result = false;
 		if (checkStatement.checkPhoneNr(phoneNrTextField.getText(),
 				phoneNrTextField.getText().length()))
-			b = true;
+			result = true;
 		else
-			b = false;
-		return b;
-
+			result = false;
+		return result;
 	}
 
-	// Metod kollar om den inmatade personnummer är rätt
 	public boolean checkIfMobilNrIsCorrect() {
-		boolean b = false;
+		boolean result = false;
 		if (checkStatement.checkMobilNr(mobileNrTextField.getText(),
 				mobileNrTextField.getText().length()))
-			b = true;
+			result = true;
 		else
-			b = false;
-		return b;
+			result = false;
+		return result;
 	}
 
 	public boolean checkIfZipCodeIsCorrect() {
-		boolean b = false;
+		boolean result = false;
 		if (checkStatement.checkZipCode(zipCodeTextField.getText(),
 				zipCodeTextField.getText().length()))
-			b = true;
+			result = true;
 		else
-			b = false;
-		return b;
+			result = false;
+		return result;
 	}
 
 	public boolean checkIfAddressIsCorrest() {
-		boolean b = false;
+		boolean result = false;
 		if (checkStatement.checkIfAddressIsCorrest(addressTextField.getText(),
 				addressTextField.getText().length()))
-			b = true;
+			result = true;
 		else
-			b = false;
-
-		return b;
-
+			result = false;
+		return result;
 	}
 
 	public JTextField getFirstNameTextField() {
@@ -450,13 +409,10 @@ public class UI_LoadUserInformation extends JPanel {
 	}
 
 	public boolean isAdmin() {
-		// System.out.println("isAdmin "+ isAdmin.isSelected());
 		return isAdmin.isSelected();
 	}
 
 	public boolean isActive() {
-		// System.out.println("isActiva "+ isActive.isSelected());
-
 		return isActive.isSelected();
 	}
 }

@@ -1,7 +1,7 @@
 package examProject.transferObjects;
 /**
  * Traanferobject for updating or reading user-information.
- * @author Silvana Yacob
+ * @author Silvana Yakob
  *
  */
 public class UpdateUserTransfere {

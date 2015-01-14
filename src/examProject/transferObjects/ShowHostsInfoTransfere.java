@@ -10,10 +10,13 @@ public class ShowHostsInfoTransfere {
 	public ShowHostsInfoTransfere(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		/*this.email = email;
+	}
+	public ShowHostsInfoTransfere(String firstName, String lastName, String email,String mobileNr, String phoneNr ) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
 		this.mobileNr = mobileNr;
 		this.phoneNr = phoneNr;
-*/
 	}
 	
 	public String getFirstName() {
@@ -35,6 +38,4 @@ public class ShowHostsInfoTransfere {
 	public String getPhoneNr() {
 		return phoneNr;
 	}
-
-
 }

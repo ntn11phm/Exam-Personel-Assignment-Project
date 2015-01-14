@@ -6,17 +6,18 @@ import examProject.transferObjects.UpdateUserTransfere;
 public class UpdateUsersInformation {
 
 	private UpdateUserTransfere updateUser;
-	private DbManipulator dBm;
+	@SuppressWarnings("unused")
+	private DbManipulator dbManipulator;
 	private String sqlCommand = "";
+	@SuppressWarnings("unused")
 	private LoggedInUserTO currentUser;
 
-	public UpdateUsersInformation(UpdateUserTransfere updateUser, DbManipulator dBm) {
+	public UpdateUsersInformation(UpdateUserTransfere updateUser,DbManipulator dbManipulator) {
 		this.updateUser = updateUser;
-		this.dBm = dBm;
+		this.dbManipulator = dbManipulator;
 	}
 
 	public String updateUserStrCommand() {
-
 		String sqlCommand = "UPDATE hosts SET first_name='"
 				+ updateUser.getFirstName() + "', last_name='"
 				+ updateUser.getLastName() + "',civicnr="
@@ -25,15 +26,10 @@ public class UpdateUsersInformation {
 				+ updateUser.getAddress() + "',zipcode="
 				+ updateUser.getZipCode() + ",phone_nr='"
 				+ updateUser.getPhoneNr() + "',mobile_phone='"
-				+ updateUser.getMobileNr()  +",'is_active="
-				+ updateUser.isActive() +",is_admin="
-				+ ";";
-				
-
+				+ updateUser.getMobileNr() + ",'is_active="
+				+ updateUser.isActive() + ",is_admin=" + ";";
 		return sqlCommand;
-
 	}
-	
 
 	public String getSqlCommand() {
 		return sqlCommand;

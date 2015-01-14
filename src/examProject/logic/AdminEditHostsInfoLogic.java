@@ -9,49 +9,45 @@ import examProject.transferObjects.LoggedInUserTO;
 import examProject.transferObjects.UpdateUserTransfere;
 
 public class AdminEditHostsInfoLogic {
-	private UpdateUserTransfere uppdateUser;
-	private DbManipulator dBm;
+	private UpdateUserTransfere updateUserTransfere;
+	private DbManipulator dbManipulator;
 
 	public AdminEditHostsInfoLogic(LoggedInUserTO currentUser,
-			UpdateUserTransfere uppdateUser, DbManipulator dBm) {
-		this.uppdateUser = uppdateUser;
-		this.dBm = dBm;
-
+			UpdateUserTransfere uppdateUser, DbManipulator dbManipulator) {
+		this.updateUserTransfere = uppdateUser;
+		this.dbManipulator = dbManipulator;
 	}
 
 	public boolean AdminEditHostsInfo() {
-		dBm.openDb();
+		dbManipulator.openDb();
 		boolean result = false;
 		String sqlCommand = "SELECT user_id FROM hosts WHERE first_name='"
-				+ uppdateUser.getFirstName() + "';";
-		ResultSet rs = dBm.select(sqlCommand);
-
+				+ updateUserTransfere.getFirstName() + "';";
+		ResultSet resultSet = dbManipulator.select(sqlCommand);
 		try {
-			if (!rs.next()) {
+			if (!resultSet.next()) {
 				UpdateUsersInformation updateUser = new UpdateUsersInformation(
-						uppdateUser, dBm);
-				dBm.insert(updateUser.updateUserStrCommand());
+						updateUserTransfere, dbManipulator);
+				dbManipulator.insert(updateUser.updateUserStrCommand());
 
 				sqlCommand = "UPDATE hosts SET first_name='"
-						+ uppdateUser.getFirstName() + "',last_name='"
-						+ uppdateUser.getLastName() + "',civicnr="
-						+ uppdateUser.getCivic() + ",email='"
-						+ uppdateUser.getEmail() + "',city='"
-						+ uppdateUser.getCity() + "',address='"
-						+ uppdateUser.getAddress() + "',zipcode="
-						+ uppdateUser.getZipCode() + ",phone_nr='"
-						+ uppdateUser.getPhoneNr() + "',mobile_phone='"
-						+ uppdateUser.getMobileNr() + "',is_active="
-						+ uppdateUser.isActive() + ";";
-
-				dBm.update(sqlCommand);
+						+ updateUserTransfere.getFirstName() + "',last_name='"
+						+ updateUserTransfere.getLastName() + "',civicnr="
+						+ updateUserTransfere.getCivic() + ",email='"
+						+ updateUserTransfere.getEmail() + "',city='"
+						+ updateUserTransfere.getCity() + "',address='"
+						+ updateUserTransfere.getAddress() + "',zipcode="
+						+ updateUserTransfere.getZipCode() + ",phone_nr='"
+						+ updateUserTransfere.getPhoneNr() + "',mobile_phone='"
+						+ updateUserTransfere.getMobileNr() + "',is_active="
+						+ updateUserTransfere.isActive() + ";";
+				dbManipulator.update(sqlCommand);
 				result = true;
 			}
 		} catch (Exception e) {
 		} finally {
-			dBm.closeDb();
+			dbManipulator.closeDb();
 		}
 		return result;
 	}
-
 }

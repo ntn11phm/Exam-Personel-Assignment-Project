@@ -9,60 +9,44 @@ import examProject.transferObjects.ShowHostsInfoTransfere;
 
 	public class ShowHostsInfoLogic {
 		private ShowHostsInfoTransfere showHostsInfo;
-		private DbManipulator dBm;
+		private DbManipulator dbManipulator;
 		private LoggedInUserTO currentUser;
 		Statement updateStatment = null;
 
 
-		public ShowHostsInfoLogic(ShowHostsInfoTransfere showHostsInfo, DbManipulator dBm) {
-		//public ShowHostsInfoLogic(LoggedInUserTO currentUser, ShowHostsInfoTransfere uppdateUser, DbManipulator dBm) {
+		public ShowHostsInfoLogic(ShowHostsInfoTransfere showHostsInfo, DbManipulator dbManipulator) {
 			this.showHostsInfo = showHostsInfo;
-			this.dBm = dBm;
+			this.dbManipulator = dbManipulator;
 			getLogginUserData();
 		}
 		
 		public ShowHostsInfoTransfere getLogginUserData() {
 			ShowHostsInfoTransfere storedUserdata = null;
-			dBm.openDb();
-			//String sqlCommand = "SELECT first_name, last_name, phone_nr, mobile_phone, email FROM hosts ;";
-			String sqlCommand = "SELECT first_name, last_name FROME hosts;";
-
-			ResultSet rs = dBm.select(sqlCommand);
-			/*try {
-				while (!rs.next())
-					storedUserdata = new ShowHostsInfoTransfere(rs.getString("first_name"), rs.getString("last_name"));
-						//	rs.getString("email"), rs.getString("mobile_phone"), rs.getString("phone_nr"));
-			} catch (SQLException e) {}
-			*/
-			dBm.closeDb();
+			dbManipulator.openDb();
+			String sqlCommand = "SELECT first_name, last_name, phone_nr, mobile_phone, email FROM hosts ;";
+			ResultSet resultSet = dbManipulator.select(sqlCommand);
+			dbManipulator.closeDb();
 			return storedUserdata;
-			
-		}
+			}
 
 		public boolean ShowHostsInfo() {
-
-			dBm.openDb();
+			dbManipulator.openDb();
 			boolean result = false;
 			String sqlCommand = "SELECT first_name, last_name FROM hosts;";
 
-			ResultSet rs = dBm.select(sqlCommand);
+			ResultSet resultSet = dbManipulator.select(sqlCommand);
 			try {
-				if (rs.next()) {
-					ShowHostsInfoDao showHostInfo = new ShowHostsInfoDao(showHostsInfo, dBm);
-					dBm.select(showHostInfo.getSqlCommand());
+				if (resultSet.next()) {
+					ShowHostsInfoDao showHostInfo = new ShowHostsInfoDao(showHostsInfo, dbManipulator);
+					dbManipulator.select(showHostInfo.getSqlCommand());
 					sqlCommand = "SELECT first_name, last_name FROM hosts;";
-
-					
-
-					dBm.select(sqlCommand);
+					dbManipulator.select(sqlCommand);
 					result = true;
 				}
 			} catch (Exception e) {
 			} finally {
-				dBm.closeDb();
+				dbManipulator.closeDb();
 			}
-
 			return result;
 		}
-
-	}
+}

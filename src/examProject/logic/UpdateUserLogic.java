@@ -3,76 +3,70 @@ package examProject.logic;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import examProject.dao.DbManipulator;
 import examProject.dao.UpdateUsersInformation;
 import examProject.transferObjects.LoggedInUserTO;
 import examProject.transferObjects.UpdateUserTransfere;
 
 public class UpdateUserLogic {
-	private UpdateUserTransfere uppdateUser;
-	private DbManipulator dBm;
+	private UpdateUserTransfere updateUserTransfere;
+	private DbManipulator dbManipulator;
 	private LoggedInUserTO currentUser;
 	Statement updateStatment = null;
 
-
-	public UpdateUserLogic(LoggedInUserTO currentUser, UpdateUserTransfere uppdateUser, DbManipulator dBm) {
-		this.uppdateUser = uppdateUser;
+	public UpdateUserLogic(LoggedInUserTO currentUser, UpdateUserTransfere updateUserTransfere, DbManipulator dbManipulator) {
+		this.updateUserTransfere = updateUserTransfere;
 		this.currentUser = currentUser;
-		this.dBm = dBm;
+		this.dbManipulator = dbManipulator;
 		getLogginUserData();
 	}
 	
 	public UpdateUserTransfere getLogginUserData() {
 		UpdateUserTransfere storedUserdata = null;
-		dBm.openDb();
+		dbManipulator.openDb();
 		String sqlCommand = "SELECT first_name, last_name, civicnr, address, zipcode, city, phone_nr, mobile_phone, email, is_active FROM hosts WHERE host_id =" + currentUser.getHost_id() + ";";
 
-		ResultSet rs = dBm.select(sqlCommand);
+		ResultSet resultSet = dbManipulator.select(sqlCommand);
 		try {
-			while (rs.next())
-				storedUserdata = new UpdateUserTransfere(rs.getString("first_name"), rs.getString("last_name"),
-						rs.getString("email"), rs.getString("email"), rs.getString("city"),
-						rs.getString("address"), rs.getString("mobile_phone"), rs.getString("phone_nr"),
-						rs.getString("zipcode"), rs.getString("civicnr"),rs.getBoolean("is_active"),  currentUser.isIs_admin());
+			while (resultSet.next())
+				storedUserdata = new UpdateUserTransfere(resultSet.getString("first_name"), resultSet.getString("last_name"),
+						resultSet.getString("email"), resultSet.getString("email"), resultSet.getString("city"),
+						resultSet.getString("address"), resultSet.getString("mobile_phone"), resultSet.getString("phone_nr"),
+						resultSet.getString("zipcode"), resultSet.getString("civicnr"),resultSet.getBoolean("is_active"),  currentUser.isIs_admin());
 		} catch (SQLException e) {}
-		dBm.closeDb();
+		dbManipulator.closeDb();
 		return storedUserdata;
 	}
 
 	public boolean uppdateUser() {
-
-		dBm.openDb();
+		dbManipulator.openDb();
 		boolean result = false;
 		String sqlCommand = "SELECT user_id FROM hosts WHERE host_id=" + currentUser.getHost_id() + ";";
-
-		ResultSet rs = dBm.select(sqlCommand);
+		ResultSet resultSet = dbManipulator.select(sqlCommand);
 		try {
-			if (rs.next()) {
-				UpdateUsersInformation updateUser = new UpdateUsersInformation(uppdateUser, dBm);
-				dBm.update(updateUser.getSqlCommand());
+			if (resultSet.next()) {
+				UpdateUsersInformation updateUser = new UpdateUsersInformation(updateUserTransfere, dbManipulator);
+				dbManipulator.update(updateUser.getSqlCommand());
 
 				sqlCommand = "UPDATE hosts SET first_name='"
-						+ uppdateUser.getFirstName() + "',last_name='"
-						+ uppdateUser.getLastName() + "',civicnr='"
-						+ uppdateUser.getCivic() + "',email='"
-						+ uppdateUser.getEmail() + "',city='"
-						+ uppdateUser.getCity() + "',address='"
-						+ uppdateUser.getAddress() + "',zipcode='"
-						+ uppdateUser.getZipCode() + "',phone_nr='"
-						+ uppdateUser.getPhoneNr() + "',mobile_phone='"
-						+ uppdateUser.getMobileNr() + "',is_active="
-						+ uppdateUser.isActive()  +" WHERE host_id=" 
+						+ updateUserTransfere.getFirstName() + "',last_name='"
+						+ updateUserTransfere.getLastName() + "',civicnr='"
+						+ updateUserTransfere.getCivic() + "',email='"
+						+ updateUserTransfere.getEmail() + "',city='"
+						+ updateUserTransfere.getCity() + "',address='"
+						+ updateUserTransfere.getAddress() + "',zipcode='"
+						+ updateUserTransfere.getZipCode() + "',phone_nr='"
+						+ updateUserTransfere.getPhoneNr() + "',mobile_phone='"
+						+ updateUserTransfere.getMobileNr() + "',is_active="
+						+ updateUserTransfere.isActive()  +" WHERE host_id=" 
 						+ currentUser.getHost_id()  +";";
-
-				dBm.update(sqlCommand);
+				dbManipulator.update(sqlCommand);
 				result = true;
 			}
 		} catch (Exception e) {
 		} finally {
-			dBm.closeDb();
+			dbManipulator.closeDb();
 		}
 		return result;
 	}
-
 }

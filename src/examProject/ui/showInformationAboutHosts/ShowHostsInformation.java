@@ -5,13 +5,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import examProject.dao.DbManipulator;
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.DBConnectionTO;
-import examProject.transferObjects.HostTO;
 import examProject.transferObjects.ShowHostsInfoTransfere;
-import examProject.transferObjects.UpdateUserTransfere;
 
 	@SuppressWarnings("serial")
 	public class ShowHostsInformation extends JPanel {
@@ -20,7 +17,7 @@ import examProject.transferObjects.UpdateUserTransfere;
 			private String sqlKommand = "SELECT host_id FORM hosts;";
 			@SuppressWarnings("unchecked")
 			private	JList listbox = new JList(listData);
-			private BackendFacade facade;
+			private BackendFacade backendFacade;
 			private JScrollPane scrollPanel = new JScrollPane(listbox);
 		    private JLabel firstNameLabel = new JLabel("Förnamn: ");
 		    private JLabel lastNameLabel = new JLabel("EfterNamn: ");
@@ -35,32 +32,21 @@ import examProject.transferObjects.UpdateUserTransfere;
 		    private JLabel showPostLabel = new JLabel("hh");
 		    
 		    DBConnectionTO dbConnectionTo = null;
-			DbManipulator dbm = new DbManipulator(dbConnectionTo);
-
-
+			DbManipulator dbManipulator = new DbManipulator(dbConnectionTo);
 			
-			public ShowHostsInformation(BackendFacade facade) {
-				this.facade = facade;
+			public ShowHostsInformation(BackendFacade backendFacade) {
+				this.backendFacade = backendFacade;
 				setLayout(null);
 				setBounds();
 				addCtrls();
 				guiButtonListener();
 				loadTextFields();
-
 			}
 			
 			private void loadTextFields() {
-			//	ShowHostsInfoTransfere ;
-			/*	ShowHostsInfoTransfere storedData = facade.getCurrentHostDataShow();
-				firstNameLabel.setText(storedData.getFirstName());
-				lastNameLabel.setText(storedData.getLastName());
-				phoneNumberLabel.setText(storedData.getEmail());
-				mobilNumberLabel.setText(storedData.getEmail());*/
-			
 			}
 
 			private void setBounds() {
-				 
 				scrollPanel.setBounds(29, 27, 300, 600);
 				firstNameLabel.setBounds(400, 27, 130, 25);
 				showFirstNameLabel.setBounds(550, 27, 130, 25);
@@ -92,33 +78,23 @@ import examProject.transferObjects.UpdateUserTransfere;
 				 ListSelectionListener listSelectionListener = new ListSelectionListener() {
 						@Override
 						public void valueChanged(ListSelectionEvent listSelectionEvent) {
-							
-						System.out.println("dbm.select " + dbm.select("SELECT first_name FROM hosts;"));
-					
-				        boolean adjust = listSelectionEvent.getValueIsAdjusting();
+						        boolean adjust = listSelectionEvent.getValueIsAdjusting();
 				        if (!adjust) {
-				         //     System.out.println(" Selections: ");
 				              ShowHostsInfoTransfere showHostsInfo= new ShowHostsInfoTransfere("SELECT frist_name FROM hosts;", "SELECT lastst_name FROM hosts;");
-						//	facade.showHostsInfo(showHostsInfo);
 				        }
 				        else
 				        	showInfo();
 				      }				
 				    };
 				    listbox.addListSelectionListener(listSelectionListener);
-
-				
 			}
 
 			private void showInfo(){   
 				ShowHostsInfoTransfere showHostInfo = new ShowHostsInfoTransfere(listData[0], listData[1]);
-				
-					//showFirstNameLabel.setText(dbm.select("SELECT first_name FROM hosts;"));
-					facade.showHostsInfo(showHostInfo);
+					backendFacade.showHostsInfo(showHostInfo);
 				
 			}
 			
 			public void buttonClickedMethod() {
-
 			}			
 	}
