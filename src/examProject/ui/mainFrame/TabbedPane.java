@@ -147,12 +147,12 @@ public class TabbedPane extends JFrame {
 			jtp.addTab("Importera", new KronoxImportPanel(backendFacade));
 			jtp.addTab("Inbjudningar", new CreateInvitationPanel(backendFacade));
 			jtp.addTab("Populera sessioner", new PopulateSessionsPanel(backendFacade));
-			jtp.addTab("Admin redigerar info om värdar", new AdminEditHostsInfo(backendFacade));
+//			jtp.addTab("Admin redigerar info om värdar", new AdminEditHostsInfo(backendFacade));
 		}
-		jtp.addTab("Skriv ut", new SessionsPrintPanel(backendFacade));
-		jtp.addTab("Uppdatera användare", new UI_LoadUserInformation(backendFacade));
 		jtp.addTab("Svara på inbjudningar", new AnswerInvitationsPanel(backendFacade));
-		jtp.addTab("Visa info om värdar", new ShowHostsInformation(backendFacade));
-		jtp.addTab("Skriv ut Värdinfo", new HostsPrintPanel(backendFacade));
+		jtp.addTab("Uppdatera användare", new UI_LoadUserInformation(backendFacade));
+//		jtp.addTab("Skriv ut", new SessionsPrintPanel(backendFacade));
+//		jtp.addTab("Visa info om värdar", new ShowHostsInformation(backendFacade));
+//		jtp.addTab("Skriv ut Värdinfo", new HostsPrintPanel(backendFacade));
 	}
 }

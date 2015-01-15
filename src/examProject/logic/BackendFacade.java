@@ -4,11 +4,10 @@ package examProject.logic;
  * BackendFacade for the Exam-Personel-Assignment-Project.
  * @author Magnus Eklund
  * @author Per Hedblom
- * @author Silvana Yacob
+ * @author Silvana Yakob
  */
 
 import java.util.List;
-
 import examProject.dao.DbManipulator;
 import examProject.logic.answerInv.AnswerInvitation;
 import examProject.logic.changePassword.ChangePassword;
@@ -58,9 +57,22 @@ public class BackendFacade {
 	public BackendFacade(LoggedInUserTO currentUser, Password_interface hash) throws SetupIncompleteException {
 		this(currentUser, hash, new Emailto());		
 	}
+	/**
+	 * Constructor
+	 * @param currentUser {@link LoggedInUserTO} containing data about the user that has logged in.
+	 * @param email_eng injection of a email function that implements {@link Mail_Interface}.
+	 * @throws SetupIncompleteException
+	 */
 	public BackendFacade(LoggedInUserTO currentUser, Mail_Interface email_eng) throws SetupIncompleteException {
 		this(currentUser, new PasswordHashingLocal(), email_eng);
 	}
+	/**
+	 * Constructor
+	 * @param currentUser {@link LoggedInUserTO} containing data about the user that has logged in.
+	 * @param hash injection of a hashing function that implements {@link Password_interface}.
+	 * @param email_eng injection of a email function that implements {@link Mail_Interface}.
+	 * @throws SetupIncompleteException
+	 */
 	public BackendFacade(LoggedInUserTO currentUser, Password_interface hash, Mail_Interface email_eng) throws SetupIncompleteException {
 		this.currentUser = currentUser;
 		createDbObjects();
