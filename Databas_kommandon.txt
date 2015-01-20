@@ -1,0 +1,288 @@
+-- Database: "Tentamensprojekt"
+
+-- DROP DATABASE "Tentamensprojekt";
+
+CREATE DATABASE "Tentamensprojekt"
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'Swedish_Sweden.1252'
+       LC_CTYPE = 'Swedish_Sweden.1252'
+       CONNECTION LIMIT = -1;
+
+*********************************************************************
+-- Sequence: host_id_seq
+
+-- DROP SEQUENCE host_id_seq;
+
+CREATE SEQUENCE host_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE host_id_seq
+  OWNER TO postgres;
+
+*********************************************************************
+-- Sequence: hosts_sessions_id_seq
+
+-- DROP SEQUENCE hosts_sessions_id_seq;
+
+CREATE SEQUENCE hosts_sessions_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE hosts_sessions_id_seq
+  OWNER TO postgres;
+
+*********************************************************************
+-- Sequence: hsi_id_seq
+
+-- DROP SEQUENCE hsi_id_seq;
+
+CREATE SEQUENCE hsi_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE hsi_id_seq
+  OWNER TO postgres;
+
+*********************************************************************
+-- Sequence: occasion_id_seq
+
+-- DROP SEQUENCE occasion_id_seq;
+
+CREATE SEQUENCE occasion_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE occasion_id_seq
+  OWNER TO postgres;
+
+*********************************************************************
+-- Sequence: session_id_seq
+
+-- DROP SEQUENCE session_id_seq;
+
+CREATE SEQUENCE session_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE session_id_seq
+  OWNER TO postgres;
+
+*********************************************************************
+-- Sequence: temporary_passwords_seq
+
+-- DROP SEQUENCE temporary_passwords_seq;
+
+CREATE SEQUENCE temporary_passwords_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE temporary_passwords_seq
+  OWNER TO postgres;
+
+*********************************************************************
+-- Sequence: user_id_seq
+
+-- DROP SEQUENCE user_id_seq;
+
+CREATE SEQUENCE user_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE user_id_seq
+  OWNER TO postgres;
+
+*********************************************************************
+-- Table: exam_occasion
+
+-- DROP TABLE exam_occasion;
+
+CREATE TABLE exam_occasion
+(
+  occasion_id integer NOT NULL DEFAULT nextval('occasion_id_seq'::regclass),
+  exam_date date NOT NULL,
+  exam_time time without time zone NOT NULL,
+  booking_id character varying(40) NOT NULL,
+  summary character varying,
+  exam_location character varying(20) NOT NULL,
+  CONSTRAINT "ExamOccasion_pkey" PRIMARY KEY (occasion_id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE exam_occasion
+  OWNER TO postgres;
+GRANT ALL ON TABLE exam_occasion TO postgres;
+GRANT SELECT ON TABLE exam_occasion TO public;
+
+*********************************************************************
+-- Table: host_sessions
+
+-- DROP TABLE host_sessions;
+
+CREATE TABLE host_sessions
+(
+  session_id integer,
+  host_id integer,
+  is_responsible boolean NOT NULL DEFAULT false,
+  hosts_sessions_id integer NOT NULL DEFAULT nextval('hosts_sessions_id_seq'::regclass),
+  CONSTRAINT host_sessions_pkey PRIMARY KEY (hosts_sessions_id),
+  CONSTRAINT host_sessions_host_id_fkey FOREIGN KEY (host_id)
+      REFERENCES hosts (host_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT host_sessions_sessions_id_fkey FOREIGN KEY (session_id)
+      REFERENCES sessions (session_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE host_sessions
+  OWNER TO postgres;
+GRANT ALL ON TABLE host_sessions TO postgres;
+GRANT SELECT ON TABLE host_sessions TO public;
+
+*********************************************************************
+-- Table: hosts
+
+-- DROP TABLE hosts;
+
+CREATE TABLE hosts
+(
+  host_id integer NOT NULL DEFAULT nextval('host_id_seq'::regclass),
+  first_name character varying(30) NOT NULL,
+  last_name character varying(30) NOT NULL,
+  address character varying(50),
+  city character varying(50),
+  email character varying(75),
+  is_active boolean NOT NULL DEFAULT true,
+  user_id integer,
+  phone_nr character varying(30),
+  mobile_phone character varying(30),
+  civicnr character varying(15),
+  zipcode character varying(10),
+  CONSTRAINT "Hosts_pkey" PRIMARY KEY (host_id),
+  CONSTRAINT "Hosts_User_id_fkey" FOREIGN KEY (user_id)
+      REFERENCES users (user_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE hosts
+  OWNER TO postgres;
+GRANT ALL ON TABLE hosts TO postgres;
+GRANT SELECT ON TABLE hosts TO public;
+
+*********************************************************************
+-- Table: hosts_sessions_invitations
+
+-- DROP TABLE hosts_sessions_invitations;
+
+CREATE TABLE hosts_sessions_invitations
+(
+  hsi_id integer NOT NULL DEFAULT nextval('hsi_id_seq'::regclass),
+  answer_date date DEFAULT '1970-01-01'::date,
+  host_id integer,
+  can_host boolean NOT NULL DEFAULT false,
+  hsi_date date NOT NULL,
+  hsi_time time without time zone NOT NULL,
+  CONSTRAINT "Hosts_Sessions_Invitations_pkey" PRIMARY KEY (hsi_id),
+  CONSTRAINT "Hosts_Sessions_Invitations_Host_id_fkey" FOREIGN KEY (host_id)
+      REFERENCES hosts (host_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE hosts_sessions_invitations
+  OWNER TO postgres;
+GRANT ALL ON TABLE hosts_sessions_invitations TO postgres;
+GRANT SELECT ON TABLE hosts_sessions_invitations TO public;
+
+*********************************************************************
+-- Table: sessions
+
+-- DROP TABLE sessions;
+
+CREATE TABLE sessions
+(
+  session_id integer NOT NULL DEFAULT nextval('session_id_seq'::regclass),
+  session_date date NOT NULL,
+  is_open boolean NOT NULL DEFAULT false,
+  session_time time without time zone NOT NULL,
+  session_location character varying(20) NOT NULL,
+  CONSTRAINT "Sessions_pkey" PRIMARY KEY (session_id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE sessions
+  OWNER TO postgres;
+GRANT ALL ON TABLE sessions TO postgres;
+GRANT SELECT ON TABLE sessions TO public;
+
+*********************************************************************
+-- Table: temporary_passwords
+
+-- DROP TABLE temporary_passwords;
+
+CREATE TABLE temporary_passwords
+(
+  tp_id integer NOT NULL DEFAULT nextval('temporary_passwords_seq'::regclass),
+  tmp_pwd character varying(10) NOT NULL,
+  CONSTRAINT temporary_passwords_pkey PRIMARY KEY (tp_id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE temporary_passwords
+  OWNER TO postgres;
+
+*********************************************************************
+-- Table: users
+
+-- DROP TABLE users;
+
+CREATE TABLE users
+(
+  user_id integer NOT NULL DEFAULT nextval('user_id_seq'::regclass),
+  username character varying(20) NOT NULL,
+  pwd character varying(260) NOT NULL,
+  is_admin boolean NOT NULL DEFAULT false,
+  has_tmp_pwd boolean NOT NULL DEFAULT true,
+  CONSTRAINT "Users_pkey" PRIMARY KEY (user_id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE users
+  OWNER TO postgres;
+GRANT ALL ON TABLE users TO postgres;
+GRANT SELECT ON TABLE users TO public;
+
+*********************************************************************
+
+Kommandon för att skapa ett adminkonto (se installationsmanualen för mer info...)
+O.B.S. om en egen hashnings-implementation har använts så måste lösen nedan bytas ut för user.
+
+INSERT INTO users (username, pwd, is_admin, has_tmp_pwd) VALUES ('"superhost"', '"DBVqI9SnHpV0eDJjnbQPrb3ikMxRIWE8T1nmUBcjpzw=$aMfK/J14ujbM7tTuYlboqD9R1YKWNkM/kQ3swRWqO8w="', true, true);
+INSERT INTO hosts (first_name, last_name, is_active, user_id) VALUES ('"Databas"', '"Admin"', false, (SELECT user_id FROM users WHERE username='superhost'));
+
+
