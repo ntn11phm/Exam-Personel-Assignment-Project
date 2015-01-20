@@ -2,7 +2,9 @@ package examProject.ui.exportSessions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFileChooser;
+
 import examProject.logic.BackendFacade;
 
 public class ExportSessionsListener {
@@ -20,9 +22,20 @@ public class ExportSessionsListener {
 	}
 	
 	private void exportSessions() {
-		
+		boolean result = false;
+		if (validateDate(exportPanel.getTbFromDate().getText()) && validateDate(exportPanel.getTbToDate().getText()) && !exportPanel.getTbPath().equals("")) {
+			result = backendFacade.exportSessions(exportPanel.getTbFromDate().getText(), exportPanel.getTbToDate().getText(), exportPanel.getTbPath().getText());
+		}
+		setStatusText(result);
 	}
 	
+	private void setStatusText(boolean result) {
+		if (result)
+			exportPanel.getLblStatus().setText("Data har exporterats!");
+		else
+			exportPanel.getLblStatus().setText("Data kunde inte exporterats!");
+	}
+
 	private void setSavePath(){
 		JFileChooser folderChooser = new JFileChooser();
 		folderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -31,5 +44,41 @@ public class ExportSessionsListener {
 			exportPanel.getTbPath().setText(folderChooser.getSelectedFile().toString());
 			
 		}
+	}
+	
+	private boolean validateDate(String date) {
+		boolean result = true;
+		if (!(date.length() == 10))
+			return false;
+		else if (!date.substring(4, 5).equals("-"))
+			return false;
+		else if (!date.substring(7, 8).equals("-"))
+			return false;
+		for (int i = 0; i < date.length(); i++)
+			switch (date.substring(i, i + 1).toLowerCase()) {
+			case "1":
+			case "2":
+			case "3":
+			case "4":
+			case "5":
+			case "6":
+			case "7":
+			case "8":
+			case "9":
+			case "0":
+			case "-":
+				if (date.substring(i, i + 1).equals("-"))
+					switch (i){
+					case 7:
+					case 4:
+						break;
+					default : 
+						return false;
+					}
+				break;
+			default:
+				return false;
+			}
+		return result;
 	}
 }

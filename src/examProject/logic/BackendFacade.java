@@ -8,6 +8,7 @@ package examProject.logic;
  */
 
 import java.util.List;
+
 import examProject.dao.DbManipulator;
 import examProject.logic.answerInv.AnswerInvitation;
 import examProject.logic.changePassword.ChangePassword;
@@ -319,5 +320,9 @@ public class BackendFacade {
 	public ShowHostsInfoTransfere getCurrentHostDataShow(){
 		ShowHostsInfoLogic showHostsInfo = new ShowHostsInfoLogic(null, dbManipulator);
 		return showHostsInfo.getLogginUserData();
+	}
+	public boolean exportSessions(String fromDate, String toDate, String path) {
+
+		return false;
 	}
 }
