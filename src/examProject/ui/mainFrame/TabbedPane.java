@@ -15,6 +15,7 @@ import examProject.ui.answerInvitations.AnswerInvitationsPanel;
 import examProject.ui.changePwd.ChangePwdFrame;
 import examProject.ui.changePwd.ChangePwdPanel;
 import examProject.ui.createInvitation.CreateInvitationPanel;
+import examProject.ui.exportSessions.ExportSessions;
 import examProject.ui.firstTimeSetup.FirstTimeLaunchPanel;
 import examProject.ui.kronoxImport.KronoxImportPanel;
 import examProject.ui.login.LoginFrame;
@@ -151,6 +152,7 @@ public class TabbedPane extends JFrame {
 		}
 		jtp.addTab("Svara på inbjudningar", new AnswerInvitationsPanel(backendFacade));
 		jtp.addTab("Uppdatera användare", new UI_LoadUserInformation(backendFacade));
+		jtp.addTab("Exportera sessioner", new ExportSessions(backendFacade));
 //		jtp.addTab("Skriv ut", new SessionsPrintPanel(backendFacade));
 //		jtp.addTab("Visa info om värdar", new ShowHostsInformation(backendFacade));
 //		jtp.addTab("Skriv ut Värdinfo", new HostsPrintPanel(backendFacade));
