@@ -67,6 +67,13 @@ public class UI_LoadUserInformation extends JPanel {
 		mobileNrTextField.setText(storedData.getMobileNr());
 		isActive.setSelected(storedData.isActive());
 		isAdmin.setSelected(storedData.isAdmin());
+		if (storedData.isAdmin()) {
+			isActive.setEnabled(true);
+			isAdmin.setEnabled(true);
+		} else {
+			isActive.setEnabled(false);
+			isAdmin.setEnabled(false);
+		}
 	}
 
 	private void setBounds() {
