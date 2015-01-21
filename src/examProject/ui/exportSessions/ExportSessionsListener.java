@@ -23,10 +23,14 @@ public class ExportSessionsListener {
 	
 	private void exportSessions() {
 		boolean result = false;
-		if (validateDate(exportPanel.getTbFromDate().getText()) && validateDate(exportPanel.getTbToDate().getText()) && !exportPanel.getTbPath().equals("")) {
-			result = backendFacade.exportSessions(exportPanel.getTbFromDate().getText(), exportPanel.getTbToDate().getText(), exportPanel.getTbPath().getText());
-		}
-		setStatusText(result);
+		if (validateDate(exportPanel.getTbFromDate().getText()) && validateDate(exportPanel.getTbToDate().getText())) {
+			if (!exportPanel.getTbPath().equals("")) {
+				result = backendFacade.exportSessions(exportPanel.getTbFromDate().getText(), exportPanel.getTbToDate().getText(), exportPanel.getTbPath().getText());
+				setStatusText(result);
+			}
+		} else
+			exportPanel.getLblStatus().setText("Felaktigt datumformat!");
+		
 	}
 	
 	private void setStatusText(boolean result) {
