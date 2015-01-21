@@ -324,12 +324,11 @@ public class BackendFacade {
 		return showHostsInfo.getLogginUserData();
 	}
 	/**
-	 * Export sessions and hosts between the given dates. 
-	 * The result is stored as a .csv file at a location specified by by the user. 
+	 * Fetches sessions and hosts between the given dates from the database. 
+	 * The result is a list that can be stored to a .csv file or presented to the user some other way. 
 	 * @param fromDate String with date-format yyyy-MM-dd.
 	 * @param toDate String with date-format yyyy-MM-dd.
-	 * @param path String with the path to where the .csv file will be created.
-	 * @return {@link boolean} true if the data was exported successfully. 
+	 * @return {@link List} of {@link HostSessionDataTO}  
 	 */
 	public List<HostSessionDataTO> exportSessions(String fromDate, String toDate) {
 		ExportSessions es = new ExportSessions(dbManipulator);
