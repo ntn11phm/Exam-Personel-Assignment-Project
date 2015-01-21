@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 
 import examProject.logic.BackendFacade;
 
-public class ExportSessions extends JPanel {
+public class ExportSessionsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField tbPath = new JTextField();
 	private JTextField tbFromDate = new JTextField();
@@ -20,7 +20,7 @@ public class ExportSessions extends JPanel {
 	private JButton btnExport = new JButton("Exportera!");
 	private JButton btnSetPath = new JButton("Välj sökväg");
 	
-	public ExportSessions(BackendFacade backendFacade) {
+	public ExportSessionsPanel(BackendFacade backendFacade) {
 		setLayout(null);
 		setBounds();
 		addCtrls();

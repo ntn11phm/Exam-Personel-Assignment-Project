@@ -9,9 +9,9 @@ import examProject.logic.BackendFacade;
 
 public class ExportSessionsListener {
 	private BackendFacade backendFacade;
-	private ExportSessions exportPanel;
+	private ExportSessionsPanel exportPanel;
 	
-	public ExportSessionsListener(BackendFacade backendFacade, ExportSessions exportPanel) {
+	public ExportSessionsListener(BackendFacade backendFacade, ExportSessionsPanel exportPanel) {
 		this.backendFacade = backendFacade;
 		this.exportPanel = exportPanel;
 	}
