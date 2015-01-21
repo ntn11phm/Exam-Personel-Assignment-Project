@@ -13,6 +13,7 @@ import examProject.dao.DbManipulator;
 import examProject.logic.answerInv.AnswerInvitation;
 import examProject.logic.changePassword.ChangePassword;
 import examProject.logic.createInv.CreateInvitation;
+import examProject.logic.exportSessions.ExportSessions;
 import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
 import examProject.logic.mail.Emailto;
@@ -321,8 +322,16 @@ public class BackendFacade {
 		ShowHostsInfoLogic showHostsInfo = new ShowHostsInfoLogic(null, dbManipulator);
 		return showHostsInfo.getLogginUserData();
 	}
+	/**
+	 * Export sessions and hosts between the given dates. 
+	 * The result is stored as a .csv file at a location specified by by the user. 
+	 * @param fromDate String with date-format yyyy-MM-dd.
+	 * @param toDate String with date-format yyyy-MM-dd.
+	 * @param path String with the path to where the .csv file will be created.
+	 * @return {@link boolean} true if the data was exported successfully. 
+	 */
 	public boolean exportSessions(String fromDate, String toDate, String path) {
-
-		return false;
+		ExportSessions es = new ExportSessions(dbManipulator);
+		return es.exportSessions(fromDate, toDate, path);
 	}
 }
