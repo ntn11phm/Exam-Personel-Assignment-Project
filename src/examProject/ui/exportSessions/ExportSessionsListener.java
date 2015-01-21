@@ -35,6 +35,8 @@ public class ExportSessionsListener {
 		
 	}
 	
+	
+	
 	private void setStatusText(boolean result) {
 		if (result)
 			exportPanel.getLblStatus().setText("Data har exporterats!");

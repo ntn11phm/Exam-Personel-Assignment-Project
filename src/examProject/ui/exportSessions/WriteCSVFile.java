@@ -18,6 +18,7 @@ public class WriteCSVFile {
 	}
 
 	public void writeFile() {
+		String fileName = "Export_" + fromDate + "_" + toDate + ".csv";
 		
 	}
 }
