@@ -2,10 +2,12 @@ package examProject.ui.exportSessions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JFileChooser;
 
 import examProject.logic.BackendFacade;
+import examProject.transferObjects.HostSessionDataTO;
 
 public class ExportSessionsListener {
 	private BackendFacade backendFacade;
@@ -25,7 +27,7 @@ public class ExportSessionsListener {
 		boolean result = false;
 		if (validateDate(exportPanel.getTbFromDate().getText()) && validateDate(exportPanel.getTbToDate().getText())) {
 			if (!exportPanel.getTbPath().equals("")) {
-				result = backendFacade.exportSessions(exportPanel.getTbFromDate().getText(), exportPanel.getTbToDate().getText(), exportPanel.getTbPath().getText());
+				List<HostSessionDataTO> arr = backendFacade.exportSessions(exportPanel.getTbFromDate().getText(), exportPanel.getTbToDate().getText());
 				setStatusText(result);
 			}
 		} else

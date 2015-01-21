@@ -26,6 +26,7 @@ import examProject.transferObjects.AddUser;
 import examProject.transferObjects.CreateInvitationTO;
 import examProject.transferObjects.ExamImportSelectionTO;
 import examProject.transferObjects.ExamOccationTO;
+import examProject.transferObjects.HostSessionDataTO;
 import examProject.transferObjects.HostSessionTO;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.HsiTO;
@@ -330,8 +331,8 @@ public class BackendFacade {
 	 * @param path String with the path to where the .csv file will be created.
 	 * @return {@link boolean} true if the data was exported successfully. 
 	 */
-	public boolean exportSessions(String fromDate, String toDate, String path) {
+	public List<HostSessionDataTO> exportSessions(String fromDate, String toDate) {
 		ExportSessions es = new ExportSessions(dbManipulator);
-		return es.exportSessions(fromDate, toDate, path);
+		return es.exportSessions(fromDate, toDate);
 	}
 }
