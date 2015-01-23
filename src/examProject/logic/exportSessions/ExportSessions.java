@@ -17,7 +17,7 @@ public class ExportSessions {
 	
 	public List<HostSessionDataTO> exportSessions(String fromDate, String toDate) {
 		List<HostSessionDataTO> arr = new ArrayList<HostSessionDataTO>();
-		String selectCommand = "SELECT session_date, session_time, session_location, first_name, last_name, is_responsible FROM hosts, sessions, host_sessions WHERE hosts.host_id = host_sessions.host_id AND sessions.session_id = host_sessions.session_id AND session_date between '"+ fromDate + "' AND '"+ toDate + "';";
+		String selectCommand = "SELECT session_date, session_time, session_location, first_name, last_name, is_responsible FROM hosts, sessions, host_sessions WHERE hosts.host_id = host_sessions.host_id AND sessions.session_id = host_sessions.session_id AND session_date between '"+ fromDate + "' AND '"+ toDate + "' ORDER BY session_date, session_time, session_location, is_responsible desc;";
 		ResultSet rs = dbManipulator.select(selectCommand);
 		try {
 			while(rs.next())
