@@ -13,7 +13,7 @@ public class SessionHostRowBuilder {
 	
 	public void addSessionsToTextArea(List<HostSessionDataTO> arr) {
 		HostSessionDataTO session = new HostSessionDataTO("", "", "", "", "", false);
-		if (arr!=null || arr.size()!=0) {
+		if (arr.size()!=0 && arr!=null) {
 				output.setText("");
 				String row = "";
 				for (int i = 0; i < arr.size(); i++)
