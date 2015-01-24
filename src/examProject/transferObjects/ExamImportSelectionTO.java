@@ -2,7 +2,6 @@ package examProject.transferObjects;
 /**
  * Transferobject containing data needed to create the import URL for kronox. 
  * @author Per Hedblom
- *
  */
 public class ExamImportSelectionTO {
 	private String period_type;

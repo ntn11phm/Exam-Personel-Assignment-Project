@@ -13,6 +13,7 @@ import examProject.dao.DbManipulator;
 import examProject.logic.answerInv.AnswerInvitation;
 import examProject.logic.changePassword.ChangePassword;
 import examProject.logic.createInv.CreateInvitation;
+import examProject.logic.editUserInfo.EditUserInfo;
 import examProject.logic.exportSessions.ExportSessions;
 import examProject.logic.importSchemaData.ImportSchemaData;
 import examProject.logic.login.Login;
@@ -340,5 +341,22 @@ public class BackendFacade {
 	 */
 	public boolean getCurrentUserRole() {
 		return currentUser.isIs_admin();
+	}
+	/**
+	 * Fetches all hosts in the host relation.
+	 * @return {@link List} of {@link HostTO}
+	 */
+	public List<HostTO> getHosts() {
+		EditUserInfo eu = new EditUserInfo(dbManipulator, currentUser);
+		return eu.getHosts();
+	}
+	/**
+	 * Fetches a host's stored information using the host_id.
+	 * @param host_id {@link int} the host's host_id.
+	 * @return {@link UpdateUserTransfere} containing the host's info in the database.
+	 */
+	public UpdateUserTransfere getHost(int host_id) {
+		EditUserInfo eu = new EditUserInfo(dbManipulator, currentUser);
+		return eu.getHost(host_id);
 	}
 }

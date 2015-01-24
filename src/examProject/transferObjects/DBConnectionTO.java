@@ -2,7 +2,7 @@ package examProject.transferObjects;
 /**
  * Transferobject containing data needed to create the connection-string
  * @author Per Hedblom
- * @author Silvana Yacob
+ * @author Silvana Yakob
  */
 public class DBConnectionTO {
 	private String databaseDriver;

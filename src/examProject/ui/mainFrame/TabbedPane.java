@@ -1,10 +1,8 @@
 package examProject.ui.mainFrame;
 
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
-
 import examProject.logic.BackendFacade;
 import examProject.logic.OptionsFileReader;
 import examProject.transferObjects.DBConnectionTO;
@@ -15,6 +13,7 @@ import examProject.ui.answerInvitations.AnswerInvitationsPanel;
 import examProject.ui.changePwd.ChangePwdFrame;
 import examProject.ui.changePwd.ChangePwdPanel;
 import examProject.ui.createInvitation.CreateInvitationPanel;
+import examProject.ui.editUserInfo.EditUserInfoPanel;
 import examProject.ui.exportSessions.ExportSessionsPanel;
 import examProject.ui.firstTimeSetup.FirstTimeLaunchPanel;
 import examProject.ui.kronoxImport.KronoxImportPanel;
@@ -153,7 +152,7 @@ public class TabbedPane extends JFrame {
 		jtp.addTab("Svara på inbjudningar", new AnswerInvitationsPanel(backendFacade));
 		jtp.addTab("Uppdatera användare", new UI_LoadUserInformation(backendFacade));
 		jtp.addTab("Visa/exportera sessioner", new ExportSessionsPanel(backendFacade));
-//		jtp.addTab("Skriv ut", new SessionsPrintPanel(backendFacade));
+		jtp.addTab("Visa/editera värdar", new EditUserInfoPanel(backendFacade));
 //		jtp.addTab("Visa info om värdar", new ShowHostsInformation(backendFacade));
 //		jtp.addTab("Skriv ut Värdinfo", new HostsPrintPanel(backendFacade));
 	}

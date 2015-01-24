@@ -2,7 +2,6 @@ package examProject.transferObjects;
 /**
  * Transferobject containing the data for the exam_occations relation.
  * @author Per Hedblom
- *
  */
 public class ExamOccationTO {
 	private String examRoom = "";

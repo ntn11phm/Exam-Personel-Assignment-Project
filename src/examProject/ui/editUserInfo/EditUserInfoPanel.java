@@ -16,7 +16,7 @@ public class EditUserInfoPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JScrollPane scrollPane = new JScrollPane();
 	private JPanel innerPanel = new JPanel();
-	private JList<HostTO> hostList = new JList<HostTO>();
+	private JList<String> hostList = new JList<String>();
 	private JLabel lblFirstName = new JLabel("Förnamn");
 	private JLabel lblLastName = new JLabel("Efternamn");
 	private JLabel lblHosts = new JLabel("Värdar");
@@ -87,7 +87,7 @@ public class EditUserInfoPanel extends JPanel {
 		tbEmail.setEditable(false);
 	}
 	
-	public JList<HostTO> getHostList() {
+	public JList<String> getHostList() {
 		return hostList;
 	}
 
