@@ -3,49 +3,56 @@ package examProject.ui.exportSessions;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
-import examProject.transferObjects.HostSessionDataTO;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class WriteCSVFile {
-	private List<HostSessionDataTO> arr;
+	private JPanel panel;
+	private JTextArea outputArea;
 	private String fromDate;
 	private String toDate;
 	private String path;
+	private boolean writeMode = true;
 
-	public WriteCSVFile(String fromDate, String toDate, String path, List<HostSessionDataTO> arr) {
+	public WriteCSVFile(String fromDate, String toDate, String path, JTextArea outputArea, JPanel panel) {
 		this.fromDate = fromDate;
 		this.toDate = toDate;
 		this.path = path;
-		this.arr = arr;
+		this.outputArea = outputArea;
+		this.panel = panel;
 	}
 
 	public boolean writeFile() {
 		boolean result = false;
 		String fileName = "Export_" + fromDate + "_" + toDate + ".csv";
-		HostSessionDataTO session = new HostSessionDataTO("", "", "", "", "", false);
-		if (arr!=null) {
-			try {
-				FileWriter fstream = new FileWriter(new File(path, fileName));
-				String row = "";
-				for (int i = 0; i < arr.size(); i++) {
-					if (i == 0) {
-						session = arr.get(i);
-						row = session.getDate() + ", " + session.getTime() + ", " + session.getFirstname() + ", " + session.getLastname() + ", " + session.isResponsible(); 
-					} else if (session.compareTo(arr.get(i))==0) {
-						// apend data to file here......
-						session = arr.get(i);
-						row += ", " + session.getFirstname() + ", " + session.getLastname() + ", " + session.isResponsible();
-					} else {
-						session = arr.get(i);
-						row = session.getDate() + ", " + session.getTime() + ", " + session.getFirstname() + ", " + session.getLastname() + ", " + session.isResponsible();
-					}
-				}
-			} catch (IOException e) {}
-		}
+		
 		return result;
 	}
 	
-	private void gfsdfg() {
-		new File("").exists();
+	private void fileWrite(FileWriter fstream, String row) {
+		try {
+			fstream.write(row + "\n");
+			fstream.flush();
+			fstream.close();
+		} catch (IOException e) {}
+	}
+	
+	private boolean checkFileExists(String fileName) {
+		File tmp = new File(path + fileName); 
+		if (tmp.exists()) {
+			JOptionPane optionPane = new JOptionPane ("Filen finns redan, skriva över ?", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION);
+			if (Integer.parseInt(optionPane.getValue().toString()) == JOptionPane.YES_OPTION) {
+				
+//			} else if (optionPane.getValue() == JOptionPane.NO_OPTION) {
+				
+			}
+		} else {
+			try {
+				tmp.createNewFile();
+			} catch (IOException e) {}
+		}
+		
+		return true;
 	}
 }

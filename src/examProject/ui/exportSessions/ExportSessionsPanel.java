@@ -3,9 +3,12 @@ package examProject.ui.exportSessions;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import examProject.logic.BackendFacade;
+
+import javax.swing.JScrollPane;
 
 public class ExportSessionsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -19,6 +22,10 @@ public class ExportSessionsPanel extends JPanel {
 	private JLabel lblStatus = new JLabel();
 	private JButton btnExport = new JButton("Exportera!");
 	private JButton btnSetPath = new JButton("Välj sökväg");
+	private JButton btnLoadPeriod = new JButton("Ladda period");
+	private JScrollPane scrollPane = new JScrollPane();
+	private JPanel innerPanel = new JPanel();
+	private JTextArea outputArea = new JTextArea();
 	
 	public ExportSessionsPanel(BackendFacade backendFacade) {
 		setLayout(null);
@@ -42,6 +49,10 @@ public class ExportSessionsPanel extends JPanel {
 		add(btnExport);
 		add(lblStatus);
 		add(btnSetPath);
+		add(btnLoadPeriod);
+		innerPanel.add(outputArea);
+		scrollPane.setViewportView(innerPanel);
+		add(scrollPane);
 	}
 
 	private void setBounds() {
@@ -55,6 +66,8 @@ public class ExportSessionsPanel extends JPanel {
 		btnExport.setBounds(10, 175, 150, 25);
 		lblStatus.setBounds(170, 175, 320, 25);
 		btnSetPath.setBounds(170, 108, 150, 23);
+		btnLoadPeriod.setBounds(330, 73, 160, 23);
+		scrollPane.setBounds(10, 211, 480, 353);
 	}
 
 	public JTextField getTbPath() {
@@ -83,5 +96,13 @@ public class ExportSessionsPanel extends JPanel {
 	
 	public JButton getBtnSetPath() {
 		return btnSetPath;
+	}
+	
+	public JButton getBtnLoadPeriod() {
+		return btnLoadPeriod;
+	}
+	
+	public JTextArea getOutputArea() {
+		return outputArea;
 	}
 }
