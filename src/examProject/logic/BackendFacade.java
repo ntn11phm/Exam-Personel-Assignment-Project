@@ -359,4 +359,14 @@ public class BackendFacade {
 		EditUserInfo eu = new EditUserInfo(dbManipulator, currentUser);
 		return eu.getHost(host_id);
 	}
+	/**
+	 * Updates the host-data with the given host_id.
+	 * @param host_id {@link int}
+	 * @param hostData {@link UpdateUserTransfere}
+	 * @return {@link boolean} true if the data was updated successfully.
+	 */
+	public boolean updateHost(int host_id, UpdateUserTransfere hostData) {
+		EditUserInfo eu = new EditUserInfo(dbManipulator, currentUser);
+		return eu.updateHost(host_id, hostData);
+	}
 }

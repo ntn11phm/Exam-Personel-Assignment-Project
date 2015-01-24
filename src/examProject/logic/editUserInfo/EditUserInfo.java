@@ -31,10 +31,7 @@ public class EditUserInfo {
 		dbm.closeDb();
 		return hostArray;
 	}
-	//String selectCommand = "SELECT first_name, last_name, civicnr, address, zipcode, city, phone_nr, mobile_phone, email, is_active, isAdmin FROM hosts, users WHERE host_id = '" + host_id + "';";
-	
-	
-	
+
 	public UpdateUserTransfere getHost(int host_id) {
 		UpdateUserTransfere host = null;
 		String selectCommand = "SELECT first_name, last_name, civicnr, address, zipcode, city, phone_nr, mobile_phone, email, is_active, is_admin FROM hosts, users WHERE host_id = '" + host_id + "' AND hosts.user_id = users.user_id;";
@@ -49,11 +46,23 @@ public class EditUserInfo {
 		return host;
 	}
 	
-	public boolean updateHost(UpdateUserTransfere hostData) {
-		boolean result = false;
-		if (currentUser.isIs_admin()) {
-			
-		}
-		return result;
+	public boolean updateHost(int host_id, UpdateUserTransfere hostData) {
+		boolean result1 = false;
+		boolean result2 = false;
+		if (currentUser.isIs_admin())
+			if (hostData.getEmail().equals(hostData.getRetypeEmail())) {
+				String sqlCommand = "UPDATE hosts SET first_name = '" + hostData.getFirstName() +
+						"', last_name = '" + hostData.getLastName() + "', address = '" + hostData.getAddress() +
+						"', zipcode = '" + hostData.getZipCode() + "', city = '" + hostData.getCity() +
+						"', civicnr = '" + hostData.getCivic() + "', phone_nr = '" + hostData.getPhoneNr() +
+						"', mobile_phone = '" + hostData.getMobileNr() + "', email = '" + hostData.getEmail() +
+						"', is_active = " + hostData.isActive() + " WHERE host_id = " + host_id + ";";
+				dbm.openDb();
+				result1 = dbm.update(sqlCommand);
+				sqlCommand = "UPDATE users SET is_admin = " + hostData.isAdmin() + " WHERE user_id = (SELECT user_id FROM hosts WHERE host_id = " + host_id + ");";
+				result2 = dbm.update(sqlCommand);
+				dbm.closeDb();
+			}
+		return result1 && result2;
 	}
 }

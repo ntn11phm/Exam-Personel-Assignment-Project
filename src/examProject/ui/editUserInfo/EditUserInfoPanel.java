@@ -177,6 +177,8 @@ public class EditUserInfoPanel extends JPanel {
 	}
 	
 	private void addCtrls() {
+		innerPanel.setLayout(null);
+		hostList.setBounds(0,0, 200, 600);
 		innerPanel.add(hostList);
 		scrollPane.setViewportView(innerPanel);
 		add(scrollPane);

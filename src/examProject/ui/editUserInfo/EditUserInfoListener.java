@@ -1,11 +1,16 @@
 package examProject.ui.editUserInfo;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.UpdateUserTransfere;
@@ -23,12 +28,31 @@ public class EditUserInfoListener {
 	}
 	
 	public void createButtonListeners() {
-		editUserPanel.getBtnUpdate().addKeyListener(new KeyAdapter() {public void keyReleased(KeyEvent e) {updateHost();}});
+		editUserPanel.getBtnUpdate().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {updateHost();}});
 		editUserPanel.getHostList().addKeyListener(new KeyAdapter() {public void keyReleased(KeyEvent e) {loadSelectedPost();}});
 		editUserPanel.getHostList().addMouseListener(new MouseAdapter() {public void mouseClicked(MouseEvent mouseEvent) {listClick(mouseEvent);}});
 	}
 	private void updateHost() {
-		
+		boolean result = false;
+		if (!editUserPanel.getTbFirstName().equals("") && !editUserPanel.getTbLastName().equals("")) {
+			if (!editUserPanel.getTbEmail().equals(editUserPanel.getTbVerEmail())) {
+				result = backendFacade.updateHost(editUserPanel.getHostList().getSelectedIndex(), createHostData());
+			} else
+				JOptionPane.showMessageDialog(editUserPanel, "E-post adresserna överensstämmer inte!", "E-post", JOptionPane.ERROR_MESSAGE);
+		} else
+			JOptionPane.showMessageDialog(editUserPanel, "Förnamn och/eller efternamn saknas!", "Namn", JOptionPane.ERROR_MESSAGE);
+		updateStatusText(result);
+	}
+	
+	private void updateStatusText(boolean result) {
+		if (result)
+			editUserPanel.getLblStatus().setText("Datat har uppdaterats!");
+		else
+			editUserPanel.getLblStatus().setText("Uppdateringen kunde inte genomföras!");
+	}
+	
+	private UpdateUserTransfere createHostData() {
+		return new UpdateUserTransfere(editUserPanel.getTbFirstName().getText(), editUserPanel.getTbLastName().getText(), editUserPanel.getTbEmail().getText(), editUserPanel.getTbVerEmail().getText(), editUserPanel.getTbCity().getText(), editUserPanel.getTbAddress().getText(), editUserPanel.getTbMobile().getText(), editUserPanel.getTbPhone().getText(), editUserPanel.getTbZip().getText(), editUserPanel.getTbCivic().getText(), editUserPanel.getCbIsActive().isSelected(), editUserPanel.getCbIsAdmin().isSelected());
 	}
 	
 	private void loadSelectedPost(){
