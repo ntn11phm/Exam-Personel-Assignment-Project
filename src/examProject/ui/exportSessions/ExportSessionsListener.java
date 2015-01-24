@@ -21,17 +21,33 @@ public class ExportSessionsListener {
 	public void createButtonListeners() {
 		exportPanel.getBtnExport().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {exportSessions();}});
 		exportPanel.getBtnSetPath().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {setSavePath();}});
+		exportPanel.getBtnLoadPeriod().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {loadPeriod();}});
+	}
+	
+	private void loadPeriod() {
+		if (validateDate(exportPanel.getTbFromDate().getText()) && validateDate(exportPanel.getTbToDate().getText())) {
+			exportPanel.getLblStatus().setText("");
+			List<HostSessionDataTO> arr = backendFacade.exportSessions(exportPanel.getTbFromDate().getText(), exportPanel.getTbToDate().getText());
+			if (arr.size()==0 || arr==null)
+				exportPanel.getLblStatus().setText("Ingen data funnen under perioden.");
+			else{
+				SessionHostRowBuilder rb = new SessionHostRowBuilder(exportPanel.getOutputArea());
+				rb.addSessionsToTextArea(arr);
+			}
+		} else
+			exportPanel.getLblStatus().setText("Felaktigt datumformat!");
 	}
 	
 	private void exportSessions() {
 		boolean result = false;
-		if (validateDate(exportPanel.getTbFromDate().getText()) && validateDate(exportPanel.getTbToDate().getText())) {
+		if (!exportPanel.getOutputArea().getText().equals("")) {
 			if (!exportPanel.getTbPath().equals("")) {
-				List<HostSessionDataTO> arr = backendFacade.exportSessions(exportPanel.getTbFromDate().getText(), exportPanel.getTbToDate().getText());
+				
 				setStatusText(result);
-			}
+			} else
+				exportPanel.getLblStatus().setText("Ange en sökväg!");
 		} else
-			exportPanel.getLblStatus().setText("Felaktigt datumformat!");
+			exportPanel.getLblStatus().setText("Ladda data före export!");
 		
 	}
 	

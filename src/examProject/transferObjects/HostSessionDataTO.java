@@ -44,7 +44,7 @@ public class HostSessionDataTO implements Comparable<HostSessionDataTO>{
 	@Override
 	public int compareTo(HostSessionDataTO other) {
 		int result = -1;
-		if (this.date==other.date && this.time==other.time && this.location==other.location)
+		if (this.date.equals(other.date) && this.time.equals(other.time) && this.location.equals(other.location))
 			result = 0;
 		else
 			result = 1;

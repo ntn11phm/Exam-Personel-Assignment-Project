@@ -14,6 +14,7 @@ public class SessionHostRowBuilder {
 	public void addSessionsToTextArea(List<HostSessionDataTO> arr) {
 		HostSessionDataTO session = new HostSessionDataTO("", "", "", "", "", false);
 		if (arr!=null || arr.size()!=0) {
+				output.setText("");
 				String row = "";
 				for (int i = 0; i < arr.size(); i++)
 					if (i == 0) {
@@ -23,11 +24,11 @@ public class SessionHostRowBuilder {
 						session = arr.get(i);
 						row += ", " + session.getFirstname() + ", " + session.getLastname() + ", " + session.isResponsible();
 					} else {
-						output.setText(output.getText() + row + "\n");
-						row = "";
+						output.append(row + "\n");
 						session = arr.get(i);
 						row = session.getDate() + ", " + session.getTime() + ", " + session.getFirstname() + ", " + session.getLastname() + ", " + session.isResponsible();
 					}
+				output.append(row + "\n");
 		}
 	}
 }

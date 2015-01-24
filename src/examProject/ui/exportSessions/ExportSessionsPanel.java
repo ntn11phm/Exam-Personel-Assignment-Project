@@ -50,6 +50,8 @@ public class ExportSessionsPanel extends JPanel {
 		add(lblStatus);
 		add(btnSetPath);
 		add(btnLoadPeriod);
+		outputArea.setEditable(false);
+		outputArea.setColumns(150);
 		innerPanel.add(outputArea);
 		scrollPane.setViewportView(innerPanel);
 		add(scrollPane);
@@ -104,5 +106,9 @@ public class ExportSessionsPanel extends JPanel {
 	
 	public JTextArea getOutputArea() {
 		return outputArea;
+	}
+	
+	public void setOutputArea(JTextArea outputArea) {
+		this.outputArea = outputArea;
 	}
 }
