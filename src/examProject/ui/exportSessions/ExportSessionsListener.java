@@ -42,7 +42,8 @@ public class ExportSessionsListener {
 		boolean result = false;
 		if (!exportPanel.getOutputArea().getText().equals("")) {
 			if (!exportPanel.getTbPath().getText().equals("")) {
-				
+				WriteCSVFile writer = new WriteCSVFile(exportPanel.getTbFromDate().getText(), exportPanel.getTbToDate().getText(), exportPanel.getTbPath().getText(), exportPanel.getOutputArea());
+				result = writer.writeFile();
 				setStatusText(result);
 			} else
 				exportPanel.getLblStatus().setText("Ange en sökväg!");

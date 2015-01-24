@@ -4,55 +4,53 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class WriteCSVFile {
-	private JPanel panel;
 	private JTextArea outputArea;
 	private String fromDate;
 	private String toDate;
 	private String path;
-	private boolean writeMode = true;
 
-	public WriteCSVFile(String fromDate, String toDate, String path, JTextArea outputArea, JPanel panel) {
+	public WriteCSVFile(String fromDate, String toDate, String path, JTextArea outputArea) {
 		this.fromDate = fromDate;
 		this.toDate = toDate;
 		this.path = path;
 		this.outputArea = outputArea;
-		this.panel = panel;
 	}
 
 	public boolean writeFile() {
 		boolean result = false;
 		String fileName = "Export_" + fromDate + "_" + toDate + ".csv";
-		
+		if (checkFileExists(fileName)) {
+			fileWrite(fileName);
+			result = true;
+		}
 		return result;
 	}
 	
-	private void fileWrite(FileWriter fstream, String row) {
-		try {
-			fstream.write(row + "\n");
-			fstream.flush();
-			fstream.close();
-		} catch (IOException e) {}
+	private void fileWrite(String fileName) {
+		File file = new File(path + File.separator + fileName);
+		String source = outputArea.getText();
+        System.out.println(source);
+        try {
+        	FileWriter f2 = new FileWriter(file, false);
+        	f2.write(source);
+            f2.close();
+        } catch (IOException e) {}           
 	}
 	
 	private boolean checkFileExists(String fileName) {
-		File tmp = new File(path + fileName); 
+		File tmp = new File(path + File.separator + fileName);
 		if (tmp.exists()) {
-			JOptionPane optionPane = new JOptionPane ("Filen finns redan, skriva över ?", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION);
-			if (Integer.parseInt(optionPane.getValue().toString()) == JOptionPane.YES_OPTION) {
-				
-//			} else if (optionPane.getValue() == JOptionPane.NO_OPTION) {
-				
-			}
+			int answer = JOptionPane.showConfirmDialog(null, "Filen finns redan, skriva över ?", "Skriva över ?", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION);
+			if (answer == JOptionPane.YES_OPTION) {
+				tmp.delete();
+				return true;
+			} else
+				return false;
 		} else {
-			try {
-				tmp.createNewFile();
-			} catch (IOException e) {}
+			return true;
 		}
-		
-		return true;
 	}
 }
