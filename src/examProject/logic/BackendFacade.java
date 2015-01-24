@@ -334,4 +334,11 @@ public class BackendFacade {
 		ExportSessions es = new ExportSessions(dbManipulator);
 		return es.exportSessions(fromDate, toDate);
 	}
+	/**
+	 * Checks if the user has admin-rights or not.
+	 * @return {@link boolean} true if the user has admin-rights.
+	 */
+	public boolean getCurrentUserRole() {
+		return currentUser.isIs_admin();
+	}
 }
