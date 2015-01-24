@@ -7,10 +7,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-
 import examProject.logic.BackendFacade;
 import examProject.transferObjects.HostTO;
 import examProject.transferObjects.UpdateUserTransfere;
@@ -36,7 +34,7 @@ public class EditUserInfoListener {
 		boolean result = false;
 		if (!editUserPanel.getTbFirstName().equals("") && !editUserPanel.getTbLastName().equals("")) {
 			if (!editUserPanel.getTbEmail().equals(editUserPanel.getTbVerEmail())) {
-				result = backendFacade.updateHost(editUserPanel.getHostList().getSelectedIndex(), createHostData());
+				result = backendFacade.updateHost(hostArray.get(editUserPanel.getHostList().getSelectedIndex()).getHost_id(), createHostData());
 			} else
 				JOptionPane.showMessageDialog(editUserPanel, "E-post adresserna överensstämmer inte!", "E-post", JOptionPane.ERROR_MESSAGE);
 		} else
