@@ -41,7 +41,7 @@ public class ExportSessionsListener {
 	private void exportSessions() {
 		boolean result = false;
 		if (!exportPanel.getOutputArea().getText().equals("")) {
-			if (!exportPanel.getTbPath().equals("")) {
+			if (!exportPanel.getTbPath().getText().equals("")) {
 				
 				setStatusText(result);
 			} else
