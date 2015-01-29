@@ -91,7 +91,7 @@ import examProject.transferObjects.ShowHostsInfoTransfere;
 
 			private void showInfo(){   
 				ShowHostsInfoTransfere showHostInfo = new ShowHostsInfoTransfere(listData[0], listData[1]);
-					backendFacade.showHostsInfo(showHostInfo);
+//					backendFacade.showHostsInfo(showHostInfo);
 				
 			}
 			
