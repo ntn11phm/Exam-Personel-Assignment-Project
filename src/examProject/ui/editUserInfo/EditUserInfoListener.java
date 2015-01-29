@@ -27,6 +27,7 @@ public class EditUserInfoListener {
 	
 	public void createButtonListeners() {
 		editUserPanel.getBtnUpdate().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {updateHost();}});
+		editUserPanel.getBtnRefreash().addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {loadHostList();}});
 		editUserPanel.getHostList().addKeyListener(new KeyAdapter() {public void keyReleased(KeyEvent e) {loadSelectedPost();}});
 		editUserPanel.getHostList().addMouseListener(new MouseAdapter() {public void mouseClicked(MouseEvent mouseEvent) {listClick(mouseEvent);}});
 	}

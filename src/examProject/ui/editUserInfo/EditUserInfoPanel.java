@@ -5,10 +5,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import examProject.logic.BackendFacade;
-import examProject.transferObjects.HostTO;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -40,6 +37,7 @@ public class EditUserInfoPanel extends JPanel {
 	private JTextField tbVerEmail = new JTextField();
 	private JTextField tbCivic = new JTextField();
 	private JButton btnUpdate = new JButton("Spara");
+	private JButton btnRefreashHost = new JButton("Läs om Värdar");
 	private JCheckBox cbIsActive = new JCheckBox("Aktiv");
 	private JCheckBox cbIsAdmin = new JCheckBox("Administratör");
 
@@ -139,6 +137,10 @@ public class EditUserInfoPanel extends JPanel {
 		return btnUpdate;
 	}
 	
+	public JButton getBtnRefreash() {
+		return btnRefreashHost;
+	}
+	
 	public JCheckBox getCbIsActive() {
 		return cbIsActive;
 	}
@@ -173,6 +175,7 @@ public class EditUserInfoPanel extends JPanel {
 		cbIsActive.setBounds(220, 430, 310, 20);
 		cbIsAdmin.setBounds(220, 460, 310, 20);
 		btnUpdate.setBounds(220, 490, 100, 25);
+		btnRefreashHost.setBounds(220, 586, 150, 23);
 		lblStatus.setBounds(220, 620, 310, 20);
 	}
 	
@@ -206,6 +209,7 @@ public class EditUserInfoPanel extends JPanel {
 		add(cbIsActive);
 		add(cbIsAdmin);
 		add(btnUpdate);
+		add(btnRefreashHost);
 		add(lblStatus);
 	}
 }
