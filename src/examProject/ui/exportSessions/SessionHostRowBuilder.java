@@ -26,7 +26,7 @@ public class SessionHostRowBuilder {
 					} else {
 						output.append(row + "\n");
 						session = arr.get(i);
-						row = session.getDate() + ", " + session.getTime() + ", " + session.getFirstname() + ", " + session.getLastname() + ", " + session.isResponsible();
+						row = session.getDate() + ", " + session.getTime() + ", " + session.getLocation() +  ", " + session.getFirstname() + ", " + session.getLastname() + ", " + session.isResponsible();
 					}
 				output.append(row + "\n");
 		}
