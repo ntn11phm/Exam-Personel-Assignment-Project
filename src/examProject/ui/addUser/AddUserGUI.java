@@ -2,7 +2,6 @@ package examProject.ui.addUser;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -10,12 +9,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import examProject.logic.*;
 import examProject.transferObjects.AddUser;
 
 public class AddUserGUI extends JPanel {
-
 	private static final long serialVersionUID = 2893288573784306256L;
 	private BackendFacade facade;
 	private JLabel userNameLabel = new JLabel("Användarnamn");
@@ -94,8 +91,11 @@ public class AddUserGUI extends JPanel {
 			AddUser au = new AddUser(getUserNameText().getText(),
 					firstNameText.getText(), lastNameText.getText(),
 					pwd.getPassword(), isAdminCheckBox.isSelected());
-			facade.addUser(au);
-			confirmedLabel.setText("Användardata har sparats!");
+			boolean result = facade.addUser(au);
+			if (result)
+				confirmedLabel.setText("Användardata har sparats!");
+			else
+				confirmedLabel.setText("Användardata har inte sparats!");
 		} else {
 			JOptionPane.showMessageDialog(null, "Fyll i alla fält!");
 		}
