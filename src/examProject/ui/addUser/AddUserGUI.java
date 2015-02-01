@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 import examProject.logic.*;
 import examProject.transferObjects.AddUser;
 
-
 public class AddUserGUI extends JPanel {
 
 	private static final long serialVersionUID = 2893288573784306256L;
@@ -38,7 +37,6 @@ public class AddUserGUI extends JPanel {
 		setBounds();
 		addCtrls();
 		guiButtonListener();
-
 	}
 
 	private void setBounds() {
@@ -75,16 +73,15 @@ public class AddUserGUI extends JPanel {
 	private void guiButtonListener() {
 		addUserButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				buttonClickedMethod();		
+				buttonClickedMethod();
 			}
 		});
 		clearTextFields.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				getUserNameText().setText("");	
+				getUserNameText().setText("");
 				firstNameText.setText("");
 				lastNameText.setText("");
 				pwd.setText("");
-				
 			}
 		});
 	}
@@ -94,22 +91,17 @@ public class AddUserGUI extends JPanel {
 				&& !firstNameText.getText().equals("")
 				&& !lastNameText.getText().equals("")
 				&& !pwd.getPassword().equals("")) {
-
 			AddUser au = new AddUser(getUserNameText().getText(),
 					firstNameText.getText(), lastNameText.getText(),
 					pwd.getPassword(), isAdminCheckBox.isSelected());
 			facade.addUser(au);
 			confirmedLabel.setText("Användardata har sparats!");
-
 		} else {
 			JOptionPane.showMessageDialog(null, "Fyll i alla fält!");
-
 		}
 	}
 
 	public static JTextField getUserNameText() {
 		return userNameText;
 	}
-
-
 }
