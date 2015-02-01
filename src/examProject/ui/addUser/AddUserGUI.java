@@ -75,8 +75,7 @@ public class AddUserGUI extends JPanel {
 	private void guiButtonListener() {
 		addUserButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				buttonClickedMethod();
-				confirmedLabel.setText("Användardata har sparats!");
+				buttonClickedMethod();		
 			}
 		});
 		clearTextFields.addActionListener(new ActionListener() {
@@ -100,6 +99,7 @@ public class AddUserGUI extends JPanel {
 					firstNameText.getText(), lastNameText.getText(),
 					pwd.getPassword(), isAdminCheckBox.isSelected());
 			facade.addUser(au);
+			confirmedLabel.setText("Användardata har sparats!");
 
 		} else {
 			JOptionPane.showMessageDialog(null, "Fyll i alla fält!");
