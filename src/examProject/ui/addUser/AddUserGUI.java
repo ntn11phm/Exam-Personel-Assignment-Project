@@ -45,7 +45,7 @@ public class AddUserGUI extends JPanel {
 		userNameLabel.setBounds(29, 85, 130, 28);
 		firstNameLabel.setBounds(29, 27, 130, 23);
 		lastNameLabel.setBounds(169, 26, 130, 25);
-		confirmedLabel.setBounds(29, 311, 300, 29);
+		confirmedLabel.setBounds(29, 311, 389, 29);
 		pwdLabel.setBounds(29, 145, 130, 25);
 		addUserButton.setBounds(29, 246, 170, 34);
 		clearTextFields.setBounds(248, 246, 170, 34);
