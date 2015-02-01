@@ -23,6 +23,7 @@ public class AddUserGUI extends JPanel {
 	private JLabel firstNameLabel = new JLabel("Förnamn");
 	private JLabel lastNameLabel = new JLabel("Efternamn");
 	private JLabel pwdLabel = new JLabel("Lösenord");
+	private JLabel confirmedLabel = new JLabel();
 	private static JTextField userNameText = new JTextField(30);
 	private JTextField firstNameText = new JTextField(30);
 	private JTextField lastNameText = new JTextField(30);
@@ -44,6 +45,7 @@ public class AddUserGUI extends JPanel {
 		userNameLabel.setBounds(29, 85, 130, 28);
 		firstNameLabel.setBounds(29, 27, 130, 23);
 		lastNameLabel.setBounds(169, 26, 130, 25);
+		confirmedLabel.setBounds(29, 311, 300, 29);
 		pwdLabel.setBounds(29, 145, 130, 25);
 		addUserButton.setBounds(29, 246, 170, 34);
 		clearTextFields.setBounds(248, 246, 170, 34);
@@ -60,6 +62,7 @@ public class AddUserGUI extends JPanel {
 		add(userNameLabel);
 		add(firstNameLabel);
 		add(lastNameLabel);
+		add(confirmedLabel);
 		add(pwdLabel);
 		add(getUserNameText());
 		add(firstNameText);
@@ -73,6 +76,7 @@ public class AddUserGUI extends JPanel {
 		addUserButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buttonClickedMethod();
+				confirmedLabel.setText("Användardata har sparats!");
 			}
 		});
 		clearTextFields.addActionListener(new ActionListener() {
